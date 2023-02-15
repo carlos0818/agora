@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 // import { useAppDispatch } from '../../redux/hooks'
 
 import { CountrySnapshotLayout } from '@/components/layouts'
-// const MapWithNoSSR = dynamic(() => import('../../components/Map'), {ssr: false });
+const MapWithNoSSR = dynamic(() => import('../../components/Map'), {ssr: false });
 
 import countriesList from '../../db/countries'
 // import { login } from '@/redux/slices/auth';
@@ -99,7 +99,7 @@ const CountrySnapshot = () => {
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-pop-ages"] }` }>(2022)</p>
                             </div>
                             <div className={ `${ styles["map-container"] }` }>
-                                {/* <MapWithNoSSR country={ country } /> */}
+                                <MapWithNoSSR country={ country } />
                             </div>
                         </div>
                     </div>
