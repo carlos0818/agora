@@ -1,0 +1,251 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('/fonts/icomoon.eot?mk6qam');
+    src: url('/fonts/icomoon.eot?mk6qam#iefix') format('embedded-opentype'),
+        url('/fonts/icomoon.ttf?mk6qam') format('truetype'),
+        url('/fonts/icomoon.woff?mk6qam') format('woff'),
+        url('/fonts/icomoon.svg?mk6qam#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-man:before {
+    content: "\e937";
+}
+
+.icon-gov-b-reg:before {
+    content: "\e91c";
+}
+
+.icon-area:before {
+    content: "\e900";
+}
+
+.icon-city:before {
+    content: "\e901";
+}
+
+.icon-conn-glob:before {
+    content: "\e902";
+}
+
+.icon-conn-inno:before {
+    content: "\e903";
+}
+
+.icon-conn-main:before {
+    content: "\e904";
+}
+
+.icon-conn-patent:before {
+    content: "\e905";
+}
+
+.icon-conn-rd:before {
+    content: "\e906";
+}
+
+.icon-conn-tech:before {
+    content: "\e907";
+}
+
+.icon-conn-trade:before {
+    content: "\e908";
+}
+
+.icon-expec:before {
+    content: "\e909";
+}
+
+.icon-forecast-bal:before {
+    content: "\e90a";
+}
+
+.icon-forecast-curr:before {
+    content: "\e90b";
+}
+
+.icon-forecast-grow:before {
+    content: "\e90c";
+}
+
+.icon-forecast-infl:before {
+    content: "\e90d";
+}
+
+.icon-forecast-invest:before {
+    content: "\e90e";
+}
+
+.icon-forecast-main:before {
+    content: "\e90f";
+}
+
+.icon-forecast-unem:before {
+    content: "\e910";
+}
+
+.icon-gdp-case:before {
+    content: "\e911";
+}
+
+.icon-gdp-grow:before {
+    content: "\e912";
+}
+
+.icon-gdp-main:before {
+    content: "\e913";
+}
+
+.icon-gdp-perc:before {
+    content: "\e914";
+}
+
+.icon-geo-main:before {
+    content: "\e915";
+}
+
+.icon-gov-b-comp:before {
+    content: "\e916";
+}
+
+.icon-gov-b-corr:before {
+    content: "\e917";
+}
+
+.icon-gov-b-ef:before {
+    content: "\e918";
+}
+
+.icon-gov-b-jud:before {
+    content: "\e919";
+}
+
+.icon-gov-b-main:before {
+    content: "\e91a";
+}
+
+.icon-gov-b-poli:before {
+    content: "\e91b";
+}
+
+.icon-gov-m-bal:before {
+    content: "\e91d";
+}
+
+.icon-gov-m-deb:before {
+    content: "\e91e";
+}
+
+.icon-gov-m-main:before {
+    content: "\e91f";
+}
+
+.icon-gro:before {
+    content: "\e920";
+}
+
+.icon-house-cons:before {
+    content: "\e921";
+}
+
+.icon-house-dev:before {
+    content: "\e922";
+}
+
+.icon-house-hap:before {
+    content: "\e923";
+}
+
+.icon-house-main:before {
+    content: "\e924";
+}
+
+.icon-house-pie:before {
+    content: "\e925";
+}
+
+.icon-infl-cost:before {
+    content: "\e926";
+}
+
+.icon-infl-main:before {
+    content: "\e927";
+}
+
+.icon-infl-rate:before {
+    content: "\e928";
+}
+
+.icon-kids:before {
+    content: "\e929";
+}
+
+.icon-labour-force:before {
+    content: "\e92a";
+}
+
+.icon-labour-main:before {
+    content: "\e92b";
+}
+
+.icon-labour-part:before {
+    content: "\e92c";
+}
+
+.icon-labour-wm:before {
+    content: "\e92d";
+}
+
+.icon-labour-women:before {
+    content: "\e92e";
+}
+
+.icon-labour-yu:before {
+    content: "\e92f";
+}
+
+.icon-mob:before {
+    content: "\e930";
+}
+
+.icon-old:before {
+    content: "\e931";
+}
+
+.icon-pop:before {
+    content: "\e932";
+}
+
+.icon-rur:before {
+    content: "\e933";
+}
+
+.icon-trade-exp:before {
+    content: "\e934";
+}
+
+.icon-trade-fdi:before {
+    content: "\e935";
+}
+
+.icon-trade-main:before {
+    content: "\e936";
+}

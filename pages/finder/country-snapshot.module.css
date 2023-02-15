@@ -1,0 +1,1450 @@
+.select {
+    display: block;
+    margin: auto;
+    margin-block-start: 16px;
+    padding-block: 4px;
+    padding-inline: 8px;
+    font-size: 18px;
+    border: 1px solid black;
+    background-color: white;
+    outline: none;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: 336px 283px 288px 291px;
+    grid-template-rows: 1fr;
+    max-width: 1280px;
+    padding-block: 20px;
+    margin: auto;
+    gap: 25px;
+}
+
+.grid-column {
+    /* border: 1px solid green; */
+}
+
+.statistics-container {
+    border: 1px solid #000000;
+    box-shadow: 9px 11px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+    position: relative;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.geography-container {
+    inline-size: 100%;
+    block-size: 100%;
+}
+
+.map-container {
+    border-radius: 28px;
+    inline-size: 300px;
+    block-size: 420px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.gdp-container {
+    block-size: 206px;
+}
+
+.labor-container {
+    block-size: 254px;
+}
+
+.governance-container {
+    block-size: 375px;
+}
+
+.trade-container {
+    block-size: 208px;
+}
+
+.government-inflation-container {
+    display: flex;
+    gap: 12px;
+    margin-block-start: 12px;
+}
+
+.government {
+    inline-size: 140px;
+    block-size: 265px;
+}
+
+.government p:nth-child(2),
+.government p:nth-child(4) {
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+}
+
+.government p:nth-child(2) {
+    margin: auto;
+    margin-block-start: 5px;
+    text-align: center;
+    inline-size: 120px;
+}
+
+.government p:nth-child(4) {
+    position: absolute;
+    bottom: 100px;
+    left: 53px;
+}
+
+.inflation-rate {
+    inline-size: 140px;
+    block-size: 265px;
+}
+
+.inflation-rate p:nth-child(5) {
+    font-size: 12px;
+    position: absolute;
+    bottom: 68px;
+    text-align: center;
+}
+
+.inflation-rate .title-container-column h4 {
+    margin-block-start: 0;
+}
+
+.household-container {
+    margin-block-start: 12px;
+    block-size: 364px;
+}
+
+.economic-container {
+    block-size: 396px;
+}
+
+.connectivity-container {
+    block-size: 452px;
+}
+
+.title-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding-block-start: 12px;
+    padding-inline-start: 30px;
+}
+
+.title-container-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block-start: 15px;
+    padding-inline-start: 0;
+}
+
+.title-container-column p {
+    font-size: 8px;
+    margin-block-start: 8px;
+}
+
+.labor-doll-container {
+    display: grid;
+    grid-template-columns: repeat(20, 5px);
+    grid-template-rows: repeat(5, 13px);
+    position: absolute;
+    top: 35px;
+    left: 15px;
+}
+
+.household-doll-container {
+    display: grid;
+    grid-template-columns: repeat(20, 5px);
+    grid-template-rows: repeat(5, 13px);
+    position: absolute;
+    top: 22px;
+    left: 15px;
+}
+
+.title-icon-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--dark-blue);
+    inline-size: 90px;
+    block-size: 55px;
+    border-radius: 8px;
+    flex: none;
+    font-size: 64px;
+}
+
+.title-data-section {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    padding-inline-end: 30px;
+}
+
+.short-section {
+    margin-block-start: 8px;
+    padding-inline-end: 0;
+}
+
+.subtitle-data-section {
+    display: block;
+    font-size: 10px;
+}
+
+.geography-row {
+    position: relative;
+    height: 90px;
+}
+
+.gdp-row {
+    margin-block-start: 10px;
+    position: relative;
+    height: 90px;
+}
+
+.labor-columns-container {
+    display: flex;
+    gap: 5px;
+}
+
+.labor-column-one {
+    inline-size: 115px;
+    block-size: 180px;
+    position: relative;
+}
+
+.labor-column-two {
+    inline-size: 150px;
+    block-size: 180px;
+    position: relative;
+}
+
+.labor-row {
+    position: relative;
+    block-size: 40px;
+}
+
+.genres-container {
+    position: absolute;
+    width: 96px;
+    height: 32px;
+    background-color: #D9D9D9;
+    top: 130px;
+    left: 15px;
+    border-radius: 7px;
+}
+
+.genres-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.genres-wrapper:nth-child(2) {
+    margin-block-start: 3px;
+}
+
+.genres-wrapper:nth-child(3) {
+    margin-block-start: 2px;
+}
+
+.genres-wrapper p {
+    font-size: 10px;
+}
+
+.genres-wrapper p:first-child {
+    margin-inline-start: 15px;
+}
+
+.genres-wrapper p:nth-child(2) {
+    margin-inline-end: 3px;
+    text-align: end;
+}
+
+.governance-columns-container {
+    display: flex;
+}
+
+.governance-column {
+    block-size: 300px;
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative;
+}
+
+.governance-row {
+    block-size: 95px;
+    position: relative;
+}
+
+.trade-row {
+    margin-block-start: 10px;
+    position: relative;
+    height: 90px;
+}
+
+.household-columns-container {
+    display: flex;
+}
+
+.household-column {
+    block-size: 290px;
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative;
+}
+
+.household-row {
+    position: relative;
+    height: 90px;
+}
+
+.income-container {
+    display: flex;
+    flex-direction: column;
+    top: 20px;
+    left: 5px;
+    margin-inline-start: 5px;
+    inline-size: 111px;
+    block-size: 43px;
+    background-color: #D9D9D9;
+    border-radius: 7px;
+    position: relative;
+}
+
+.income-container p {
+    font-size: 8px;
+}
+
+.income-container p:first-child {
+    margin-block-start: 5px;
+    margin-inline-start: 5px;
+    /* border: 1px solid green; */
+}
+
+.income-container p:nth-child(2) {
+    font-size: 14px;
+    right: 5px;
+}
+
+.income-container p:nth-child(3) {
+    margin-block-start: 2px;
+    margin-inline-start: 5px;
+    line-height: 11px;
+}
+
+.income-container p:nth-child(4) {
+    font-size: 14px;
+    top: 25px;
+    right: 5px;
+}
+
+.forecast-columns-container {
+    display: flex;
+}
+
+.forecast-column {
+    block-size: 290px;
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative;
+}
+
+.forecast-row {
+    position: relative;
+    height: 100px;
+}
+
+.connectivity-columns-container {
+    display: flex;
+}
+
+.connectivity-column {
+    block-size: 290px;
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative;
+}
+
+.connectivity-row {
+    position: relative;
+    height: 100px;
+}
+
+.indicator-title {
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+}
+
+.indicator-title-area {
+    top: 15px;
+    left: 30px;
+}
+
+.indicator-title-lifeexpentancy {
+    top: 15px;
+    left: 190px;
+}
+
+.indicator-title-pop-size {
+    top: 5px;
+    left: 30px;
+}
+
+.indicator-title-pop-growth {
+    top: 5px;
+    left: 190px;
+}
+
+.indicator-title-rural-pop {
+    top: 0;
+    left: 30px;
+}
+
+.indicator-title-pop-age {
+    top: 0;
+    left: 190px;
+}
+
+.indicator-title-urban-pop {
+    top: -5px;
+    left: 30px;
+}
+
+.indicator-title-pop-ages {
+    top: -5px;
+    left: 190px;
+}
+
+.indicator-title-gdp {
+    top: 5px;
+    left: 35px;
+}
+
+.indicator-title-gdp-per-capita {
+    top: 5px;
+    left: 90px;
+}
+
+.indicator-title-growth-rate {
+    top: 5px;
+    left: 193px;
+}
+
+.indicator-title-unemployment-rate {
+    display: block;
+    top: 5px;
+    left: 20px;
+    width: 90px;
+    text-align: center;
+}
+
+.indicator-title-labor-force {
+    top: 5px;
+    left: 65px;
+}
+
+.indicator-title-labor-participation {
+    top: 2px;
+    left: 40px;
+}
+
+.indicator-title-labor-force-female {
+    top: 5px;
+    left: 25px;
+}
+
+.indicator-title-labor-youth {
+    top: 3px;
+    left: 0;
+}
+
+.indicator-title-gov-effectiveness {
+    display: block;
+    top: 5px;
+    left: 20px;
+    width: 120px;
+}
+
+.indicator-title-gov-corruption {
+    display: block;
+    top: 0;
+    left: 20px;
+    width: 110px;
+}
+
+.indicator-title-gov-regulatory {
+    display: block;
+    top: 5px;
+    left: 20px;
+    width: 110px;
+}
+
+.indicator-title-gov-political {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 130px;
+}
+
+.indicator-title-gov-rule {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 130px;
+}
+
+.indicator-title-gov-competitiveness {
+    display: block;
+    top: 5px;
+    left: 0;
+    width: 120px;
+}
+
+.indicator-title-trade-fdi {
+    display: block;
+    top: 5px;
+    left: 30px;
+    width: 120px;
+}
+
+.indicator-title-trade-fdi > span {
+    display: block;
+    font-size: 10px;
+    line-height: 7px;
+}
+
+.indicator-title-gov-debt {
+    font-size: 10px;
+    display: block;
+    bottom: 55px;
+    left: 55px;
+    width: 120px;
+}
+
+.indicator-title-household-cons {
+    display: block;
+    top: 10px;
+    left: 20px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-household-human {
+    display: block;
+    top: 0;
+    left: 15px;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-household-poverty {
+    display: block;
+    top: 5px;
+    left: 5px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-household-happiness {
+    display: block;
+    top: 0;
+    left: 10px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-forecast-growth {
+    display: block;
+    top: 10px;
+    left: 18px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-forecast-inflation {
+    display: block;
+    top: 10px;
+    left: 18px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-forecast-budget {
+    display: block;
+    top: 10px;
+    left: 10px;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-forecast-investment {
+    display: block;
+    top: 10px;
+    left: 0;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-forecast-unemployment {
+    display: block;
+    top: 10px;
+    left: 0;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-forecast-current {
+    display: block;
+    top: 10px;
+    left: 5px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-connectivity-trade {
+    display: block;
+    top: 15px;
+    left: 25px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-connectivity-patent {
+    display: block;
+    top: 15px;
+    left: 15px;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-connectivity-rd {
+    display: block;
+    top: 25px;
+    left: 25px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-title-connectivity-globalization {
+    display: block;
+    top: 10px;
+    left: 0;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-connectivity-innovation {
+    display: block;
+    top: 10px;
+    left: 0;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-title-connectivity-hightech {
+    display: block;
+    top: 25px;
+    left: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.indicator-subtitle-rd {
+    position: absolute;
+    font-size: 10px;
+    top: 38px;
+    left: 43px;
+}
+
+.indicator-subtitle-globalization {
+    position: absolute;
+    font-size: 8px;
+    top: 24px;
+    left: 10px;
+}
+
+.indicator-subtitle-innovation {
+    position: absolute;
+    font-size: 10px;
+    top: 24px;
+    left: 10px;
+    width: 100px;
+    text-align: center;
+}
+
+.indicator-subtitle-hightech {
+    position: absolute;
+    font-size: 8px;
+    top: 39px;
+    left: 15px;
+    width: 100px;
+    text-align: center;
+}
+
+.title-icon {
+    color: var(--dark-blue2);
+}
+
+.indicator-icon {
+    position: absolute;
+    color: #1F2C4FB2;
+}
+
+.man-icon-rate {
+    position: relative;
+    font-size: 11px;
+}
+
+.man-icon-rate.painted {
+    color:#1F2C4F;
+}
+
+.geography-icon-area {
+    font-size: 54px;
+    top: 35px;
+    left: 15px;
+}
+
+.geography-icon-expec {
+    font-size: 68px;
+    top: 30px;
+    left: 195px;
+}
+
+.geography-icon-pop-size {
+    font-size: 70px;
+    top: 20px;
+    left: 30px;
+}
+
+.geography-icon-pop-growth {
+    font-size: 64px;
+    top: 20px;
+    left: 195px;
+}
+
+.geography-icon-rural-pop {
+    font-size: 68px;
+    top: 15px;
+    left: 30px;
+}
+
+.geography-icon-pop-age {
+    font-size: 68px;
+    top: 15px;
+    left: 200px;
+}
+
+.geography-icon-urban-pop {
+    font-size: 68px;
+    top: 10px;
+    left: 30px;
+}
+
+.geography-icon-pop-ages {
+    font-size: 68px;
+    top: 10px;
+    left: 190px;
+}
+
+.gdp-icon-gdp {
+    font-size: 64px;
+    top: 20px;
+    left: 0;
+}
+
+.gdp-icon-gdp-per-capita {
+    font-size: 64px;
+    top: 20px;
+    left: 84px;
+}
+
+.gdp-icon-growth-rate {
+    font-size: 64px;
+    top: 20px;
+    left: 178px;
+}
+
+.labor-icon-wm {
+    top: -21px;
+    left: -40px;
+    font-size: 68px;
+}
+
+.labor-icon-force {
+    top: -5px;
+    left: 0;
+    font-size: 64px;
+}
+
+.labor-icon-participation {
+    top: -5px;
+    left: -15px;
+    font-size: 50px;
+}
+
+.labor-icon-force-female {
+    top: 0;
+    left: 0;
+    font-size: 45px;
+}
+
+.labor-icon-youth {
+    top: 15px;
+    left: 0;
+    font-size: 35px;
+}
+
+.gov-icon-gov-effectiveness {
+    top: 35px;
+    left: 20px;
+    font-size: 68px;
+}
+
+.gov-icon-gov-corruption {
+    top: 33px;
+    left: 20px;
+    font-size: 68px;
+}
+
+.gov-icon-gov-regulatory {
+    top: 45px;
+    left: 20px;
+    font-size: 55px;
+}
+
+.gov-icon-gov-political {
+    top: 25px;
+    left: 0;
+    font-size: 68px;
+}
+
+.gov-icon-gov-rule {
+    top: 25px;
+    left: 0;
+    font-size: 68px;
+}
+
+.gov-icon-gov-competitiveness {
+    top: 38px;
+    left: 0;
+    font-size: 68px;
+}
+
+.trade-icon-fdi {
+    font-size: 64px;
+    top: 35px;
+    left: 30px;
+}
+
+.trade-icon-balance {
+    font-size: 110px;
+    top: -12px;
+    left: 115px;
+}
+
+.gov-icon-bal {
+    font-size: 60px;
+    top: 140px;
+    left: 3px;
+}
+
+.gov-icon-debt {
+    font-size: 68px;
+    bottom: 10px;
+    left: 5px;
+}
+
+.infl-icon-rate {
+    font-size: 68px;
+    top: 105px;
+    left: 30px;
+}
+
+.infl-icon-cost {
+    font-size: 64px;
+    bottom: 10px;
+    left: 20px;
+}
+
+.gov-icon-household-cons {
+    font-size: 64px;
+    top: 28px;
+    left: 20px;
+}
+
+.gov-icon-household-pie {
+    font-size: 64px;
+    top: 5px;
+    left: 5px;
+}
+
+.gov-icon-household-human {
+    font-size: 64px;
+    top: 20px;
+    left: 58px;
+}
+
+.gov-icon-household-poverty {
+    font-size: 64px;
+    top: 20px;
+    left: 7px;
+}
+
+.household-icon-household-happiness {
+    font-size: 64px;
+    top: 20px;
+    left: -8px;
+}
+
+.forecast-icon-forecast-growth {
+    font-size: 64px;
+    top: 35px;
+    left: 18px;
+}
+
+.forecast-icon-forecast-inflation {
+    font-size: 64px;
+    top: 30px;
+    left: 18px;
+}
+
+.forecast-icon-forecast-budget {
+    font-size: 64px;
+    top: 30px;
+    left: 12px;
+}
+
+.forecast-icon-forecast-investment {
+    font-size: 64px;
+    top: 30px;
+    left: 5px;
+}
+
+.forecast-icon-forecast-unemployment {
+    font-size: 64px;
+    top: 35px;
+    left: 5px;
+}
+
+.forecast-icon-forecast-current {
+    font-size: 64px;
+    top: 45px;
+    left: 5px;
+}
+
+.connectivity-icon-connectivity-trade {
+    font-size: 64px;
+    top: 30px;
+    left: 30px;
+}
+
+.connectivity-icon-connectivity-patent {
+    font-size: 64px;
+    top: 45px;
+    left: 30px;
+}
+
+.connectivity-icon-connectivity-rd {
+    font-size: 68px;
+    top: 55px;
+    left: 28px;
+}
+
+.connectivity-icon-connectivity-globalization {
+    font-size: 68px;
+    top: 35px;
+    left: 15px;
+}
+
+.connectivity-icon-connectivity-innovation {
+    font-size: 64px;
+    top: 45px;
+    left: 5px;
+}
+
+.connectivity-icon-connectivity-hightech {
+    font-size: 68px;
+    top: 60px;
+    left: 20px;
+}
+
+.indicator-result {
+    font-size: 12px;
+    font-weight: 800;
+    position: absolute;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.indicator-result-area {
+    top: 52px;
+    left: 98px;
+}
+
+.indicator-result-expec {
+    top: 40px;
+    left: 205px;
+}
+
+.indicator-result-pop-size {
+    top: 45px;
+    left: 98px;
+}
+
+.indicator-result-pop-growth {
+    top: 45px;
+    left: 275px;
+}
+
+.indicator-result-rural-pop {
+    top: 40px;
+    left: 108px;
+}
+
+.indicator-result-pop-age {
+    top: 40px;
+    left: 190px;
+}
+
+.indicator-result-urban-pop {
+    top: 35px;
+    left: 108px;
+}
+
+.indicator-result-pop-ages {
+    top: 35px;
+    left: 255px;
+}
+
+.indicator-result-gdp {
+    top: 85px;
+    left: 20px;
+}
+
+.indicator-result-gdp-per-capita {
+    top: 85px;
+    left: 100px;
+}
+
+.indicator-result-gdp-growth-rate {
+    top: 85px;
+    left: 214px;
+}
+
+.indicator-result-unemployment-rate {
+    top: 100px;
+    left: 40px;
+    font-size: 15px;
+}
+
+.indicator-result-labor-force {
+    top: 20px;
+    left: 65px;
+}
+
+.indicator-result-labor-participation {
+    top: 20px;
+    left: 60px;
+}
+
+.indicator-result-labor-force-female {
+    top: 22px;
+    left: 60px;
+}
+
+.indicator-result-labor-youth {
+    top: 25px;
+    left: 45px;
+}
+
+.indicator-result-gov-effectiveness {
+    font-size: 15px;
+    top: 60px;
+    left: 90px;
+}
+
+.indicator-result-gov-corruption {
+    font-size: 15px;
+    top: 55px;
+    left: 90px;
+}
+
+.indicator-result-gov-regulatory {
+    font-size: 15px;
+    top: 62px;
+    left: 85px;
+}
+
+.indicator-result-gov-political {
+    font-size: 15px;
+    top: 52px;
+    left: 50px;
+}
+
+.indicator-result-gov-rule {
+    font-size: 15px;
+    top: 52px;
+    left: 60px;
+}
+
+.indicator-result-gov-competitiveness {
+    font-size: 15px;
+    top: 62px;
+    left: 60px;
+}
+
+.indicator-result-trade-fdi {
+    top: 50px;
+    left: 90px;
+}
+
+.indicator-result-trade-balance {
+    font-size: 10px;
+    top: 38px;
+    left: 173px;
+    width: 50px;
+    text-align: center;
+}
+
+.indicator-result-trade-balance-left {
+    font-size: 8px;
+    top: 48px;
+    left: 130px;
+    width: 45px;
+    text-align: center;
+}
+
+.indicator-result-trade-balance-right {
+    font-size: 8px;
+    top: 85px;
+    left: 217px;
+    width: 50px;
+    text-align: center;
+}
+
+.indicator-result-gov-fiscal {
+    font-size: 12px;
+    bottom: 83px;
+    left: 70px;
+    text-align: center;
+}
+
+.indicator-result-gov-debt {
+    font-size: 12px;
+    bottom: 28px;
+    left: 65px;
+}
+
+.indicator-result-gov-debt > span {
+    display: block;
+    font-size: 8px;
+    text-align: start;
+}
+
+.indicator-result-infl-rate {
+    font-size: 12px;
+    bottom: 120px;
+    left: 20px;
+}
+
+.indicator-result-infl-cost {
+    font-size: 12px;
+    bottom: 40px;
+    left: 90px;
+}
+
+.indicator-result-household-cons {
+    font-size: 12px;
+    top: 45px;
+    left: 80px;
+    inline-size: 50px;
+}
+
+.indicator-result-household-pie-one {
+    font-size: 12px;
+    top: 10px;
+    left: 52px;
+}
+
+.indicator-result-household-pie-two {
+    font-size: 12px;
+    top: 40px;
+    left: 52px;
+    color: #828282;
+}
+
+.indicator-result-household-human {
+    font-size: 12px;
+    top: 35px;
+    left: 35px;
+}
+
+.indicator-result-household-poverty {
+    font-size: 15px;
+    top: 85px;
+    left: 45px;
+}
+
+.indicator-result-household-happiness {
+    font-size: 15px;
+    top: 35px;
+    left: 80px;
+}
+
+.indicator-result-forecast-growth {
+    top: 50px;
+    left: 80px;
+}
+
+.indicator-result-forecast-inflation {
+    top: 50px;
+    left: 80px;
+}
+
+.indicator-result-forecast-budget {
+    top: 50px;
+    left: 90px;
+}
+
+.indicator-result-forecast-investment {
+    top: 55px;
+    left: 70px;
+}
+
+.indicator-result-forecast-unemployment {
+    top: 50px;
+    left: 60px;
+}
+
+.indicator-result-forecast-current {
+    top: 65px;
+    left: 70px;
+}
+
+.indicator-result-connectivity-trade {
+    top: 50px;
+    left: 90px;
+}
+
+.indicator-result-connectivity-patent {
+    top: 63px;
+    left: 90px;
+}
+
+.indicator-result-connectivity-rd {
+    top: 75px;
+    left: 95px;
+}
+
+.indicator-result-connectivity-globalization {
+    top: 55px;
+    left: 82px;
+}
+
+.indicator-result-connectivity-innovation {
+    top: 62px;
+    left: 75px;
+}
+
+.indicator-result-connectivity-hightech {
+    top: 75px;
+    left: 85px;
+}
+
+.indicator-year {
+    font-weight: 400;
+    font-size: 8px;
+    position: absolute;
+}
+
+.indicator-year-expec {
+    top: 56px;
+    left: 205px;
+}
+
+.indicator-year-pop-size {
+    top: 62px;
+    left: 120px;
+}
+
+.indicator-year-pop-growth {
+    top: 62px;
+    left: 278px;
+}
+
+.indicator-year-rural-pop {
+    top: 56px;
+    left: 112px;
+}
+
+.indicator-year-pop-age {
+    top: 56px;
+    left: 195px;
+}
+
+.indicator-year-urban-pop {
+    top: 51px;
+    left: 112px;
+}
+
+.indicator-year-pop-ages {
+    top: 51px;
+    left: 260px;
+}
+
+.indicator-year-trade-fdi {
+    top: 65px;
+    left: 90px;
+}
+
+.indicator-year-trade-balance {
+    top: 63px;
+    left: 185px;
+}
+
+.indicator-year-gov-fiscal {
+    bottom: 73px;
+    left: 72px;
+}
+
+.indicator-year-gov-debt {
+    bottom: 17px;
+    left: 72px;
+}
+
+.indicator-year-infl-rate {
+    bottom: 110px;
+    left: 22px;
+}
+
+.indicator-year-infl-cost {
+    bottom: 29px;
+    left: 86px;
+}
+
+.indicator-year-household-cons {
+    top: 75px;
+    left: 86px;
+}
+
+.indicator-year-household-pie-one {
+    top: 25px;
+    left: 83px;
+}
+
+.indicator-year-household-pie-two {
+    top: 55px;
+    left: 83px;
+}
+
+.indicator-year-household-human {
+    top: 50px;
+    left: 40px;
+}
+
+.indicator-year-household-happiness {
+    top: 54px;
+    left: 81px;
+}
+
+.indicator-year-forecast-growth {
+    top: 65px;
+    left: 81px;
+}
+
+.indicator-year-forecast-inflation {
+    top: 65px;
+    left: 80px;
+}
+
+.indicator-year-forecast-budget {
+    top: 65px;
+    left: 90px;
+}
+
+.indicator-year-forecast-investment {
+    top: 70px;
+    left: 71px;
+}
+
+.indicator-year-forecast-unemployment {
+    top: 65px;
+    left: 60px;
+}
+
+.indicator-year-forecast-current {
+    top: 80px;
+    left: 70px;
+}
+
+.indicator-year-connectivity-trade {
+    top: 65px;
+    left: 90px;
+}
+
+.indicator-year-connectivity-patent {
+    top: 78px;
+    left: 90px;
+}
+
+.indicator-year-connectivity-rd {
+    top: 90px;
+    left: 98px;
+}
+
+.indicator-year-connectivity-globalization {
+    top: 70px;
+    left: 85px;
+}
+
+.indicator-year-connectivity-innovation {
+    top: 78px;
+    left: 70px;
+}
+
+.indicator-year-connectivity-hightech {
+    top: 90px;
+    left: 85px;
+}
+
+.indicator-values {
+    font-weight: 400;
+    font-size: 8px;
+    position: absolute;
+    display: block;
+}
+
+.indicator-values-gov-effectiveness {
+    top: 32px;
+    left: 23px;
+}
+
+.indicator-values-gov-corruption {
+    top: 28px;
+    left: 23px;
+}
+
+.indicator-values-gov-regulatory {
+    top: 32px;
+    left: 23px;
+}
+
+.indicator-values-gov-political {
+    top: 15px;
+    left: 0;
+}
+
+.indicator-values-gov-rule {
+    top: 15px;
+    left: 0;
+}
+
+.indicator-values-gov-competitiveness {
+    top: 32px;
+    left: 0;
+}
