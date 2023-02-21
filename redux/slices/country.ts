@@ -3,11 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 // Define a type for the slice state
 interface CountryState {
-    id: string  | null
-    indicatorId: number | null
-    indicatorName: string | null
-    indicatorYear: number | null
-    indicatorValue: number | null
+    id: string
+    indicatorId: number
+    indicatorName: string
+    indicatorYear: number
+    indicatorValue: number
 }
 
 // Define the initial state using that type

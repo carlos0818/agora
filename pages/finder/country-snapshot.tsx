@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import { CountrySnapshotLayout } from '@/components/layouts'
@@ -12,15 +12,19 @@ import { agoraApi } from '@/api'
 import styles from './country-snapshot.module.css'
 import { ICountry } from '@/interfaces';
 import commaSeparateNumber from '@/utils/formatNumber';
+import { useAnimateIndicators } from '@/hooks';
 
 const CountrySnapshot = () => {
     const { countries } = countriesList
 
     const dispatch = useAppDispatch()
     const indicators = useAppSelector((state) => state.countryReducer)
+
+    const { landArea } = useAnimateIndicators(indicators)
     
     const [country, setCountry] = useState('')
     const [flag, setFlag] = useState<string | null>(null)
+    
     const [dolls, setDolls] = useState([
         1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
         21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
@@ -28,6 +32,10 @@ const CountrySnapshot = () => {
         61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,
         81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100
     ])
+
+    // useEffect(() => {
+    //     // useIndicators()
+    // }, [indicators])
     
     const handleData = async(value: string) => {
         if (value !== '') {
@@ -55,7 +63,6 @@ const CountrySnapshot = () => {
                     {
                         flag && (<img className={ styles["flag"] } src={ flag } />)
                     }
-                    {/* <img className={ styles["flag"] } src='' width={ 80 } height={ 40 }/> */}
                 </div>
                 <div className={ styles["data-grid"] }>
                     <div className={ styles["grid-column"] }>
@@ -72,8 +79,19 @@ const CountrySnapshot = () => {
                                 <em className={ `${ styles["indicator-icon"] } icon-area ${ styles["geography-icon-area"] }` }></em>
                                 <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-area"] }` }>
                                     {
-                                        indicators.length === 0 ? 0 :
-                                        indicators.map(ind => ind.indicatorId === 378 ? `${ commaSeparateNumber(Math.floor(ind.indicatorValue!)) } km²` : null)
+                                        landArea
+                                        // indicators.length === 0 ? 0 :
+                                        // indicators.map(ind => {
+                                        //     setInterval(() => {
+                                        //         // animateNumber(commaSeparateNumber(Math.floor(ind.indicatorValue!)))
+                                        //         if (ind.indicatorId === 378) {
+                                        //             return `${ animateNumber(commaSeparateNumber(Math.floor(ind.indicatorValue!))) } km²`
+                                        //         } else {
+                                        //             return null
+                                        //         }
+                                        //     }, 20)
+                                        //     return null
+                                        // })
                                     }
                                 </p>
             
