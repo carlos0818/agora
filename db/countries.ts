@@ -3,6 +3,7 @@
         {
             id: "-1",
             name: "Select a country",
+            alpha3: "",
             latitude : 0,
             longitude : 0,
             zoom: 1
@@ -474,7 +475,7 @@
         {
             id: "299",
             name:"Euro area",
-            alpha3 : "",
+            alpha3 : "AAA",
             latitude : 0,
             longitude : 0,
             zoom: 5

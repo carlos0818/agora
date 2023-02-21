@@ -5,7 +5,7 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet-defaulticon-compatibility'
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
 
-import { globaleconomyApi, overpassApi } from '@/api'
+import { overpassApi } from '@/api'
 
 import countriesList from '@/db/countries'
 
@@ -24,6 +24,7 @@ const Map: FC<Props> = ({ country = '' }) => {
     const [zoom, setZoom] = useState(1)
     const center = [geoData.lat, geoData.lng]
     const [polygon, setPolygon] = useState<any>([])
+
     const { countries } = countriesList
     
     useEffect(() => {
@@ -33,15 +34,7 @@ const Map: FC<Props> = ({ country = '' }) => {
     const getCountryFlag = async() => {
         try {
             if (country !== '') {
-                const { data } = await globaleconomyApi.get(`${ process.env.NEXT_PUBLIC_GLOBALECONOMY_URL }tp=2&ind=522,578,510&cnt=${ country }&prd=latest&uid=106948&uidc=45f9166614f875c786ecfc716a825395`)
-
-                const parser = new DOMParser()
-                const xmlDoc = parser.parseFromString(data, 'text/xml')
-                const countryIso = xmlDoc.getElementsByTagName('ge:country')[0].getAttribute('id')
-
-                // console.log(countryIso)
-                
-                const query = `[out:json][timeout:25];relation["ISO3166-1:alpha3"="${ countryIso }"]["admin_level" = 2];out tags;`
+                const query = `[out:json][timeout:25];relation["ISO3166-1:alpha3"="${ country }"]["admin_level" = 2];out tags;`
                 const { data: respFlag } = await overpassApi.get(`/interpreter?data=${ query }`)
                 // console.log(respFlag.elements[0].tags.flag) // IMAGEN BANDERA
 
@@ -51,7 +44,7 @@ const Map: FC<Props> = ({ country = '' }) => {
                     let noshift = 0
                     let Border = data
                     for (let i = 0; i < data.features.length; i++) {
-                        if (data.features[i].properties.adm0_iso !== countryIso) {
+                        if (data.features[i].properties.adm0_iso !== country) {
                             delete Border.features[i]
                         } else {
                             noshift = i
@@ -60,7 +53,7 @@ const Map: FC<Props> = ({ country = '' }) => {
                     Border.features.splice(0, 0, Border.features.splice(noshift, 1)[0])
                     Border.features.length = 1
                     if(Border.features[0] !== undefined) {
-                        const latLng = countries.filter(latlng => latlng.alpha3 === countryIso)
+                        const latLng = countries.filter(latlng => latlng.alpha3 === country)
                         setGeoData({ lat: latLng[0].latitude, lng: latLng[0].longitude })
                         setPolygon(Border)
                         setZoom(latLng[0].zoom)
@@ -95,7 +88,6 @@ const Map: FC<Props> = ({ country = '' }) => {
             <GeoJSON
                 key={ polygon.hasOwnProperty('type') ? polygon.features[0]?.properties?.adm0_iso : '' }
                 data={ polygon }
-                // data={ polygon }
             />
         </MapContainer>
     )

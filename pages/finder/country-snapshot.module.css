@@ -839,7 +839,7 @@
 .trade-icon-fdi {
     font-size: 64px;
     top: 35px;
-    left: 30px;
+    left: 25px;
 }
 
 .trade-icon-balance {
@@ -983,7 +983,7 @@
 
 .indicator-result-area {
     top: 52px;
-    left: 98px;
+    left: 90px;
 }
 
 .indicator-result-expec {
@@ -1024,6 +1024,8 @@
 .indicator-result-gdp {
     top: 85px;
     left: 20px;
+    inline-size: 58px;
+    text-align: center;
 }
 
 .indicator-result-gdp-per-capita {
@@ -1065,7 +1067,7 @@
 .indicator-result-gov-effectiveness {
     font-size: 15px;
     top: 60px;
-    left: 90px;
+    left: 80px;
 }
 
 .indicator-result-gov-corruption {
@@ -1077,7 +1079,7 @@
 .indicator-result-gov-regulatory {
     font-size: 15px;
     top: 62px;
-    left: 85px;
+    left: 70px;
 }
 
 .indicator-result-gov-political {
@@ -1100,7 +1102,7 @@
 
 .indicator-result-trade-fdi {
     top: 50px;
-    left: 90px;
+    left: 78px;
 }
 
 .indicator-result-trade-balance {
@@ -1169,12 +1171,14 @@
     font-size: 12px;
     top: 10px;
     left: 52px;
+    inline-size: 97px;
 }
 
 .indicator-result-household-pie-two {
     font-size: 12px;
     top: 40px;
     left: 52px;
+    inline-size: 99px;
     color: #828282;
 }
 
@@ -1299,7 +1303,7 @@
 
 .indicator-year-trade-fdi {
     top: 65px;
-    left: 90px;
+    left: 82px;
 }
 
 .indicator-year-trade-balance {
@@ -1344,7 +1348,7 @@
 
 .indicator-year-household-human {
     top: 50px;
-    left: 40px;
+    left: 37px;
 }
 
 .indicator-year-household-happiness {

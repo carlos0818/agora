@@ -1,1 +1,1 @@
-export { authSlice } from './auth'
+export { countrySlice } from './country'
