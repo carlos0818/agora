@@ -20,6 +20,7 @@ const CountrySnapshot = () => {
     const indicators = useAppSelector((state) => state.countryReducer)
     
     const [country, setCountry] = useState('')
+    const [flag, setFlag] = useState<string | null>(null)
     const [dolls, setDolls] = useState([
         1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
         21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
@@ -39,17 +40,23 @@ const CountrySnapshot = () => {
     return (
         <CountrySnapshotLayout>
             <>
-                <select
-                    className={ styles["select"] }
-                    defaultValue="0"
-                    onChange={ (ev) => handleData(ev.target.value) }
-                >
+                <div className={ styles["country-container"] }>
+                    <select
+                        className={ styles["select"] }
+                        defaultValue="0"
+                        onChange={ (ev) => handleData(ev.target.value) }
+                    >
+                        {
+                            countries.map(country => (
+                                <option key={ country.alpha3 } value={ country.alpha3 }>{ country.name }</option>
+                            ))
+                        }
+                    </select>
                     {
-                        countries.map(country => (
-                            <option key={ country.alpha3 } value={ country.alpha3 }>{ country.name }</option>
-                        ))
+                        flag && (<img className={ styles["flag"] } src={ flag } />)
                     }
-                </select>
+                    {/* <img className={ styles["flag"] } src='' width={ 80 } height={ 40 }/> */}
+                </div>
                 <div className={ styles["data-grid"] }>
                     <div className={ styles["grid-column"] }>
                         <div className={ `${ styles["statistics-container"] } ${ styles["geography-container"] }` }>
@@ -182,7 +189,7 @@ const CountrySnapshot = () => {
                                 </p>
                             </div>
                             <div className={ `${ styles["map-container"] }` }>
-                                <MapWithNoSSR country={ country } />
+                                <MapWithNoSSR country={ country } setFlag={ setFlag } />
                             </div>
                         </div>
                     </div>

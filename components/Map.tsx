@@ -17,9 +17,10 @@ export function ChangeView({ coords }: any) {
 
 interface Props {
     country: string
+    setFlag: Function
 }
 
-const Map: FC<Props> = ({ country = '' }) => {
+const Map: FC<Props> = ({ country = '', setFlag }) => {
     const [geoData, setGeoData] = useState({ lat: 10, lng: 10 })
     const [zoom, setZoom] = useState(1)
     const center = [geoData.lat, geoData.lng]
@@ -36,7 +37,8 @@ const Map: FC<Props> = ({ country = '' }) => {
             if (country !== '') {
                 const query = `[out:json][timeout:25];relation["ISO3166-1:alpha3"="${ country }"]["admin_level" = 2];out tags;`
                 const { data: respFlag } = await overpassApi.get(`/interpreter?data=${ query }`)
-                // console.log(respFlag.elements[0].tags.flag) // IMAGEN BANDERA
+                console.log(respFlag.elements[0].tags.flag) // IMAGEN BANDERA
+                setFlag(respFlag.elements[0].tags.flag)
 
                 fetch('https://www.7catsartstudio.com/archivos_envio/Agora/Map/custom.geo.json')
                 .then(response => response.json())
