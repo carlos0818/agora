@@ -1464,3 +1464,22 @@
     top: 32px;
     left: 0;
 }
+
+
+/* =============== MEDIA QUERIES =============== */
+
+@media only screen and (max-width: 1279px) {
+    .data-grid {
+        grid-template-columns: 336px 283px;
+        grid-template-rows: 1fr 1fr;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .data-grid {
+        grid-template-columns: 336px;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+    }
+}

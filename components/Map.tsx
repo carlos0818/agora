@@ -79,6 +79,7 @@ const Map: FC<Props> = ({ country = '', setFlag }) => {
             style={{ height: '100%' }}
             bounceAtZoomLimits
             boxZoom
+            attributionControl={ false }
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
