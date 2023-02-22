@@ -20,7 +20,60 @@ const CountrySnapshot = () => {
     const dispatch = useAppDispatch()
     const indicators = useAppSelector((state) => state.countryReducer)
 
-    const { landArea } = useAnimateIndicators(indicators)
+    const {
+        landArea,
+        lifeExpectancy,
+        populationSize,
+        populationGrowth,
+        ruralPoulation,
+        populationAge,
+        urbanPopulation,
+        populationAges,
+        gdp,
+        gdpPerCapita,
+        growthRate,
+        unemploymentRate,
+        males,
+        females,
+        laborForce,
+        participationRate,
+        laborForceFemale,
+        youthUnemployment,
+        govEffectiveness,
+        govCorruption,
+        govRegulatory,
+        politicalStability,
+        ruleLaw,
+        govCompetitiveness,
+        tradeFdi,
+        tradeBalance,
+        tradeBalanceLeft,
+        tradeBalanceRight,
+        govFiscal,
+        govDebt,
+        inflationIndex,
+        costLiving,
+        householdConsumption,
+        householdPieOne,
+        giniIndex,
+        householdHuman,
+        povertyRatio,
+        povertyRatio2,
+        income,
+        happiness,
+        forecastGrowth,
+        forecastInflation,
+        BudgetBalance,
+        investmentForecast,
+        forecastUnemployment,
+        forecastCurrent,
+        tradeOpenness,
+        connectivityPatent,
+        rd,
+        globalization,
+        innovation,
+        hightech,
+    } = useAnimateIndicators(indicators)
     
     const [country, setCountry] = useState('')
     const [flag, setFlag] = useState<string | null>(null)
@@ -32,10 +85,6 @@ const CountrySnapshot = () => {
         61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,
         81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100
     ])
-
-    // useEffect(() => {
-    //     // useIndicators()
-    // }, [indicators])
     
     const handleData = async(value: string) => {
         if (value !== '') {
@@ -77,32 +126,10 @@ const CountrySnapshot = () => {
                             <div className={ `${ styles["geography-row"] }` }>
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-area"] }` }>Land Area</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-area ${ styles["geography-icon-area"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-area"] }` }>
-                                    {
-                                        landArea
-                                        // indicators.length === 0 ? 0 :
-                                        // indicators.map(ind => {
-                                        //     setInterval(() => {
-                                        //         // animateNumber(commaSeparateNumber(Math.floor(ind.indicatorValue!)))
-                                        //         if (ind.indicatorId === 378) {
-                                        //             return `${ animateNumber(commaSeparateNumber(Math.floor(ind.indicatorValue!))) } km²`
-                                        //         } else {
-                                        //             return null
-                                        //         }
-                                        //     }, 20)
-                                        //     return null
-                                        // })
-                                    }
-                                </p>
-            
-                                <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-lifeexpentancy"] }` }>Life expentancy</p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-area"] }` }>{ landArea }</p>
+                                <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-lifeexpentancy"] }` }>Life expectancy</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-expec ${ styles["geography-icon-expec"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-expec"] }` }>
-                                    {
-                                        indicators.length === 0 ? 0 :
-                                        indicators.map(ind => ind.indicatorId === 26 ? ind.indicatorValue : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-expec"] }` }>{ lifeExpectancy }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-expec"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -114,12 +141,7 @@ const CountrySnapshot = () => {
                             <div className={ `${ styles["geography-row"] }` }>
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-pop-size"] }` }>Population size</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-pop ${ styles["geography-icon-pop-size"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-size"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 25 ? `${ ind.indicatorValue } Million` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-size"] }` }>{ populationSize }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-pop-size"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -129,12 +151,7 @@ const CountrySnapshot = () => {
             
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-pop-growth"] }` }>Population growth</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-gro ${ styles["geography-icon-pop-growth"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-growth"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 726 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-growth"] }` }>{ populationGrowth }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-pop-growth"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -146,12 +163,7 @@ const CountrySnapshot = () => {
                             <div className={ `${ styles["geography-row"] }` }>
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-rural-pop"] }` }>Rural population</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-rur ${ styles["geography-icon-rural-pop"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-rural-pop"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 375 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-rural-pop"] }` }>{ ruralPoulation }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-rural-pop"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -161,12 +173,7 @@ const CountrySnapshot = () => {
             
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-pop-age"] }` }>Population age 65 and above</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-old ${ styles["geography-icon-pop-age"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-age"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 381 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-age"] }` }>{ populationAge }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-pop-age"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -178,12 +185,7 @@ const CountrySnapshot = () => {
                             <div className={ `${ styles["geography-row"] }` }>
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-urban-pop"] }` }>Urban population</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-city ${ styles["geography-icon-urban-pop"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-urban-pop"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 40 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-urban-pop"] }` }>{ urbanPopulation }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-urban-pop"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -193,12 +195,7 @@ const CountrySnapshot = () => {
             
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-pop-ages"] }` }>Population ages 0-14</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-kids ${ styles["geography-icon-pop-ages"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-ages"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 380 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-pop-ages"] }` }>{ populationAges }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-pop-ages"] }` }>
                                     {
                                         indicators.length === 0 ? "(0)" :
@@ -223,30 +220,15 @@ const CountrySnapshot = () => {
                                 <div className={ `${ styles["gdp-row"] }` }>
                                     <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gdp"] }` }>GDP</p>
                                     <em className={ `${ styles["indicator-icon"] } icon-gdp-case ${ styles["gdp-icon-gdp"] }` }></em>
-                                    <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gdp"] }` }>
-                                        {
-                                            indicators.length === 0 ? "0" :
-                                            indicators.map(ind => ind.indicatorId === 6 ? `${ ind.indicatorValue } Billion` : null)
-                                        }
-                                    </p>
+                                    <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gdp"] }` }>{ gdp }</p>
 
                                     <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gdp-per-capita"] }` }>GDP Per Capita</p>
                                     <em className={ `${ styles["indicator-icon"] } icon-gdp-perc ${ styles["gdp-icon-gdp-per-capita"] }` }></em>
-                                    <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gdp-per-capita"] }` }>
-                                        {
-                                            indicators.length === 0 ? "0" :
-                                            indicators.map(ind => ind.indicatorId === 338 ? `$ ${ commaSeparateNumber(Math.floor(ind.indicatorValue!)) }` : null)
-                                        }
-                                    </p>
+                                    <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gdp-per-capita"] }` }>{ gdpPerCapita }</p>
 
                                     <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-growth-rate"] }` }>Growth rate</p>
                                     <em className={ `${ styles["indicator-icon"] } icon-gdp-grow ${ styles["gdp-icon-growth-rate"] }` }></em>
-                                    <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gdp-growth-rate"] }` }>
-                                        {
-                                            indicators.length === 0 ? "0" :
-                                            indicators.map(ind => ind.indicatorId === 2 ? `${ ind.indicatorValue }%` : null)
-                                        }
-                                    </p>
+                                    <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gdp-growth-rate"] }` }>{ growthRate }</p>
                                 </div>
                             </div>
                             <div className={ `${ styles["statistics-container"] } ${ styles["labor-container"] }` }>
@@ -281,31 +263,16 @@ const CountrySnapshot = () => {
                                                 })
                                             }
                                         </div>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-unemployment-rate"] }` }>
-                                            {
-                                                indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 10 ? `${ ind.indicatorValue }%` : null)
-                                            }
-                                        </p>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-unemployment-rate"] }` }>{ unemploymentRate }</p>
                                         <div className={ `${ styles["genres-container"] }` }>
                                             <em className={ `${ styles["indicator-icon"] } icon-labour-wm ${ styles["labor-icon-wm"] }` }></em>
                                             <div className={ `${ styles["genres-wrapper"] }` }>
                                                 <p>Males:</p>
-                                                <p>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 76 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                                </p>
+                                                <p>{ males }</p>
                                             </div>
                                             <div className={ `${ styles["genres-wrapper"] }` }>
                                                 <p>Females:</p>
-                                                <p>
-                                                    {
-                                                        indicators.length === 0 ? "0" :
-                                                        indicators.map(ind => ind.indicatorId === 75 ? `${ ind.indicatorValue }%` : null)
-                                                    }
-                                                </p>
+                                                <p>{ females }</p>
                                             </div>
                                         </div>
                                     </div>
@@ -313,42 +280,22 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["labor-row"] }` }>
                                             <em className={ `${ styles["indicator-icon"] } icon-labour-force ${ styles["labor-icon-force"] }` }></em>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-labor-force"] }` }>Labor Force</p>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-force"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 362 ? `${ ind.indicatorValue } million` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-force"] }` }>{ laborForce }</p>
                                         </div>
                                         <div className={ `${ styles["labor-row"] }` }>
                                             <em className={ `${ styles["indicator-icon"] } icon-labour-part ${ styles["labor-icon-participation"] }` }></em>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-labor-participation"] }` }>Participation rate</p>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-participation"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 43 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-participation"] }` }>{ participationRate }</p>
                                         </div>
                                         <div className={ `${ styles["labor-row"] }` }>
                                             <em className={ `${ styles["indicator-icon"] } icon-labour-women ${ styles["labor-icon-force-female"] }` }></em>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-labor-force-female"] }` }>Labor force female</p>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-force-female"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 77 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-force-female"] }` }>{ laborForceFemale }</p>
                                         </div>
                                         <div className={ `${ styles["labor-row"] } ${ styles[""] }` }>
                                             <em className={ `${ styles["indicator-icon"] } icon-labour-yu ${ styles["labor-icon-youth"] }` }></em>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-labor-youth"] }` }>Youth unemployment</p>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-youth"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 36 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-labor-youth"] }` }>{ youthUnemployment }</p>
                                         </div>
                                     </div>
                                 </div>
@@ -366,34 +313,19 @@ const CountrySnapshot = () => {
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-effectiveness"] }` }>Government effectiveness index</p>
                                             <p className={ `${ styles["indicator-values"] } ${ styles["indicator-values-gov-effectiveness"] }` }>(-2.5 weak; 2.5 strong)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-gov-b-ef ${ styles["gov-icon-gov-effectiveness"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-effectiveness"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 482 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-effectiveness"] }` }>{ govEffectiveness }</p>
                                         </div>
                                         <div className={ `${ styles["governance-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-corruption"] }` }>Corruption perceptions index</p>
                                             <p className={ `${ styles["indicator-values"] } ${ styles["indicator-values-gov-corruption"] }` }>(100 = no corruption)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-gov-b-corr ${ styles["gov-icon-gov-corruption"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-corruption"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 108 ? `${ Math.floor(ind.indicatorValue!)}` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-corruption"] }` }>{ govCorruption }</p>
                                         </div>
                                         <div className={ `${ styles["governance-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-regulatory"] }` }>Regulatory quality index</p>
                                             <p className={ `${ styles["indicator-values"] } ${ styles["indicator-values-gov-regulatory"] }` }>(-2.5 weak; 2.5 strong)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-gov-b-reg ${ styles["gov-icon-gov-regulatory"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-regulatory"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 86 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-regulatory"] }` }>{ govRegulatory }</p>
                                         </div>
                                     </div>
                                     <div className={ `${ styles["governance-column"] }` }>
@@ -401,34 +333,19 @@ const CountrySnapshot = () => {
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-political"] }` }>Political stability index</p>
                                             <p className={ `${ styles["indicator-values"] } ${ styles["indicator-values-gov-political"] }` }>(-2.5 weak; 2.5 strong)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-gov-b-poli ${ styles["gov-icon-gov-political"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-political"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 575 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-political"] }` }>{ politicalStability }</p>
                                         </div>
                                         <div className={ `${ styles["governance-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-rule"] }` }>Rule of law index</p>
                                             <p className={ `${ styles["indicator-values"] } ${ styles["indicator-values-gov-rule"] }` }>(-2.5 weak; 2.5 strong)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-gov-b-jud ${ styles["gov-icon-gov-rule"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-rule"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 481 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-rule"] }` }>{ ruleLaw }</p>
                                         </div>
                                         <div className={ `${ styles["governance-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-competitiveness"] }` }>Competitiveness index</p>
                                             <p className={ `${ styles["indicator-values"] } ${ styles["indicator-values-gov-competitiveness"] }` }>(World Economic Forum 0-100)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-gov-b-comp ${ styles["gov-icon-gov-competitiveness"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-competitiveness"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 579 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-competitiveness"] }` }>{ govCompetitiveness }</p>
                                         </div>
                                     </div>
                                 </div>
@@ -446,12 +363,7 @@ const CountrySnapshot = () => {
                             <div className={ `${ styles["trade-row"] }` }>
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-trade-fdi"] }` }>FDI<br /><span>as percentage of</span></p>
                                 <em className={ `${ styles["indicator-icon"] } icon-trade-fdi ${ styles["trade-icon-fdi"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-fdi"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 22 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-fdi"] }` }>{ tradeFdi }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-trade-fdi"] }` }>
                                     {
                                         indicators.length === 0 ? "0" :
@@ -459,30 +371,15 @@ const CountrySnapshot = () => {
                                     }
                                 </p>
                                 <em className={ `${ styles["indicator-icon"] } icon-trade-exp ${ styles["trade-icon-balance"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 239 ? `$${ ind.indicatorValue } Billion` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance"] }` }>{ tradeBalance }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-trade-balance"] }` }>
                                     {
                                         indicators.length === 0 ? "0" :
                                         indicators.map(ind => ind.indicatorId === 239 ? `(${ ind.indicatorYear })` : null)
                                     }
                                 </p>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-left"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 229 ? `$${ ind.indicatorValue } Billion` : null)
-                                    }
-                                </p>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-right"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 231 ? `$${ ind.indicatorValue } Billion` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-left"] }` }>{ tradeBalanceLeft }</p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-right"] }` }>{ tradeBalanceRight }</p>
                             </div>
                         </div>
                         <div className={ `${ styles["government-inflation-container"] }` }>
@@ -497,12 +394,7 @@ const CountrySnapshot = () => {
                                 <em className={ `${ styles["indicator-icon"] } icon-gov-m-bal ${ styles["gov-icon-bal"] }` }></em>
                                 <p>Fiscal balance</p>
                                 <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-gov-debt"] }` }>Govern debt</p>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-fiscal"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 838 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-fiscal"] }` }>{ govFiscal }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-gov-fiscal"] }` }>
                                     {
                                         indicators.length === 0 ? "0" :
@@ -510,12 +402,7 @@ const CountrySnapshot = () => {
                                     }
                                 </p>
                                 <em className={ `${ styles["indicator-icon"] } icon-gov-m-deb ${ styles["gov-icon-debt"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-debt"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 9 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                    <span>of GDP</span></p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-gov-debt"] }` }>{ govDebt }<span>of GDP</span></p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-gov-debt"] }` }>
                                     {
                                         indicators.length === 0 ? "0" :
@@ -532,17 +419,17 @@ const CountrySnapshot = () => {
                                     <h4 className={ `${ styles["title-data-section"] } ${ styles["short-section"] }` }>Inflation index</h4>
                                 </div>
                                 <em className={ `${ styles["indicator-icon"] } icon-infl-rate ${ styles["infl-icon-rate"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-infl-rate"] }` }>
-                                    {
-                                        indicators.length === 0 ? "0" :
-                                        indicators.map(ind => ind.indicatorId === 7 ? `${ ind.indicatorValue }%` : null)
-                                    }
-                                </p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-infl-rate"] }` }>{ inflationIndex }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-infl-rate"] }` }>(2019)</p>
                                 <p>Cost of living index, world average = 100</p>
                                 <em className={ `${ styles["indicator-icon"] } icon-infl-cost ${ styles["infl-icon-cost"] }` }></em>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-infl-cost"] }` }>86</p>
-                                <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-infl-cost"] }` }>(2019)</p>
+                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-infl-cost"] }` }>{ costLiving }</p>
+                                <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-infl-cost"] }` }>
+                                    {
+                                        indicators.length === 0 ? "0" :
+                                        indicators.map(ind => ind.indicatorId === 967 ? `(${ ind.indicatorYear })` : null)
+                                    }
+                                </p>
                             </div>
                         </div>
                         <div className={ `${ styles["statistics-container"] } ${ styles["household-container"] }` }>
@@ -557,12 +444,7 @@ const CountrySnapshot = () => {
                                     <div className={ `${ styles["household-row"] }` }>
                                         <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-household-cons"] }` }>Household consumption</p>
                                         <em className={ `${ styles["indicator-icon"] } icon-house-cons ${ styles["gov-icon-household-cons"] }` }></em>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-cons"] }` }>
-                                            {
-                                                indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 184 ? `${ ind.indicatorValue }% of GDP` : null)
-                                            }
-                                        </p>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-cons"] }` }>{ householdConsumption }</p>
                                         <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-cons"] }` }>
                                             {
                                                 indicators.length === 0 ? "0" :
@@ -572,19 +454,14 @@ const CountrySnapshot = () => {
                                     </div>
                                     <div className={ `${ styles["household-row"] }` }>
                                         <em className={ `${ styles["indicator-icon"] } icon-house-pie ${ styles["gov-icon-household-pie"] }` }></em>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-pie-one"] }` }>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-pie-one"] }` }>{ householdPieOne }</p>
+                                        <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-pie-one"] }` }>
                                             {
                                                 indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 241 ? `${ ind.indicatorValue } billion USD` : null)
+                                                indicators.map(ind => ind.indicatorId === 241 ? `(${ ind.indicatorYear })` : null)
                                             }
                                         </p>
-                                        <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-pie-one"] }` }>(2019)</p>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-pie-two"] }` }>
-                                            {
-                                                indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 669 ? `${ ind.indicatorValue } Gini Index` : null)
-                                            }
-                                        </p>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-pie-two"] }` }>{ giniIndex }</p>
                                         <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-pie-two"] }` }>
                                             {
                                                 indicators.length === 0 ? "0" :
@@ -595,12 +472,7 @@ const CountrySnapshot = () => {
                                     <div className={ `${ styles["household-row"] }` }>
                                         <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-household-human"] }` }>Human Development Index</p>
                                         <em className={ `${ styles["indicator-icon"] } icon-house-dev ${ styles["gov-icon-household-human"] }` }></em>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-human"] }` }>
-                                            {
-                                                indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 104 ? `${ ind.indicatorValue }` : null)
-                                            }
-                                        </p>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-human"] }` }>{ householdHuman }</p>
                                         <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-human"] }` }>
                                             {
                                                 indicators.length === 0 ? "0" :
@@ -634,40 +506,20 @@ const CountrySnapshot = () => {
                                                 })
                                             }
                                         </div>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-poverty"] }` }>
-                                            {
-                                                indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 674 ? `${ ind.indicatorValue }%` : null)
-                                            }
-                                        </p>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-poverty"] }` }>{ povertyRatio }</p>
                                     </div>
                                     <div className={ `${ styles["household-row"] }` }>
                                         <div className={ `${ styles["income-container"] }` }>
                                             <p>Poverty ratio</p>
-                                            <p className={ `${ styles["indicator-result"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 672 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] }` }>{ povertyRatio2 }</p>
                                             <p>% of income earned by 10$ of earners</p>
-                                            <p className={ `${ styles["indicator-result"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 671 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] }` }>{ income }</p>
                                         </div>
                                     </div>
                                     <div className={ `${ styles["household-row"] }` }>
                                         <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-household-happiness"] }` }>Happiness index</p>
                                         <em className={ `${ styles["indicator-icon"] } icon-house-hap ${ styles["household-icon-household-happiness"] }` }></em>
-                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-happiness"] }` }>
-                                            {
-                                                indicators.length === 0 ? "0" :
-                                                indicators.map(ind => ind.indicatorId === 361 ? `${ ind.indicatorValue }` : null)
-                                            }
-                                        </p>
+                                        <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-happiness"] }` }>{ happiness }</p>
                                         <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-happiness"] }` }>
                                             {
                                                 indicators.length === 0 ? "0" :
@@ -696,12 +548,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["forecast-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-forecast-growth"] }` }>Economic growth forecast</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-forecast-grow ${ styles["forecast-icon-forecast-growth"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-growth"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 474 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-growth"] }` }>{ forecastGrowth }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-forecast-growth"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -712,12 +559,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["forecast-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-forecast-inflation"] }` }>Inflation forecast</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-forecast-infl ${ styles["forecast-icon-forecast-inflation"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-inflation"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 475 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-inflation"] }` }>{ forecastInflation }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-forecast-inflation"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -728,12 +570,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["forecast-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-forecast-budget"] }` }>Budget balance forecast (% of GDP)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-forecast-bal ${ styles["forecast-icon-forecast-budget"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-budget"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 478 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-budget"] }` }>{ BudgetBalance }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-forecast-budget"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -746,12 +583,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["forecast-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-forecast-investment"] }` }>Investment forecast</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-forecast-invest ${ styles["forecast-icon-forecast-investment"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-investment"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 476 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-investment"] }` }>{ investmentForecast }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-forecast-investment"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -762,12 +594,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["forecast-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-forecast-unemployment"] }` }>Unemployment rate forecast</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-forecast-unem ${ styles["forecast-icon-forecast-unemployment"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-unemployment"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 477 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-unemployment"] }` }>{ forecastUnemployment }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-forecast-unemployment"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -778,12 +605,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["forecast-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-forecast-current"] }` }>Current account balance forecast (% of GDP)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-forecast-curr ${ styles["forecast-icon-forecast-current"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-current"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 479 ? `${ ind.indicatorValue }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-forecast-current"] }` }>{ forecastCurrent }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-forecast-current"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -806,12 +628,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["connectivity-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-connectivity-trade"] }` }>Trade openness</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-conn-trade ${ styles["connectivity-icon-connectivity-trade"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-trade"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 359 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-trade"] }` }>{ tradeOpenness }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-connectivity-trade"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -822,12 +639,7 @@ const CountrySnapshot = () => {
                                         <div className={ `${ styles["connectivity-row"] }` }>
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-connectivity-patent"] }` }>Patent applications by residents</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-conn-patent ${ styles["connectivity-icon-connectivity-patent"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-patent"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 127 ? `${ Math.floor(ind.indicatorValue!) }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-patent"] }` }>{ connectivityPatent }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-connectivity-patent"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -839,12 +651,7 @@ const CountrySnapshot = () => {
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-connectivity-rd"] }` }>R&D expenditure</p>
                                             <p className={ `${ styles["indicator-subtitle-rd"] }` }>(as % of GDP)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-conn-rd ${ styles["connectivity-icon-connectivity-rd"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-rd"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 128 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-rd"] }` }>{ rd }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-connectivity-rd"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -858,12 +665,7 @@ const CountrySnapshot = () => {
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-connectivity-globalization"] }` }>Globalization</p>
                                             <p className={ `${ styles["indicator-subtitle-globalization"] }` }>(index from the KOF institute)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-conn-glob ${ styles["connectivity-icon-connectivity-globalization"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-globalization"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 93 ? `${ Math.floor(ind.indicatorValue!) }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-globalization"] }` }>{ globalization }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-connectivity-globalization"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -875,12 +677,7 @@ const CountrySnapshot = () => {
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-connectivity-innovation"] }` }>Innovation</p>
                                             <p className={ `${ styles["indicator-subtitle-innovation"] }` }>(Global innovation index)</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-conn-inno ${ styles["connectivity-icon-connectivity-innovation"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-innovation"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 118 ? `${ Math.floor(ind.indicatorValue!) }` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-innovation"] }` }>{ innovation }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-connectivity-innovation"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
@@ -892,16 +689,11 @@ const CountrySnapshot = () => {
                                             <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-connectivity-hightech"] }` }>High tech exports,</p>
                                             <p className={ `${ styles["indicator-subtitle-hightech"] }` }>percent of manufactured exports</p>
                                             <em className={ `${ styles["indicator-icon"] } icon-conn-tech ${ styles["connectivity-icon-connectivity-hightech"] }` }></em>
-                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-hightech"] }` }>
-                                                {
-                                                    indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 128 ? `${ ind.indicatorValue }%` : null)
-                                                }
-                                            </p>
+                                            <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-connectivity-hightech"] }` }>{ hightech }</p>
                                             <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-connectivity-hightech"] }` }>
                                                 {
                                                     indicators.length === 0 ? "0" :
-                                                    indicators.map(ind => ind.indicatorId === 128 ? `(${ ind.indicatorYear })` : null)
+                                                    indicators.map(ind => ind.indicatorId === 125 ? `(${ ind.indicatorYear })` : null)
                                                 }
                                             </p>
                                         </div>

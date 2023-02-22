@@ -1208,7 +1208,6 @@
 }
 
 .indicator-result-household-happiness {
-    font-size: 15px;
     top: 35px;
     left: 80px;
 }
@@ -1421,7 +1420,7 @@
 
 .indicator-year-connectivity-innovation {
     top: 78px;
-    left: 70px;
+    left: 75px;
 }
 
 .indicator-year-connectivity-hightech {
