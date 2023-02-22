@@ -1,4 +1,4 @@
-export default function commaSeparateNumber(val: number): string {
+export function commaSeparateNumber(val: number): string {
     // remove sign if negative
     var sign = 1;
     if (val < 0) {
@@ -21,4 +21,4 @@ export default function commaSeparateNumber(val: number): string {
   
     // return result with - sign if negative
     return sign < 0 ? '-' + num : num;
-  }
+}

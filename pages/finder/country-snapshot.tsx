@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import { CountrySnapshotLayout } from '@/components/layouts'
@@ -11,7 +11,6 @@ import { agoraApi } from '@/api'
 
 import styles from './country-snapshot.module.css'
 import { ICountry } from '@/interfaces';
-import commaSeparateNumber from '@/utils/formatNumber';
 import { useAnimateIndicators } from '@/hooks';
 
 const CountrySnapshot = () => {

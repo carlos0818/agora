@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import animateNumber from '@/utils/animateNumber'
-import commaSeparateNumber from '@/utils/formatNumber'
+import { animateNumber, commaSeparateNumber } from '@/utils'
 import { ICountry } from '@/interfaces'
 
 export const useAnimateIndicators = (indicators: ICountry[]) => {

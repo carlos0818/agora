@@ -1,4 +1,4 @@
-export default function animateNumber(number: any) {
+export function animateNumber(number: any) {
     const characters = number.length;
     
     let randomNumber = "";
