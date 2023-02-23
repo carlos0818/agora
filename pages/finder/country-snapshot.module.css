@@ -1483,4 +1483,9 @@
         grid-template-rows: 1fr 1fr 1fr 1fr;
         justify-content: center;
     }
+
+    .select {
+        inline-size: 250px;
+        font-size: 14px;
+    }
 }
