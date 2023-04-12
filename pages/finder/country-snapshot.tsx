@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import { CountrySnapshotLayout } from '@/components/layouts'
-const MapWithNoSSR = dynamic(() => import('../../components/Map'), {ssr: false });
+const MapWithNoSSR = dynamic(() => import('../../components/Map'), { ssr: false })
 
 import countriesList from '../../db/countries'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -10,8 +10,8 @@ import { snapshot } from '@/redux/slices/country'
 import { agoraApi } from '@/api'
 
 import styles from './country-snapshot.module.css'
-import { ICountry } from '@/interfaces';
-import { useAnimateIndicators } from '@/hooks';
+import { ICountry } from '@/interfaces'
+import { useAnimateIndicators } from '@/hooks'
 
 const CountrySnapshot = () => {
     const { countries } = countriesList
@@ -87,7 +87,7 @@ const CountrySnapshot = () => {
     
     const handleData = async(value: string) => {
         if (value !== '') {
-            const { data } = await agoraApi.get<ICountry[]>(`/country/${ value }`);
+            const { data } = await agoraApi.get<ICountry[]>(`/country/${ value }`)
             dispatch(snapshot(data))
             setCountry(value)
         }

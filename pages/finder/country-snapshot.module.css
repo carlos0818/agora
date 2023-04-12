@@ -38,8 +38,8 @@
 }
 
 .statistics-container {
-    border: 1px solid #000000;
-    box-shadow: 9px 11px 4px rgba(0, 0, 0, 0.15);
+    /* border: 1px solid #000000; */
+    /* box-shadow: 9px 11px 4px rgba(0, 0, 0, 0.15); */
     border-radius: 50px;
     position: relative;
 }
@@ -182,7 +182,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid var(--dark-blue);
+    /* border: 2px solid var(--dark-blue); */
     inline-size: 90px;
     block-size: 55px;
     border-radius: 8px;

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap');
 
 @font-face {
   font-family: 'icomoon';
@@ -13,17 +14,19 @@
 }
 
 :root {
+    --agora-blue-dark: #10284F;
     --dark-blue: #09040B;
     --dark-blue2: #1F2C4F;
 }
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Hind Siliguri';
 }
 
 body {
   margin: 0;
   padding: 0;
+  background-color: #e8fdfe;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -271,6 +274,24 @@ h1, h2, h3, h4, h5, h6, p {
   content: "\e936";
 }
 
-.asdasdasdsadsadsadaddasdsaddaddasdsadsadsad {
-  color: red;
+.button-filled {
+  background-color: var(--agora-blue-dark);
+  border: 1px solid var(--agora-blue-dark);
+  border-radius: 100px;
+  color: white;
+  font-family: 'Hind Siliguri';
+  font-weight: 700;
+  padding-block: 4px;
+  padding-inline: 10px;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 2px solid var(--agora-blue-dark);
+  border-radius: 100px;
+  color: var(--agora-blue-dark);
+  font-family: 'Hind Siliguri';
+  font-weight: 700;
+  padding-block: 4px;
+  padding-inline: 10px;
 }
