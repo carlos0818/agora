@@ -14,11 +14,31 @@
 }
 
 .logo {
-    width: 84px;
-    height: 29px;
+    block-size: 29px;
+    inline-size: 84px;
 }
 
 .buttons-container {
     display: flex;
     gap: 9px;
+}
+
+.button-text-size {
+    font-size: 15px;
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding-block: 10px;
+        padding-inline: 18px;
+    }
+
+    .logo {
+        block-size: 48px;
+        inline-size: 140px;
+    }
+
+    .button-text-size {
+        font-size: 24px;
+    }
 }

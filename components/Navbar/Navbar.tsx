@@ -10,8 +10,8 @@ export const Navbar: FC = () => {
         <div className={ styles['container'] }>
             <Image src={ agoralogo } alt='' className={ styles['logo'] } />
             <div className={ styles['buttons-container'] }>
-                <a className='button-filled' style={{ fontSize: 15, lineHeight: '16px' }}>Sign Up</a>
-                <a className='button-outline' style={{ fontSize: 15, lineHeight: '16px' }}>Log In</a>
+                <a className={ `button-filled ${ styles['button-text-size'] }` }>Sign Up</a>
+                <a className={ `button-outline ${ styles['button-text-size'] }` }>Log In</a>
             </div>
         </div>
     )
