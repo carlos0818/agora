@@ -1,5 +1,10 @@
 .background {
     background-image: url('../../public/images/clouds.jpg');
     background-repeat: no-repeat;
-    object-fit: cover;
+}
+
+@media screen and (min-width: 1024px) {
+    .background {
+        background-size: contain;
+    }
 }
