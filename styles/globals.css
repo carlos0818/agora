@@ -281,7 +281,7 @@ h1, h2, h3, h4, h5, h6, p {
   color: white;
   font-family: 'Hind Siliguri';
   font-weight: 700;
-  padding-block: 4px;
+  /* padding-block: 4px; */
   padding-inline: 10px;
 }
 
@@ -292,7 +292,7 @@ h1, h2, h3, h4, h5, h6, p {
   color: var(--agora-blue-dark);
   font-family: 'Hind Siliguri';
   font-weight: 700;
-  padding-block: 4px;
+  /* padding-block: 4px; */
   padding-inline: 10px;
 }
 
