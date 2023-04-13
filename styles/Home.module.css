@@ -267,11 +267,6 @@
         block-size: 400px;
         inline-size: 350px;
     }
-
-    .what-container {
-        /* flex-direction: row; */
-        /* background-color: white; */
-    }
     
     .what-wrapper {
         flex-direction: row;
@@ -280,6 +275,11 @@
 
     .what-title {
         font-size: 40px;
+    }
+
+    .what-description {
+        font-size: 20px;
+        line-height: 22px;
     }
 
     .video {
