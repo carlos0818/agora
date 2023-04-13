@@ -94,25 +94,26 @@
     font-weight: 700;
     gap: 15px;
     margin-block-start: 48px;
+    padding-inline: 20px;
 }
 
 .what-title {
     color: var(--agora-blue-dark);
+    font-size: 36px;
     line-height: 52px;
 }
 
 .what-description {
     font-size: 14px;
     font-weight: 500;
-    padding-inline: 40px;
+    padding-inline: 20px;
     line-height: 15px;
-    text-align: center;
+    text-align: justify;
 }
 
 .video {
-    inline-size: 80%;
-    min-block-size: 250px;
-    max-block-size: 500px;
+    inline-size: calc(100vw - 80px);
+    block-size: auto;
     margin-block-end: 30px;
 }
 

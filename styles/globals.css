@@ -276,7 +276,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .button-filled {
   background-color: var(--agora-blue-dark);
-  border: 1px solid var(--agora-blue-dark);
+  border: 2px solid var(--agora-blue-dark);
   border-radius: 100px;
   color: white;
   font-family: 'Hind Siliguri';

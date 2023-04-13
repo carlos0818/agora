@@ -7,15 +7,15 @@
     justify-content: space-between;
     left: 20px;
     position: fixed;
-    padding: 6px;
+    padding: 10px;
     right: 20px;
     top: 20px;
+    z-index: 1000;
 }
 
 .logo {
     width: 84px;
     height: 29px;
-    margin-inline-start: 5px;
 }
 
 .buttons-container {
