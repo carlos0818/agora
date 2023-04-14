@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,7 +12,7 @@ import expertIcon from '../../public/images/expert-icon.svg'
 
 import style from './select-accout.module.css'
 
-const index: FC = () => {
+const index: NextPage = () => {
     return (
         <AgoraLayout title='Agora' pageDescription=''>
             <>

@@ -1,11 +1,11 @@
-import { FC } from 'react'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './signup.module.css'
 
-const index: FC = () => {
+const index: NextPage = () => {
     const { query } = useRouter()
 
     // console.log(router.query.type)
