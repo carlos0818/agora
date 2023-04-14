@@ -24,9 +24,14 @@ html {
 }
 
 body {
+  background-color: #e8fdfe;
+  background-image: url('../public/images/clouds.jpg');
+  /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  background-size: auto;
+  background-repeat: no-repeat;
   margin: 0;
   padding: 0;
-  background-color: #e8fdfe;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -279,10 +284,11 @@ h1, h2, h3, h4, h5, h6, p {
   border: 2px solid var(--agora-blue-dark);
   border-radius: 100px;
   color: white;
+  cursor: pointer;
   font-family: 'Hind Siliguri';
   font-weight: 700;
-  /* padding-block: 4px; */
   padding-inline: 10px;
+  text-decoration: none;
 }
 
 .button-outline {
@@ -290,16 +296,42 @@ h1, h2, h3, h4, h5, h6, p {
   border: 2px solid var(--agora-blue-dark);
   border-radius: 100px;
   color: var(--agora-blue-dark);
+  cursor: pointer;
   font-family: 'Hind Siliguri';
   font-weight: 700;
-  /* padding-block: 4px; */
   padding-inline: 10px;
+  text-decoration: none;
+}
+
+.window-glass {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 1;
+}
+
+.window-glass-content {
+  background-color: white;
+  border-radius: 15px;
+  display: inline-block;
+  padding: 16px;
+  z-index: 2;
 }
 
 @media screen and (min-width: 1024px) {
+  body {
+    background-size: cover;
+  }
+
   .button-filled, .button-outline {
     padding-block: 0;
     padding-inline: 18px;
     font-size: 24px;
+  }
+
+  .window-glass-content {
+    padding: 25px;
   }
 }

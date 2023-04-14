@@ -1,6 +1,6 @@
 .background {
-    background-image: url('../../public/images/clouds.jpg');
-    background-repeat: no-repeat;
+    /* background-image: url('../../public/images/clouds.jpg');
+    background-repeat: no-repeat; */
 }
 
 @media screen and (min-width: 1024px) {

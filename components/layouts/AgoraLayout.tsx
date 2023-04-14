@@ -14,7 +14,7 @@ interface Props {
 
 export const AgoraLayout: FC<Props> = ({ children, title, pageDescription }) => {
     return (
-        <div className={ styles['background'] }>
+        <div>
             <Head>
                 <title>{ title }</title>
                 <meta name="description" content={ pageDescription } />

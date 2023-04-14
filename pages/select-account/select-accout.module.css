@@ -1,0 +1,62 @@
+.account-type-content {
+    padding: 40px;
+    min-block-size: calc(100vh - 206px);
+}
+
+.account-type-title {
+    font-size: 28px;
+    margin-block-start: 120px;
+    margin-block-end: 32px;
+    text-align: center;
+}
+
+.account-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-title {
+    color: var(--agora-blue-dark);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.account-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    line-height: 17px;
+    margin-block-end: 20px;
+    text-align: justify;
+}
+
+.investor-icon {
+    block-size: 73px;
+    inline-size: 73px;
+    margin: auto;
+}
+
+.button-text-size {
+    font-size: 15px;
+}
+
+@media screen and (min-width: 1024px) {
+    .account-type-container {
+        flex-direction: row;
+    }
+
+    .button-text-size {
+        font-size: 20px;
+    }
+}

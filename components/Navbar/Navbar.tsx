@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import styles from './navbar.module.css'
 
@@ -10,8 +11,22 @@ export const Navbar: FC = () => {
         <div className={ styles['container'] }>
             <Image src={ agoralogo } alt='' className={ styles['logo'] } />
             <div className={ styles['buttons-container'] }>
-                <a className={ `button-filled ${ styles['button-text-size'] }` }>Sign Up</a>
-                <a className={ `button-outline ${ styles['button-text-size'] }` }>Log In</a>
+                <Link
+                    href='/select-account'
+                    passHref
+                    prefetch={ false }
+                    legacyBehavior
+                >
+                    <span className={ `button-filled ${ styles['button-text-size'] }` }>Sign up</span>
+                </Link>
+                <Link
+                    href='/select-account'
+                    passHref
+                    prefetch={ false }
+                    legacyBehavior
+                >
+                    <a className={ `button-outline ${ styles['button-text-size'] }` }>Log In</a>
+                </Link>
             </div>
         </div>
     )
