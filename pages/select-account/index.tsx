@@ -1,16 +1,18 @@
-import { AgoraLayout } from '@/components/layouts/AgoraLayout'
+import { FC } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+
+import { AgoraLayout } from '@/components/layouts/AgoraLayout'
+import { FooterMobile } from '@/components/Footer/FooterMobile'
+import { FooterDesktop } from '@/components/Footer/FooterDesktop'
 
 import investorIcon from '../../public/images/investor-icon.svg'
 import entrepreneurIcon from '../../public/images/entrepreneur-icon.svg'
 import expertIcon from '../../public/images/expert-icon.svg'
 
 import style from './select-accout.module.css'
-import Link from 'next/link'
-import { FooterMobile } from '@/components/Footer/FooterMobile'
-import { FooterDesktop } from '@/components/Footer/FooterDesktop'
 
-const index = () => {
+const index: FC = () => {
     return (
         <AgoraLayout title='Agora' pageDescription=''>
             <>
@@ -27,7 +29,7 @@ const index = () => {
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
                                     </p>
                                     <Link
-                                        href='/select-account'
+                                        href='/signup/investor'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
@@ -47,7 +49,7 @@ const index = () => {
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
                                     </p>
                                     <Link
-                                        href='/select-account'
+                                        href='/signup/entrepreneur'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
@@ -67,7 +69,7 @@ const index = () => {
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
                                     </p>
                                     <Link
-                                        href='/select-account'
+                                        href='/signup/expert'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
