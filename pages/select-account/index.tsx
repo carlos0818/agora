@@ -79,6 +79,7 @@ const index = () => {
                         </div>
                     </div>
                 </div>
+                
                 <FooterMobile />
                 <FooterDesktop />
             </>

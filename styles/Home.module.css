@@ -68,7 +68,6 @@
 
 .entrepreneur-image {
     block-size: 250px;
-    /* inline-size: 250px; */
 }
 
 .arrow {
@@ -116,7 +115,6 @@
     justify-content: center;
     max-inline-size: 1150px;
     margin: auto;
-    /* border: 1px solid red; */
 }
 
 .what-text-container {
@@ -222,7 +220,6 @@
         inline-size: 1150px;
         margin: auto;
         margin-block-start: 100px;
-        /* border: 1px solid red; */
     }
 
     .account-type-container {
@@ -231,7 +228,6 @@
 
     .account-image-container {
         inline-size: 378px;
-        /* border: 1px solid green; */
     }
     
     .arrow {
@@ -242,7 +238,6 @@
         display: flex;
         align-items: center;
         gap: 20px;
-        /* border: 1px solid red; */
     }
 
     .account-type-description {
@@ -251,9 +246,7 @@
     }
 
     .account-icon {
-        /* border: 1px solid green; */
         display: block;
-        vertical-align: top;
     }
 
     .investor-image {
