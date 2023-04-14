@@ -5,7 +5,7 @@ import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './signup.module.css'
 
-const index: NextPage = () => {
+const SignUpPage: NextPage = () => {
     const { query } = useRouter()
 
     // console.log(router.query.type)
@@ -48,4 +48,4 @@ const index: NextPage = () => {
     )
 }
 
-export default index
+export default SignUpPage
