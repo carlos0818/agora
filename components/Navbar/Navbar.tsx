@@ -9,7 +9,14 @@ import agoralogo from '../../public/images/agoralogo.png'
 export const Navbar: FC = () => {
     return (
         <div className={ styles['container'] }>
-            <Image src={ agoralogo } alt='' className={ styles['logo'] } />
+            <Link
+                href='/'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <Image src={ agoralogo } alt='' className={ styles['logo'] } />
+            </Link>
             <div className={ styles['buttons-container'] }>
                 <Link
                     href='/select-account'

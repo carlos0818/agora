@@ -16,6 +16,7 @@
 .logo {
     block-size: 29px;
     inline-size: 84px;
+    cursor: pointer;
 }
 
 .buttons-container {
