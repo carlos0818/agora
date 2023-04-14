@@ -12,6 +12,7 @@ import { agoraApi } from '@/api'
 import styles from './country-snapshot.module.css'
 import { ICountry } from '@/interfaces'
 import { useAnimateIndicators } from '@/hooks'
+import Image from 'next/image'
 
 const CountrySnapshot = () => {
     const { countries } = countriesList
@@ -109,7 +110,7 @@ const CountrySnapshot = () => {
                         }
                     </select>
                     {
-                        flag && (<img className={ styles["flag"] } src={ flag } />)
+                        flag && (<Image className={ styles["flag"] } src={ flag } alt='' />)
                     }
                 </div>
                 <div className={ styles["data-grid"] }>
