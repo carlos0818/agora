@@ -26,7 +26,6 @@ html {
 body {
   background-color: #e8fdfe;
   background-image: url('/images/clouds.jpg');
-  /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
   background-size: auto;
   background-repeat: no-repeat;
   margin: 0;
@@ -318,35 +317,9 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 16px;
 }
 
-/* input[type="checkbox"] {
-  appearance: initial;
-  border: 1px solid red;
-} */
-
-/* input[type="checkbox"] {
-  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  font: inherit;
-  color: currentColor;
-  inline-size: 21px;
-  block-size: 21px;
-  border: 3px solid var(--agora-blue-dark);
-  border-radius: 5px;
-  transform: translateY(-0.075em);
+.grecaptcha-badge {
+  visibility: hidden;
 }
-
-input[type="checkbox"]::before {
-  content: "";
-  width: 0.65em;
-  height: 0.65em;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--form-control-color);
-  transform-origin: bottom left;
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  background-color: CanvasText;
-} */
 
 @media screen and (min-width: 1024px) {
   body {

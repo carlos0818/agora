@@ -1,11 +1,10 @@
 .signup-container {
-    min-block-size: calc(100vh - 316px);
+    min-block-size: calc(100vh - 326px);
     margin: auto;
     margin-block-start: 100px;
     max-inline-size: 810px;
     padding-inline: 20px;
     padding-bottom: 40px;
-    /* border: 1px solid red; */
 }
 
 .account-title {
@@ -98,6 +97,7 @@
     justify-content: center;
     margin-block-start: 20px;
     transform:scale(0.77);
+    z-index: -10;
 }
 
 .button-style {
