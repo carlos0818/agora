@@ -27,7 +27,7 @@ export const Navbar: FC = () => {
                     <span className={ `button-filled ${ styles['button-text-size'] }` }>Sign up</span>
                 </Link>
                 <Link
-                    href='/select-account'
+                    href='/login'
                     passHref
                     prefetch={ false }
                     legacyBehavior

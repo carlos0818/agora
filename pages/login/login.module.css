@@ -1,0 +1,162 @@
+.login-container {
+    min-block-size: calc(100vh - 316px);
+    margin: auto;
+    margin-block-start: 100px;
+    max-inline-size: 810px;
+    padding-inline: 20px;
+    padding-bottom: 40px;
+}
+
+.login-title {
+    color: var(--agora-blue-dark);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-block-start: 16px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    color: var(--agora-blue-dark);
+    font-weight: 700;
+}
+
+.textfield {
+    border: 3px solid var(--agora-blue-dark);
+    border-radius: 100px;
+    color: var(--agora-blue-dark);
+    font-family: 'Hind Siliguri';
+    font-size: 15px;
+    outline: none;
+    padding-block: 4px;
+    padding-inline: 12px;
+}
+
+.checkbox {
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    padding-left: 32px;
+    position: relative;
+    user-select: none;
+}
+
+.checkbox input {
+    position: absolute;
+    block-size: 0;
+    inline-size: 0;
+}
+
+.check {
+    block-size: 18px;
+    border: 3px solid var(--agora-blue-dark);
+    border-radius: 5px;
+    inline-size: 18px;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+/* .checkbox:hover input ~ .check {
+    border-color: transparent;
+    background-color: #ededed;
+} */
+
+.checkbox input:checked ~ .check {
+    background-color: var(--agora-blue-dark);
+    border-color: transparent;
+}
+
+.check::after {
+    block-size: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    content: "";
+    inline-size: 5px;
+    left: 5px;
+    position: absolute;
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.g-recaptcha {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    margin-block-start: 20px;
+    transform:scale(0.77);
+    z-index: -10;
+}
+
+.button-style {
+    font-size: 20px;
+    margin: auto;
+    margin-block-start: 24px;
+}
+
+.or-container {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    margin-block-start: 14px;
+    padding-inline: 32px;
+}
+
+.or-container span {
+    font-size: 24px;
+}
+
+.line {
+    border: 5px solid var(--agora-blue-dark);
+    border-radius: 10px;
+    inline-size: 100%;
+}
+
+.terms {
+    color: #B9B9B9;
+    font-size: 10px;
+    text-align: justify;
+    line-height: 11px;
+    margin-inline: 22px;
+}
+
+@media screen and (min-width: 1024px) {
+    .login-container {
+        margin-block-start: 150px;
+    }
+
+    /* .form-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    } */
+
+    .form-row {
+        padding-inline: 140px;
+    }
+
+    /* .form-row:first-child,
+    form {
+        grid-column: 1 / 3;
+    } */
+
+    .g-recaptcha {
+        transform:scale(1);
+    }
+
+    .or-container {
+        margin-block-start: 26px;
+    }
+}
