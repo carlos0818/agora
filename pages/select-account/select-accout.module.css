@@ -41,7 +41,9 @@
     text-align: justify;
 }
 
-.investor-icon {
+.investor-icon,
+.entrepreneur-icon,
+.expert-icon {
     block-size: 73px;
     inline-size: 73px;
     margin: auto;

@@ -29,7 +29,7 @@ const index: NextPage = () => {
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
                                     </p>
                                     <Link
-                                        href='/signup/investor'
+                                        href='/more-info/investor'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
@@ -49,7 +49,7 @@ const index: NextPage = () => {
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
                                     </p>
                                     <Link
-                                        href='/signup/entrepreneur'
+                                        href='/more-info/entrepreneur'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
@@ -69,7 +69,7 @@ const index: NextPage = () => {
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
                                     </p>
                                     <Link
-                                        href='/signup/expert'
+                                        href='/more-info/expert'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
