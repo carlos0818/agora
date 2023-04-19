@@ -29,7 +29,7 @@ const MoreInfoPage: NextPage = () => {
                                         <p className={ style['info-subtitle'] }>Maximize your returns while supporting sustainable growth in emerging economies</p>
                                     </div>
                                     <Link
-                                        href='/more-info/investor'
+                                        href={ `/signup/${ query.type }` }
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
@@ -40,7 +40,7 @@ const MoreInfoPage: NextPage = () => {
                                 <div className={ style['container-two'] }>
                                     <Image src={ investorImage } alt='Investor Image' className={ style['type-image'] } />
                                     <Link
-                                        href='/more-info/investor'
+                                        href={ `/signup/${ query.type }` }
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
