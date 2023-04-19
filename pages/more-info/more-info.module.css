@@ -216,7 +216,8 @@
     }
 
     .info-image {
-        inline-size: 40%;
+        block-size: auto;
+        inline-size: 440px;
         margin: 0;
         vertical-align: bottom;
     }

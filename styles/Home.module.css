@@ -269,7 +269,8 @@
     }
 
     .video {
-        inline-size: 50%;
+        block-size: auto;
+        inline-size: 575px;
     }
 
     .supported-container-mobile {
