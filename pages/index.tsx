@@ -1,6 +1,10 @@
-import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
+
+import { AgoraLayout } from '@/components/layouts/AgoraLayout'
+import { FooterDesktop } from '@/components/Footer/FooterDesktop'
+import { FooterMobile } from '@/components/Footer/FooterMobile'
 
 import home from '../styles/Home.module.css'
 
@@ -24,8 +28,6 @@ import aldeliaLogo from '../public/images/aldelia.png'
 import investorIcon from '../public/images/investor-icon.svg'
 import entrepreneurIcon from '../public/images/entrepreneur-icon.svg'
 import expertIcon from '../public/images/expert-icon.svg'
-import { FooterDesktop } from '@/components/Footer/FooterDesktop'
-import { FooterMobile } from '@/components/Footer/FooterMobile'
 
 const Home: NextPage = () => {
   return (
@@ -51,18 +53,25 @@ const Home: NextPage = () => {
                 <p className={ home['account-type-description'] }>
                   A bright future starts with smart investment.
                 </p>
-                <a
-                  className='button-filled'
-                  style={{
-                    paddingInline: 17,
-                    paddingBlock: 8,
-                    fontFamily: 'Hind Siliguri',
-                    fontSize: 20,
-                    fontWeight: 600,
-                    lineHeight: '21px',
+                <Link
+                  href='/more-info/investor'
+                  passHref
+                  prefetch={ false }
+                  legacyBehavior
+                >
+                  <span
+                    className='button-filled'
+                    style={{
+                      paddingInline: 17,
+                      paddingBlock: 8,
+                      fontFamily: 'Hind Siliguri',
+                      fontSize: 20,
+                      fontWeight: 600,
+                      lineHeight: '21px',
                   }}>
                     Read more
-                  </a>
+                  </span>
+                </Link>
               </div>
               <div className={ home['account-image-container'] }>
                 <Image src={ investorImage } alt='Entrepreneur Image' className={ home['investor-image'] } />
@@ -73,18 +82,25 @@ const Home: NextPage = () => {
                 <p className={ home['account-type-description'] }>
                   The only limit to our realization of tomorrow will be our doubts of today.
                 </p>
-                <a
-                  className='button-filled'
-                  style={{
-                    paddingInline: 17,
-                    paddingBlock: 8,
-                    fontFamily: 'Hind Siliguri',
-                    fontSize: 20,
-                    fontWeight: 600,
-                    lineHeight: '21px',
+                <Link
+                  href='/more-info/entrepreneur'
+                  passHref
+                  prefetch={ false }
+                  legacyBehavior
+                >
+                  <span
+                    className='button-filled'
+                    style={{
+                      paddingInline: 17,
+                      paddingBlock: 8,
+                      fontFamily: 'Hind Siliguri',
+                      fontSize: 20,
+                      fontWeight: 600,
+                      lineHeight: '21px',
                   }}>
                     Read more
-                  </a>
+                  </span>
+                </Link>
               </div>
               <div className={ home['account-image-container'] }>
                 <Image src={ investorImage } alt='Expert Image' className={ home['investor-image'] } />
@@ -95,18 +111,25 @@ const Home: NextPage = () => {
                 <p className={ home['account-type-description'] }>
                   Empowering entrepreneurs to reach their full potential.
                 </p>
-                <a
-                  className='button-filled'
-                  style={{
-                    paddingInline: 17,
-                    paddingBlock: 8,
-                    fontFamily: 'Hind Siliguri',
-                    fontSize: 20,
-                    fontWeight: 600,
-                    lineHeight: '21px',
+                <Link
+                  href='/more-info/expert'
+                  passHref
+                  prefetch={ false }
+                  legacyBehavior
+                >
+                  <span
+                    className='button-filled'
+                    style={{
+                      paddingInline: 17,
+                      paddingBlock: 8,
+                      fontFamily: 'Hind Siliguri',
+                      fontSize: 20,
+                      fontWeight: 600,
+                      lineHeight: '21px',
                   }}>
                     Read more
-                  </a>
+                  </span>
+                </Link>
               </div>
             </div>
             <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
