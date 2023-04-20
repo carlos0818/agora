@@ -113,13 +113,14 @@
     font-weight: 700;
     line-height: 16px;
     margin-block-start: 5px;
+    max-inline-size: 800px;
     text-align: center;
 }
 
 .specs-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 10px;
     margin-block-start: 48px;
 }
@@ -220,6 +221,12 @@
         inline-size: 440px;
         margin: 0;
         vertical-align: bottom;
+    }
+
+    .specs-container h3:first-child {
+        align-items: center;
+        display: flex;
+        max-inline-size: 160px;
     }
 
     .specs-title {

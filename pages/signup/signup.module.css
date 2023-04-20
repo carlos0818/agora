@@ -115,7 +115,9 @@
 }
 
 .or-container span {
+    color: var(--agora-blue-dark);
     font-size: 24px;
+    font-weight: 700;
 }
 
 .line {
