@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 
 import style from './footer.module.css'
@@ -13,7 +14,14 @@ export const FooterDesktop = () => {
                     <a>FAQ</a>
                     <a>Hub</a>
                     <a>About</a>
-                    <a>Comments</a>
+                    <Link
+                        href='/comments'
+                        passHref
+                        prefetch={ false }
+                        legacyBehavior
+                    >
+                        <a>Comments</a>
+                    </Link>
                 </div>
                 <Image src={ agoralogo } alt='' className={ style['logo'] } />
             </div>

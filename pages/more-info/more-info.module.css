@@ -34,6 +34,7 @@
 .container-one {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .container-two {
@@ -208,7 +209,7 @@
 
     .type-image {
         block-size: auto;
-        inline-size: 350px;
+        inline-size: 440px;
     }
 
     .type-info {

@@ -24,7 +24,7 @@ export const Navbar: FC = () => {
                     prefetch={ false }
                     legacyBehavior
                 >
-                    <span className={ `button-filled ${ styles['button-text-size'] }` }>Sign up</span>
+                    <a className={ `button-filled ${ styles['button-text-size'] }` }>Sign up</a>
                 </Link>
                 <Link
                     href='/login'

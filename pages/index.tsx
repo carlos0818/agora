@@ -59,7 +59,7 @@ const Home: NextPage = () => {
                   prefetch={ false }
                   legacyBehavior
                 >
-                  <span
+                  <a
                     className='button-filled'
                     style={{
                       paddingInline: 17,
@@ -70,7 +70,7 @@ const Home: NextPage = () => {
                       lineHeight: '21px',
                   }}>
                     Read more
-                  </span>
+                  </a>
                 </Link>
               </div>
               <div className={ home['account-image-container'] }>
@@ -88,7 +88,7 @@ const Home: NextPage = () => {
                   prefetch={ false }
                   legacyBehavior
                 >
-                  <span
+                  <a
                     className='button-filled'
                     style={{
                       paddingInline: 17,
@@ -99,7 +99,7 @@ const Home: NextPage = () => {
                       lineHeight: '21px',
                   }}>
                     Read more
-                  </span>
+                  </a>
                 </Link>
               </div>
               <div className={ home['account-image-container'] }>
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
                   prefetch={ false }
                   legacyBehavior
                 >
-                  <span
+                  <a
                     className='button-filled'
                     style={{
                       paddingInline: 17,
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
                       lineHeight: '21px',
                   }}>
                     Read more
-                  </span>
+                  </a>
                 </Link>
               </div>
             </div>

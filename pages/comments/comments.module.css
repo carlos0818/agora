@@ -1,5 +1,5 @@
-.signup-container {
-    min-block-size: calc(100vh - 326px);
+.login-container {
+    min-block-size: calc(100vh - 316px);
     margin: auto;
     margin-block-start: 100px;
     max-inline-size: 810px;
@@ -7,7 +7,7 @@
     padding-bottom: 40px;
 }
 
-.account-title {
+.login-title {
     color: var(--agora-blue-dark);
     font-size: 22px;
     font-weight: 700;
@@ -36,6 +36,18 @@
 .textfield {
     border: 3px solid var(--agora-blue-dark);
     border-radius: 100px;
+    color: var(--agora-blue-dark);
+    font-family: 'Hind Siliguri';
+    font-size: 15px;
+    outline: none;
+    padding-block: 4px;
+    padding-inline: 12px;
+}
+
+.textarea {
+    block-size: 400px;
+    border: 3px solid var(--agora-blue-dark);
+    border-radius: 15px;
     color: var(--agora-blue-dark);
     font-family: 'Hind Siliguri';
     font-size: 15px;
@@ -98,26 +110,7 @@
     font-size: 20px;
     margin: auto;
     margin-block-start: 24px;
-}
-
-.or-container {
-    align-items: center;
-    display: flex;
-    gap: 12px;
-    margin-block-start: 14px;
-    padding-inline: 32px;
-}
-
-.or-container span {
-    color: var(--agora-blue-dark);
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.line {
-    border: 5px solid var(--agora-blue-dark);
-    border-radius: 10px;
-    inline-size: 100%;
+    padding-inline: 28px;
 }
 
 .terms {
@@ -125,11 +118,12 @@
     font-size: 10px;
     text-align: justify;
     line-height: 11px;
+    margin-block-start: 40px;
     margin-inline: 22px;
 }
 
 @media screen and (min-width: 1024px) {
-    .signup-container {
+    .login-container {
         margin-block-start: 150px;
     }
 
@@ -139,8 +133,13 @@
         gap: 32px;
     }
 
-    .form-row:first-child {
+    .form-row:nth-of-type(3),
+    .form-row:nth-of-type(4) {
         grid-column: 1 / 3;
+    }
+
+    .textarea {
+        block-size: 200px;
     }
 
     .g-recaptcha {

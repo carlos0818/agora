@@ -69,11 +69,6 @@
     top: 0;
 }
 
-/* .checkbox:hover input ~ .check {
-    border-color: transparent;
-    background-color: #ededed;
-} */
-
 .checkbox input:checked ~ .check {
     background-color: var(--agora-blue-dark);
     border-color: transparent;
@@ -92,7 +87,6 @@
 }
 
 .g-recaptcha {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     margin-block-start: 20px;
@@ -139,20 +133,9 @@
         margin-block-start: 150px;
     }
 
-    /* .form-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-    } */
-
     .form-row {
         padding-inline: 140px;
     }
-
-    /* .form-row:first-child,
-    form {
-        grid-column: 1 / 3;
-    } */
 
     .g-recaptcha {
         transform:scale(1);

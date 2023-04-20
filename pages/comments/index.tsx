@@ -1,7 +1,4 @@
 import { FormEvent, useCallback } from 'react'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
 
@@ -9,13 +6,9 @@ import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 import { FooterMobile } from '@/components/Footer/FooterMobile'
 import { FooterDesktop } from '@/components/Footer/FooterDesktop'
 
-import style from './login.module.css'
+import style from './comments.module.css'
 
-import loginButtons from '../../public/images/login-buttons.svg'
-
-const LoginPage: NextPage = () => {
-    const { query } = useRouter()
-
+const CommentsPage = () => {
     const { executeRecaptcha } = useReCaptcha()
 
     const handleSubmit = useCallback(
@@ -36,35 +29,37 @@ const LoginPage: NextPage = () => {
             //   },
             // });
         }, [executeRecaptcha])
-    
+
     return (
         <AgoraLayout title='Agora' pageDescription=''>
             <>
                 <div className={ style['login-container'] }>
                     <div className='window-glass' style={{ maxInlineSize: 1200 }}>
                         <div className='window-glass-content'>
-                            <p className={ style['login-title'] }>LOGIN</p>
+                            <p className={ style['login-title'] }>SEND US YOUR COMMENT</p>
                             <form onSubmit={ e => handleSubmit(e) }>
                                 <div className={ style['form-container'] }>
+                                    <div className={ style['form-row'] }>
+                                        <label>Full name</label>
+                                        <input type='text' className={ style['textfield'] } />
+                                    </div>
                                     <div className={ style['form-row'] }>
                                         <label>Your e-mail</label>
                                         <input type='email' className={ style['textfield'] } />
                                     </div>
                                     <div className={ style['form-row'] }>
-                                        <label>Password</label>
-                                        <input type='password' className={ style['textfield'] } />
+                                        <label>Subject</label>
+                                        <input type='text' className={ style['textfield'] } />
+                                    </div>
+                                    <div className={ style['form-row'] }>
+                                        <label>Your comment</label>
+                                        <textarea className={ style['textarea'] } />
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex' }}>
-                                    <input type='submit' value='Sign Up' className={ `button-filled ${ style['button-style'] }` } />
+                                    <input type='submit' value='Send' className={ `button-filled ${ style['button-style'] }` } />
                                 </div>
                             </form>
-                            <div className={ style['or-container'] }>
-                                <hr className={ style['line'] } />
-                                <span>OR</span>
-                                <hr className={ style['line'] } />
-                            </div>
-                            <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} />
                             <p className={ style['terms'] }>
                                 Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
                                 texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
@@ -85,4 +80,4 @@ const LoginPage: NextPage = () => {
     )
 }
 
-export default LoginPage
+export default CommentsPage

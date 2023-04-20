@@ -34,7 +34,7 @@ const index: NextPage = () => {
                                         prefetch={ false }
                                         legacyBehavior
                                     >
-                                        <span className={ `button-filled ${ style['button-text-size'] }` }>More information</span>
+                                        <a className={ `button-filled ${ style['button-text-size'] }` }>More information</a>
                                     </Link>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@ const index: NextPage = () => {
                                         prefetch={ false }
                                         legacyBehavior
                                     >
-                                        <span className={ `button-filled ${ style['button-text-size'] }` }>More information</span>
+                                        <a className={ `button-filled ${ style['button-text-size'] }` }>More information</a>
                                     </Link>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ const index: NextPage = () => {
                                         prefetch={ false }
                                         legacyBehavior
                                     >
-                                        <span className={ `button-filled ${ style['button-text-size'] }` }>More information</span>
+                                        <a className={ `button-filled ${ style['button-text-size'] }` }>More information</a>
                                     </Link>
                                 </div>
                             </div>

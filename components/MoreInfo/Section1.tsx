@@ -26,7 +26,7 @@ export const Section1: FC<Props> = ({ title, subtitle, type }) => {
                     prefetch={ false }
                     legacyBehavior
                 >
-                    <span className={`button-filled ${ style['button-desktop'] }`}>Sign up as { type }</span>
+                    <a className={`button-filled ${ style['button-desktop'] }`}>Sign up as { type }</a>
                 </Link>
             </div>
             <div className={ style['container-two'] }>
@@ -37,7 +37,7 @@ export const Section1: FC<Props> = ({ title, subtitle, type }) => {
                     prefetch={ false }
                     legacyBehavior
                 >
-                    <span className={`button-filled ${ style['button-mobile'] }`}>Sign up as { type }</span>
+                    <a className={`button-filled ${ style['button-mobile'] }`}>Sign up as { type }</a>
                 </Link>
             </div>
         </div>
