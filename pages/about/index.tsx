@@ -128,8 +128,8 @@ const AboutPage = () => {
                                         alt='Fairness Icon'
                                     />
                                     <p className={ style['specs-description'] }>
-                                        Agora is designed to be inclusive, fostering an environment where all entrepreneurs, regardless of their size or stage of
-                                        development, can connect with potential partners and investors and receive the support they need.
+                                        Agora operates on a principle of fairness, ensuring that all enterprises are assessed and qualified based on the same
+                                        criteria, regardless of their size, location, or sector.
                                     </p>
                                 </div>
                                 <div className={ style['specs-container'] }>
