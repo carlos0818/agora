@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 
 import style from './footer.module.css'
@@ -10,8 +11,22 @@ export const FooterMobile = () => {
             <a>Terms and conditions</a>
             <a>FAQ</a>
             <a>Hub</a>
-            <a>About</a>
-            <a>Comments</a>
+            <Link
+                href='/about'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <a>About</a>
+            </Link>
+            <Link
+                href='/comments'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <a>Comments</a>
+            </Link>
             <a>
               <Image src={ agoralogo } alt='' width={ 140 } height={ 48 } />
             </a>

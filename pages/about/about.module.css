@@ -1,0 +1,222 @@
+.about-content {
+    padding-block: 40px;
+    padding-inline: 20px;
+    margin: auto;
+    margin-block-start: 56px;
+    max-inline-size: 1186px;
+    min-block-size: calc(100vh - 206px);
+}
+
+.section-one-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-two-container {
+    margin-block-start: 48px;
+}
+
+.section-two-container p {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 17px;
+    text-align: justify;
+}
+
+.section-two-container p:nth-of-type(2) {
+    margin-block-start: 8px;
+}
+
+.section-two-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-block-start: 8px;
+}
+
+.section-two-container ul li {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 17px;
+    text-align: justify;
+}
+
+.section-three-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-block-start: 24px;
+}
+
+.section-four-container {
+    margin-block-start: 56px;
+}
+
+.section-five-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-title {
+    color: var(--agora-blue-dark);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 27px;
+}
+
+.about-subtitle {
+    color: var(--agora-blue-dark);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+    margin-block-start: 4px;
+}
+
+.about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block-start: 8px;
+    text-align: justify;
+}
+
+.left p {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.about-image {
+    block-size: 236px;
+    inline-size: 240px;
+    margin-block-start: 24px;
+    vertical-align: top;
+}
+
+.partners-title {
+    color: var(--agora-blue-dark);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 38px;
+}
+
+.partners-subtitle {
+    color: var(--agora-blue-dark);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17px;
+    margin-block-end: 8px;
+}
+
+.logos-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.logos-title {
+    color: var(--agora-blue-dark);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.logo-image {
+    block-size: 173px;
+    inline-size: 173px;
+}
+
+.collaborate-title {
+    color: var(--agora-blue-dark);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+}
+
+.collaborate-subtitle {
+    color: var(--agora-blue-dark);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-block-start: 4px;
+}
+
+.collaborate-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 17px;
+    margin-block-start: 4px;
+    text-align: justify;
+}
+
+.specs-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-block-start: 48px;
+}
+
+.specs-title {
+    color: var(--agora-blue-dark);
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+}
+
+.specs-icon {
+    block-size: 85px;
+    inline-size: 85px;
+}
+
+.specs-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    line-height: 17px;
+    text-align: justify;
+}
+
+@media screen and (min-width: 1024px) {
+    .about-content {
+        margin-block-start: 100px;
+    }
+
+    .section-three-container {
+        flex-direction: row;
+        gap: 200px;
+        justify-content: center;
+        margin-block-start: 48px;
+    }
+    
+    .section-five-container {
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .about-wrapper {
+        flex-direction: row;
+        gap: 24px;
+        justify-content: center;
+    }
+
+    .about-image {
+        block-size: 340px;
+        inline-size: 346px;
+        margin-block-start: -40px;
+    }
+
+    .logos-title {
+        margin-bottom: 40px;
+    }
+}

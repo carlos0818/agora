@@ -13,7 +13,14 @@ export const FooterDesktop = () => {
                     <a>Terms and conditions</a>
                     <a>FAQ</a>
                     <a>Hub</a>
-                    <a>About</a>
+                    <Link
+                        href='/about'
+                        passHref
+                        prefetch={ false }
+                        legacyBehavior
+                    >
+                        <a>About</a>
+                    </Link>
                     <Link
                         href='/comments'
                         passHref
