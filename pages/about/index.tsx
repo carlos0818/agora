@@ -56,7 +56,7 @@ const AboutPage = () => {
                                     Agora leverages its partnership and co-creation ecosystem to continuously improve and respond to the evolving needs of the
                                     entrepreneurs and investment managers it serves. The Agora Partnership is a collaborative effort between institutional members
                                     with the goal of implementing impactful investments and connecting entrepreneurs with funding sources in frontier, emerging,
-                                    and developing markets. The Partnership 's principles include working together to connect impactful ventures with funding,
+                                    and developing markets. The Partnership&apos;s principles include working together to connect impactful ventures with funding,
                                     promoting international coverage of impact investment and entrepreneurship, and advocating for reducing the gap between capital
                                     and impactful investment opportunities.
                                 </p>
