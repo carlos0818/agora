@@ -1,9 +1,11 @@
 import { FormEvent, useCallback } from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
+import { getSession, signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
+import { useForm } from 'react-hook-form'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 import { FooterMobile } from '@/components/Footer/FooterMobile'
@@ -13,20 +15,32 @@ import style from './login.module.css'
 
 import loginButtons from '../../public/images/login-buttons.svg'
 
+type FormData = {
+    email: string
+    password: string
+}
+
 const LoginPage: NextPage = () => {
     const { query } = useRouter()
 
     const { executeRecaptcha } = useReCaptcha()
 
-    const handleSubmit = useCallback(
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
+
+    const onLogin = ({ email, password }: FormData) => {
+        // console.log(data)
+        signIn('credentials', { email, password })
+    }
+
+    const handleLogin = useCallback(
         async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault()
       
             // Generate ReCaptcha token
             const token = await executeRecaptcha("form_submit")
 
-            console.log(token)
-      
+            // console.log(token)
+
             // Attach generated token to your API requests and validate it on the server
             // fetch("/api/form-submit", {
             //   method: "POST",
@@ -35,28 +49,41 @@ const LoginPage: NextPage = () => {
             //     token,
             //   },
             // });
-        }, [executeRecaptcha])
+        }, [executeRecaptcha]
+    )
     
     return (
         <AgoraLayout title='Agora' pageDescription=''>
             <>
                 <div className={ style['login-container'] }>
-                    <div className='window-glass' style={{ maxInlineSize: 1200 }}>
+                    <div className='window-glass' style={{ maxInlineSize: 810, margin: 'auto' }}>
                         <div className='window-glass-content'>
                             <p className={ style['login-title'] }>LOGIN</p>
-                            <form onSubmit={ e => handleSubmit(e) }>
+                            <form onSubmit={ handleSubmit(onLogin) } noValidate>
                                 <div className={ style['form-container'] }>
                                     <div className={ style['form-row'] }>
                                         <label>Your e-mail</label>
-                                        <input type='email' className={ style['textfield'] } />
+                                        <input
+                                            type='email'
+                                            className={ style['textfield'] }
+                                            { ...register('email', {
+                                                required: 'This field is required'
+                                            })}
+                                        />
                                     </div>
                                     <div className={ style['form-row'] }>
                                         <label>Password</label>
-                                        <input type='password' className={ style['textfield'] } />
+                                        <input
+                                            type='password'
+                                            className={ style['textfield'] }
+                                            { ...register('password', {
+                                                required: 'This field is required'
+                                            })}
+                                        />
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex' }}>
-                                    <input type='submit' value='Sign Up' className={ `button-filled ${ style['button-style'] }` } />
+                                    <input type='submit' value='Log In' className={ `button-filled ${ style['button-style'] }` } />
                                 </div>
                             </form>
                             <div className={ style['or-container'] }>
@@ -83,6 +110,26 @@ const LoginPage: NextPage = () => {
             </>
         </AgoraLayout>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+    const session = await getSession({ req })
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            },
+            props: {
+                user: session.user
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
 
 export default LoginPage

@@ -41,7 +41,7 @@ const SignUpPage: NextPage = () => {
         <AgoraLayout title='Agora' pageDescription=''>
             <>
                 <div className={ style['signup-container'] }>
-                    <div className='window-glass' style={{ maxInlineSize: 1200 }}>
+                    <div className='window-glass' style={{ maxInlineSize: 810, margin: 'auto' }}>
                         <div className='window-glass-content'>
                             <p className={ style['account-title'] }>CREATE YOUR ACCOUNT AS { query.type?.toString().toUpperCase() }</p>
                             <form onSubmit={ e => handleSubmit(e) }>

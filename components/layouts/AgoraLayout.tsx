@@ -3,8 +3,6 @@ import Head from 'next/head'
 
 import { Navbar } from '../Navbar/Navbar'
 
-import styles from '../layouts/agoralayout.module.css'
-
 interface Props {
     children: JSX.Element
     title: string

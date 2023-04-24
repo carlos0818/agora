@@ -18,7 +18,7 @@ const MoreInfoPage: NextPage = () => {
         <AgoraLayout title='Agora' pageDescription=''>
             <>
                 <div className={ style['info-content'] }>
-                    <div className='window-glass' style={{ maxInlineSize: 1226 }}>
+                    <div className='window-glass' style={{ maxInlineSize: 1226, margin: 'auto' }}>
                         <div className='window-glass-content'>
                             <Section1
                                 title={

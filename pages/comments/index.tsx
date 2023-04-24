@@ -34,7 +34,7 @@ const CommentsPage = () => {
         <AgoraLayout title='Agora' pageDescription=''>
             <>
                 <div className={ style['login-container'] }>
-                    <div className='window-glass' style={{ maxInlineSize: 1200 }}>
+                    <div className='window-glass' style={{ maxInlineSize: 810, margin: 'auto' }}>
                         <div className='window-glass-content'>
                             <p className={ style['login-title'] }>SEND US YOUR COMMENT</p>
                             <form onSubmit={ e => handleSubmit(e) }>

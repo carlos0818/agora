@@ -1,8 +1,11 @@
 .signup-container {
+    background-image: url('/images/clouds.jpg');
+    background-size: auto;
+    background-repeat: no-repeat;
     min-block-size: calc(100vh - 326px);
     margin: auto;
-    margin-block-start: 100px;
-    max-inline-size: 810px;
+    padding-block-start: 100px;
+    /* max-inline-size: 810px; */
     padding-inline: 20px;
     padding-bottom: 40px;
 }
@@ -130,7 +133,8 @@
 
 @media screen and (min-width: 1024px) {
     .signup-container {
-        margin-block-start: 150px;
+        background-size: cover;
+        padding-block-start: 150px;
     }
 
     .form-container {

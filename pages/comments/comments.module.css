@@ -1,10 +1,13 @@
 .login-container {
-    min-block-size: calc(100vh - 316px);
+    background-image: url('/images/clouds.jpg');
+    background-size: auto;
+    background-repeat: no-repeat;
     margin: auto;
-    margin-block-start: 100px;
-    max-inline-size: 810px;
+    /* max-inline-size: 810px; */
+    min-block-size: calc(100vh - 316px);
+    padding-block-start: 100px;
+    padding-block: 40px;
     padding-inline: 20px;
-    padding-bottom: 40px;
 }
 
 .login-title {
@@ -124,7 +127,8 @@
 
 @media screen and (min-width: 1024px) {
     .login-container {
-        margin-block-start: 150px;
+        padding-block-start: 150px;
+        background-size: cover;
     }
 
     .form-container {
