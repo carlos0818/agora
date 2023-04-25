@@ -24,14 +24,14 @@ export const authOptions: NextAuthOptions = {
         return await { name: 'Carlos Benavides', email: 'carlos@gmail.com' }
 
         // return await dbUsers.checkUserEmailPassword(credentials!.email, credentials!.password)
-      }
+      },
     }),
     // GithubProvider({
     //   clientId: process.env.GITHUB_ID!,
     //   clientSecret: process.env.GITHUB_SECRET!,
     // }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+//   secret: process.env.NEXTAUTH_SECRET,
   // custom pages
   pages: {
     signIn: '/login',
