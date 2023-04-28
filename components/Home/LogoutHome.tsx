@@ -24,7 +24,7 @@ import investorIcon from '../../public/images/investor-icon.svg'
 import entrepreneurIcon from '../../public/images/entrepreneur-icon.svg'
 import expertIcon from '../../public/images/expert-icon.svg'
 
-export const Logout = () => {
+export const LogoutHome = () => {
     return (
         <>
             <section className={ home['rocket-main'] }>

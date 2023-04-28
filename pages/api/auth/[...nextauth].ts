@@ -17,11 +17,12 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         email: { label: 'Email', type: 'email', placeholder: 'email@google.com' },
         password: { label: 'Password', type: 'password', placeholder: 'Password' },
+        captcha: {}
       },
       async authorize(credentials): Promise<any> {
         console.log({credentials})
 
-        return await { name: 'Carlos Benavides', email: 'carlos@gmail.com' }
+        return await { id: 1, name: 'Carlos', lastname: 'Benavides', email: 'carlos@gmail.com' }
 
         // return await dbUsers.checkUserEmailPassword(credentials!.email, credentials!.password)
       },

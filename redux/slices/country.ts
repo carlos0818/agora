@@ -14,7 +14,7 @@ interface CountryState {
 const initialState: CountryState[] = []
 
 export const countrySlice = createSlice({
-    name: 'snapshot',
+    name: 'country',
     initialState,
     reducers: {
         snapshot: (state, action: PayloadAction<CountryState[]>) => {

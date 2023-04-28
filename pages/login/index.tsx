@@ -1,6 +1,4 @@
-import { FormEvent, useCallback } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
 import { getSession, signIn } from 'next-auth/react'
 import Image from 'next/image'
 
@@ -21,36 +19,14 @@ type FormData = {
 }
 
 const LoginPage: NextPage = () => {
-    const { query } = useRouter()
-
     const { executeRecaptcha } = useReCaptcha()
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
-    const onLogin = ({ email, password }: FormData) => {
-        // console.log(data)
-        signIn('credentials', { email, password })
+    const onLogin = async({ email, password }: FormData) => {
+        const captcha = await executeRecaptcha("form_login")
+        await signIn('credentials', { email, password, captcha })
     }
-
-    const handleLogin = useCallback(
-        async (e: FormEvent<HTMLFormElement>) => {
-            e.preventDefault()
-      
-            // Generate ReCaptcha token
-            const token = await executeRecaptcha("form_submit")
-
-            // console.log(token)
-
-            // Attach generated token to your API requests and validate it on the server
-            // fetch("/api/form-submit", {
-            //   method: "POST",
-            //   body: {
-            //     data: { name },
-            //     token,
-            //   },
-            // });
-        }, [executeRecaptcha]
-    )
     
     return (
         <AgoraLayout title='Agora' pageDescription=''>

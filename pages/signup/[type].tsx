@@ -1,5 +1,6 @@
 import { FormEvent, useCallback } from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
@@ -101,6 +102,26 @@ const SignUpPage: NextPage = () => {
             </>
         </AgoraLayout>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+    const session = await getSession({ req })
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            },
+            props: {
+                user: session.user
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
 
 export default SignUpPage
