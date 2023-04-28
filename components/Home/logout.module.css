@@ -6,6 +6,7 @@
 
 .rocket-main {
     /* background-image: url('/images/clouds.jpg'); */
+    background-color: white;
     background-size: auto;
     background-repeat: no-repeat;
 }
