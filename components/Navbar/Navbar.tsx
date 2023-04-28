@@ -2,13 +2,14 @@ import { Dispatch, FC, MouseEvent, SetStateAction, useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { AuthContext } from '@/context/auth'
+
 import styles from './navbar.module.css'
 
 import agoralogo from '../../public/images/agoralogo.png'
 import userIcon from '../../public/images/user-icon.svg'
 import editIcon from '../../public/images/edit-icon.svg'
 import signoutIcon from '../../public/images/signout-icon.svg'
-import { AuthContext } from '@/context/auth'
 
 interface Props {
     submenu: boolean
@@ -56,12 +57,15 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                             </Link>
                         </>
                     ) : (
-                        <Image
-                            src={ userIcon }
-                            alt=''
-                            className={ styles['user-icon'] }
-                            onClick={ (ev) => handleClickUserIcon(ev) }
-                        />
+                        <>
+                            <span>Carlos Benavides | carlos@gmail.com</span>
+                            <Image
+                                src={ userIcon }
+                                alt=''
+                                className={ styles['user-icon'] }
+                                onClick={ (ev) => handleClickUserIcon(ev) }
+                            />
+                        </>
                     )
                 }
                 {

@@ -21,8 +21,16 @@
 }
 
 .buttons-container {
+    align-items: center;
     display: flex;
     gap: 9px;
+}
+
+.buttons-container span {
+    color: var(--agora-blue-dark);
+    font-size: 10px;
+    font-weight: 700;
+    /* margin-inline-end: 16px; */
 }
 
 .button-text-size {
@@ -55,11 +63,30 @@
 
 .options-container li {
     align-items: center;
+    color: var(--agora-blue-dark);
     cursor: pointer;
     display: flex;
     font-size: 20px;
     font-weight: 700;
     gap: 6px;
+}
+
+@media screen and (min-width: 400px) {
+    .buttons-container span {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .buttons-container span {
+        font-size: 16px;
+        margin-inline-end: 16px;
+    }
+
+    .user-icon {
+        cursor: pointer;
+        display: block;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -75,10 +102,5 @@
 
     .button-text-size {
         font-size: 24px;
-    }
-
-    .user-icon {
-        cursor: pointer;
-        display: block;
     }
 }

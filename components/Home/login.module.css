@@ -2,11 +2,109 @@
     background-image: url('/images/clouds.jpg');
     background-size: auto;
     background-repeat: no-repeat;
-    min-block-size: calc(100vh - 126px);
+    padding-block-start: 100px;
+}
+
+.home-wrapper {
+    display: grid;
+    gap: 30px;
+    grid-template-areas: "menu" "content" "notifications";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 30px;
+    margin: auto;
+    max-inline-size: 1280px;
+    min-block-size: calc(100vh - 276px);
+    padding-inline: 26px;
+}
+
+.menu-container {
+    display: none;
+}
+
+.notifications {
+    display: none;
+}
+
+.menu-box {
+    block-size: 200px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: inline-block;
+    inline-size: 171px;
+}
+
+.menu-button {
+    background: rgba(255, 255, 255, 0.3);
+    block-size: 71px;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 15px 15px 0px;
+    display: flex;
+    inline-size: 28px;
+    margin-block-start: 28px;
+}
+
+.idea-container {
+    background: linear-gradient(98.59deg, #FFFFFF 2.8%, rgba(255, 255, 255, 0.43) 25.41%);
+    border: 1px solid #FFFFFF;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    padding-inline: 18px;
+    padding-block: 14px;
+}
+
+.textfield-idea {
+    backdrop-filter: blur(15px);
+    background: radial-gradient(54.4% 54.4% at 50% 45.6%, rgba(0, 255, 224, 0.0735) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(99.98deg, #FFFFFF 8.61%, rgba(255, 255, 255, 0.52) 98.97%);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    inline-size: 100%;
+    outline: none;
+    padding-block: 4px;
+}
+
+.user-icon {
+    block-size: 50px;
+    inline-size: 50px;
+}
+
+.notifications-wrapper {
+    position: fixed;
 }
 
 @media screen and (min-width: 1024px) {
     .home-container {
         background-size: cover;
+        padding-block-start: 150px;
+    }
+
+    .home-wrapper {
+        grid-template-columns: 236px 1fr 100px;
+        grid-template-rows: 1fr;
+    }
+
+    .menu-container {
+        align-items: flex-start;
+        display: flex;
+        inline-size: 207px;
+    }
+
+    .menu-wrapper {
+        display: flex;
+        position: fixed;
+    }
+
+    .notifications {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .user-icon {
+        block-size: 60px;
+        inline-size: 60px;
     }
 }
