@@ -32,7 +32,7 @@ export const LogoutHome = () => {
                 <div className="circle-2"></div>
                 <div className="circle-3"></div>
                 <div className="circle-4"></div>
-                
+
                 <div className={ home['rocket-container'] }>
                     <Image src={ rocket } alt='Rocket Image' className={ home['rocket-image'] } />
                     <div className={ home['rocket-title-container'] }>
