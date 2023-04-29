@@ -15,7 +15,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ user }) => {
   return (
-    <AgoraLayout title='Agora' pageDescription=''>
+    <AgoraLayout title='Agora' pageDescription='' home={ user ? false : true }>
       <>
         {
           !user

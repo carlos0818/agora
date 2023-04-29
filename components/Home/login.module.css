@@ -7,11 +7,10 @@
 
 .home-wrapper {
     display: grid;
-    gap: 30px;
+    gap: 36px;
     grid-template-areas: "menu" "content" "notifications";
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    gap: 30px;
     margin: auto;
     max-inline-size: 1280px;
     min-block-size: calc(100vh - 276px);
@@ -27,7 +26,6 @@
 }
 
 .menu-box {
-    block-size: 200px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: inline-block;
     inline-size: 171px;
@@ -53,6 +51,7 @@
     gap: 20px;
     padding-inline: 18px;
     padding-block: 14px;
+    position: relative;
 }
 
 .textfield-idea {
@@ -62,9 +61,18 @@
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     display: flex;
+    font-family: 'Hind Siliguri';
+    font-size: 16px;
+    font-weight: 500;
     inline-size: 100%;
     outline: none;
     padding-block: 4px;
+    padding-inline-start: 20px;
+    padding-inline-end: 70px;
+}
+
+.textfield-idea::placeholder {
+    color: black;
 }
 
 .user-icon {
@@ -76,6 +84,29 @@
     position: fixed;
 }
 
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.option {
+    align-items: center;
+    color: #758CB1;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    gap: 8px;
+}
+
+.option.selected {
+    color: var(--agora-blue-dark);
+}
+
 @media screen and (min-width: 1024px) {
     .home-container {
         background-size: cover;
@@ -83,7 +114,7 @@
     }
 
     .home-wrapper {
-        grid-template-columns: 236px 1fr 100px;
+        grid-template-columns: 236px 1fr 70px;
         grid-template-rows: 1fr;
     }
 

@@ -1,10 +1,11 @@
 .background {
-    /* background-image: url('../../public/images/clouds.jpg');
-    background-repeat: no-repeat; */
+    background-color: #e8fdfe;
+    background-image: url('/images/clouds.jpg');
+    background-repeat: no-repeat;
 }
 
 @media screen and (min-width: 1024px) {
     .background {
-        background-size: contain;
+        background-size: cover;
     }
 }

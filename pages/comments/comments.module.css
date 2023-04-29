@@ -6,7 +6,7 @@
     /* max-inline-size: 810px; */
     min-block-size: calc(100vh - 316px);
     padding-block-start: 100px;
-    padding-block: 40px;
+    padding-block-end: 40px;
     padding-inline: 20px;
 }
 

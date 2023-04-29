@@ -3,10 +3,9 @@
     background-size: auto;
     background-repeat: no-repeat;
     margin: auto;
-    /* max-inline-size: 1186px; */
     min-block-size: calc(100vh - 206px);
-    padding-block-start: 56px;
-    padding-block: 40px;
+    padding-block-start: 90px;
+    padding-block-end: 40px;
     padding-inline: 20px;
 }
 

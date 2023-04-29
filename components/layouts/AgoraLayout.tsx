@@ -1,22 +1,26 @@
-import { FC, MouseEvent, useState } from 'react'
+import { FC, useState } from 'react'
 import Head from 'next/head'
 
 import { Navbar } from '../Navbar/Navbar'
-import { IUser } from '@/interfaces'
+
+import styles from './agoralayout.module.css'
 
 interface Props {
     children: JSX.Element
     title: string
     pageDescription: string
     imageFullUrl?: string
-    user?: IUser
+    home?: boolean
 }
 
-export const AgoraLayout: FC<Props> = ({ children, title, pageDescription }) => {
+export const AgoraLayout: FC<Props> = ({ children, title, pageDescription, home = false }) => {
     const [submenu, setSubmenu] = useState(false)
 
     return (
-        <div onClick={ () => setSubmenu(false) }>
+        <div
+            className={ !home ? styles['background'] : '' }
+            onClick={ () => setSubmenu(false) }
+        >
             <Head>
                 <title>{ title }</title>
                 <meta name="description" content={ pageDescription } />

@@ -2,7 +2,7 @@
     padding-block: 40px;
     padding-inline: 20px;
     margin: auto;
-    margin-block-start: 56px;
+    padding-block-start: 90px;
     max-inline-size: 1186px;
     min-block-size: calc(100vh - 206px);
 }
@@ -189,7 +189,7 @@
 
 @media screen and (min-width: 1024px) {
     .about-content {
-        margin-block-start: 100px;
+        padding-block-start: 150px;
     }
 
     .section-three-container {
