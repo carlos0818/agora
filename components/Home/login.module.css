@@ -14,7 +14,7 @@
     margin: auto;
     max-inline-size: 1280px;
     min-block-size: calc(100vh - 276px);
-    padding-inline: 26px;
+    padding-inline: 14px;
 }
 
 .menu-container {
@@ -37,9 +37,17 @@
     border: 1px solid #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     border-radius: 0px 15px 15px 0px;
+    cursor: pointer;
     display: flex;
     inline-size: 28px;
+    align-items: center;
     margin-block-start: 28px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
 
 .idea-container {
@@ -48,7 +56,7 @@
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     padding-inline: 18px;
     padding-block: 14px;
     position: relative;
@@ -62,17 +70,21 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     font-family: 'Hind Siliguri';
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
     inline-size: 100%;
     outline: none;
     padding-block: 4px;
-    padding-inline-start: 20px;
-    padding-inline-end: 70px;
+    padding-inline-start: 16px;
+    padding-inline-end: 16px;
 }
 
 .textfield-idea::placeholder {
     color: black;
+}
+
+.pencil-icon {
+    display: none;
 }
 
 .user-icon {
@@ -107,6 +119,43 @@
     color: var(--agora-blue-dark);
 }
 
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.card-title {
+    color: var(--agora-blue-dark);
+    font-size: 28px;
+    line-height: 30px;
+}
+
+.card-date {
+    color: rgba(16, 40, 79, 0.7);
+    font-size: 12px;
+}
+
+.card-info {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.button-style {
+
+}
+
+@media screen and (min-width: 768px) {
+    .home-container {
+        padding-block-start: 110px;
+    }
+
+    .home-wrapper {
+        padding-inline: 20px;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .home-container {
         background-size: cover;
@@ -134,8 +183,23 @@
         justify-content: flex-end;
     }
 
+    .idea-container {
+        gap: 20px;
+    }
+
     .user-icon {
         block-size: 60px;
         inline-size: 60px;
+    }
+
+    .textfield-idea {
+        padding-inline-end: 70px;
+    }
+
+    .pencil-icon {
+        display: block;
+        position: absolute;
+        right: 30px;
+        top: 24px;
     }
 }

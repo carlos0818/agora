@@ -1,10 +1,13 @@
 import Image from 'next/image'
+import Link from 'next/link'
+
 import styles from './login.module.css'
 
 import userIcon from '../../public/images/user-icon.svg'
 import notificationIcon from '../../public/images/notification-icons.svg'
 import homeIcon from '../../public/images/home-icon.svg'
 import pencilIcon from '../../public/images/pencil-icon.svg'
+import leftArrowIcon from '../../public/images/left-arrow-icon.svg'
 
 export const LoginHome = () => {
     return (
@@ -34,20 +37,69 @@ export const LoginHome = () => {
                             </div>
                         </div>
                         <div className={ `${ styles['menu-button'] }` }>
-
+                            <Image src={ leftArrowIcon } alt='' />
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className={ styles['content-container'] }>
                     <div className={ `${ styles['idea-container'] }` }>
                         <Image
                             src={ userIcon }
                             alt=''
                             className={ styles['user-icon'] }
                         />
-                        <input type='text' className={ styles['textfield-idea'] } placeholder='Share your idea with your contacts' />
-                        <Image src={ pencilIcon } alt='' style={{ position: 'absolute', right: 30, top: 24 }} />
+                        <input type='text' className={ styles['textfield-idea'] } placeholder='Share your idea with your contacts...' />
+                        <Image src={ pencilIcon } alt='' className={ styles['pencil-icon'] } />
                     </div>
+
+                    <div className={ `window-glass` }>
+                        <div className='window-glass-content' style={{ paddingBlock: '16px', paddingInline: '20px' }}>
+                            <div className={ styles['card-content'] }>
+                                <h4 className={ styles['card-title'] }>Job Opportunity</h4>
+                                <span className={ styles['card-date'] }>Monday 5th 22:08</span>
+                                <p className={ styles['card-info'] }>
+                                    Nestlé is working on the integration of an application for the purchase and sale of its entire product line. It requires
+                                    knowledgeable personnel in computer science and design. The integrated project together with Concreto Company will be starting
+                                    this coming July 2023.
+                                </p>
+                                <div style={{ display: 'flex', flexDirection: 'row-reverse', marginBlockStart: '10px' }}>
+                                    <Link
+                                        href=''
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <a className={ `button-filled ${ styles['button-style'] }` }>Read more</a>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={ `window-glass` }>
+                        <div className='window-glass-content' style={{ paddingBlock: '16px', paddingInline: '20px' }}>
+                            <div className={ styles['card-content'] }>
+                                <h4 className={ styles['card-title'] }>AGORA RECOMMENDS YOU...</h4>
+                                <span className={ styles['card-date'] }>Monday 5th 22:08</span>
+                                <p className={ styles['card-info'] }>
+                                    Nestlé is working on the integration of an application for the purchase and sale of its entire product line. It requires
+                                    knowledgeable personnel in computer science and design. The integrated project together with Concreto Company will be starting
+                                    this coming July 2023.
+                                </p>
+                                <div style={{ display: 'flex', flexDirection: 'row-reverse', marginBlockStart: '10px' }}>
+                                    <Link
+                                        href=''
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <a className={ `button-filled ${ styles['button-style'] }` }>Read more</a>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div className={ styles['notifications'] }>
                     <div className={ styles['notifications-wrapper'] }>

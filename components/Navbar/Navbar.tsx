@@ -85,7 +85,7 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                                             src={ signoutIcon }
                                             alt=''
                                         />
-                                        <span>Sign out</span>
+                                        <span>Log out</span>
                                     </li>
                                 </ul>
                             </div>
