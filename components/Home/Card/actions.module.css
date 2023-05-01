@@ -1,0 +1,62 @@
+.actions-container {
+    align-items: center;
+    bottom: 16px;
+    display: flex;
+    gap: 20px;
+    left: 20px;
+    position: absolute;
+}
+
+.action-wrapper {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+}
+
+.like-icon {
+    block-size: 12px;
+    cursor: pointer;
+    inline-size: 13px;
+}
+
+.comment-icon {
+    block-size: 12px;
+    cursor: pointer;
+    inline-size: 13px;
+}
+
+.message-icon {
+    block-size: 16px;
+    cursor: pointer;
+    inline-size: 16px;
+}
+
+.number-action {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 1024px) {
+    .action-wrapper {
+        gap: 8px;
+    }
+
+    .like-icon {
+        block-size: 17px;
+        inline-size: 18px;
+    }
+
+    .comment-icon {
+        block-size: 21px;
+        inline-size: 23px;
+    }
+
+    .message-icon {
+        block-size: 28px;
+        inline-size: 28px;
+    }
+
+    .number-action {
+        font-size: 20px;
+    }
+}

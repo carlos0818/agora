@@ -2,8 +2,8 @@ import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
-import { LogoutHome } from '@/components/Home/LogoutHome'
-import { LoginHome } from '@/components/Home/LoginHome'
+import { LogoutHome } from '@/components/Home/LogoutHome/LogoutHome'
+import { LoginHome } from '@/components/Home/LoginHome/LoginHome'
 import { FooterDesktop } from '@/components/Footer/FooterDesktop'
 import { FooterMobile } from '@/components/Footer/FooterMobile'
 

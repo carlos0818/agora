@@ -119,33 +119,6 @@
     color: var(--agora-blue-dark);
 }
 
-.card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.card-title {
-    color: var(--agora-blue-dark);
-    font-size: 28px;
-    line-height: 30px;
-}
-
-.card-date {
-    color: rgba(16, 40, 79, 0.7);
-    font-size: 12px;
-}
-
-.card-info {
-    color: var(--agora-blue-dark);
-    font-size: 13px;
-    line-height: 16px;
-}
-
-.button-style {
-
-}
-
 @media screen and (min-width: 768px) {
     .home-container {
         padding-block-start: 110px;
