@@ -23,7 +23,7 @@ export const Card: FC<Props> = ({ title, date, info, actions }) => {
                         )
                     }
                     <p className={ styles['card-info'] }>{ info }</p>
-                    <div style={{ display: 'flex', flexDirection: 'row-reverse', marginBlockStart: '10px' }}>
+                    <div className={ styles['buttons-container'] }>
                         <Link
                             href=''
                             passHref
@@ -32,15 +32,15 @@ export const Card: FC<Props> = ({ title, date, info, actions }) => {
                         >
                             <a className='button-filled'>Read more</a>
                         </Link>
+                        {
+                            actions && (
+                                <Actions
+                                    likes={ 16 }
+                                    comments={ 4 }
+                                />
+                            )
+                        }
                     </div>
-                    {
-                        actions && (
-                            <Actions
-                                likes={ 16 }
-                                comments={ 4 }
-                            />
-                        )
-                    }
                 </div>
             </div>
         </div>

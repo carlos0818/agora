@@ -1,16 +1,13 @@
 .actions-container {
     align-items: center;
-    bottom: 0;
     display: flex;
-    gap: 20px;
-    left: 0;
-    position: absolute;
+    gap: 16px;
 }
 
 .action-wrapper {
     align-items: center;
     display: flex;
-    gap: 6px;
+    gap: 4px;
 }
 
 .like-icon {
