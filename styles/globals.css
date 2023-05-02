@@ -313,7 +313,6 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .window-glass-content {
-  /* background-color: white; */
   background: radial-gradient(54.4% 54.4% at 50% 45.6%, rgba(0, 255, 224, 0.0735) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(99.98deg, #FFFFFF 8.61%, rgba(255, 255, 255, 0.52) 98.97%);
   backdrop-filter: blur(15px);
   border-radius: 15px;

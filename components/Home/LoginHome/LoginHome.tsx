@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Card } from '../Card/Card'
 
@@ -25,9 +26,16 @@ export const LoginHome = () => {
                                     <li className={ `${ styles['option'] }` }>
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My page
                                     </li>
-                                    <li className={ `${ styles['option'] }` }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
-                                    </li>
+                                    <Link
+                                        href='/finder/country-snapshot'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li className={ `${ styles['option'] }` }>
+                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
+                                        </li>
+                                    </Link>
                                     <li className={ `${ styles['option'] }` }>
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
                                     </li>
