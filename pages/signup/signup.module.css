@@ -7,7 +7,7 @@
     padding-block-start: 100px;
     /* max-inline-size: 810px; */
     padding-inline: 20px;
-    padding-bottom: 40px;
+    padding-block-end: 40px;
 }
 
 .account-title {

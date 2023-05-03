@@ -1,5 +1,6 @@
 .footer-mobile {
     align-items: center;
+    background-color: #e8fdfe;
     display: flex;
     flex-direction: column;
     gap: 20px;
