@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,11 +12,48 @@ import homeIcon from '../../../public/images/home-icon.svg'
 import pencilIcon from '../../../public/images/pencil-icon.svg'
 import leftArrowIcon from '../../../public/images/left-arrow-icon.svg'
 
+type HideMenu = 'original' | 'hide' | 'show'
+
 export const LoginHome = () => {
+    const [hideMenu, setHideMenu] = useState<HideMenu>('original')
+
+    const wrapperRef = useRef<HTMLInputElement>(null)
+    const menuHideRef = useRef<HTMLInputElement>(null)
+    
+    const handleToggleMenu = () => {
+        if(hideMenu === 'hide') {
+            setHideMenu('show')
+            setTimeout(() => {
+                if (wrapperRef.current && menuHideRef.current) {
+                    wrapperRef.current.style.gridTemplateColumns = '236px 1fr 70px'
+                    wrapperRef.current.style.gap = '36px'
+                    menuHideRef.current.style.display = 'none'
+                }
+            }, 300)
+        } else {
+            setHideMenu('hide')
+            setTimeout(() => {
+                if (wrapperRef.current && menuHideRef.current) {
+                    wrapperRef.current.style.gridTemplateColumns = '1fr'
+                    wrapperRef.current.style.gap = '0'
+                    menuHideRef.current.style.display = 'flex'
+                }
+            }, 300)
+        }
+    }
+
     return (
         <div className={ styles['home-container'] }>
-            <div className={ styles['home-wrapper'] }>
-                <div className={ styles['menu-container'] }>
+            <div
+                className={ `${ styles['menu-button'] } ${ styles['menu-hide-button'] }` }
+                ref={ menuHideRef }
+                onClick={ handleToggleMenu }
+            >
+                <Image src={ leftArrowIcon } alt='left arrow icon' />
+            </div>
+
+            <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
+                <div className={ `${ styles['menu-container'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : 'original' }` }>
                     <div className={ styles['menu-wrapper'] }>
                         <div className={ `window-glass ${ styles['menu-box'] }` }>
                             <div className='window-glass-content' style={{ paddingInline: '16px', paddingBlock: '10px' }}>
@@ -45,7 +83,10 @@ export const LoginHome = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className={ `${ styles['menu-button'] }` }>
+                        <div
+                            className={ styles['menu-button'] }
+                            onClick={ handleToggleMenu }
+                        >
                             <Image src={ leftArrowIcon } alt='left arrow icon' />
                         </div>
                     </div>
