@@ -18,39 +18,10 @@
     padding-inline: 14px;
 }
 
-.menu-container {
-    display: none;
-}
+
 
 .notifications {
     display: none;
-}
-
-.menu-box {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: inline-block;
-    inline-size: 171px;
-    z-index: 1;
-}
-
-.menu-button {
-    align-items: center;
-    background: rgba(255, 255, 255, 0.3);
-    block-size: 71px;
-    border: 1px solid #FFFFFF;
-    border-inline-start: 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 0px 15px 15px 0px;
-    cursor: pointer;
-    display: flex;
-    inline-size: 28px;
-    margin-block-start: 28px;
-    z-index: 0;
-}
-
-.menu-hide-button {
-    display: none;
-    position: fixed;
 }
 
 .content-container {
@@ -106,29 +77,6 @@
     position: fixed;
 }
 
-.options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.option {
-    align-items: center;
-    color: #758CB1;
-    cursor: pointer;
-    display: flex;
-    font-size: 20px;
-    font-weight: 700;
-    gap: 8px;
-}
-
-.option.selected {
-    color: var(--agora-blue-dark);
-}
-
 .circle-write-mobile {
     background-color: var(--agora-blue-dark);
     block-size: 40px;
@@ -163,60 +111,6 @@
         grid-template-columns: 236px 1fr 70px;
         grid-template-rows: 1fr;
         padding-inline: 20px;
-    }
-
-    .menu-container {
-        align-items: flex-start;
-        display: flex;
-        inline-size: 207px;
-    }
-
-    .menu-wrapper {
-        display: flex;
-        position: fixed;
-    }
-
-    .menu-wrapper.hide {
-        animation: hideMenu 3s ease forwards;
-    }
-    
-    @keyframes hideMenu {
-        0% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    
-        20% {
-            opacity: 0;
-        }
-    
-        100% {
-            transform: translateX(-1500px);
-        }
-    }
-    
-    .menu-wrapper.show {
-        animation: showMenu 1s ease forwards;
-    }
-    
-    @keyframes showMenu {
-        0% {
-            opacity: 0;
-            transform: translateX(-800px);
-        }
-    
-        50% {
-            opacity: 0.3;
-        }
-    
-        70% {
-            opacity: 0.5;
-        }
-        
-        100% {
-            opacity: 1;
-            transform: translateX(0px);
-        }
     }
 
     .notifications {

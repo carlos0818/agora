@@ -1,39 +1,29 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Card } from '../Card/Card'
+import { Menu } from '../Menu/Menu'
 
 import styles from './login.module.css'
 
 import userIcon from '../../../public/images/user-icon.svg'
 import notificationIcon from '../../../public/images/notification-icons.svg'
-import homeIcon from '../../../public/images/home-icon.svg'
 import pencilIcon from '../../../public/images/pencil-icon.svg'
-import leftArrowIcon from '../../../public/images/left-arrow-icon.svg'
-
-type HideMenu = 'original' | 'hide' | 'show'
 
 export const LoginHome = () => {
-    const [hideMenu, setHideMenu] = useState<HideMenu>('original')
-
     const wrapperRef = useRef<HTMLInputElement>(null)
-    const menuHideRef = useRef<HTMLInputElement>(null)
     const circleDiv = useRef<HTMLInputElement>(null)
 
     useLayoutEffect(() => {
-        window.addEventListener('resize', validateScreen)
         window.addEventListener('scroll', circleWrite)
 
         return () => {
-            window.removeEventListener('resize', validateScreen)
             window.removeEventListener('scroll', circleWrite)
         }
     }, [])
 
     const circleWrite = () => {
         if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100) {
-            console.log('bottom')
             circleDiv.current!.style.position = 'absolute'
             circleDiv.current!.style.bottom = '170px'
         } else {
@@ -42,105 +32,13 @@ export const LoginHome = () => {
         }
     }
 
-    const validateScreen = () => {
-        if (window.screen.width >= 1024) {
-            wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
-            wrapperRef.current!.style.gap = '36px'
-        } else {
-            wrapperRef.current!.style.gridTemplateColumns = '1fr'
-            wrapperRef.current!.style.gap = '0'
-        }
-
-        if (window.screen.width < 768) {
-            wrapperRef.current!.style.paddingInline = '14px'
-        } else if (window.screen.width < 1024) {
-            wrapperRef.current!.style.paddingInline = '20px'
-        } else if (window.screen.width < 1370) {
-            wrapperRef.current!.style.paddingInline = '40px'
-        } else {
-            wrapperRef.current!.style.paddingInline = '20px'
-        }
-
-        menuHideRef.current!.style.display = 'none'
-
-        if (window.screen.width >= 1024 && hideMenu === 'original') {
-            setHideMenu('original')
-        }
-    }
-    
-    const handleToggleMenu = () => {
-        if(hideMenu === 'hide') {
-            setHideMenu('show')
-            setTimeout(() => {
-                wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
-                wrapperRef.current!.style.gap = '36px'
-                menuHideRef.current!.style.display = 'none'
-
-                if (window.screen.width < 1370) {
-                    wrapperRef.current!.style.paddingInline = '40px'
-                } else {
-                    wrapperRef.current!.style.paddingInline = '20px'
-                }
-            }, 300)
-        } else {
-            setHideMenu('hide')
-            setTimeout(() => {
-                wrapperRef.current!.style.gridTemplateColumns = '1fr'
-                wrapperRef.current!.style.gap = '0'
-                menuHideRef.current!.style.display = 'flex'
-            }, 300)
-        }
-    }
-
     return (
         <div className={ styles['home-container'] }>
-            <div
-                className={ `${ styles['menu-button'] } ${ styles['menu-hide-button'] }` }
-                ref={ menuHideRef }
-                onClick={ handleToggleMenu }
-            >
-                <Image src={ leftArrowIcon } alt='left arrow icon' />
-            </div>
-
             <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
-                <div className={ styles['menu-container'] }>
-                    <div className={ `${ styles['menu-wrapper'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : '' }` }>
-                        <div className={ `window-glass ${ styles['menu-box'] }` }>
-                            <div className='window-glass-content' style={{ paddingInline: '16px', paddingBlock: '10px' }}>
-                                <ul className={ styles['options-container'] }>
-                                    <li className={ `${ styles['option'] } ${ styles['selected'] }` }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
-                                    </li>
-                                    <li className={ `${ styles['option'] }` }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My page
-                                    </li>
-                                    <Link
-                                        href='/finder/country-snapshot'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li className={ `${ styles['option'] }` }>
-                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
-                                        </li>
-                                    </Link>
-                                    <li className={ `${ styles['option'] }` }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
-                                    </li>
-                                    <li className={ `${ styles['option'] }` }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div
-                            className={ styles['menu-button'] }
-                            onClick={ handleToggleMenu }
-                        >
-                            <Image src={ leftArrowIcon } alt='left arrow icon' />
-                        </div>
-                    </div>
-                </div>
+                <Menu
+                    wrapperRef={ wrapperRef }
+                />
+
                 <div className={ styles['content-container'] }>
                     <div className={ `${ styles['idea-container'] }` }>
                         <Image
