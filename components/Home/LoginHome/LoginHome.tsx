@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,18 +19,59 @@ export const LoginHome = () => {
 
     const wrapperRef = useRef<HTMLInputElement>(null)
     const menuHideRef = useRef<HTMLInputElement>(null)
+
+    useLayoutEffect(() => {
+        window.addEventListener('resize', handleWindowResize)
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize)
+        }
+    }, [])
+
+    const handleWindowResize = () => {
+        // if (window.screen.width < 1024) {
+        //     setHideMenu('hide')
+        // }
+
+        validateScreen()
+    }
+
+    const validateScreen = () => {
+        if (menuHideRef.current && wrapperRef.current) {
+            if (window.screen.width >= 1024) {
+                wrapperRef.current.style.gridTemplateColumns = '236px 1fr 70px'
+                wrapperRef.current.style.gap = '36px'
+            } else {
+                wrapperRef.current.style.gridTemplateColumns = '1fr'
+                wrapperRef.current.style.gap = '0'
+            }
+            menuHideRef.current.style.display = 'none'
+        }
+
+        if (window.screen.width >= 1024 && hideMenu === 'original') {
+            setHideMenu('original')
+        }
+    }
     
     const handleToggleMenu = () => {
         if(hideMenu === 'hide') {
+            console.log('entró al if hide')
             setHideMenu('show')
             setTimeout(() => {
                 if (wrapperRef.current && menuHideRef.current) {
                     wrapperRef.current.style.gridTemplateColumns = '236px 1fr 70px'
                     wrapperRef.current.style.gap = '36px'
                     menuHideRef.current.style.display = 'none'
+
+                    if (window.screen.width < 1370) {
+                        wrapperRef.current.style.paddingInline = '40px'
+                    } else {
+                        wrapperRef.current.style.paddingInline = '20px'
+                    }
                 }
             }, 300)
         } else {
+            console.log('entró al if show')
             setHideMenu('hide')
             setTimeout(() => {
                 if (wrapperRef.current && menuHideRef.current) {
@@ -53,7 +94,7 @@ export const LoginHome = () => {
             </div>
 
             <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
-                <div className={ `${ styles['menu-container'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : 'original' }` }>
+                <div className={ `${ styles['menu-container'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : '' }` }>
                     <div className={ styles['menu-wrapper'] }>
                         <div className={ `window-glass ${ styles['menu-box'] }` }>
                             <div className='window-glass-content' style={{ paddingInline: '16px', paddingBlock: '10px' }}>
