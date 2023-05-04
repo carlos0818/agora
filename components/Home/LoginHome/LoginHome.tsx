@@ -19,33 +19,49 @@ export const LoginHome = () => {
 
     const wrapperRef = useRef<HTMLInputElement>(null)
     const menuHideRef = useRef<HTMLInputElement>(null)
+    const circleDiv = useRef<HTMLInputElement>(null)
 
     useLayoutEffect(() => {
         window.addEventListener('resize', validateScreen)
+        window.addEventListener('scroll', circleWrite)
 
         return () => {
             window.removeEventListener('resize', validateScreen)
+            window.removeEventListener('scroll', circleWrite)
         }
     }, [])
 
-    const validateScreen = () => {
-        if (menuHideRef.current && wrapperRef.current) {
-            if (window.screen.width >= 1024) {
-                wrapperRef.current.style.gridTemplateColumns = '236px 1fr 70px'
-                wrapperRef.current.style.gap = '36px'
-            } else {
-                wrapperRef.current.style.gridTemplateColumns = '1fr'
-                wrapperRef.current.style.gap = '0'
-            }
-
-            if (window.screen.width < 1370) {
-                wrapperRef.current.style.paddingInline = '40px'
-            } else {
-                wrapperRef.current.style.paddingInline = '20px'
-            }
-
-            menuHideRef.current.style.display = 'none'
+    const circleWrite = () => {
+        if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100) {
+            console.log('bottom')
+            circleDiv.current!.style.position = 'absolute'
+            circleDiv.current!.style.bottom = '170px'
+        } else {
+            circleDiv.current!.style.position = 'fixed'
+            circleDiv.current!.style.bottom = '70px'
         }
+    }
+
+    const validateScreen = () => {
+        if (window.screen.width >= 1024) {
+            wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
+            wrapperRef.current!.style.gap = '36px'
+        } else {
+            wrapperRef.current!.style.gridTemplateColumns = '1fr'
+            wrapperRef.current!.style.gap = '0'
+        }
+
+        if (window.screen.width < 768) {
+            wrapperRef.current!.style.paddingInline = '14px'
+        } else if (window.screen.width < 1024) {
+            wrapperRef.current!.style.paddingInline = '20px'
+        } else if (window.screen.width < 1370) {
+            wrapperRef.current!.style.paddingInline = '40px'
+        } else {
+            wrapperRef.current!.style.paddingInline = '20px'
+        }
+
+        menuHideRef.current!.style.display = 'none'
 
         if (window.screen.width >= 1024 && hideMenu === 'original') {
             setHideMenu('original')
@@ -54,30 +70,24 @@ export const LoginHome = () => {
     
     const handleToggleMenu = () => {
         if(hideMenu === 'hide') {
-            console.log('entró al if hide')
             setHideMenu('show')
             setTimeout(() => {
-                if (wrapperRef.current && menuHideRef.current) {
-                    wrapperRef.current.style.gridTemplateColumns = '236px 1fr 70px'
-                    wrapperRef.current.style.gap = '36px'
-                    menuHideRef.current.style.display = 'none'
+                wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
+                wrapperRef.current!.style.gap = '36px'
+                menuHideRef.current!.style.display = 'none'
 
-                    if (window.screen.width < 1370) {
-                        wrapperRef.current.style.paddingInline = '40px'
-                    } else {
-                        wrapperRef.current.style.paddingInline = '20px'
-                    }
+                if (window.screen.width < 1370) {
+                    wrapperRef.current!.style.paddingInline = '40px'
+                } else {
+                    wrapperRef.current!.style.paddingInline = '20px'
                 }
             }, 300)
         } else {
-            console.log('entró al if show')
             setHideMenu('hide')
             setTimeout(() => {
-                if (wrapperRef.current && menuHideRef.current) {
-                    wrapperRef.current.style.gridTemplateColumns = '1fr'
-                    wrapperRef.current.style.gap = '0'
-                    menuHideRef.current.style.display = 'flex'
-                }
+                wrapperRef.current!.style.gridTemplateColumns = '1fr'
+                wrapperRef.current!.style.gap = '0'
+                menuHideRef.current!.style.display = 'flex'
             }, 300)
         }
     }
@@ -175,7 +185,9 @@ export const LoginHome = () => {
                         info='I am grateful to be able to work with a great group of entrepreneurs. We are restructuring projects and adjusting details to be able to harvest the ideas well. We are working on the brand image and various launching campaigns that will make our products and services stand out. Our method is singular and collective.'
                         actions
                     />
+                    <div className={ styles['circle-write-mobile'] }>
 
+                    </div>
                 </div>
                 <div className={ styles['notifications'] }>
                     <div className={ styles['notifications-wrapper'] }>
@@ -183,6 +195,9 @@ export const LoginHome = () => {
                             src={ notificationIcon }
                             alt='notification icon'
                         />
+                    </div>
+                    <div className={ styles['circle-write-desktop'] } ref={ circleDiv }>
+
                     </div>
                 </div>
             </div>
