@@ -21,20 +21,12 @@ export const LoginHome = () => {
     const menuHideRef = useRef<HTMLInputElement>(null)
 
     useLayoutEffect(() => {
-        window.addEventListener('resize', handleWindowResize)
+        window.addEventListener('resize', validateScreen)
 
         return () => {
-            window.removeEventListener('resize', handleWindowResize)
+            window.removeEventListener('resize', validateScreen)
         }
     }, [])
-
-    const handleWindowResize = () => {
-        // if (window.screen.width < 1024) {
-        //     setHideMenu('hide')
-        // }
-
-        validateScreen()
-    }
 
     const validateScreen = () => {
         if (menuHideRef.current && wrapperRef.current) {
@@ -45,6 +37,13 @@ export const LoginHome = () => {
                 wrapperRef.current.style.gridTemplateColumns = '1fr'
                 wrapperRef.current.style.gap = '0'
             }
+
+            if (window.screen.width < 1370) {
+                wrapperRef.current.style.paddingInline = '40px'
+            } else {
+                wrapperRef.current.style.paddingInline = '20px'
+            }
+            
             menuHideRef.current.style.display = 'none'
         }
 
