@@ -156,11 +156,12 @@
         inline-size: 207px;
     }
 
-    .menu-container.hide {
-        animation: hideMenu 3s ease forwards;
+    .menu-wrapper {
+        display: flex;
+        position: fixed;
     }
-    
-    .menu-button.hide {
+
+    .menu-wrapper.hide {
         animation: hideMenu 3s ease forwards;
     }
     
@@ -179,11 +180,7 @@
         }
     }
     
-    .menu-container.show {
-        animation: showMenu 1s ease forwards;
-    }
-    
-    .menu-button.show {
+    .menu-wrapper.show {
         animation: showMenu 1s ease forwards;
     }
     
@@ -205,11 +202,6 @@
             opacity: 1;
             transform: translateX(0px);
         }
-    }
-
-    .menu-wrapper {
-        display: flex;
-        position: fixed;
     }
 
     .notifications {

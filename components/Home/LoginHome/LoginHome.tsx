@@ -43,7 +43,7 @@ export const LoginHome = () => {
             } else {
                 wrapperRef.current.style.paddingInline = '20px'
             }
-            
+
             menuHideRef.current.style.display = 'none'
         }
 
@@ -93,8 +93,8 @@ export const LoginHome = () => {
             </div>
 
             <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
-                <div className={ `${ styles['menu-container'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : '' }` }>
-                    <div className={ styles['menu-wrapper'] }>
+                <div className={ styles['menu-container'] }>
+                    <div className={ `${ styles['menu-wrapper'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : '' }` }>
                         <div className={ `window-glass ${ styles['menu-box'] }` }>
                             <div className='window-glass-content' style={{ paddingInline: '16px', paddingBlock: '10px' }}>
                                 <ul className={ styles['options-container'] }>
