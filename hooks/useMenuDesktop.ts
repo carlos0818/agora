@@ -2,7 +2,7 @@ import { RefObject, useLayoutEffect, useRef, useState } from 'react'
 
 type HideMenu = 'original' | 'hide' | 'show'
 
-export const useMenu = (wrapperRef: RefObject<HTMLInputElement>) => {
+export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
     const [hideMenu, setHideMenu] = useState<HideMenu>('original')
     const menuHideRef = useRef<HTMLInputElement>(null)
 

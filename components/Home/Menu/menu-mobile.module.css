@@ -1,0 +1,73 @@
+.menu-container {
+    backdrop-filter: blur(5px);
+    border-radius: 0 15px 15px 0;
+    bottom: 68px;
+    display: inline-block;
+    inline-size: 187px;
+    left: -800;
+    position: fixed;
+    top: 10px;
+    z-index: 2000;
+}
+
+.menu-container.hide {
+    animation: hideMenu 1s ease forwards;
+}
+
+@keyframes hideMenu {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-800px);
+    }
+}
+
+.menu-container.show {
+    animation: showMenu 1s ease forwards;
+}
+
+@keyframes showMenu {
+    0% {
+        transform: translateX(-800px);
+    }
+    
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.menu-content {
+    backdrop-filter: blur(15px);
+    background: radial-gradient(54.4% 54.4% at 50% 45.6%, rgba(0, 255, 224, 0.0735) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(99.98deg, #FFFFFF 8.61%, rgba(255, 255, 255, 0.52) 98.97%);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.option {
+    align-items: center;
+    color: #758CB1;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    gap: 8px;
+}
+
+.option.selected {
+    color: var(--agora-blue-dark);
+}
+
+@media screen and (min-width: 1024px) {
+    .menu-container {
+        display: none;
+    }
+}

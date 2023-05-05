@@ -11,7 +11,7 @@ interface Props {
     actions: boolean
 }
 
-export const Card: FC<Props> = ({ title, date, info, actions }) => {
+export const CardInfo: FC<Props> = ({ title, date, info, actions }) => {
     return (
         <div className={ `window-glass` }>
             <div className='window-glass-content' style={{ paddingBlock: '16px', paddingInline: '20px' }}>

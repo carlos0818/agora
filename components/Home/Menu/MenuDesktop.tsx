@@ -2,18 +2,19 @@ import { FC, RefObject, useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import styles from './menu.module.css'
+import { useMenuDesktop } from '@/hooks/useMenuDesktop'
+
+import styles from './menu-desktop.module.css'
 
 import homeIcon from '../../../public/images/home-icon.svg'
 import leftArrowIcon from '../../../public/images/left-arrow-icon.svg'
-import { useMenu } from '@/hooks/useMenu'
 
 interface Props {
     wrapperRef: RefObject<HTMLInputElement>
 }
 
-export const Menu: FC<Props> = ({ wrapperRef }) => {
-    const { hideMenu, menuHideRef, handleToggleMenu } = useMenu(wrapperRef)
+export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
+    const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
 
     return (
         <>

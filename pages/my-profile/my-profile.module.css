@@ -1,0 +1,42 @@
+.profile-container {
+    background-attachment: fixed;
+    background-image: url('/images/clouds.jpg');
+    background-size: auto;
+    background-repeat: no-repeat;
+    padding-block-start: 100px;
+    padding-block-end: 40px;
+}
+
+.profile-wrapper {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: auto;
+    max-inline-size: 1280px;
+    min-block-size: calc(100vh - 316px);
+    padding-inline: 14px;
+}
+
+@media screen and (min-width: 768px) {
+    .profile-container {
+        padding-block-start: 110px;
+    }
+
+    .profile-wrapper {
+        padding-inline: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .profile-container {
+        background-size: cover;
+        padding-block-start: 150px;
+    }
+
+    .profile-wrapper {
+        grid-template-columns: 236px 1fr 70px;
+        grid-template-rows: 1fr;
+        padding-inline: 20px;
+    }
+}

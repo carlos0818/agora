@@ -1,0 +1,18 @@
+.navbar-container {
+    align-items: center;
+    background-color: #10284F;
+    block-size: 58px;
+    bottom: 0;
+    display: flex;
+    left: 0;
+    padding-inline: 20px;
+    position: fixed;
+    right: 0;
+    z-index: 3000;
+}
+
+@media screen and (min-width: 1024px) {
+    .navbar-container {
+        display: none;
+    }
+}
