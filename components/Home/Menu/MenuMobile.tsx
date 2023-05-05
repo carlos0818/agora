@@ -11,10 +11,6 @@ import homeIcon from '../../../public/images/home-icon.svg'
 export const MenuMobile = () => {
     const { isOpen } = useContext(MenuContext)
 
-    console.log(isOpen)
-
-    // ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }
-
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
             <div className={ `window-glass-content ${ styles['menu-content'] }` } style={{ paddingBlock: '16px', paddingInline: '20px' }}>

@@ -4,7 +4,7 @@
     bottom: 68px;
     display: inline-block;
     inline-size: 187px;
-    left: -800;
+    left: -300px;
     position: fixed;
     top: 10px;
     z-index: 2000;
@@ -16,25 +16,25 @@
 
 @keyframes hideMenu {
     0% {
-        transform: translateX(0);
+        transform: translateX(300px);
     }
 
     100% {
-        transform: translateX(-800px);
+        transform: translateX(-300px);
     }
 }
 
 .menu-container.show {
-    animation: showMenu 1s ease forwards;
+    animation: showMenu .7s ease forwards;
 }
 
 @keyframes showMenu {
     0% {
-        transform: translateX(-800px);
+        transform: translateX(-300px);
     }
     
     100% {
-        transform: translateX(0);
+        transform: translateX(300px);
     }
 }
 
