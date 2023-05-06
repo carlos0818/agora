@@ -3,7 +3,6 @@ import Image from 'next/image'
 
 import home from './logout.module.css'
 
-import rocket from '../../../public/images/rocket.png'
 import investorImage from '../../../public/images/investor-image.png'
 import entrepreneurImage from '../../../public/images/entrepreneur-image.png'
 import expertImage from '../../../public/images/expert-image.png'
@@ -20,20 +19,14 @@ import amrefLogo from '../../../public/images/amref.png'
 import buaLogo from '../../../public/images/bua.png'
 import iccLogo from '../../../public/images/icc.png'
 import aldeliaLogo from '../../../public/images/aldelia.png'
-import investorIcon from '../../../public/images/investor-icon.svg'
-import entrepreneurIcon from '../../../public/images/entrepreneur-icon.svg'
-import expertIcon from '../../../public/images/expert-icon.svg'
 
 export const LogoutHome = () => {
     return (
         <>
             <section className={ home['rocket-main'] }>
-                <div className={ home['rocket-container'] }>
-                    <Image src={ rocket } alt='Rocket Image' className={ home['rocket-image'] } />
-                    <div className={ home['rocket-title-container'] }>
-                        <h1 className={ home['rocket-title'] }>CONNECTING FOR IMPACT</h1>
-                        <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
-                    </div>
+                <div className={ home['rocket-title-container'] }>
+                    <h1 className={ home['rocket-title'] }>Connecting for impact</h1>
+                    <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
                 </div>
                 <div className={ home['account-type-wrapper'] }>
                     <Image src={ backArrow } alt='Previous Arrow' className={ home['arrow'] } />
