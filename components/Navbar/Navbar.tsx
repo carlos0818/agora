@@ -45,7 +45,7 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                                 prefetch={ false }
                                 legacyBehavior
                             >
-                                <a className={ `button-filled ${ styles['button-text-size'] }` }>Sign up</a>
+                                <a className={ `button-filled` }>Sign up</a>
                             </Link>
                             <Link
                                 href='/login'
@@ -53,7 +53,7 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                                 prefetch={ false }
                                 legacyBehavior
                             >
-                                <a className={ `button-outline ${ styles['button-text-size'] }` }>Log In</a>
+                                <a className={ `button-outline` }>Log In</a>
                             </Link>
                         </>
                     ) : (

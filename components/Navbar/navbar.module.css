@@ -15,7 +15,7 @@
 }
 
 .logo {
-    block-size: 29px;
+    block-size: auto;
     inline-size: 84px;
     cursor: pointer;
 }
@@ -101,8 +101,8 @@
     }
 
     .logo {
-        block-size: 48px;
-        inline-size: 140px;
+        block-size: auto;
+        inline-size: 120px;
     }
 
     .button-text-size {

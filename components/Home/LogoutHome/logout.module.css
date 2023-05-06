@@ -201,7 +201,7 @@
     }
 
     .rocket-title-container {
-        padding-block-start: 125px;
+        padding-block-start: 110px;
     }
 
     .logo-main {
@@ -209,13 +209,13 @@
     }
 
     .rocket-title {
-        font-size: 95px;
+        font-size: 92px;
         inline-size: auto;
         line-height: 82px;
     }
 
     .rocket-subtitle {
-        font-size: 48px;
+        font-size: 46px;
         inline-size: auto;
         line-height: 39px;
         margin-block-start: 32px;

@@ -395,7 +395,7 @@ h1, h2, h3, h4, h5, h6, p {
   .button-filled, .button-outline {
     padding-block: 0;
     padding-inline: 18px;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .window-glass-content {
