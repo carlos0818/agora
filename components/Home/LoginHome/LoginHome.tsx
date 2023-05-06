@@ -61,7 +61,6 @@ export const LoginHome = () => {
                     actions
                 />
                 <div className={ styles['circle-write-mobile'] }></div>
-                {/* <div className={ styles['circle-write-desktop'] } ref={ circleDiv }></div> */}
             </>
         </HomeLoginLayout>
     )

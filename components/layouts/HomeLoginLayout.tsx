@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { MenuDesktop } from '../Home/Menu/MenuDesktop'
 import { MenuMobile } from '../Home/Menu/MenuMobile'
 import { NavbarMobile } from '@/components/Navbar/NavbarMobile'
+import { FooterDesktop } from '../Footer/FooterDesktop'
+import { FooterMobile } from '../Footer/FooterMobile'
 
 import styles from './homeLoginLayout.module.css'
 
@@ -43,46 +45,50 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     }
 
     return (
-        <div
-            onClick={ () => setSubmenu(false) }
-        >
-            <Head>
-                <title>{ title }</title>
-                <meta name="description" content={ pageDescription } />
-                {/* <meta name="og:title" content={ title } />
-                <meta name="og:description" content={ pageDescription } /> */}
-            </Head>
-            <nav>
-                <Navbar
-                    submenu={ submenu }
-                    setSubmenu={ setSubmenu }
-                />
-            </nav>
-            <div className={ styles['home-container'] }>
-                <MenuMobile />
-                <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
-                    <MenuDesktop
-                        wrapperRef={ wrapperRef }
+        <>
+            <div
+                onClick={ () => setSubmenu(false) }
+            >
+                <Head>
+                    <title>{ title }</title>
+                    <meta name="description" content={ pageDescription } />
+                    {/* <meta name="og:title" content={ title } />
+                    <meta name="og:description" content={ pageDescription } /> */}
+                </Head>
+                <nav>
+                    <Navbar
+                        submenu={ submenu }
+                        setSubmenu={ setSubmenu }
                     />
-                    <div className={ styles['content-container'] }>
-                        { children }
-                    </div>
-                    <div className={ styles['notifications'] }>
-                        <div className={ styles['notifications-wrapper'] }>
-                            <Image
-                                src={ notificationIcon }
-                                alt='notification icon'
-                            />
+                </nav>
+                <div className={ styles['home-container'] }>
+                    <MenuMobile />
+                    <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
+                        <MenuDesktop
+                            wrapperRef={ wrapperRef }
+                        />
+                        <div className={ styles['content-container'] }>
+                            { children }
                         </div>
-                        {
-                            showWrite && (
-                                <div className={ styles['circle-write-desktop'] } ref={ circleDiv }></div>
-                            )
-                        }
+                        <div className={ styles['notifications'] }>
+                            <div className={ styles['notifications-wrapper'] }>
+                                <Image
+                                    src={ notificationIcon }
+                                    alt='notification icon'
+                                />
+                            </div>
+                            {
+                                showWrite && (
+                                    <div className={ styles['circle-write-desktop'] } ref={ circleDiv }></div>
+                                )
+                            }
+                        </div>
                     </div>
+                    <NavbarMobile />
                 </div>
-                <NavbarMobile />
             </div>
-        </div>
+            <FooterDesktop />
+            <FooterMobile />
+        </>
     )
 }

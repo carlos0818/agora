@@ -2,6 +2,8 @@ import { FC, useState } from 'react'
 import Head from 'next/head'
 
 import { Navbar } from '../Navbar/Navbar'
+import { FooterDesktop } from '../Footer/FooterDesktop'
+import { FooterMobile } from '../Footer/FooterMobile'
 
 import styles from './agoralayout.module.css'
 
@@ -17,23 +19,27 @@ export const AgoraLayout: FC<Props> = ({ children, title, pageDescription, home 
     const [submenu, setSubmenu] = useState(false)
 
     return (
-        <div
-            className={ !home ? styles['background'] : '' }
-            onClick={ () => setSubmenu(false) }
-        >
-            <Head>
-                <title>{ title }</title>
-                <meta name="description" content={ pageDescription } />
-                {/* <meta name="og:title" content={ title } />
-                <meta name="og:description" content={ pageDescription } /> */}
-            </Head>
-            <nav>
-                <Navbar
-                    submenu={ submenu }
-                    setSubmenu={ setSubmenu }
-                />
-            </nav>
-            { children }
-        </div>
+        <>
+            <div
+                className={ !home ? styles['background'] : '' }
+                onClick={ () => setSubmenu(false) }
+            >
+                <Head>
+                    <title>{ title }</title>
+                    <meta name="description" content={ pageDescription } />
+                    {/* <meta name="og:title" content={ title } />
+                    <meta name="og:description" content={ pageDescription } /> */}
+                </Head>
+                <nav>
+                    <Navbar
+                        submenu={ submenu }
+                        setSubmenu={ setSubmenu }
+                    />
+                </nav>
+                { children }
+            </div>
+            <FooterDesktop />
+            <FooterMobile />
+        </>
     )
 }
