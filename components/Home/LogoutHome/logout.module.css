@@ -54,6 +54,7 @@
     display: flex;
     /* gap: 24px; */
     inline-size: 238px;
+    justify-content: center;
     margin-block-end: 20px;
     overflow-x: auto;
 }
@@ -223,7 +224,7 @@
     .account-type-wrapper {
         inline-size: 1150px;
         margin: auto;
-        margin-block-start: 80px;
+        margin-block-start: 40px;
     }
 
     .account-type-container {
@@ -256,13 +257,13 @@
         }
 
         100% {
-            height: 465px;
+            height: 420px;
         }
     }
 
     @keyframes down {
         0% {
-            height: 465px;
+            height: 420px;
         }
 
         100% {
@@ -285,7 +286,7 @@
 
     .type-image {
         block-size: auto;
-        inline-size: 250px;
+        inline-size: 220px;
     }
     
     .what-wrapper {
