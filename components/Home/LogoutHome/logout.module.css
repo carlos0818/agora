@@ -52,7 +52,7 @@
 
 .account-type-container {
     display: flex;
-    /* gap: 24px; */
+    gap: 24px;
     inline-size: 238px;
     justify-content: center;
     margin-block-end: 20px;
@@ -232,7 +232,7 @@
     }
 
     .account-image-container {
-        inline-size: 378px;
+        inline-size: 314px;
     }
 
     .account-info-container {
