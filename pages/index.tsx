@@ -4,8 +4,6 @@ import { getSession } from 'next-auth/react'
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 import { LogoutHome } from '@/components/Home/LogoutHome/LogoutHome'
 import { LoginHome } from '@/components/Home/LoginHome/LoginHome'
-import { FooterDesktop } from '@/components/Footer/FooterDesktop'
-import { FooterMobile } from '@/components/Footer/FooterMobile'
 
 import { IUser } from '@/interfaces'
 
@@ -15,21 +13,18 @@ interface Props {
 
 const Home: NextPage<Props> = ({ user }) => {
   return (
-    <AgoraLayout title='Agora' pageDescription='' home={ user ? false : true }>
-      <>
-        {
-          !user
-          ? (
+    <>
+      {
+        !user
+        ? (
+          <AgoraLayout title='Agora' pageDescription='' home={ user ? false : true }>
             <LogoutHome />
-          ) : (
-            <LoginHome />
-          )
-        }
-
-        <FooterMobile />
-        <FooterDesktop />
-      </>
-    </AgoraLayout>
+          </AgoraLayout>
+        ) : (
+          <LoginHome />
+        )
+      }
+    </>
   )
 }
 

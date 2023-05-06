@@ -200,10 +200,6 @@
         background-size: cover;
     }
 
-    .rocket-title-container {
-        padding-block-start: 110px;
-    }
-
     .logo-main {
         inline-size: 380px;
     }
@@ -222,7 +218,6 @@
     }
 
     .account-type-wrapper {
-        /* inline-size: 1150px; */
         margin: auto;
         margin-block-start: 40px;
     }
