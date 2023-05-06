@@ -1,4 +1,4 @@
-import { FC, useRef, useLayoutEffect } from 'react'
+import { FC, useRef, useLayoutEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { MenuDesktop } from '../Home/Menu/MenuDesktop'
@@ -8,15 +8,21 @@ import { NavbarMobile } from '@/components/Navbar/NavbarMobile'
 import styles from './homeLoginLayout.module.css'
 
 import notificationIcon from '@/public/images/notification-icons.svg'
+import Head from 'next/head'
+import { Navbar } from '../Navbar/Navbar'
 
 interface Props {
     children: JSX.Element
+    title: string
+    pageDescription: string
     showWrite?: boolean
 }
 
-export const HomeLoginLayout: FC<Props> = ({ children, showWrite = false }) => {
+export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
     const wrapperRef = useRef<HTMLInputElement>(null)
     const circleDiv = useRef<HTMLInputElement>(null)
+
+    const [submenu, setSubmenu] = useState(false)
 
     useLayoutEffect(() => {
         window.addEventListener('scroll', circleWrite)
@@ -37,30 +43,46 @@ export const HomeLoginLayout: FC<Props> = ({ children, showWrite = false }) => {
     }
 
     return (
-        <div className={ styles['home-container'] }>
-            <MenuMobile />
-            <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
-                <MenuDesktop
-                    wrapperRef={ wrapperRef }
+        <div
+            onClick={ () => setSubmenu(false) }
+        >
+            <Head>
+                <title>{ title }</title>
+                <meta name="description" content={ pageDescription } />
+                {/* <meta name="og:title" content={ title } />
+                <meta name="og:description" content={ pageDescription } /> */}
+            </Head>
+            <nav>
+                <Navbar
+                    submenu={ submenu }
+                    setSubmenu={ setSubmenu }
                 />
-                <div className={ styles['content-container'] }>
-                    { children }
-                </div>
-                <div className={ styles['notifications'] }>
-                    <div className={ styles['notifications-wrapper'] }>
-                        <Image
-                            src={ notificationIcon }
-                            alt='notification icon'
-                        />
+            </nav>
+            <div className={ styles['home-container'] }>
+                <MenuMobile />
+                <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
+                    <MenuDesktop
+                        wrapperRef={ wrapperRef }
+                    />
+                    <div className={ styles['content-container'] }>
+                        { children }
                     </div>
-                    {
-                        showWrite && (
-                            <div className={ styles['circle-write-desktop'] } ref={ circleDiv }></div>
-                        )
-                    }
+                    <div className={ styles['notifications'] }>
+                        <div className={ styles['notifications-wrapper'] }>
+                            <Image
+                                src={ notificationIcon }
+                                alt='notification icon'
+                            />
+                        </div>
+                        {
+                            showWrite && (
+                                <div className={ styles['circle-write-desktop'] } ref={ circleDiv }></div>
+                            )
+                        }
+                    </div>
                 </div>
+                <NavbarMobile />
             </div>
-            <NavbarMobile />
         </div>
     )
 }

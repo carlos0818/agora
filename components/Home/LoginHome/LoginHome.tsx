@@ -11,7 +11,11 @@ import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 
 export const LoginHome = () => {
     return (
-        <HomeLoginLayout showWrite>
+        <HomeLoginLayout
+            showWrite
+            title=''
+            pageDescription=''
+        >
             <>
                 <div className={ `${ styles['idea-container'] }` }>
                     <Image
