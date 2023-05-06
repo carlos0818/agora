@@ -222,7 +222,7 @@
     }
 
     .account-type-wrapper {
-        inline-size: 1150px;
+        /* inline-size: 1150px; */
         margin: auto;
         margin-block-start: 40px;
     }
