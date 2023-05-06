@@ -18,9 +18,16 @@
     padding-block-start: 100px;
 }
 
+.logo-main {
+    block-size: auto;
+    inline-size: 500px;
+    margin-block-end: 50px;
+}
+
 .rocket-title {
     color: var(--agora-blue-dark);
     font-size: 36px;
+    font-weight: 600;
     line-height: 40px;
     text-align: center;
 }

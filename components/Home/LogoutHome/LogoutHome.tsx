@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import home from './logout.module.css'
 
+import agoralogo from '../../../public/images/agoralogo.png'
 import investorImage from '../../../public/images/investor-image.png'
 import entrepreneurImage from '../../../public/images/entrepreneur-image.png'
 import expertImage from '../../../public/images/expert-image.png'
@@ -25,6 +26,11 @@ export const LogoutHome = () => {
         <>
             <section className={ home['rocket-main'] }>
                 <div className={ home['rocket-title-container'] }>
+                    <Image
+                        src={ agoralogo }
+                        alt='Agora logo'
+                        className={ home['logo-main'] }
+                    />
                     <h1 className={ home['rocket-title'] }>Connecting for impact</h1>
                     <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
                 </div>
