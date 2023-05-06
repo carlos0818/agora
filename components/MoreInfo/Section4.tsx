@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import investorIcon from '../../public/images/investor-icon.svg'
+import moneyIcon from '../../public/images/money-icon.svg'
 
 interface Props {
     type: string | undefined
@@ -108,7 +108,7 @@ export const Section4: FC<Props> = ({ type }) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src={ investorIcon } alt='' className={ style['specs-icon'] } />
+                                <Image src={ moneyIcon } alt='' className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )
@@ -121,7 +121,7 @@ export const Section4: FC<Props> = ({ type }) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src={ investorIcon } alt='' className={ style['specs-icon'] } />
+                                <Image src={ moneyIcon } alt='' className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )
@@ -134,7 +134,7 @@ export const Section4: FC<Props> = ({ type }) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src={ investorIcon } alt='' className={ style['specs-icon'] } />
+                                <Image src={ moneyIcon } alt='' className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )

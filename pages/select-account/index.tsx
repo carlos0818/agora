@@ -6,7 +6,7 @@ import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 import { FooterMobile } from '@/components/Footer/FooterMobile'
 import { FooterDesktop } from '@/components/Footer/FooterDesktop'
 
-import investorIcon from '../../public/images/investor-icon.svg'
+import moneyIcon from '../../public/images/money-icon.svg'
 import entrepreneurIcon from '../../public/images/entrepreneur-icon.svg'
 import expertIcon from '../../public/images/expert-icon.svg'
 
@@ -23,7 +23,7 @@ const index: NextPage = () => {
                             <div className='window-glass-content'>
                                 <div className={ style['content-wrapper'] }>
                                     <p className={ style['account-title'] }>AS INVESTOR</p>
-                                    <Image src={ investorIcon } alt='Investor Icon' className={ style['investor-icon'] } />
+                                    <Image src={ moneyIcon } alt='Investor Icon' className={ style['investor-icon'] } />
                                     <p className={ style['account-description'] }>
                                         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
@@ -43,7 +43,7 @@ const index: NextPage = () => {
                             <div className='window-glass-content'>
                                 <div className={ style['content-wrapper'] }>
                                     <p className={ style['account-title'] }>AS ENTREPRENEUR</p>
-                                    <Image src={ investorIcon } alt='Investor Icon' className={ style['investor-icon'] } />
+                                    <Image src={ moneyIcon } alt='Investor Icon' className={ style['investor-icon'] } />
                                     <p className={ style['account-description'] }>
                                         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
@@ -63,7 +63,7 @@ const index: NextPage = () => {
                             <div className='window-glass-content'>
                                 <div className={ style['content-wrapper'] }>
                                     <p className={ style['account-title'] }>AS EXPERT</p>
-                                    <Image src={ investorIcon } alt='Investor Icon' className={ style['investor-icon'] } />
+                                    <Image src={ moneyIcon } alt='Investor Icon' className={ style['investor-icon'] } />
                                     <p className={ style['account-description'] }>
                                         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
                                         Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
