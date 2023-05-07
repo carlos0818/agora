@@ -25,7 +25,7 @@ export const LogoutHome = () => {
     return (
         <>
             <section className={ home['rocket-main'] }>
-                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', blockSize: '100vh' }}>
                     <Image
                         src={ agoralogo }
                         alt='Agora logo'
@@ -33,75 +33,74 @@ export const LogoutHome = () => {
                     />
                     <h1 className={ home['rocket-title'] }>Connecting for impact</h1>
                     <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
-                    {/* <div className={ home['rocket-title-container'] }>
-                    </div> */}
-                    <div className={ home['account-type-wrapper'] }>
-                        <Image src={ backArrow } alt='Previous Arrow' className={ home['arrow'] } />
-                        <div className={ home['account-type-container'] }>
-                            <Link
-                                href='/more-info/investor'
-                                passHref
-                                prefetch={ false }
-                                legacyBehavior
-                            >
-                                <div className={ home['account-image-container'] }>
-                                    <div className={ `window-glass ${ home['account-info-container'] }` }>
-                                        <p className={ home['account-type-description'] }>
-                                            A bright future starts with smart investment.
-                                        </p>
-                                        <h3 className={ home['account-type-title'] }>Investor</h3>
-                                        <Image
-                                            src={ investorImage }
-                                            alt='Investor image'
-                                            className={ home['type-image'] }
-                                        />
-                                    </div>
-                                </div>
-                            </Link>
-                            <Link
-                                href='/more-info/entrepreneur'
-                                passHref
-                                prefetch={ false }
-                                legacyBehavior
-                            >
-                                <div className={ home['account-image-container'] }>
-                                    <div className={ `window-glass ${ home['account-info-container'] }` }>
-                                        <p className={ home['account-type-description'] }>
-                                            The only limit to our realization of tomorrow will be our doubts of today.
-                                        </p>
-                                        <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
-                                        <Image
-                                            src={ entrepreneurImage }
-                                            alt='Entrepreneur image'
-                                            className={ home['type-image'] }
-                                        />
-                                    </div>
-                                </div>
-                            </Link>
-                            <Link
-                                href='/more-info/entrepreneur'
-                                passHref
-                                prefetch={ false }
-                                legacyBehavior
-                            >
-                                <div className={ home['account-image-container'] }>
-                                    <div className={ `window-glass ${ home['account-info-container'] }` }>
-                                        <p className={ home['account-type-description'] }>
-                                            Empowering entrepreneurs to reach their full potential.
-                                        </p>
-                                        <h3 className={ home['account-type-title'] }>Expert</h3>
-                                        <Image
-                                            src={ expertImage }
-                                            alt='Expert image'
-                                            className={ home['type-image'] }
-                                        />
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-                        <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
-                    </div>
                 </div>
+                <div className={ home['account-type-wrapper'] }>
+                    <Image src={ backArrow } alt='Previous Arrow' className={ home['arrow'] } />
+                    <div className={ home['account-type-container'] }>
+                        <Link
+                            href='/more-info/investor'
+                            passHref
+                            prefetch={ false }
+                            legacyBehavior
+                        >
+                            <div className={ home['account-image-container'] }>
+                                <div className={ `window-glass ${ home['account-info-container'] }` }>
+                                    <p className={ home['account-type-description'] }>
+                                        A bright future starts with smart investment.
+                                    </p>
+                                    <h3 className={ home['account-type-title'] }>Investor</h3>
+                                    <Image
+                                        src={ investorImage }
+                                        alt='Investor image'
+                                        className={ home['type-image'] }
+                                    />
+                                </div>
+                            </div>
+                        </Link>
+                        <Link
+                            href='/more-info/entrepreneur'
+                            passHref
+                            prefetch={ false }
+                            legacyBehavior
+                        >
+                            <div className={ home['account-image-container'] }>
+                                <div className={ `window-glass ${ home['account-info-container'] }` }>
+                                    <p className={ home['account-type-description'] }>
+                                        The only limit to our realization of tomorrow will be our doubts of today.
+                                    </p>
+                                    <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
+                                    <Image
+                                        src={ entrepreneurImage }
+                                        alt='Entrepreneur image'
+                                        className={ home['type-image'] }
+                                    />
+                                </div>
+                            </div>
+                        </Link>
+                        <Link
+                            href='/more-info/entrepreneur'
+                            passHref
+                            prefetch={ false }
+                            legacyBehavior
+                        >
+                            <div className={ home['account-image-container'] }>
+                                <div className={ `window-glass ${ home['account-info-container'] }` }>
+                                    <p className={ home['account-type-description'] }>
+                                        Empowering entrepreneurs to reach their full potential.
+                                    </p>
+                                    <h3 className={ home['account-type-title'] }>Expert</h3>
+                                    <Image
+                                        src={ expertImage }
+                                        alt='Expert image'
+                                        className={ home['type-image'] }
+                                    />
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                    <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
+                </div>
+
             </section>
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>

@@ -9,7 +9,7 @@
     background-image: url('/images/background-home.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    block-size: 100vh;
+    /* block-size: 100vh; */
     /* position: relative; */
     display: flex;
     flex-direction: column;
@@ -66,7 +66,7 @@
 
 .account-type-container {
     display: flex;
-    gap: 24px;
+    gap: 8px;
     inline-size: 252px;
     margin-block-end: 20px;
     overflow-x: auto;
