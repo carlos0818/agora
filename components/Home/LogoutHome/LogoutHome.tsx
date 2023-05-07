@@ -26,7 +26,7 @@ export const LogoutHome = () => {
     return (
         <>
             <section className={ home['rocket-main'] }>
-                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', blockSize: '100vh' }}>
+                <div className={ home['title-container'] }>
                     <Image
                         src={ agoralogoShadow }
                         alt='Agora logo'
@@ -35,6 +35,8 @@ export const LogoutHome = () => {
                     <h1 className={ home['rocket-title'] }>Connecting for impact</h1>
                     <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
                 </div>
+            </section>
+            <section style={{ display: 'flex' }}>
                 <div className={ home['account-type-wrapper'] }>
                     <Image src={ backArrow } alt='Previous Arrow' className={ home['arrow'] } />
                     <div className={ home['account-type-container'] }>
@@ -101,7 +103,6 @@ export const LogoutHome = () => {
                     </div>
                     <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
                 </div>
-
             </section>
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>
