@@ -220,7 +220,7 @@
 
 @media screen and (min-width: 1024px) {
     .rocket-main {
-        background-size: cover;
+        background-size: contain;
     }
 
     .logo-main {
