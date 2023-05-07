@@ -7,29 +7,21 @@
 .rocket-main {
     align-items: center;
     background-image: url('/images/background-home.jpg');
-    /* background-size: cover; */
     background-repeat: no-repeat;
-    /* block-size: 100vh; */
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* border: 1px solid red; */
 }
 
 .rocket-title-container {
     align-items: center;
     display: flex;
     flex-direction: column;
-    /* padding-block-start: 100px; */
-    /* border: 1px solid green; */
 }
 
 .logo-main {
     block-size: auto;
     inline-size: 230px;
-    /* margin-block-end: 30px; */
-    /* border: 1px solid orange; */
 }
 
 .rocket-title {
@@ -53,20 +45,13 @@
 .account-type-wrapper {
     align-items: center;
     display: flex;
-    gap: 20px;
+    gap: 16px;
     justify-content: center;
-    /* margin-block-start: 30px; */
-    /* border: 1px solid red; */
-
-    /* position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0; */
 }
 
 .account-type-container {
     display: flex;
-    gap: 8px;
+    gap: 40px;
     inline-size: 252px;
     margin-block-end: 20px;
     overflow-x: auto;
@@ -74,7 +59,7 @@
 
 .account-image-container {
     align-items: center;
-    block-size: 450px;
+    block-size: 420px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -106,6 +91,7 @@
 .arrow {
     block-size: 48px;
     inline-size: 24px;
+    margin-block-start: 90px;
 }
 
 .account-type-title {
@@ -218,13 +204,27 @@
     vertical-align: top;
 }
 
+@media screen and (min-width: 768px) {
+    .rocket-title {
+        inline-size: auto;
+    }
+
+    .rocket-subtitle {
+        inline-size: auto;
+    }
+
+    .account-type-wrapper {
+        gap: 48px;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .rocket-main {
-        background-size: contain;
+        background-size: cover;
     }
 
     .logo-main {
-        inline-size: 350px;
+        inline-size: 450px;
     }
 
     .rocket-title {
@@ -237,12 +237,11 @@
         font-size: 42px;
         inline-size: auto;
         line-height: 39px;
-        /* margin-block-start: 16px; */
+        margin-block-start: 56px;
     }
 
     .account-type-wrapper {
         margin: auto;
-        margin-block-start: 40px;
     }
 
     .account-type-container {
@@ -251,7 +250,7 @@
     }
 
     .account-image-container {
-        inline-size: 314px;
+        inline-size: 252px;
         overflow: hidden;
     }
 

@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import Link from 'next/link'
 
-import styles from './card.module.css'
 import { Actions } from './Actions'
+
+import styles from './card.module.css'
 
 interface Props {
     title: string

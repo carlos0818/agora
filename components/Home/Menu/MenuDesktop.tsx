@@ -1,4 +1,4 @@
-import { FC, RefObject, useLayoutEffect, useRef, useState } from 'react'
+import { FC, RefObject } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -6,8 +6,8 @@ import { useMenuDesktop } from '@/hooks/useMenuDesktop'
 
 import styles from './menu-desktop.module.css'
 
-import homeIcon from '../../../public/images/home-icon.svg'
-import leftArrowIcon from '../../../public/images/left-arrow-icon.svg'
+import homeIcon from '@/public/images/home-icon.svg'
+import leftArrowIcon from '@/public/images/left-arrow-icon.svg'
 
 interface Props {
     wrapperRef: RefObject<HTMLInputElement>

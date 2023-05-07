@@ -50,14 +50,14 @@
 
     .options-container a {
         color: var(--agora-blue-dark);
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
         line-height: 26px;
         text-decoration: none;
     }
 
     .logo {
-        width: 140px;
-        height: 48px;
+        block-size: auto;
+        inline-size: 110px;
     }
 }

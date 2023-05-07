@@ -6,10 +6,10 @@ import { FooterDesktop } from '@/components/Footer/FooterDesktop'
 
 import style from './about.module.css'
 
-import aboutImage from '../../public/images/about-image.png'
-import cciasImage from '../../public/images/ccias.png'
-import uncdfImage from '../../public/images/uncdf.png'
-import carbonChartIcon from '../../public/images/carbon-chart-icon.svg'
+import aboutImage from '@/public/images/about-image.png'
+import cciasImage from '@/public/images/ccias.png'
+import uncdfImage from '@/public/images/uncdf.png'
+import carbonChartIcon from '@/public/images/carbon-chart-icon.svg'
 
 const AboutPage = () => {
     return (

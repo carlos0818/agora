@@ -1,8 +1,10 @@
 import { FC, useRef, useLayoutEffect, useState } from 'react'
+import Head from 'next/head'
 import Image from 'next/image'
 
 import { MenuDesktop } from '../Home/Menu/MenuDesktop'
 import { MenuMobile } from '../Home/Menu/MenuMobile'
+import { Navbar } from '../Navbar/Navbar'
 import { NavbarMobile } from '@/components/Navbar/NavbarMobile'
 import { FooterDesktop } from '../Footer/FooterDesktop'
 import { FooterMobile } from '../Footer/FooterMobile'
@@ -10,8 +12,6 @@ import { FooterMobile } from '../Footer/FooterMobile'
 import styles from './homeLoginLayout.module.css'
 
 import notificationIcon from '@/public/images/notification-icons.svg'
-import Head from 'next/head'
-import { Navbar } from '../Navbar/Navbar'
 
 interface Props {
     children: JSX.Element

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import infoInvestorImage from '../../public/images/info-investor-image.png'
+import infoInvestorImage from '@/public/images/info-investor-image.png'
 
 interface Props {
     type: string | undefined

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import style from './footer.module.css'
 
-import agoralogo from '../../public/images/agoralogo.png'
+import agoralogo from '@/public/images/agoralogo.png'
 
 export const FooterMobile = () => {
     return (

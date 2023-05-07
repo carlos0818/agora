@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import moneyIcon from '../../public/images/money-icon.svg'
+import moneyIcon from '@/public/images/money-icon.svg'
 
 interface Props {
     type: string | undefined

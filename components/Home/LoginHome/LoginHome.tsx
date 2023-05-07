@@ -1,13 +1,12 @@
-import { useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 
+import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { CardInfo } from '../Card/CardInfo'
 
 import styles from './login.module.css'
 
-import userIcon from '../../../public/images/user-icon.svg'
-import pencilIcon from '../../../public/images/pencil-icon.svg'
-import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
+import userIcon from '@/public/images/user-icon.svg'
+import pencilIcon from '@/public/images/pencil-icon.svg'
 
 export const LoginHome = () => {
     return (

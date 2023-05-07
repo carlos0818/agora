@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import investorImage from '../../public/images/investor-image.png'
+import investorImage from '@/public/images/investor-image.png'
 
 interface Props {
     title: string

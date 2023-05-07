@@ -6,7 +6,7 @@ import { MenuContext } from '@/context/menu'
 
 import styles from './menu-mobile.module.css'
 
-import homeIcon from '../../../public/images/home-icon.svg'
+import homeIcon from '@/public/images/home-icon.svg'
 
 export const MenuMobile = () => {
     const { isOpen } = useContext(MenuContext)

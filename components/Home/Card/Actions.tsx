@@ -3,9 +3,9 @@ import Image from 'next/image'
 
 import styles from './actions.module.css'
 
-import likeIcon from '../../../public/images/like-icon.svg'
-import commentIcon from '../../../public/images/comment-icon.svg'
-import messageIcon from '../../../public/images/message-icon.svg'
+import likeIcon from '@/public/images/like-icon.svg'
+import commentIcon from '@/public/images/comment-icon.svg'
+import messageIcon from '@/public/images/message-icon.svg'
 
 interface Props {
     likes: number

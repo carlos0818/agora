@@ -3,31 +3,32 @@ import Image from 'next/image'
 
 import home from './logout.module.css'
 
-import agoralogo from '../../../public/images/agoralogo.png'
-import investorImage from '../../../public/images/investor-image.png'
-import entrepreneurImage from '../../../public/images/entrepreneur-image.png'
-import expertImage from '../../../public/images/expert-image.png'
-import backArrow from '../../../public/images/back-arrow.png'
-import nextArrow from '../../../public/images/next-arrow.png'
-import psfuLogo from '../../../public/images/psfu.png'
-import cciasLogo from '../../../public/images/ccias.png'
-import fsmeLogo from '../../../public/images/fsme.png'
-import ministeryLogo from '../../../public/images/ministery.png'
-import adepmeLogo from '../../../public/images/adepme.png'
-import wfpLogo from '../../../public/images/wfp.png'
-import uncdfLogo from '../../../public/images/uncdf.png'
-import amrefLogo from '../../../public/images/amref.png'
-import buaLogo from '../../../public/images/bua.png'
-import iccLogo from '../../../public/images/icc.png'
-import aldeliaLogo from '../../../public/images/aldelia.png'
+import agoralogo from '@/public/images/agoralogo.png'
+import agoralogoShadow from '@/public/images/agoralogo_shadow.png'
+import investorImage from '@/public/images/investor-image.png'
+import entrepreneurImage from '@/public/images/entrepreneur-image.png'
+import expertImage from '@/public/images/expert-image.png'
+import backArrow from '@/public/images/back-arrow.png'
+import nextArrow from '@/public/images/next-arrow.png'
+import psfuLogo from '@/public/images/psfu.png'
+import cciasLogo from '@/public/images/ccias.png'
+import fsmeLogo from '@/public/images/fsme.png'
+import ministeryLogo from '@/public/images/ministery.png'
+import adepmeLogo from '@/public/images/adepme.png'
+import wfpLogo from '@/public/images/wfp.png'
+import uncdfLogo from '@/public/images/uncdf.png'
+import amrefLogo from '@/public/images/amref.png'
+import buaLogo from '@/public/images/bua.png'
+import iccLogo from '@/public/images/icc.png'
+import aldeliaLogo from '@/public/images/aldelia.png'
 
 export const LogoutHome = () => {
     return (
         <>
             <section className={ home['rocket-main'] }>
-                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', blockSize: '100vh', gap: 56 }}>
+                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', blockSize: '100vh' }}>
                     <Image
-                        src={ agoralogo }
+                        src={ agoralogoShadow }
                         alt='Agora logo'
                         className={ home['logo-main'] }
                     />

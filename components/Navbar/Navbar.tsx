@@ -6,10 +6,10 @@ import { AuthContext } from '@/context/auth'
 
 import styles from './navbar.module.css'
 
-import agoralogo from '../../public/images/agoralogo.png'
-import userIcon from '../../public/images/user-icon.svg'
-import editIcon from '../../public/images/edit-icon.svg'
-import signoutIcon from '../../public/images/signout-icon.svg'
+import agoralogo from '@/public/images/agoralogo.png'
+import userIcon from '@/public/images/user-icon.svg'
+import editIcon from '@/public/images/edit-icon.svg'
+import signoutIcon from '@/public/images/signout-icon.svg'
 
 interface Props {
     submenu: boolean
