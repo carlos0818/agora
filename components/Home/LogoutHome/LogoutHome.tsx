@@ -25,7 +25,7 @@ export const LogoutHome = () => {
     return (
         <>
             <section className={ home['rocket-main'] }>
-                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', blockSize: '100vh' }}>
+                <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', blockSize: '100vh', gap: 56 }}>
                     <Image
                         src={ agoralogo }
                         alt='Agora logo'

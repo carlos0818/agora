@@ -2,6 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap');
 
 @font-face {
+  font-family: ebrima;
+  src: url('/fonts/ebrima.ttf');
+}
+
+@font-face {
+  font-family: ebrima-bold;
+  src: url('/fonts/ebrimabd.ttf');
+}
+
+@font-face {
   font-family: 'icomoon';
   src: url('/fonts/icomoon.eot?mk6qam');
   src: url('/fonts/icomoon.eot?mk6qam#iefix') format('embedded-opentype'),
@@ -20,7 +30,7 @@
 }
 
 html {
-  font-family: 'Hind Siliguri';
+  font-family: 'ebrima';
   overflow-x: hidden;
 }
 
