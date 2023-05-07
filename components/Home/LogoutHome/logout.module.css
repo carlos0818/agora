@@ -50,11 +50,18 @@
     text-align: center;
 }
 
+.cards-container {
+    background-image: url('/images/background-countries.jpg');
+    background-size: contain;
+    /* padding-block: 100px; */
+}
+
 .account-type-wrapper {
     align-items: center;
     display: flex;
     gap: 16px;
     justify-content: center;
+    padding-block: 100px;
 }
 
 .account-type-container {

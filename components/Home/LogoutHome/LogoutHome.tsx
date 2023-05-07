@@ -36,7 +36,7 @@ export const LogoutHome = () => {
                     <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
                 </div>
             </section>
-            <section style={{ display: 'flex' }}>
+            <section className={ home['cards-container'] }>
                 <div className={ home['account-type-wrapper'] }>
                     <Image src={ backArrow } alt='Previous Arrow' className={ home['arrow'] } />
                     <div className={ home['account-type-container'] }>
