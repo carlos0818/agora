@@ -6,7 +6,6 @@ import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 const MyProfilePage: NextPage = () => {
     return (
         <HomeLoginLayout
-            showWrite
             title=''
             pageDescription=''
         >

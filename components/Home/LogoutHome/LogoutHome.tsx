@@ -45,15 +45,15 @@ export const LogoutHome = () => {
                         >
                             <div className={ home['account-image-container'] }>
                                 <div className={ `window-glass ${ home['account-info-container'] }` }>
+                                    <p className={ home['account-type-description'] }>
+                                        A bright future starts with smart investment.
+                                    </p>
+                                    <h3 className={ home['account-type-title'] }>Investor</h3>
                                     <Image
                                         src={ investorImage }
                                         alt='Investor image'
                                         className={ home['type-image'] }
                                     />
-                                    <h3 className={ home['account-type-title'] }>Investor</h3>
-                                    <p className={ home['account-type-description'] }>
-                                        A bright future starts with smart investment.
-                                    </p>
                                 </div>
                             </div>
                         </Link>
@@ -65,15 +65,15 @@ export const LogoutHome = () => {
                         >
                             <div className={ home['account-image-container'] }>
                                 <div className={ `window-glass ${ home['account-info-container'] }` }>
+                                    <p className={ home['account-type-description'] }>
+                                        The only limit to our realization of tomorrow will be our doubts of today.
+                                    </p>
+                                    <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
                                     <Image
                                         src={ entrepreneurImage }
                                         alt='Entrepreneur image'
                                         className={ home['type-image'] }
                                     />
-                                    <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
-                                    <p className={ home['account-type-description'] }>
-                                        The only limit to our realization of tomorrow will be our doubts of today.
-                                    </p>
                                 </div>
                             </div>
                         </Link>
@@ -85,15 +85,15 @@ export const LogoutHome = () => {
                         >
                             <div className={ home['account-image-container'] }>
                                 <div className={ `window-glass ${ home['account-info-container'] }` }>
+                                    <p className={ home['account-type-description'] }>
+                                        Empowering entrepreneurs to reach their full potential.
+                                    </p>
+                                    <h3 className={ home['account-type-title'] }>Expert</h3>
                                     <Image
                                         src={ expertImage }
                                         alt='Expert image'
                                         className={ home['type-image'] }
                                     />
-                                    <h3 className={ home['account-type-title'] }>Expert</h3>
-                                    <p className={ home['account-type-description'] }>
-                                        Empowering entrepreneurs to reach their full potential.
-                                    </p>
                                 </div>
                             </div>
                         </Link>

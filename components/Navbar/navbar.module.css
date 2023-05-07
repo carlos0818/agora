@@ -38,7 +38,9 @@
 }
 
 .user-icon {
+    block-size: auto;
     display: none;
+    inline-size: 38px;
 }
 
 .submenu {
