@@ -35,8 +35,6 @@ export const LogoutHome = () => {
                     <h1 className={ home['rocket-title'] }>Connecting for impact</h1>
                     <h2 className={ home['rocket-subtitle'] }>Capital, innovation and expertise at work</h2>
                 </div>
-            </section>
-            <section className={ home['cards-container'] }>
                 <div className={ home['account-type-wrapper'] }>
                     <Image src={ backArrow } alt='Previous Arrow' className={ home['arrow'] } />
                     <div className={ home['account-type-container'] }>
@@ -104,6 +102,8 @@ export const LogoutHome = () => {
                     <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
                 </div>
             </section>
+            {/* <section className={ home['cards-container'] }>
+            </section> */}
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>
                     <div className={ home['what-text-container'] }>

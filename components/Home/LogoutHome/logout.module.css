@@ -8,17 +8,17 @@
     align-items: center;
     background: url('/images/background-home.jpg') no-repeat center center;
     background-size: cover;
+    block-size: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-block-start: 50px;
 }
 
 .title-container {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    block-size: 100vh;
 }
 
 .rocket-title-container {
@@ -35,16 +35,15 @@
 .rocket-title {
     color: var(--agora-blue-dark);
     font-size: 36px;
-    font-weight: 600;
     inline-size: 350px;
     line-height: 40px;
     text-align: center;
+    margin-block-start: -30px;
 }
 
 .rocket-subtitle {
     color: var(--agora-blue-dark);
     font-size: 19px;
-    font-weight: 500;
     inline-size: 330px;
     line-height: 20px;
     text-align: center;
@@ -62,7 +61,8 @@
     display: flex;
     gap: 16px;
     justify-content: center;
-    padding-block: 100px;
+    /* padding-block-start: 50px; */
+    /* padding-block: 20px; */
 }
 
 .account-type-container {
@@ -255,7 +255,7 @@
         font-size: 42px;
         inline-size: auto;
         line-height: 39px;
-        margin-block-start: 56px;
+        margin-block-start: 32px;
     }
 
     .account-type-wrapper {
