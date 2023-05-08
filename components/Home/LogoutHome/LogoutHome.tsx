@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -23,6 +24,13 @@ import iccLogo from '@/public/images/icc.png'
 import aldeliaLogo from '@/public/images/aldelia.png'
 
 export const LogoutHome = () => {
+    const [language, setLanguage] = useState('')
+
+    useEffect(() => {
+        var userLang = navigator.language
+        console.log("The language is: " + userLang)
+    }, [])
+
     return (
         <>
             <section className={ home['rocket-main'] }>
@@ -157,10 +165,10 @@ export const LogoutHome = () => {
                 </div>
             </section>
             <section className={ home['supported-container-desktop'] }>
-                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded institutions</h3>
+                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded partner</h3>
                 <div className={ home['supported-wrapper-desktop'] }>
                     <div>
-                        <h4 className={ home['partners-title'] }>National Partners</h4>
+                        <h4 className={ home['partners-title'] }>National</h4>
                         <div className={ home['logos-container'] }>
                             <div className={ home['logos-row'] } style={{ marginBlockStart: 18 }}>
                                 <Image src={ psfuLogo } alt='' style={{ width: 140, height: 140 }} />
@@ -174,7 +182,7 @@ export const LogoutHome = () => {
                         </div>
                     </div>
                     <div>
-                        <h4 className={ home['partners-title'] }>International Partners</h4>
+                        <h4 className={ home['partners-title'] }>International</h4>
                         <div className={ home['logos-container'] }>
                             <div className={ home['logos-row'] }>
                                 <Image src={ wfpLogo } alt='' style={{ width: 135, height: 135 }} />
