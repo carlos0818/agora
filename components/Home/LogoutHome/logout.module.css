@@ -49,21 +49,12 @@
     margin-block-start: 32px;
 }
 
-.cards-container {
-    background-image: url('/images/background-countries.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* padding-block: 100px; */
-}
-
 .account-type-wrapper {
     align-items: center;
     display: flex;
     gap: 16px;
     justify-content: center;
     margin-block-start: 50px;
-    /* padding-block-start: 50px; */
-    /* padding-block: 20px; */
 }
 
 .account-type-container {

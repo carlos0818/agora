@@ -4,7 +4,6 @@ import Image from 'next/image'
 
 import home from './logout.module.css'
 
-import agoralogo from '@/public/images/agoralogo.png'
 import agoralogoShadow from '@/public/images/agoralogo_shadow.png'
 import investorImage from '@/public/images/investor-image.png'
 import entrepreneurImage from '@/public/images/entrepreneur-image.png'
@@ -27,9 +26,18 @@ export const LogoutHome = () => {
     const [language, setLanguage] = useState('')
 
     useEffect(() => {
-        var userLang = navigator.language
-        console.log("The language is: " + userLang)
+        getLanguage()
     }, [])
+
+    const getLanguage = async() => {
+        const userLang = await navigator.language.substring(0, 2)
+        if (userLang === 'fr')
+            setLanguage('fr')
+        else
+            setLanguage('en')
+    }
+
+    console.log('LANG:' + language)
 
     return (
         <>
@@ -110,8 +118,6 @@ export const LogoutHome = () => {
                     <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
                 </div>
             </section>
-            {/* <section className={ home['cards-container'] }>
-            </section> */}
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>
                     <div className={ home['what-text-container'] }>
@@ -127,9 +133,26 @@ export const LogoutHome = () => {
                             their valuable insights.
                         </p>
                     </div>
-                    <video className={ home['video'] } controls>
-                        <source src='./videos/coming.mp4' type='video/mp4' />
-                    </video>
+                    {
+                        language === 'fr' && (
+                            <video className={ home['video'] } controls>
+                                <source
+                                    src='./videos/welcome_fr.mp4'
+                                    type='video/mp4'
+                                />
+                            </video>
+                        )
+                    }
+                    {
+                        language === 'en' && (
+                            <video className={ home['video'] } controls>
+                                <source
+                                    src='./videos/welcome_en.mp4'
+                                    type='video/mp4'
+                                />
+                            </video>
+                        )
+                    }
                 </div>
             </section>
             <section className={ home['supported-container-mobile'] }>
