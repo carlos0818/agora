@@ -62,15 +62,15 @@
 
 .about-title {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 24px;
-    font-weight: 700;
     line-height: 27px;
 }
 
 .about-subtitle {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 15px;
-    font-weight: 700;
     line-height: 18px;
     margin-block-start: 4px;
 }
@@ -78,7 +78,6 @@
 .about-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .left {
@@ -104,15 +103,15 @@
 
 .partners-title {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 24px;
-    font-weight: 700;
     line-height: 38px;
 }
 
 .partners-subtitle {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 15px;
-    font-weight: 700;
     line-height: 17px;
     margin-block-end: 8px;
 }
@@ -126,8 +125,8 @@
 
 .logos-title {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 20px;
-    font-weight: 700;
     line-height: 32px;
 }
 
@@ -138,15 +137,15 @@
 
 .collaborate-title {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 24px;
-    font-weight: 700;
     line-height: 29px;
 }
 
 .collaborate-subtitle {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 15px;
-    font-weight: 700;
     line-height: 20px;
     margin-block-start: 4px;
 }

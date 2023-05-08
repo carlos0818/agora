@@ -29,6 +29,7 @@
 .form-row {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .form-container label {

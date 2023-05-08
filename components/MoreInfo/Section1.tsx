@@ -5,6 +5,8 @@ import Link from 'next/link'
 import style from '../../pages/more-info/more-info.module.css'
 
 import investorImage from '@/public/images/investor-image.png'
+import entrepreneurImage from '@/public/images/entrepreneur-image.png'
+import expertImage from '@/public/images/expert-image.png'
 
 interface Props {
     title: string
@@ -30,7 +32,11 @@ export const Section1: FC<Props> = ({ title, subtitle, type }) => {
                 </Link>
             </div>
             <div className={ style['container-two'] }>
-                <Image src={ investorImage } alt='Investor Image' className={ style['type-image'] } />
+                <Image
+                    src={ type === 'investor' ? investorImage : type === 'entrepreneur' ? entrepreneurImage : expertImage }
+                    alt={ type === 'investor' ? 'Investor Image' : type === 'entrepreneur' ? 'Entrepreneur image' : 'Expert image'}
+                    className={ style['type-image'] }
+                />
                 <Link
                     href={ `/signup/${ type }` }
                     passHref

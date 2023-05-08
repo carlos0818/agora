@@ -81,7 +81,7 @@ export const LogoutHome = () => {
                             </div>
                         </Link>
                         <Link
-                            href='/more-info/entrepreneur'
+                            href='/more-info/expert'
                             passHref
                             prefetch={ false }
                             legacyBehavior

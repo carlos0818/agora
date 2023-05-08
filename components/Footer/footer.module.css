@@ -13,8 +13,8 @@
 
 .footer-mobile a {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
     font-size: 24px;
-    font-weight: 700;
     text-decoration: none;
 }
 
@@ -50,8 +50,8 @@
 
     .options-container a {
         color: var(--agora-blue-dark);
+        font-family: 'ebrima-bold';
         font-size: 20px;
-        font-weight: 700;
         line-height: 26px;
         text-decoration: none;
     }
