@@ -47,7 +47,7 @@ export const LogoutHome = () => {
                             <div className={ home['account-image-container'] }>
                                 <div className={ `window-glass ${ home['account-info-container'] }` }>
                                     <p className={ home['account-type-description'] }>
-                                        A bright future starts with smart investment.
+                                        Invest in impact and drive positive change for a better future
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Investor</h3>
                                     <Image
@@ -67,7 +67,7 @@ export const LogoutHome = () => {
                             <div className={ home['account-image-container'] }>
                                 <div className={ `window-glass ${ home['account-info-container'] }` }>
                                     <p className={ home['account-type-description'] }>
-                                        The only limit to our realization of tomorrow will be our doubts of today.
+                                        Turn your vision into reality with strategic action and bold entrepreneurship
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
                                     <Image
@@ -87,7 +87,7 @@ export const LogoutHome = () => {
                             <div className={ home['account-image-container'] }>
                                 <div className={ `window-glass ${ home['account-info-container'] }` }>
                                     <p className={ home['account-type-description'] }>
-                                        Empowering entrepreneurs to reach their full potential.
+                                        Drive innovation and create positive change by sharing your expertise with the world
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Expert</h3>
                                     <Image
@@ -107,16 +107,16 @@ export const LogoutHome = () => {
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>
                     <div className={ home['what-text-container'] }>
-                        <h3 className={ home['what-title'] }>WHAT IS AGORA?</h3>
+                        <h3 className={ home['what-title'] }>DISCOVER AGORA</h3>
                         <p className={ home['what-description'] }>
-                            Agora is a global public good launched by the United Capital Development Fund (UNCDF) which connects entrepreneurs from developing
-                            economies with the knowledge, technical support and capital needed to seize opportunities for growth. It also enables the scaling-up
-                            of sourcing of new investment lead opportunities through a digital pathway.
+                            Agora is a public good launched by the United Nations Capital Development Fund (UNCDF) and supported by like - minded public and private partners.
+                            It is designed to bring together investors, entrepreneurs, and experts who are passionate about exploring opportunities and driving economic growth
+                            in frontier and emerging economies.
                         </p>
                         <p className={ home['what-description'] }>
-                            Agora uses a proprietary algorithm to provide investment managers with innovative lead sourcing, screening flexibility, direct connection
-                            to principals, and a possible collaboration with co-inverstors. Similarly, entrepreneurs have access to similar functionalities to connect
-                            with inverstors and partners.
+                            The platform provides a space for networking, knowledge sharing, and investment opportunities in various sectors. It is completely free to use and
+                            offers advantages to all its users, including entrepreneurs showcasing their ideas, investors discovering new opportunities, and experts sharing
+                            their valuable insights.
                         </p>
                     </div>
                     <video className={ home['video'] } controls>
@@ -125,8 +125,8 @@ export const LogoutHome = () => {
                 </div>
             </section>
             <section className={ home['supported-container-mobile'] }>
-                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded institutions</h3>
-                <h4 className={ home['partners-title'] }>National Partners</h4>
+                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded partner</h3>
+                <h4 className={ home['partners-title'] }>National</h4>
                 <div className={ home['logos-container'] }>
                     <div className={ home['logos-row'] } style={{ marginBlockStart: 18 }}>
                         <Image src={ psfuLogo } alt='' style={{ width: 140, height: 140 }} />
@@ -140,7 +140,7 @@ export const LogoutHome = () => {
                         <Image src={ adepmeLogo } alt='' style={{ width: 140, height: 140 }} />
                     </div>
                 </div>
-                <h4 className={ home['partners-title'] }>International Partners</h4>
+                <h4 className={ home['partners-title'] }>International</h4>
                 <div className={ home['logos-container'] }>
                     <div className={ home['logos-row'] }>
                         <Image src={ wfpLogo } alt='' style={{ width: 135, height: 135 }} />
