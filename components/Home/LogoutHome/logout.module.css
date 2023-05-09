@@ -124,6 +124,7 @@
 
 .what-container {
     align-items: center;
+    background-image: url('/images/background-pattern-video.jpg');
     background-color: #e8fdfe;
     display: flex;
     flex-direction: column;
@@ -134,7 +135,7 @@
 }
 
 .what-wrapper {
-    /* align-items: center; */
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: 12px;

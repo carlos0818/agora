@@ -37,8 +37,6 @@ export const LogoutHome = () => {
             setLanguage('en')
     }
 
-    console.log('LANG:' + language)
-
     return (
         <>
             <section className={ home['rocket-main'] }>

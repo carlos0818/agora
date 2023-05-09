@@ -1,10 +1,11 @@
 .home-container {
     background-attachment: fixed;
     background-image: url('/images/clouds.jpg');
+    /* background-color: #e8fdfe; */
     background-size: auto;
     background-repeat: no-repeat;
     padding-block-start: 100px;
-    padding-block-end: 40px;
+    padding-block-end: 100px;
 }
 
 .home-wrapper {
@@ -51,6 +52,7 @@
     .home-container {
         background-size: cover;
         padding-block-start: 150px;
+        padding-block-end: 40px;
     }
 
     .home-wrapper {

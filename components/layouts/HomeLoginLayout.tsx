@@ -7,7 +7,6 @@ import { MenuMobile } from '../Home/Menu/MenuMobile'
 import { Navbar } from '../Navbar/Navbar'
 import { NavbarMobile } from '@/components/Navbar/NavbarMobile'
 import { FooterDesktop } from '../Footer/FooterDesktop'
-import { FooterMobile } from '../Footer/FooterMobile'
 
 import styles from './homeLoginLayout.module.css'
 
@@ -35,12 +34,14 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     }, [])
 
     const circleWrite = () => {
-        if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100) {
-            circleDiv.current!.style.position = 'absolute'
-            circleDiv.current!.style.bottom = '170px'
-        } else {
-            circleDiv.current!.style.position = 'fixed'
-            circleDiv.current!.style.bottom = '70px'
+        if (circleDiv.current) {
+            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100) {
+                circleDiv.current.style.position = 'absolute'
+                circleDiv.current.style.bottom = '170px'
+            } else {
+                circleDiv.current.style.position = 'fixed'
+                circleDiv.current.style.bottom = '70px'
+            }
         }
     }
 
@@ -88,7 +89,6 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                 </div>
             </div>
             <FooterDesktop />
-            <FooterMobile />
         </>
     )
 }
