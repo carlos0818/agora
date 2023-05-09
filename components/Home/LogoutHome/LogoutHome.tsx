@@ -145,7 +145,7 @@ export const LogoutHome = () => {
                         language === 'en' && (
                             <video className={ home['video'] } controls>
                                 <source
-                                    src='./videos/welcome_en.mp4'
+                                    src='./videos/welcome_en.webm'
                                     type='video/mp4'
                                 />
                             </video>
