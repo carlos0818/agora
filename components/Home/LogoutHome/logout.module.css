@@ -125,6 +125,7 @@
 .what-container {
     align-items: center;
     background-image: url('/images/background-pattern-video.jpg');
+    /* background-size: 100%; */
     background-color: #e8fdfe;
     display: flex;
     flex-direction: column;
