@@ -6,7 +6,7 @@
 
 .rocket-main {
     align-items: center;
-    background: url('/images/background-home.jpg') no-repeat center center;
+    background: url('/images/background-home.jpg') no-repeat center center fixed;
     background-size: cover;
     block-size: 100vh;
     display: flex;
