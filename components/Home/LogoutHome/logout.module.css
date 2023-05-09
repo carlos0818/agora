@@ -125,7 +125,6 @@
 .what-container {
     align-items: center;
     background-image: url('/images/background-pattern-video.jpg');
-    /* background-size: 100%; */
     background-attachment: fixed;
     background-color: #e8fdfe;
     display: flex;
@@ -323,6 +322,7 @@
     .video {
         block-size: auto;
         inline-size: 575px;
+        margin-block-end: 0;
     }
 
     .supported-container-mobile {

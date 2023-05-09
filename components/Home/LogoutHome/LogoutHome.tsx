@@ -131,26 +131,28 @@ export const LogoutHome = () => {
                             their valuable insights.
                         </p>
                     </div>
-                    {
-                        language === 'fr' && (
-                            <video className={ home['video'] } controls>
-                                <source
-                                    src='./videos/welcome_fr.mp4'
-                                    type='video/mp4'
-                                />
-                            </video>
-                        )
-                    }
-                    {
-                        language === 'en' && (
-                            <video className={ home['video'] } controls>
-                                <source
-                                    src='./videos/welcome_en.webm'
-                                    type='video/mp4'
-                                />
-                            </video>
-                        )
-                    }
+                    <div className='window-glass'>
+                        {
+                            language === 'fr' && (
+                                <video className={ home['video'] } controls>
+                                    <source
+                                        src='./videos/welcome_fr.mp4'
+                                        type='video/mp4'
+                                    />
+                                </video>
+                            )
+                        }
+                        {
+                            language === 'en' && (
+                                <video className={ home['video'] } controls>
+                                    <source
+                                        src='./videos/welcome_en.webm'
+                                        type='video/mp4'
+                                    />
+                                </video>
+                            )
+                        }
+                    </div>
                 </div>
             </section>
             <section className={ home['supported-container-mobile'] }>
