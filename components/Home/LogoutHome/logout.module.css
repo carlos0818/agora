@@ -6,7 +6,7 @@
 
 .rocket-main {
     align-items: center;
-    background: url('/images/background-home.jpg') no-repeat center center fixed;
+    background: url('/images/background-home.jpg') no-repeat center center;
     background-size: cover;
     block-size: 100vh;
     display: flex;
@@ -126,6 +126,7 @@
     align-items: center;
     background-image: url('/images/background-pattern-video.jpg');
     /* background-size: 100%; */
+    background-attachment: fixed;
     background-color: #e8fdfe;
     display: flex;
     flex-direction: column;
