@@ -168,10 +168,23 @@
     text-align: justify;
 }
 
+.video-container {
+    block-size: 115px;
+    inline-size: calc(100% - 80px);
+    margin-block-start: 80px;
+    margin-block-end: 50px;
+    max-inline-size: 560px;
+    position: relative;
+}
+
 .video {
-    inline-size: calc(100vw - 80px);
-    block-size: auto;
-    margin-block-end: 30px;
+    bottom: 20px;
+    inline-size: calc(100vw - 120px);
+    /* block-size: 280px; */
+    left: 18px;
+    max-inline-size: 560px;
+    position: absolute;
+    right: 50px;
 }
 
 .supported-container-mobile {
@@ -216,7 +229,28 @@
     vertical-align: top;
 }
 
+@media screen and (min-width: 480px) {
+    .video-container {
+        margin-block-start: 120px;
+    }
+}
+
+@media screen and (min-width: 550px) {
+    .video-container {
+        margin-block-start: 150px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .video-container {
+        margin-block-start: 180px;
+    }
+}
+
 @media screen and (min-width: 768px) {
+    .video-container {
+        margin-block-start: 180px;
+    }
+
     .rocket-title {
         inline-size: auto;
     }
@@ -306,23 +340,35 @@
     
     .what-wrapper {
         flex-direction: row;
+        justify-content: space-between;
         padding-block: 80px;
     }
 
+    .what-text-container {
+        inline-size: 60%;
+    }
+
     .what-title {
-        font-size: 40px;
+        font-size: 36px;
         margin-block-start: 0;
     }
 
     .what-description {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 22px;
     }
 
-    .video {
-        block-size: auto;
-        inline-size: 575px;
+    .video-container {
+        margin-block-start: 100px;
         margin-block-end: 0;
+        max-inline-size: auto;
+        inline-size: 575px;
+    }
+
+    .video {
+        block-size: 280px;
+        inline-size: auto;
+        max-inline-size: auto;
     }
 
     .supported-container-mobile {

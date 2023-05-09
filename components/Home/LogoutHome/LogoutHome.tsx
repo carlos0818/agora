@@ -131,7 +131,7 @@ export const LogoutHome = () => {
                             their valuable insights.
                         </p>
                     </div>
-                    <div className='window-glass'>
+                    <div className={ `window-glass ${ home['video-container'] }` }>
                         {
                             language === 'fr' && (
                                 <video className={ home['video'] } controls>
