@@ -45,6 +45,9 @@ const MyProfilePage: NextPage = () => {
                                     <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>QuarkLink</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['user-name'] }` }>by Carlos Benavides</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
+                                    <div className={ styles['stars-container'] }>
+
+                                    </div>
                                 </div>
                                 <div className={ styles['profile-info-content-right'] }>
                                     <p className={ `${ styles['info-text'] }` }>Lima, Lima - Perú</p>

@@ -56,6 +56,7 @@
     block-size: 20px;
     border: 1px solid red;
     inline-size: 150px;
+    margin-block-start: 0;
 }
 
 .address-text {
@@ -208,6 +209,10 @@
 
     .user-name {
         font-size: 18px;
+    }
+
+    .stars-container {
+        margin-block-start: 4px;
     }
 
     .required-title {
