@@ -170,6 +170,7 @@
 
 .video-container {
     block-size: 115px;
+    cursor: pointer;
     inline-size: calc(100% - 80px);
     margin-block-start: 80px;
     margin-block-end: 50px;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -24,6 +24,7 @@ import aldeliaLogo from '@/public/images/aldelia.png'
 
 export const LogoutHome = () => {
     const [language, setLanguage] = useState('')
+    const videoRef = useRef<HTMLVideoElement>(null)
 
     useEffect(() => {
         getLanguage()
@@ -35,6 +36,16 @@ export const LogoutHome = () => {
             setLanguage('fr')
         else
             setLanguage('en')
+    }
+
+    const handleVideo = () => {
+        if (!videoRef.current?.paused && !videoRef.current?.ended) {
+            console.log('pause')
+            videoRef.current?.pause()
+        } else {
+            console.log('play')
+            videoRef.current?.play()
+        }
     }
 
     return (
@@ -134,7 +145,7 @@ export const LogoutHome = () => {
                     <div className={ `window-glass ${ home['video-container'] }` }>
                         {
                             language === 'fr' && (
-                                <video className={ home['video'] } controls>
+                                <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
                                     <source
                                         src='./videos/welcome_fr.mp4'
                                         type='video/mp4'
@@ -144,7 +155,7 @@ export const LogoutHome = () => {
                         }
                         {
                             language === 'en' && (
-                                <video className={ home['video'] } controls>
+                                <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
                                     <source
                                         src='./videos/welcome_en.webm'
                                         type='video/mp4'
