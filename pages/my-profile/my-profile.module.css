@@ -10,10 +10,36 @@
 
 .profile-image-container {
     position: absolute;
-    bottom: -60px;
+    bottom: -50px;
 }
 
 .profile-image {
     block-size: 55px;
     inline-size: 55px;
+}
+
+.profile-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block-start: 70px;
+}
+
+.info-text {
+    color: var(--agora-blue-dark);
+    font-size: 14px;
+}
+
+.company-name {
+    font-family: 'ebrima-bold';
+    font-size: 18px;
+}
+
+.user-name {
+    font-size: 14px;
+}
+
+.member-text {
+    color: rgba(16, 40, 79, 0.7);
+    font-size: 12px;
 }

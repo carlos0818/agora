@@ -130,7 +130,7 @@ export const LogoutHome = () => {
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>
                     <div className={ home['what-text-container'] }>
-                        <h3 className={ home['what-title'] }>DISCOVER AGORA</h3>
+                        <h3 className={ home['what-title'] }>Discover Agora</h3>
                         <p className={ home['what-description'] }>
                             Agora is a public good launched by the United Nations Capital Development Fund (UNCDF) and supported by like - minded public and private partners.
                             It is designed to bring together investors, entrepreneurs, and experts who are passionate about exploring opportunities and driving economic growth
@@ -160,6 +160,8 @@ export const LogoutHome = () => {
                                         src='./videos/welcome_en.webm'
                                         type='video/mp4'
                                     />
+                                    <source src="./videos/welcome_en.mov" type='video/mp4; codecs="hvc1"' />
+                                    <source src="./videos/welcome_en.webm" type="video/webm" />
                                 </video>
                             )
                         }
@@ -167,7 +169,7 @@ export const LogoutHome = () => {
                 </div>
             </section>
             <section className={ home['supported-container-mobile'] }>
-                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded partner</h3>
+                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
                 <h4 className={ home['partners-title'] }>National</h4>
                 <div className={ home['logos-container'] }>
                     <div className={ home['logos-row'] } style={{ marginBlockStart: 18 }}>
@@ -199,7 +201,7 @@ export const LogoutHome = () => {
                 </div>
             </section>
             <section className={ home['supported-container-desktop'] }>
-                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded partner</h3>
+                <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
                 <div className={ home['supported-wrapper-desktop'] }>
                     <div>
                         <h4 className={ home['partners-title'] }>National</h4>

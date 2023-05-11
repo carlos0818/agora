@@ -20,7 +20,11 @@ const MyProfilePage: NextPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div style={{ blockSize: 300, border: '1px solid red' }}></div>
+                    <div className={ styles['profile-info-container'] }>
+                        <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>Brimstone Energy</p>
+                        <p className={ styles['info-text'] }>By Carlos Benavides</p>
+                        <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
+                    </div>
                 </div>
             </div>
         </HomeLoginLayout>

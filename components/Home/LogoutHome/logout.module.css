@@ -153,7 +153,6 @@
 
 .what-title {
     color: var(--agora-blue-dark);
-    font-family: 'ebrima-bold';
     font-size: 36px;
     line-height: 52px;
     text-align: center;
@@ -179,7 +178,7 @@
 }
 
 .video {
-    bottom: 20px;
+    bottom: 0px;
     inline-size: calc(100vw - 120px);
     /* block-size: 280px; */
     left: 18px;
