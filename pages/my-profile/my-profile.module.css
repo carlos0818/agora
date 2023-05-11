@@ -210,6 +210,14 @@
         font-size: 18px;
     }
 
+    .required-title {
+        font-size: 30px;
+    }
+
+    .required-description {
+        font-size: 15px;
+    }
+
     .progress-bar {
         block-size: 36px;
     }
