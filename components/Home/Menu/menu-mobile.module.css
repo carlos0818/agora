@@ -20,7 +20,7 @@
     }
 
     100% {
-        transform: translateX(-300px);
+        transform: translateX(0px);
     }
 }
 
@@ -30,7 +30,7 @@
 
 @keyframes showMenu {
     0% {
-        transform: translateX(-300px);
+        transform: translateX(0px);
     }
     
     100% {
@@ -46,7 +46,7 @@
 .options-container {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 12px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -57,8 +57,8 @@
     color: #758CB1;
     cursor: pointer;
     display: flex;
-    font-size: 20px;
-    font-weight: 700;
+    font-family: 'ebrima-bold';
+    font-size: 16px;
     gap: 8px;
 }
 

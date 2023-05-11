@@ -10,7 +10,8 @@
 
 .profile-image-container {
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
+    padding: 14px;
 }
 
 .profile-image {
@@ -22,14 +23,14 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    margin-block-start: 60px;
+    gap: 4px;
+    margin-block-start: 70px;
     padding: 10px;
 }
 
 .info-text {
     color: var(--agora-blue-dark);
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -45,7 +46,6 @@
 
 .member-text {
     color: rgba(16, 40, 79, 0.7);
-    font-size: 12px;
 }
 
 .stars-container {
@@ -54,16 +54,92 @@
     inline-size: 150px;
 }
 
-.location-text {
-    font-size: 12px;
-}
-
 .address-text {
     color: rgba(0, 0, 0, 0.4);
-    font-size: 12px;
 }
 
-.web-text {
-    font-size: 12px;
+.social-container {
+    block-size: 30px;
+    border: 1px solid red;
+    inline-size: 190px;
+}
+
+.required-title {
     color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 24px;
+}
+
+.required-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block-start: 16px;
+}
+
+.required-text {
+    color: rgba(16, 40, 79, 0.7);
+    font-size: 16px;
+}
+
+.required-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    margin-block-start: 16px;
+}
+
+.progress-container {
+    position: relative;
+    /* border: 1px solid red; */
+}
+
+.progress-bar {
+    width: 100%;
+    height: 24px;
+    border-radius: 15px;
+    background-color: #f2f2f2;
+}
+.progress-bar::-webkit-progress-bar {
+    border-radius: 15px;
+    background-color: #f2f2f2;
+}
+.progress-bar::-webkit-progress-value {
+    border-radius: 15px;
+    background-color: #07D91C;
+}
+.progress-bar::-moz-progress-bar {
+    border-radius: 15px;
+    background-color: #07D91C;
+}
+
+.rocket-image {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+}
+
+.progress-image {
+    border: 1px solid red;
+    border-radius: 15px;
+    block-size: 125px;
+    inline-size: 100%;
+    margin-block-start: 20px;
+}
+
+.progress-title {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 24px;
+    margin-block-start: 16px;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.progress-description {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 14px;
+    margin-block-start: 4px;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
