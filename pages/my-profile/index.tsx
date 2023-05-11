@@ -14,9 +14,13 @@ const MyProfilePage: NextPage = () => {
             <div className={ `window-glass` }>
                 <div className={ `window-glass-content` } style={{ padding: 0, overflow: 'hidden' }}>
                     <div className={ styles['cover-image'] }>
-                        
+                        <div className={ `window-glass ${ styles['profile-image-container'] }` }>
+                            <div className={ `window-glass-content ${ styles['profile-image'] }` }>
+
+                            </div>
+                        </div>
                     </div>
-                    <div style={{ blockSize: 300 }}></div>
+                    <div style={{ blockSize: 300, border: '1px solid red' }}></div>
                 </div>
             </div>
         </HomeLoginLayout>

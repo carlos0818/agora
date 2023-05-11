@@ -9,7 +9,11 @@ import styles from './menu-mobile.module.css'
 import homeIcon from '@/public/images/home-icon.svg'
 
 export const MenuMobile = () => {
-    const { isOpen } = useContext(MenuContext)
+    const { isOpen, toggleSideMenu } = useContext(MenuContext)
+
+    const handleMenu = () => {
+        toggleSideMenu('original')
+    }
 
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
@@ -21,7 +25,10 @@ export const MenuMobile = () => {
                         prefetch={ false }
                         legacyBehavior
                     >
-                        <li className={ `${ styles['option'] } ${ styles['selected'] }` }>
+                        <li
+                            className={ `${ styles['option'] } ${ styles['selected'] }` }
+                            onClick={ handleMenu }
+                        >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
                         </li>
                     </Link>
@@ -31,7 +38,10 @@ export const MenuMobile = () => {
                         prefetch={ false }
                         legacyBehavior
                     >
-                        <li className={ `${ styles['option'] }` }>
+                        <li
+                            className={ `${ styles['option'] }` }
+                            onClick={ handleMenu }
+                        >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
                         </li>
                     </Link>
@@ -41,7 +51,10 @@ export const MenuMobile = () => {
                         prefetch={ false }
                         legacyBehavior
                     >
-                        <li className={ `${ styles['option'] }` }>
+                        <li
+                            className={ `${ styles['option'] }` }
+                            onClick={ handleMenu }
+                        >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
                         </li>
                     </Link>

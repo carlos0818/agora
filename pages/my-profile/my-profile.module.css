@@ -1,8 +1,19 @@
 .cover-image {
-    background-color: skyblue;
-    block-size: 118px;
-    inline-size: 100%;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    background-color: green;
+    block-size: 118px;
+    display: flex;
+    inline-size: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-image-container {
+    position: absolute;
+    bottom: -60px;
+}
+
+.profile-image {
+    block-size: 55px;
+    inline-size: 55px;
 }
