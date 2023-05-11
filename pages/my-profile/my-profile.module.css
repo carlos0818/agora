@@ -19,20 +19,24 @@
 }
 
 .profile-info-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-block-start: 70px;
+    gap: 2px;
+    margin-block-start: 60px;
+    padding: 10px;
 }
 
 .info-text {
     color: var(--agora-blue-dark);
     font-size: 14px;
+    text-align: center;
 }
 
 .company-name {
     font-family: 'ebrima-bold';
     font-size: 18px;
+    line-height: 20px;
 }
 
 .user-name {
@@ -42,4 +46,24 @@
 .member-text {
     color: rgba(16, 40, 79, 0.7);
     font-size: 12px;
+}
+
+.stars-container {
+    block-size: 20px;
+    border: 1px solid red;
+    inline-size: 150px;
+}
+
+.location-text {
+    font-size: 12px;
+}
+
+.address-text {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+}
+
+.web-text {
+    font-size: 12px;
+    color: var(--agora-blue-dark);
 }

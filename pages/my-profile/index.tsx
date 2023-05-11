@@ -24,6 +24,12 @@ const MyProfilePage: NextPage = () => {
                         <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>Brimstone Energy</p>
                         <p className={ styles['info-text'] }>By Carlos Benavides</p>
                         <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
+                        <div className={ styles['stars-container'] }>
+
+                        </div>
+                        <p className={ `${ styles['info-text'] } ${ styles['location-text'] }` }>Lima, Lima - Perú</p>
+                        <p className={ `${ styles['info-text'] } ${ styles['address-text'] }` }>Insert your address</p>
+                        <p className={ `${ styles['info-text'] } ${ styles['web-text'] }` }>www.brimstonenergy.com</p>
                     </div>
                 </div>
             </div>
