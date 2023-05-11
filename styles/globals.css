@@ -334,21 +334,6 @@ h1, h2, h3, h4, h5, h6, p {
   visibility: hidden;
 }
 
-@keyframes circle-1 {
-  0% {
-    transform: scale(1);
-    opacity: 0;
-  }
-  20% {
-    transform: scale(2.7);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(3.5);
-    opacity: 1;
-  }
-}
-
 @media screen and (min-width: 1024px) {
   body {
     background-size: cover;

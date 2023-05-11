@@ -19,13 +19,17 @@
     inline-size: 55px;
 }
 
-.profile-info-container {
+.profile-info-container-mobile {
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 4px;
     margin-block-start: 70px;
     padding: 10px;
+}
+
+.profile-info-container-desktop {
+    display: none;
 }
 
 .info-text {
@@ -90,7 +94,6 @@
 
 .progress-container {
     position: relative;
-    /* border: 1px solid red; */
 }
 
 .progress-bar {
@@ -142,4 +145,89 @@
     margin-block-start: 4px;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (min-width: 1200px) {
+    .cover-image {
+        block-size: 256px;
+    }
+
+    .profile-image-container {
+        left: 20px;
+        bottom: -110px;
+    }
+
+    .profile-image {
+        block-size: 75px;
+        inline-size: 75px;
+    }
+
+    .profile-info-container-mobile {
+        display: none;
+    }
+
+    .profile-info-container-desktop {
+        display: flex;
+        flex-direction: column;
+        padding-block-end: 20px;
+    }
+
+    .profile-info-row1 {
+        display: flex;
+        padding-inline-start: 195px;
+        padding-block: 5px;
+    }
+
+    .profile-info-content-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-info-content-right {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        gap: 4px;
+        padding-inline-end: 10px;
+    }
+
+    .info-text {
+        text-align: left;
+    }
+
+    .profile-info-content-right .info-text {
+        align-items: flex-end;
+        font-size: 16px;
+        text-align: right;
+    }
+
+    .company-name {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .user-name {
+        font-size: 18px;
+    }
+
+    .progress-bar {
+        block-size: 36px;
+    }
+
+    .progress-image {
+        block-size: 240px;
+    }
+
+    .rocket-image {
+        block-size: auto;
+        inline-size: 57px;
+    }
+
+    .progress-title {
+        font-size: 32px;
+    }
+
+    .progress-description {
+        font-size: 20px;
+    }
 }

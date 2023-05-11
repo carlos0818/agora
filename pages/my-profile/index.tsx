@@ -24,9 +24,9 @@ const MyProfilePage: NextPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className={ styles['profile-info-container'] }>
+                        <div className={ styles['profile-info-container-mobile'] }>
                             <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>QuarkLink</p>
-                            <p className={ styles['info-text'] }>By Carlos Benavides</p>
+                            <p className={ styles['info-text'] }>by Carlos Benavides</p>
                             <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
                             <div className={ styles['stars-container'] }>
 
@@ -37,6 +37,26 @@ const MyProfilePage: NextPage = () => {
                             <p className={ `${ styles['info-text'] }` }>+151004285311</p>
                             <div className={ styles['social-container'] }>
 
+                            </div>
+                        </div>
+                        <div className={ styles['profile-info-container-desktop'] }>
+                            <div className={ styles['profile-info-row1'] }>
+                                <div className={ styles['profile-info-content-left'] }>
+                                    <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>QuarkLink</p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['user-name'] }` }>by Carlos Benavides</p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
+                                </div>
+                                <div className={ styles['profile-info-content-right'] }>
+                                    <p className={ `${ styles['info-text'] }` }>Lima, Lima - Perú</p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['address-text'] }` }>Insert your address</p>
+                                    <p className={ `${ styles['info-text'] }` }>www.brimstonenergy.com</p>
+                                    <p className={ `${ styles['info-text'] }` }>+151004285311</p>
+                                </div>
+                            </div>
+                            <div style={{ marginInlineStart: 24, marginBlockStart: 20 }}>
+                                <div className={ styles['social-container'] }>
+
+                                </div>
                             </div>
                         </div>
                     </div>
