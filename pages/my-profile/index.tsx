@@ -125,52 +125,59 @@ const MyProfilePage: NextPage = () => {
                 </div>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                        <div className={ styles['title-container'] }>
-                            <details>
-                                <summary className={ styles['accordion-title'] }>Pitch Deck</summary>
+                        <div style={{ position: 'relative' }}>
+                            <details className={ styles['title-container'] }>
+                                <summary className={ styles['accordion-title'] }>
+                                    Pitch Deck
+                                    <Image
+                                        src={ arrowDownIcon }
+                                        alt=''
+                                        style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
+                                    />
+                                </summary>
                                 <p className={ styles['accordion-content'] }>
                                     Pitch Deck content
                                 </p>
                             </details>
-                            <Image
-                                src={ arrowDownIcon }
-                                alt=''
-                                style={{ marginBlockStart: 6 }}
-                            />
+                            
                         </div>
                     </div>
                 </div>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                        <div className={ styles['title-container'] }>
-                            <details>
-                                <summary className={ styles['accordion-title'] }>Qualification</summary>
+                        <div style={{ position: 'relative' }}>
+                            <details className={ styles['title-container'] }>
+                                <summary className={ styles['accordion-title'] }>
+                                    Qualification
+                                    <Image
+                                        src={ arrowDownIcon }
+                                        alt=''
+                                        style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
+                                    />
+                                </summary>
                                 <p className={ styles['accordion-content'] }>
                                     Qualification content
                                 </p>
                             </details>
-                            <Image
-                                src={ arrowDownIcon }
-                                alt=''
-                                style={{ marginBlockStart: 6 }}
-                            />
                         </div>
                     </div>
                 </div>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                        <div className={ styles['title-container'] }>
-                            <details>
-                                <summary className={ styles['accordion-title'] }>Tecnical Support</summary>
+                        <div style={{ position: 'relative' }}>
+                            <details className={ styles['title-container'] }>
+                                <summary className={ styles['accordion-title'] }>
+                                    Technical Support
+                                    <Image
+                                        src={ arrowDownIcon }
+                                        alt=''
+                                        style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
+                                    />
+                                </summary>
                                 <p className={ styles['accordion-content'] }>
                                     Technical Support content
                                 </p>
                             </details>
-                            <Image
-                                src={ arrowDownIcon }
-                                alt=''
-                                style={{ marginBlockStart: 6 }}
-                            />
                         </div>
                     </div>
                 </div>

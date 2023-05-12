@@ -198,12 +198,16 @@
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    /* position: relative; */
 }
 
 .accordion-title {
+    align-items: center;
     color: var(--agora-blue-dark);
+    display: flex;
     font-family: 'ebrima-bold';
     font-size: 24px;
+    justify-content: space-between;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
