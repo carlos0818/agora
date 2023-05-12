@@ -6,7 +6,8 @@ import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 
 import styles from './my-profile.module.css'
 
-import rocketProgressImage from '@/public/images/rocket-progress.svg'
+import rocketProgressIcon from '@/public/images/rocket-progress.svg'
+import arrowDownIcon from '@/public/images/arrow-down.svg'
 
 const MyProfilePage: NextPage = () => {
     return (
@@ -65,7 +66,7 @@ const MyProfilePage: NextPage = () => {
                     </div>
                 </div>
                 <div className={ `window-glass` }>
-                    <div className={ `window-glass-content` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['required-title'] }>Required information</p>
                         <div className={ styles['required-text-container'] }>
                             <p className={ styles['required-text'] }>Youtube video</p>
@@ -85,7 +86,7 @@ const MyProfilePage: NextPage = () => {
                         <div className={ styles['progress-container'] }>
                             <progress className={ styles['progress-bar'] } value="100" max="100" />
                             <Image
-                                src={ rocketProgressImage }
+                                src={ rocketProgressIcon }
                                 alt='Rocket image'
                                 className={ styles['rocket-image'] }
                             />
@@ -98,7 +99,7 @@ const MyProfilePage: NextPage = () => {
                     </div>
                 </div>
                 <div className={ `window-glass` }>
-                    <div className={ `window-glass-content` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['about-title'] }>About us</p>
                         <p className={ styles['about-description'] }>
                             We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
@@ -119,6 +120,57 @@ const MyProfilePage: NextPage = () => {
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                                 food security and the environment of North Eastern Uganda.
                             </p>
+                        </div>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                        <div className={ styles['title-container'] }>
+                            <details>
+                                <summary className={ styles['accordion-title'] }>Pitch Deck</summary>
+                                <p className={ styles['accordion-content'] }>
+                                    Pitch Deck content
+                                </p>
+                            </details>
+                            <Image
+                                src={ arrowDownIcon }
+                                alt=''
+                                style={{ marginBlockStart: 6 }}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                        <div className={ styles['title-container'] }>
+                            <details>
+                                <summary className={ styles['accordion-title'] }>Qualification</summary>
+                                <p className={ styles['accordion-content'] }>
+                                    Qualification content
+                                </p>
+                            </details>
+                            <Image
+                                src={ arrowDownIcon }
+                                alt=''
+                                style={{ marginBlockStart: 6 }}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                        <div className={ styles['title-container'] }>
+                            <details>
+                                <summary className={ styles['accordion-title'] }>Tecnical Support</summary>
+                                <p className={ styles['accordion-content'] }>
+                                    Technical Support content
+                                </p>
+                            </details>
+                            <Image
+                                src={ arrowDownIcon }
+                                alt=''
+                                style={{ marginBlockStart: 6 }}
+                            />
                         </div>
                     </div>
                 </div>
