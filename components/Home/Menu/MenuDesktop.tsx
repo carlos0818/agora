@@ -1,4 +1,5 @@
 import { FC, RefObject } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -15,6 +16,10 @@ interface Props {
 
 export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
+
+    const router = useRouter()
+
+    console.log(router.pathname)
 
     return (
         <>
@@ -37,7 +42,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <li className={ `${ styles['option'] } ${ styles['selected'] }` }>
+                                    <li className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }>
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
                                     </li>
                                 </Link>
@@ -47,7 +52,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <li className={ `${ styles['option'] }` }>
+                                    <li className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }>
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
                                     </li>
                                 </Link>
