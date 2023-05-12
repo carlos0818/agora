@@ -24,6 +24,7 @@ export const NavbarMobile = () => {
                 alt=''
                 onClick={ handleMenu }
             />
+            
         </div>
     )
 }

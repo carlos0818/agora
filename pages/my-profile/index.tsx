@@ -46,14 +46,14 @@ const MyProfilePage: NextPage = () => {
                                     <p className={ `${ styles['info-text'] } ${ styles['user-name'] }` }>by Carlos Benavides</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
                                     <div className={ styles['stars-container'] }>
-
+                                        <i className='icon-star' data-star="3.5"></i>
                                     </div>
                                 </div>
                                 <div className={ styles['profile-info-content-right'] }>
                                     <p className={ `${ styles['info-text'] }` }>Lima, Lima - Perú</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['address-text'] }` }>Insert your address</p>
-                                    <p className={ `${ styles['info-text'] }` }>www.brimstonenergy.com</p>
-                                    <p className={ `${ styles['info-text'] }` }>+151004285311</p>
+                                    <p className={ `${ styles['info-text'] }` }>https://www.quarklink.com</p>
+                                    <p className={ `${ styles['info-text'] }` }>+51991049432</p>
                                 </div>
                             </div>
                             <div style={{ marginInlineStart: 24, marginBlockStart: 20 }}>
@@ -95,6 +95,31 @@ const MyProfilePage: NextPage = () => {
                         </div>
                         <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
                         <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content` }>
+                        <p className={ styles['about-title'] }>About us</p>
+                        <p className={ styles['about-description'] }>
+                            We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                            food security and the environment of North Eastern Uganda.
+                        </p>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content ${ styles['video-container'] }` }>
+                        <div className={ styles['video'] }>
+
+                        </div>
+                        <div className={ styles['video-text-container'] }>
+                            <p className={ styles['video-title'] }>Video</p>
+                            <p className={ styles['video-description'] }>
+                                We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                food security and the environment of North Eastern Uganda.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </>

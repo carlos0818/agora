@@ -54,7 +54,6 @@
 
 .stars-container {
     block-size: 20px;
-    border: 1px solid red;
     inline-size: 150px;
     margin-block-start: 0;
 }
@@ -91,6 +90,7 @@
     color: var(--agora-blue-dark);
     font-size: 13px;
     margin-block-start: 16px;
+    text-align: justify;
 }
 
 .progress-container {
@@ -146,6 +146,51 @@
     margin-block-start: 4px;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.about-title {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 24px;
+}
+
+.about-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    margin-block-start: 8px;
+    text-align: justify;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.video {
+    block-size: 200px;
+    inline-size: 100%;
+    background-color: green;
+}
+
+.video-text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.video-title {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 24px;
+}
+
+.video-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    margin-block-start: 8px;
+    text-align: justify;
 }
 
 @media screen and (min-width: 1200px) {
@@ -242,5 +287,21 @@
 
     .progress-description {
         font-size: 20px;
+    }
+
+    .about-title {
+        font-size: 30px;
+    }
+
+    .about-description {
+        font-size: 15px;
+    }
+
+    .video {
+        inline-size: auto;
+    }
+
+    .video-title {
+        font-size: 16px;
     }
 }
