@@ -16,10 +16,7 @@ interface Props {
 
 export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
-
     const router = useRouter()
-
-    console.log(router.pathname)
 
     return (
         <>
