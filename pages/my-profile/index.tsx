@@ -67,7 +67,7 @@ const MyProfilePage: NextPage = () => {
                 </div>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                        <p className={ styles['required-title'] }>Required information</p>
+                        <p className={ styles['card-title'] }>Required information</p>
                         <div className={ styles['required-text-container'] }>
                             <p className={ styles['required-text'] }>Youtube video</p>
                             <p className={ styles['required-text'] }>Profile photo</p>
@@ -100,7 +100,7 @@ const MyProfilePage: NextPage = () => {
                 </div>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                        <p className={ styles['about-title'] }>About us</p>
+                        <p className={ styles['card-title'] }>About us</p>
                         <p className={ styles['about-description'] }>
                             We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                             dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
@@ -114,7 +114,7 @@ const MyProfilePage: NextPage = () => {
 
                         </div>
                         <div className={ styles['video-text-container'] }>
-                            <p className={ styles['video-title'] }>Video</p>
+                            <p className={ styles['card-title'] }>Video</p>
                             <p className={ styles['video-description'] }>
                                 We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
@@ -178,6 +178,84 @@ const MyProfilePage: NextPage = () => {
                                     Technical Support content
                                 </p>
                             </details>
+                        </div>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                        <p className={ styles['card-title'] }>Activity</p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBlockStart: 24 }}>
+
+                            <div className={ styles['activity-container'] }>
+                                <div className={ styles['activity-title-actions-container'] }>
+                                    <p className={ styles['activity-title'] }>Make happy</p>
+                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+
+                                    </div>
+                                </div>
+                                <p className={ styles['activity-date'] }>2 weeks ago</p>
+                                <p className={ styles['activity-description'] }>
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
+                                    de relleno estándar de las industrias...
+                                </p>
+                            </div>
+
+                            <div className={ styles['activity-container'] }>
+                                <div className={ styles['activity-title-actions-container'] }>
+                                    <p className={ styles['activity-title'] }>The new dream</p>
+                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+
+                                    </div>
+                                </div>
+                                <p className={ styles['activity-date'] }>2 weeks ago</p>
+                                <p className={ styles['activity-description'] }>
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
+                                    de relleno estándar de las industrias...
+                                </p>
+                            </div>
+
+                            <div className={ styles['activity-container'] }>
+                                <div className={ styles['activity-title-actions-container'] }>
+                                    <p className={ styles['activity-title'] }>Best plan</p>
+                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+
+                                    </div>
+                                </div>
+                                <p className={ styles['activity-date'] }>2 weeks ago</p>
+                                <p className={ styles['activity-description'] }>
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
+                                    de relleno estándar de las industrias...
+                                </p>
+                            </div>
+
+                            <div className={ styles['activity-container'] }>
+                                <div className={ styles['activity-title-actions-container'] }>
+                                    <p className={ styles['activity-title'] }>Raise your business</p>
+                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+
+                                    </div>
+                                </div>
+                                <p className={ styles['activity-date'] }>2 weeks ago</p>
+                                <p className={ styles['activity-description'] }>
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
+                                    de relleno estándar de las industrias...
+                                </p>
+                            </div>
+
+                            <div className={ styles['activity-container'] }>
+                                <div className={ styles['activity-title-actions-container'] }>
+                                    <p className={ styles['activity-title'] }>We all together</p>
+                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+
+                                    </div>
+                                </div>
+                                <p className={ styles['activity-date'] }>2 weeks ago</p>
+                                <p className={ styles['activity-description'] }>
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
+                                    de relleno estándar de las industrias...
+                                </p>
+                            </div>
+
                         </div>
                     </div>
                 </div>

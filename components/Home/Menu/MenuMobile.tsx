@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -10,6 +11,7 @@ import homeIcon from '@/public/images/home-icon.svg'
 
 export const MenuMobile = () => {
     const { isOpen, toggleSideMenu } = useContext(MenuContext)
+    const router = useRouter()
 
     const handleMenu = () => {
         toggleSideMenu('original')
@@ -26,7 +28,7 @@ export const MenuMobile = () => {
                         legacyBehavior
                     >
                         <li
-                            className={ `${ styles['option'] } ${ styles['selected'] }` }
+                            className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
                             onClick={ handleMenu }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
@@ -39,7 +41,7 @@ export const MenuMobile = () => {
                         legacyBehavior
                     >
                         <li
-                            className={ `${ styles['option'] }` }
+                            className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
                             onClick={ handleMenu }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
