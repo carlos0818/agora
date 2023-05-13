@@ -3,6 +3,8 @@ import { getSession } from 'next-auth/react'
 import Image from 'next/image'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
+import { Activity } from '@/components/Profile/Activity'
+import { Comment } from '@/components/Profile/Comment'
 
 import styles from './my-profile.module.css'
 
@@ -185,77 +187,57 @@ const MyProfilePage: NextPage = () => {
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>Activity</p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBlockStart: 24 }}>
+                            <Activity
+                                title='Make happy'
+                                date='2 weeks ago'
+                                description='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
+                            />
 
-                            <div className={ styles['activity-container'] }>
-                                <div className={ styles['activity-title-actions-container'] }>
-                                    <p className={ styles['activity-title'] }>Make happy</p>
-                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+                            <Activity
+                                title='The new dream'
+                                date='1 week ago'
+                                description='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
+                            />
 
-                                    </div>
-                                </div>
-                                <p className={ styles['activity-date'] }>2 weeks ago</p>
-                                <p className={ styles['activity-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
-                                    de relleno estándar de las industrias...
-                                </p>
-                            </div>
+                            <Activity
+                                title='Best plan'
+                                date='1 week ago'
+                                description='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
+                            />
 
-                            <div className={ styles['activity-container'] }>
-                                <div className={ styles['activity-title-actions-container'] }>
-                                    <p className={ styles['activity-title'] }>The new dream</p>
-                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
+                            <Activity
+                                title='Raise your business'
+                                date='1 week ago'
+                                description='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
+                            />
 
-                                    </div>
-                                </div>
-                                <p className={ styles['activity-date'] }>2 weeks ago</p>
-                                <p className={ styles['activity-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
-                                    de relleno estándar de las industrias...
-                                </p>
-                            </div>
-
-                            <div className={ styles['activity-container'] }>
-                                <div className={ styles['activity-title-actions-container'] }>
-                                    <p className={ styles['activity-title'] }>Best plan</p>
-                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
-
-                                    </div>
-                                </div>
-                                <p className={ styles['activity-date'] }>2 weeks ago</p>
-                                <p className={ styles['activity-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
-                                    de relleno estándar de las industrias...
-                                </p>
-                            </div>
-
-                            <div className={ styles['activity-container'] }>
-                                <div className={ styles['activity-title-actions-container'] }>
-                                    <p className={ styles['activity-title'] }>Raise your business</p>
-                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
-
-                                    </div>
-                                </div>
-                                <p className={ styles['activity-date'] }>2 weeks ago</p>
-                                <p className={ styles['activity-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
-                                    de relleno estándar de las industrias...
-                                </p>
-                            </div>
-
-                            <div className={ styles['activity-container'] }>
-                                <div className={ styles['activity-title-actions-container'] }>
-                                    <p className={ styles['activity-title'] }>We all together</p>
-                                    <div style={{ border: '1px solid red', inlineSize: 120 }}>
-
-                                    </div>
-                                </div>
-                                <p className={ styles['activity-date'] }>2 weeks ago</p>
-                                <p className={ styles['activity-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto
-                                    de relleno estándar de las industrias...
-                                </p>
-                            </div>
-
+                            <Activity
+                                title='We all together'
+                                date='1 week ago'
+                                description='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className={ `window-glass` }>
+                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                        <p className={ styles['card-title'] }>Comments</p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBlockStart: 24 }}>
+                            <Comment
+                                name='Nidia Sanchez'
+                                date='Monday 22th Jun'
+                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias..'
+                            />
+                            <Comment
+                                name='Raul Rodriguez'
+                                date='Tuesday 13th May'
+                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias..'
+                            />
+                            <Comment
+                                name='Martha Camacho'
+                                date='Friday 08th Apr'
+                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias..'
+                            />
                         </div>
                     </div>
                 </div>

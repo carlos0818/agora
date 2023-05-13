@@ -1,0 +1,54 @@
+.activity-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.activity-title-actions-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-title {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 18px;
+}
+
+.activity-date {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    opacity: 0.5;
+}
+
+.activity-description {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+}
+
+.actions-container-desktop {
+    display: none;
+}
+
+.actions-container-mobile {
+    block-size: 20px;
+    border: 1px solid red;
+    display: block;
+    inline-size: 120px;
+}
+
+@media screen and (min-width: 1200px) {
+    .activity-description {
+        font-size: 16px;
+    }
+
+    .actions-container-desktop {
+        border: 1px solid red;
+        display: block;
+        inline-size: 120px;
+    }
+
+    .actions-container-mobile {
+        display: none;
+    }
+}

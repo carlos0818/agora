@@ -1,0 +1,34 @@
+.comment-container {
+    display: grid;
+    grid-template-columns: 86px 1fr;
+    gap: 16px;
+}
+
+.user-image {
+    block-size: 86px;
+    border-radius: 15px;
+    inline-size: 86px;
+    overflow: hidden;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 18px;
+}
+
+.date {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    opacity: 0.5;
+}
+
+.comment {
+    color: var(--agora-blue-dark);
+    font-size: 16px;
+}

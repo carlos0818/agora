@@ -202,34 +202,6 @@
     margin-block-start: 16px;
 }
 
-.activity-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.activity-title-actions-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.activity-title {
-    color: var(--agora-blue-dark);
-    font-family: 'ebrima-bold';
-    font-size: 20px;
-}
-
-.activity-date {
-    color: var(--agora-blue-dark);
-    font-size: 13px;
-    opacity: 0.5;
-}
-
-.activity-description {
-    color: var(--agora-blue-dark);
-    font-size: 13px;
-}
-
 @media screen and (min-width: 1200px) {
     .cover-image {
         block-size: 256px;
@@ -341,9 +313,5 @@
 
     .qualification-title {
         font-size: 30px;
-    }
-
-    .activity-description {
-        font-size: 16px;
     }
 }
