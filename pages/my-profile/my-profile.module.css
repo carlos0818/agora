@@ -187,6 +187,16 @@
     justify-content: space-between;
 }
 
+.title-container > summary img {
+    transform: rotate(0);
+    transition: .3s transform ease;
+}
+
+.title-container[open] > summary img {
+    transform: rotate(180deg);
+    transition: .3s transform ease;
+}
+
 .accordion-title {
     align-items: center;
     color: var(--agora-blue-dark);
