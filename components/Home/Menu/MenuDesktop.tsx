@@ -25,7 +25,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                 ref={ menuHideRef }
                 onClick={ handleToggleMenu }
             >
-                <Image src={ leftArrowIcon } alt='left arrow icon' />
+                <Image src={ leftArrowIcon } className={ styles['left-arrow'] } alt='left arrow icon' />
             </div>
 
             <div className={ styles['menu-container'] }>
