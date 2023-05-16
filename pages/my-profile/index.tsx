@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import Image from 'next/image'
@@ -12,6 +13,41 @@ import rocketProgressIcon from '@/public/images/rocket-progress.svg'
 import arrowDownIcon from '@/public/images/arrow-down.svg'
 
 const MyProfilePage: NextPage = () => {
+
+    const [value1, setValue1] = useState(0)
+    const [value2, setValue2] = useState(0)
+    const [value3, setValue3] = useState(0)
+    const [value4, setValue4] = useState(0)
+    const [value5, setValue5] = useState(0)
+    const [value6, setValue6] = useState(0)
+    const [value7, setValue7] = useState(0)
+    const [value8, setValue8] = useState(0)
+    const [value9, setValue9] = useState(0)
+    const [value10, setValue10] = useState(0)
+    const [value11, setValue11] = useState(0)
+    const [value12, setValue12] = useState(0)
+    const [value13, setValue13] = useState(0)
+    const [value14, setValue14] = useState(0)
+    
+    const handleValues = () => {
+        setTimeout(() => {
+            setValue1(70)
+            setValue2(50)
+            setValue3(80)
+            setValue4(84)
+            setValue5(67)
+            setValue6(85)
+            setValue7(54)
+            setValue8(22)
+            setValue9(48)
+            setValue10(61)
+            setValue11(77)
+            setValue12(100)
+            setValue13(39)
+            setValue14(44)
+        }, 100)
+    }
+
     return (
         <HomeLoginLayout
             title=''
@@ -120,6 +156,8 @@ const MyProfilePage: NextPage = () => {
                             <p className={ styles['video-description'] }>
                                 We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                                 food security and the environment of North Eastern Uganda.
                             </p>
                         </div>
@@ -149,7 +187,7 @@ const MyProfilePage: NextPage = () => {
                     <div className={ `window-glass-content ${ styles['window-content'] }` }>
                         <div style={{ position: 'relative' }}>
                             <details className={ styles['title-container'] }>
-                                <summary className={ styles['accordion-title'] }>
+                                <summary className={ styles['accordion-title'] } onClick={ handleValues }>
                                     Qualification
                                     <Image
                                         src={ arrowDownIcon }
@@ -163,12 +201,12 @@ const MyProfilePage: NextPage = () => {
 
                                         <p className={ styles['texts'] }>Future prospect and Innovation projects</p>
 
-                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <span></span>
+                                        <progress className={ styles['progress-bar-qualification'] } value={ value1 } max="100" />
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Outlook</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="50" max="100" />
+                                        <span></span>
+                                        <progress className={ styles['progress-bar-qualification'] } value={ value2 } max="100" />
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Innovations Projects</p>
                                     </div>
                                     <div className={ styles['qualification-section-container'] }>
@@ -176,12 +214,12 @@ const MyProfilePage: NextPage = () => {
 
                                         <p className={ styles['texts'] }>Governance and enterprise risk management (ERM)</p>
 
-                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value3 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Governance</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="50" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value4 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Enterprise Risk Management</p>
                                     </div>
                                     <div className={ styles['qualification-section-container'] }>
@@ -189,32 +227,32 @@ const MyProfilePage: NextPage = () => {
 
                                         <p className={ `${ styles['texts'] } ${ styles['group-risk'] }` }>Risk assessment</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="84" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value5 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Credit risk</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="75" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <span></span>
+                                        <progress className={ styles['progress-bar-qualification'] } value={ value6 } max="100" />
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market risk</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="67" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="40" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value7 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Country risk</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="71" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="32" max="100" />
+                                        <span></span>
+                                        <progress className={ styles['progress-bar-qualification'] } value={ value8 } max="100" />
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Operational risk</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="38" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value9 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business and strategic risk</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="62" max="100" />
+                                        <span></span>
+                                        <progress className={ styles['progress-bar-qualification'] } value={ value10 } max="100" />
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Social and environment risk</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value11 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Funding liquidity and Solvency risk</p>
                                     </div>
                                     <div className={ styles['qualification-section-container'] }>
@@ -222,7 +260,7 @@ const MyProfilePage: NextPage = () => {
 
                                         <p className={ `${ styles['texts'] } ${ styles['group-sdg'] }` }>Type of SME and Sustainable Development Goals (SDG)</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="30" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value12 } max="100" />
                                         <p></p>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>SDGs and impact</p>
                                     </div>
@@ -231,12 +269,12 @@ const MyProfilePage: NextPage = () => {
 
                                         <p className={ styles['texts'] }>Business strategy market conditions</p>
 
-                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value13 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market conditions</p>
 
-                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
-                                        <progress className={ styles['progress-bar-qualification'] } value="50" max="100" />
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value14 } max="100" />
+                                        <span></span>
                                         <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business lines strategy</p>
                                     </div>
                                 </div>

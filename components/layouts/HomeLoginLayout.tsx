@@ -1,4 +1,4 @@
-import { FC, useRef, useLayoutEffect, useState } from 'react'
+import { FC, useRef, useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -25,7 +25,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
 
     const [submenu, setSubmenu] = useState(false)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         window.addEventListener('scroll', circleWrite)
 
         return () => {

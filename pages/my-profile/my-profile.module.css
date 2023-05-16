@@ -260,6 +260,7 @@
 .progress-bar-qualification {
     background-color: transparent;
     block-size: 15px;
+    border: transparent;
     border-radius: 15px;
     inline-size: 100%;
 }
@@ -276,11 +277,18 @@
 .progress-bar-qualification::-webkit-progress-value {
     border-radius: 15px;
     background-color: #07D91C;
+    transition: width 1s;
 }
 
 .progress-bar-qualification::-moz-progress-bar {
     border-radius: 15px;
     background-color: #07D91C;
+    transition: width 1s;
+}
+
+.progress-bar-qualification[value]::-webkit-progress-value,
+.progress-bar-qualification[value]::-moz-progress-value {
+    transition: width 1s;
 }
 
 .texts {
@@ -417,7 +425,7 @@
     }
 
     .video {
-        block-size: 200px;
+        block-size: auto;
         inline-size: 400px;
     }
 

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 
-import { CountrySnapshotLayout } from '@/components/layouts'
+import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 const MapWithNoSSR = dynamic(() => import('../../components/Map'), { ssr: false })
 
 import countriesList from '../../db/countries'
@@ -12,9 +13,11 @@ import { agoraApi } from '@/api'
 import styles from './country-snapshot.module.css'
 import { ICountry } from '@/interfaces'
 import { useAnimateIndicators } from '@/hooks'
-import Image from 'next/image'
+import { MenuContext } from '@/context/menu'
 
 const CountrySnapshot = () => {
+    const { isOpenDesktop } = useContext(MenuContext)
+
     const { countries } = countriesList
 
     const dispatch = useAppDispatch()
@@ -95,7 +98,10 @@ const CountrySnapshot = () => {
     }
 
     return (
-        <CountrySnapshotLayout>
+        <HomeLoginLayout
+            title=''
+            pageDescription=''
+        >
             <>
                 <div className={ styles["country-container"] }>
                     <select
@@ -113,7 +119,7 @@ const CountrySnapshot = () => {
                         flag && (<Image className={ styles["flag"] } src={ flag } alt='' />)
                     }
                 </div>
-                <div className={ styles["data-grid"] }>
+                <div className={ `${ styles["data-grid"] } ${ isOpenDesktop === 'hide' ? styles['four'] : '' }` }>
                     <div className={ styles["grid-column"] }>
                         <div className={ `${ styles["statistics-container"] } ${ styles["geography-container"] }` }>
                             <div className={ `${ styles["title-container"] }` }>
@@ -704,7 +710,7 @@ const CountrySnapshot = () => {
                     </div>
                 </div>
             </>
-        </CountrySnapshotLayout>
+        </HomeLoginLayout>
     )
 }
 

@@ -1,12 +1,14 @@
-import { RefObject, useLayoutEffect, useRef, useState } from 'react'
+import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { MenuContext } from '@/context/menu'
 
 type HideMenu = 'original' | 'hide' | 'show'
 
 export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
     const [hideMenu, setHideMenu] = useState<HideMenu>('original')
     const menuHideRef = useRef<HTMLInputElement>(null)
+    const { toggleSideMenuDesktop } = useContext(MenuContext)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         window.addEventListener('resize', validateScreen)
 
         return () => {
@@ -30,9 +32,11 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
         if (window.screen.width >= 1024) {
             wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
             wrapperRef.current!.style.gap = '36px'
+            toggleSideMenuDesktop('original')
         } else {
             wrapperRef.current!.style.gridTemplateColumns = '1fr'
             wrapperRef.current!.style.gap = '0'
+            toggleSideMenuDesktop('show')
         }
 
         paddingWrapper()
@@ -51,6 +55,7 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
                 wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
                 wrapperRef.current!.style.gap = '36px'
                 menuHideRef.current!.style.display = 'none'
+                toggleSideMenuDesktop('show')
 
                 paddingWrapper()
             }, 300)
@@ -60,6 +65,7 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
                 wrapperRef.current!.style.gridTemplateColumns = '1fr'
                 wrapperRef.current!.style.gap = '0'
                 menuHideRef.current!.style.display = 'flex'
+                toggleSideMenuDesktop('hide')
 
                 paddingWrapper()
             }, 300)
