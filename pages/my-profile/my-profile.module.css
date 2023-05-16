@@ -1,3 +1,8 @@
+.window-content {
+    padding-block: 16px;
+    padding-inline: 8px;
+}
+
 .cover-image {
     align-items: center;
     background-color: green;
@@ -103,14 +108,17 @@
     border-radius: 15px;
     background-color: #f2f2f2;
 }
+
 .progress-bar::-webkit-progress-bar {
     border-radius: 15px;
     background-color: #f2f2f2;
 }
+
 .progress-bar::-webkit-progress-value {
     border-radius: 15px;
     background-color: #07D91C;
 }
+
 .progress-bar::-moz-progress-bar {
     border-radius: 15px;
     background-color: #07D91C;
@@ -210,6 +218,102 @@
 
 .accordion-content {
     margin-block-start: 16px;
+}
+
+.qualification-section-container {
+    align-items: center;
+    border-block-end: 2px solid rgba(16, 40, 79, 0.6);
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+    position: relative;
+}
+
+.qualification-section-container:nth-of-type(1) {
+    padding-block-start: 16px;
+}
+
+.qualification-section-container p:nth-of-type(1) {
+    grid-row: 1/3;
+}
+
+.group-risk {
+    grid-row: 1/8 !important;
+}
+
+.group-sdg {
+    grid-row: 1/2 !important;
+}
+
+.center-line {
+    block-size: calc(100% - 4px);
+    border: 2px solid #10284F;
+    left: calc(50% - 2px);
+    margin: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+}
+
+.progress-bar-qualification {
+    background-color: transparent;
+    block-size: 15px;
+    border-radius: 15px;
+    inline-size: 100%;
+}
+
+.progress-bar-qualification.right {
+    transform: rotate(180deg);
+}
+
+.progress-bar-qualification::-webkit-progress-bar {
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+.progress-bar-qualification::-webkit-progress-value {
+    border-radius: 15px;
+    background-color: #07D91C;
+}
+
+.progress-bar-qualification::-moz-progress-bar {
+    border-radius: 15px;
+    background-color: #07D91C;
+}
+
+.texts {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 11px;
+}
+
+.texts-right {
+    text-align: right;
+}
+
+@media screen and (min-width: 600px) {
+    .window-content {
+        padding-inline: 16px;
+    }
+
+    .qualification-section-container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .qualification-section-container{
+        gap: 16px;
+        grid-template-columns: 1fr 1.5fr 1.5fr 1fr;
+    }
+
+    .progress-bar-qualification {
+        block-size: 20px;
+    }
+
+    .texts {
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 1200px) {

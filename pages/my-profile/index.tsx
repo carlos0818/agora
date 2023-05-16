@@ -146,7 +146,7 @@ const MyProfilePage: NextPage = () => {
                     </div>
                 </div>
                 <div className={ `window-glass` }>
-                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                    <div className={ `window-glass-content ${ styles['window-content'] }` }>
                         <div style={{ position: 'relative' }}>
                             <details className={ styles['title-container'] }>
                                 <summary className={ styles['accordion-title'] }>
@@ -157,9 +157,89 @@ const MyProfilePage: NextPage = () => {
                                         style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
                                     />
                                 </summary>
-                                <p className={ styles['accordion-content'] }>
-                                    Qualification content
-                                </p>
+                                <div className={ styles['accordion-content'] }>
+                                    <div className={ styles['qualification-section-container'] }>
+                                        <hr className={ styles['center-line'] } />
+
+                                        <p className={ styles['texts'] }>Future prospect and Innovation projects</p>
+
+                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Outlook</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="50" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Innovations Projects</p>
+                                    </div>
+                                    <div className={ styles['qualification-section-container'] }>
+                                        <hr className={ styles['center-line'] } />
+
+                                        <p className={ styles['texts'] }>Governance and enterprise risk management (ERM)</p>
+
+                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Governance</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="50" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Enterprise Risk Management</p>
+                                    </div>
+                                    <div className={ styles['qualification-section-container'] }>
+                                        <hr className={ styles['center-line'] } />
+
+                                        <p className={ `${ styles['texts'] } ${ styles['group-risk'] }` }>Risk assessment</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="84" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Credit risk</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="75" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market risk</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="67" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="40" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Country risk</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="71" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="32" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Operational risk</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="38" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business and strategic risk</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="62" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Social and environment risk</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Funding liquidity and Solvency risk</p>
+                                    </div>
+                                    <div className={ styles['qualification-section-container'] }>
+                                        <hr className={ styles['center-line'] } />
+
+                                        <p className={ `${ styles['texts'] } ${ styles['group-sdg'] }` }>Type of SME and Sustainable Development Goals (SDG)</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="30" max="100" />
+                                        <p></p>
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>SDGs and impact</p>
+                                    </div>
+                                    <div className={ styles['qualification-section-container'] }>
+                                        <hr className={ styles['center-line'] } />
+
+                                        <p className={ styles['texts'] }>Business strategy market conditions</p>
+
+                                        <progress className={ styles['progress-bar-qualification'] } value="100" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="70" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market conditions</p>
+
+                                        <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value="80" max="100" />
+                                        <progress className={ styles['progress-bar-qualification'] } value="50" max="100" />
+                                        <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business lines strategy</p>
+                                    </div>
+                                </div>
                             </details>
                         </div>
                     </div>
@@ -226,17 +306,17 @@ const MyProfilePage: NextPage = () => {
                             <Comment
                                 name='Nidia Sanchez'
                                 date='Monday 22th Jun'
-                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias..'
+                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
                             />
                             <Comment
                                 name='Raul Rodriguez'
                                 date='Tuesday 13th May'
-                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias..'
+                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
                             />
                             <Comment
                                 name='Martha Camacho'
                                 date='Friday 08th Apr'
-                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias..'
+                                comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
                             />
                         </div>
                     </div>
