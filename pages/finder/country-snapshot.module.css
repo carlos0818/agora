@@ -38,10 +38,6 @@
     grid-template-rows: 1fr;
 }
 
-.grid-column {
-    /* border: 1px solid green; */
-}
-
 .statistics-container {
     /* border: 1px solid #000000; */
     /* box-shadow: 9px 11px 4px rgba(0, 0, 0, 0.15); */
