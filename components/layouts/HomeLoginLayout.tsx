@@ -51,10 +51,11 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                 onClick={ () => setSubmenu(false) }
             >
                 <Head>
+                    <meta charSet="UTF-8" />
+                    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
                     <title>{ title }</title>
                     <meta name="description" content={ pageDescription } />
-                    {/* <meta name="og:title" content={ title } />
-                    <meta name="og:description" content={ pageDescription } /> */}
                 </Head>
                 <nav>
                     <Navbar
