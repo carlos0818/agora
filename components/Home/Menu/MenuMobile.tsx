@@ -29,7 +29,7 @@ export const MenuMobile = () => {
                     >
                         <li
                             className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
-                            // onClick={ () => handleMenu('home', false) }
+                            onClick={ () => toggleSideMenu('original') }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
                         </li>
@@ -42,14 +42,12 @@ export const MenuMobile = () => {
                     >
                         <li
                             className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
-                            // onClick={ () => handleMenu('profile', false) }
+                            onClick={ () => toggleSideMenu('original') }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
                         </li>
                     </Link>
-                    <li
-                        // onClick={ () => handleMenu('finder', true) }
-                    >
+                    <li>
                         <details open={ openFinder }>
                             <summary className={ styles['option'] }>
                                 <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
@@ -62,7 +60,10 @@ export const MenuMobile = () => {
                                         prefetch={ false }
                                         legacyBehavior
                                     >
-                                        <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }>
+                                        <li
+                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
                                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Countries
                                         </li>
                                     </Link>
@@ -88,9 +89,7 @@ export const MenuMobile = () => {
                     <li className={ `${ styles['option'] }` }>
                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
                     </li>
-                    <li
-                        // onClick={ () => handleMenu('myData', true) }
-                    >
+                    <li>
                         <details open={ openMyData }>
                             <summary className={ styles['option'] }>
                                 <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
@@ -117,9 +116,7 @@ export const MenuMobile = () => {
                             </div>
                         </details>
                     </li>
-                    <li
-                        // onClick={ () => handleMenu('moreInfo', true) }
-                    >
+                    <li>
                         <details open={ openMoreInfo }>
                             <summary className={ styles['option'] }>
                                 <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> More info
@@ -132,7 +129,10 @@ export const MenuMobile = () => {
                                         prefetch={ false }
                                         legacyBehavior
                                     >
-                                        <li className={ styles['submenu-option'] }>
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
                                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> T&C
                                         </li>
                                     </Link>

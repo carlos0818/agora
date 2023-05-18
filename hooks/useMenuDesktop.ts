@@ -75,6 +75,6 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
     return {
         hideMenu,
         menuHideRef,
-        handleToggleMenu
+        handleToggleMenu,
     }
 }

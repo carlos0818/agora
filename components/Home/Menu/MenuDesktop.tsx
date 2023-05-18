@@ -21,10 +21,6 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
     const [openFinder, setOpenFinder] = useState(false)
     const [openMyData, setOpenMyData] = useState(false)
 
-    const handleMenu = () => {
-        handleToggleMenu()
-    }
-
     return (
         <>
             <div
@@ -48,7 +44,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                 >
                                     <li
                                         className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
-                                        onClick={ handleMenu }
+                                        // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
                                     </li>
@@ -61,14 +57,12 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                 >
                                     <li
                                         className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
-                                        onClick={ handleMenu }
+                                        // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
                                     </li>
                                 </Link>
-                                <li
-                                    onClick={ handleMenu }
-                                >
+                                <li>
                                     <details
                                         open={
                                             router.pathname === '/finder/country-snapshot' ||
@@ -104,7 +98,10 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                                     prefetch={ false }
                                                     legacyBehavior
                                                 >
-                                                    <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }>
+                                                    <li
+                                                        className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }
+                                                        // onClick={ () => toggleSideMenuDesktop('original') }
+                                                    >
                                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Countries
                                                     </li>
                                                 </Link>
@@ -130,9 +127,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                 <li className={ `${ styles['option'] } ${ router.pathname === '/contacts' ? styles['selected'] : '' }` }>
                                     <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
                                 </li>
-                                <li
-                                    onClick={ handleMenu }
-                                >
+                                <li>
                                     <details
                                         open={
                                             router.pathname === '/finder/dashboard' ||
