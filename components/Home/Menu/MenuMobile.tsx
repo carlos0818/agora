@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -13,13 +13,13 @@ export const MenuMobile = () => {
     const { isOpen, toggleSideMenu } = useContext(MenuContext)
     const router = useRouter()
 
-    const handleMenu = () => {
-        toggleSideMenu('original')
-    }
+    const [openFinder, setOpenFinder] = useState(false)
+    const [openMyData, setOpenMyData] = useState(false)
+    const [openMoreInfo, setOpenMoreInfo] = useState(false)
 
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
-            <div className={ `window-glass-content ${ styles['menu-content'] }` } style={{ paddingBlock: '16px', paddingInline: '20px' }}>
+            <div className={ `window-glass-content ${ styles['menu-content'] }` } style={{ paddingBlock: '10px', paddingInline: 0, overflow: 'hidden' }}>
                 <ul className={ styles['options-container'] }>
                     <Link
                         href='/'
@@ -29,7 +29,7 @@ export const MenuMobile = () => {
                     >
                         <li
                             className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
-                            onClick={ handleMenu }
+                            // onClick={ () => handleMenu('home', false) }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
                         </li>
@@ -42,32 +42,115 @@ export const MenuMobile = () => {
                     >
                         <li
                             className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
-                            onClick={ handleMenu }
+                            // onClick={ () => handleMenu('profile', false) }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
                         </li>
                     </Link>
-                    <Link
-                        href='/finder/country-snapshot'
-                        passHref
-                        prefetch={ false }
-                        legacyBehavior
+                    <li
+                        // onClick={ () => handleMenu('finder', true) }
                     >
-                        <li
-                            className={ `${ styles['option'] }` }
-                            onClick={ handleMenu }
-                        >
-                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
-                        </li>
-                    </Link>
+                        <details open={ openFinder }>
+                            <summary className={ styles['option'] }>
+                                <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
+                            </summary>
+                            <div className={ styles['accordion-content'] }>
+                                <ul className={ styles['submenu-container'] }>
+                                    <Link
+                                        href='/finder/country-snapshot'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }>
+                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Countries
+                                        </li>
+                                    </Link>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Sector
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Entrepreneur
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Investors
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Experts
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </li>
                     <li className={ `${ styles['option'] }` }>
                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
                     </li>
-                    <li className={ `${ styles['option'] }` }>
-                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
+                    <li
+                        // onClick={ () => handleMenu('myData', true) }
+                    >
+                        <details open={ openMyData }>
+                            <summary className={ styles['option'] }>
+                                <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
+                            </summary>
+                            <div className={ styles['accordion-content'] }>
+                                <ul className={ styles['submenu-container'] }>
+                                    <Link
+                                        href='/finder/country-snapshot'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li className={ styles['submenu-option'] }>
+                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Dashboard
+                                        </li>
+                                    </Link>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Inbox
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Notifications
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
                     </li>
-                    <li className={ `${ styles['option'] }` }>
-                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> More info
+                    <li
+                        // onClick={ () => handleMenu('moreInfo', true) }
+                    >
+                        <details open={ openMoreInfo }>
+                            <summary className={ styles['option'] }>
+                                <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> More info
+                            </summary>
+                            <div className={ styles['last-submenu'] }>
+                                <ul className={ styles['submenu-container'] }>
+                                    <Link
+                                        href='/finder/country-snapshot'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li className={ styles['submenu-option'] }>
+                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> T&C
+                                        </li>
+                                    </Link>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> FAQ
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Hub
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> About
+                                    </li>
+                                    <li className={ styles['submenu-option'] }>
+                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Comments
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
                     </li>
                 </ul>
             </div>

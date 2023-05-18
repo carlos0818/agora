@@ -1,4 +1,4 @@
-import { FC, RefObject } from 'react'
+import { FC, RefObject, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -18,6 +18,13 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
     const router = useRouter()
 
+    const [openFinder, setOpenFinder] = useState(false)
+    const [openMyData, setOpenMyData] = useState(false)
+
+    const handleMenu = () => {
+        handleToggleMenu()
+    }
+
     return (
         <>
             <div
@@ -31,7 +38,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
             <div className={ styles['menu-container'] }>
                 <div className={ `${ styles['menu-wrapper'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : '' }` }>
                     <div className={ `window-glass ${ styles['menu-box'] }` }>
-                        <div className='window-glass-content' style={{ paddingInline: '16px', paddingBlock: '10px' }}>
+                        <div className='window-glass-content' style={{ paddingInline: 0, paddingBlock: '10px', overflow: 'hidden' }}>
                             <ul className={ styles['options-container'] }>
                                 <Link
                                     href='/'
@@ -39,7 +46,10 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <li className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }>
+                                    <li
+                                        className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
+                                        onClick={ handleMenu }
+                                    >
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
                                     </li>
                                 </Link>
@@ -49,25 +59,104 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <li className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }>
+                                    <li
+                                        className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
+                                        onClick={ handleMenu }
+                                    >
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
                                     </li>
                                 </Link>
-                                <Link
-                                    href='/finder/country-snapshot'
-                                    passHref
-                                    prefetch={ false }
-                                    legacyBehavior
+                                <li
+                                    onClick={ handleMenu }
                                 >
-                                    <li className={ `${ styles['option'] }` }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
-                                    </li>
-                                </Link>
-                                <li className={ `${ styles['option'] }` }>
+                                    <details
+                                        open={
+                                            router.pathname === '/finder/country-snapshot' ||
+                                            router.pathname === '/finder/sector' ||
+                                            router.pathname === '/finder/portfolio' ||
+                                            router.pathname === '/finder/entrepreneur' ||
+                                            router.pathname === '/finder/investors' ||
+                                            router.pathname === '/finder/experts'
+                                        }
+                                    >
+                                        <summary
+                                            className={
+                                                `
+                                                ${ styles['option'] }
+                                                ${
+                                                    router.pathname === '/finder/country-snapshot' ||
+                                                    router.pathname === '/finder/sector' ||
+                                                    router.pathname === '/finder/portfolio' ||
+                                                    router.pathname === '/finder/entrepreneur' ||
+                                                    router.pathname === '/finder/investors' ||
+                                                    router.pathname === '/finder/experts'
+                                                    ? styles['selected'] : ''
+                                                }
+                                            ` }
+                                        >
+                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
+                                        </summary>
+                                        <div className={ styles['accordion-content'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                <Link
+                                                    href='/finder/country-snapshot'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }>
+                                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Countries
+                                                    </li>
+                                                </Link>
+                                                <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/sector' ? styles['selected'] : '' }` }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Sector
+                                                </li>
+                                                <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/portfolio' ? styles['selected'] : '' }` }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
+                                                </li>
+                                                <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/entrepreneur' ? styles['selected'] : '' }` }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Entrepreneur
+                                                </li>
+                                                <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/investors' ? styles['selected'] : '' }` }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Investors
+                                                </li>
+                                                <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/experts' ? styles['selected'] : '' }` }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Experts
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </details>
+                                </li>
+                                <li className={ `${ styles['option'] } ${ router.pathname === '/contacts' ? styles['selected'] : '' }` }>
                                     <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
                                 </li>
-                                <li className={ `${ styles['option'] }` }>
-                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
+                                <li
+                                    onClick={ handleMenu }
+                                >
+                                    <details
+                                        open={
+                                            router.pathname === '/finder/dashboard' ||
+                                            router.pathname === '/finder/inbox' ||
+                                            router.pathname === '/finder/notifications'
+                                        }
+                                    >
+                                        <summary className={ `${ styles['option'] } ${ router.pathname === '/my-data' ? styles['selected'] : '' }` }>
+                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
+                                        </summary>
+                                        <div className={ styles['last-submenu'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                <li className={ styles['submenu-option'] }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Dashboard
+                                                </li>
+                                                <li className={ styles['submenu-option'] }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Inbox
+                                                </li>
+                                                <li className={ styles['submenu-option'] }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Notifications
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </details>
                                 </li>
                             </ul>
                         </div>

@@ -41,6 +41,9 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .option {
@@ -51,10 +54,40 @@
     font-size: 18px;
     font-weight: 700;
     gap: 8px;
+    padding-inline: 16px;
 }
 
 .option.selected {
     color: var(--agora-blue-dark);
+}
+
+.submenu-container {
+    background-color: var(--agora-blue-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    margin-block-start: 6px;
+    padding: 0;
+    padding-block: 8px;
+    padding-inline: 16px;
+}
+
+.last-submenu {
+    margin-block-end: -10px;
+}
+
+.submenu-option {
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 18px;
+    gap: 8px;
+}
+
+.submenu-option.selected {
+    font-family: 'ebrima-bold';
 }
 
 @media screen and (min-width: 1024px) {
