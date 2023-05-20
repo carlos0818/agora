@@ -130,12 +130,23 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                 <li>
                                     <details
                                         open={
-                                            router.pathname === '/finder/dashboard' ||
-                                            router.pathname === '/finder/inbox' ||
-                                            router.pathname === '/finder/notifications'
+                                            router.pathname === '/dashboard' ||
+                                            router.pathname === '/inbox' ||
+                                            router.pathname === '/notifications'
                                         }
                                     >
-                                        <summary className={ `${ styles['option'] } ${ router.pathname === '/my-data' ? styles['selected'] : '' }` }>
+                                        <summary
+                                            className={
+                                            `
+                                                ${ styles['option'] }
+                                                ${
+                                                    router.pathname === '/dashboard' ||
+                                                    router.pathname === '/inbox' ||
+                                                    router.pathname === '/notifications'
+                                                    ? styles['selected'] : ''
+                                                }
+                                            ` }
+                                        >
                                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
                                         </summary>
                                         <div className={ styles['last-submenu'] }>

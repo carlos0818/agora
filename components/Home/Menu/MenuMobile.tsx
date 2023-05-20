@@ -48,8 +48,31 @@ export const MenuMobile = () => {
                         </li>
                     </Link>
                     <li>
-                        <details open={ openFinder }>
-                            <summary className={ styles['option'] }>
+                        <details
+                            open={
+                                router.pathname === '/finder/country-snapshot' ||
+                                router.pathname === '/finder/sector' ||
+                                router.pathname === '/finder/portfolio' ||
+                                router.pathname === '/finder/entrepreneur' ||
+                                router.pathname === '/finder/investors' ||
+                                router.pathname === '/finder/experts'
+                            }
+                        >
+                            <summary
+                                className={
+                                    `
+                                    ${ styles['option'] }
+                                    ${
+                                        router.pathname === '/finder/country-snapshot' ||
+                                        router.pathname === '/finder/sector' ||
+                                        router.pathname === '/finder/portfolio' ||
+                                        router.pathname === '/finder/entrepreneur' ||
+                                        router.pathname === '/finder/investors' ||
+                                        router.pathname === '/finder/experts'
+                                        ? styles['selected'] : ''
+                                    }
+                                ` }
+                            >
                                 <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
                             </summary>
                             <div className={ styles['accordion-content'] }>
