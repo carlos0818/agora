@@ -19,7 +19,13 @@ export const Section2: FC<Props> = ({ type, paragraph1, paragraph2, paragraph3, 
         <div className={ style['section-two-container'] }>
             <div>
                 <h3 className={ style['type-title'] }>{ type?.toUpperCase() }</h3>
-                <p className={ style['type-subtitle'] }>Make an impact with the pro-bono expert journey</p>
+                <p className={ style['type-subtitle'] }>
+                    {
+                        type === 'investor' || type === 'entrepreneur'
+                        ? 'Unlock growth through frontier market investments'
+                        : 'Make an impact with the pro-bono expert journey'
+                    }
+                </p>
                 <p className={ style['type-info'] }>{ paragraph1 }</p>
                 <p className={ style['type-info'] }>{ paragraph2 }</p>
                 <p className={ style['type-info'] }>{ paragraph3 }</p>
