@@ -1,40 +1,52 @@
-import { FormEvent, useCallback } from 'react'
+import { FormEvent, useCallback, useContext, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
+import { useForm } from 'react-hook-form'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
+import { AuthContext } from '@/context/auth'
 
 import style from './signup.module.css'
 
 import loginButtons from '@/public/images/login-buttons.svg'
 
+type FormData = {
+    firstname: string
+    lastname: string
+    email: string
+    password: string
+    confirmPassword: string
+    checkbox: boolean
+}
+
 const SignUpPage: NextPage = () => {
     const { query } = useRouter()
+    const { registerUser } = useContext(AuthContext)
+    const [showError, setShowError] = useState(false)
+    const [showErrorMessage, setErrorMessage] = useState('')
 
-    const { executeRecaptcha } = useReCaptcha();
+    const { executeRecaptcha } = useReCaptcha()
 
-    const handleSubmit = useCallback(
-        async (e: FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-      
-            // Generate ReCaptcha token
-            const token = await executeRecaptcha("form_submit");
+    const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormData>()
 
-            console.log(token)
-      
-            // Attach generated token to your API requests and validate it on the server
-            // fetch("/api/form-submit", {
-            //   method: "POST",
-            //   body: {
-            //     data: { name },
-            //     token,
-            //   },
-            // });
-        }, [executeRecaptcha])
+    const onRegister = async({ firstname, lastname, email, password }: FormData) => {
+        const captcha = await executeRecaptcha("form_login")
+        // console.log(captcha)
+        setShowError(false)
+        const { hasError, message } = await registerUser(firstname, lastname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
+
+        if (hasError) {
+            setShowError(true)
+            setErrorMessage(message!)
+            return
+        }
+
+        await signIn('credentials', { email, password })
+    }
     
     return (
         <AgoraLayout title='Agora' pageDescription=''>
@@ -42,33 +54,82 @@ const SignUpPage: NextPage = () => {
                 <div className='window-glass' style={{ maxInlineSize: 810, margin: 'auto' }}>
                     <div className='window-glass-content'>
                         <p className={ style['account-title'] }>CREATE YOUR ACCOUNT AS { query.type?.toString().toUpperCase() }</p>
-                        <form onSubmit={ e => handleSubmit(e) }>
+                        <form onSubmit={ handleSubmit(onRegister) } noValidate>
                             <div className={ style['form-container'] }>
                                 <div className={ style['form-row'] }>
-                                    <label>Full name</label>
-                                    <input type='text' className={ style['textfield'] } />
+                                    <label>First name</label>
+                                    <input
+                                        type='text'
+                                        className={ `${ style['field'] } ${ errors.firstname && style['field-error'] }` }
+                                        { ...register('firstname', {
+                                            required: 'First name is required'
+                                        })}
+                                    />
+                                    { errors.firstname && <span className={ style['message-error'] }>{ errors.firstname.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
-                                    <label>Your e-mail</label>
-                                    <input type='email' className={ style['textfield'] } />
+                                    <label>Lastname</label>
+                                    <input
+                                        type='text'
+                                        className={ `${ style['field'] } ${ errors.lastname && style['field-error'] }` }
+                                        { ...register('lastname', {
+                                            required: 'Lastname is required'
+                                        })}
+                                    />
+                                    { errors.lastname && <span className={ style['message-error'] }>{ errors.lastname.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
-                                    <label>Country</label>
-                                    <input type='text' className={ style['textfield'] } />
+                                    <label>Email</label>
+                                    <input
+                                        type='email'
+                                        className={ `${ style['field'] } ${ errors.email && style['field-error'] }` }
+                                        { ...register('email', {
+                                            required: 'Email is required',
+                                            validate: {
+                                                matchPattern: (v) => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(v) || 'Not a valid email',
+                                            }
+                                        })}
+                                    />
+                                    { errors.email && <span className={ style['message-error'] }>{ errors.email.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
                                     <label>Password</label>
-                                    <input type='password' className={ style['textfield'] } />
+                                    <input
+                                        type='password'
+                                        className={ `${ style['field'] } ${ errors.password && style['field-error'] }` }
+                                        { ...register('password', {
+                                            required: 'Password is required',
+                                            validate: {
+                                                password: (v) => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{10,}$/.test(v) || 'The password must have at least 10 characters, Uppercase and lowercase letter, a number, and special character'
+                                            }
+                                        })}
+                                    />
+                                    { errors.password && <span className={ style['message-error'] }>{ errors.password.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
-                                    <label>Confirm your password</label>
-                                    <input type='password' className={ style['textfield'] } />
+                                    <label>Confirm password</label>
+                                    <input
+                                        type='password'
+                                        className={ `${ style['field'] } ${ errors.confirmPassword && style['field-error'] }` }
+                                        { ...register('confirmPassword', {
+                                            required: 'Confirm password is required',
+                                            validate: value => value === getValues('password') || 'Passwords don\'t match'
+                                        })}
+                                    />
+                                    { errors.confirmPassword && <span className={ style['message-error'] }>{ errors.confirmPassword.message }</span> }
                                 </div>
-                                <div>
+                                <div style={{ display: 'grid' }}>
                                     <label className={ style['checkbox'] }>
-                                        <input type='checkbox' id='checkbox' /> Accept terms and conditions
+                                        <input
+                                            type='checkbox'
+                                            id='checkbox'
+                                            { ...register('checkbox', {
+                                                required: 'Please, accept our terms and conditions'
+                                            })}
+                                        /> Accept terms and conditions
                                         <span className={ style['check'] }></span>
                                     </label>
+                                    { errors.checkbox && <><span className={ style['message-error'] } style={{ marginBlockStart: 8 }}>{ errors.checkbox.message }</span></> }
                                 </div>
                             </div>
                             <div style={{ display: 'flex' }}>

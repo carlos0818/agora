@@ -3,6 +3,9 @@ import { useSession, signOut } from 'next-auth/react'
 
 import { AuthContext, authReducer } from './'
 
+import { agoraApi } from '@/api'
+import axios from 'axios'
+
 import { IUser } from '../../interfaces'
 
 export interface AuthState {
@@ -30,6 +33,29 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         }
     }, [status, data])
 
+    const registerUser = async(firstname: string, lastname: string, email: string, password: string, type: string, captcha: string): Promise<{hasError: boolean; message?: string}> => {
+        try {
+            const { data } = await agoraApi.post('/user/register', { email, password, firstname, lastname, type, captcha })
+            // console.log(data)
+            dispatch({ type: '[Auth] - Login', payload: data })
+            return {
+                hasError: false
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                return {
+                    hasError: true,
+                    message: error.response?.data.message
+                }
+            }
+
+            return {
+                hasError: true,
+                message: 'No se pudo crear el usuario - intente de nuevo'
+            }
+        }
+    }
+
     const logout = () => {
         signOut()
     }
@@ -37,6 +63,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     return (
         <AuthContext.Provider value={{
             ...state,
+            registerUser,
             logout,
         }}>
             { children }

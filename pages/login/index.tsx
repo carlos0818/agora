@@ -35,9 +35,9 @@ const LoginPage: NextPage = () => {
                         <form onSubmit={ handleSubmit(onLogin) } noValidate>
                             <div className={ style['form-container'] }>
                                 <div className={ style['form-row'] }>
-                                    <label>Your e-mail</label>
+                                    <label>Email</label>
                                     <input
-                                        type='email'
+                                        type='text'
                                         className={ style['textfield'] }
                                         { ...register('email', {
                                             required: 'This field is required'

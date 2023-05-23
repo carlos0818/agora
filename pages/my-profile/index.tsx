@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { GetServerSideProps, NextPage } from 'next'
-import { getSession } from 'next-auth/react'
+import { NextPage } from 'next'
 import Image from 'next/image'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
@@ -362,25 +361,6 @@ const MyProfilePage: NextPage = () => {
             </>
         </HomeLoginLayout>
     )
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-    const session = await getSession({ req })
-
-    if (!session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false
-            }
-        }
-    }
-
-    return {
-        props: {
-            // user: session.user
-        }
-    }
 }
 
 export default MyProfilePage

@@ -116,7 +116,7 @@ const CountrySnapshot = () => {
                         }
                     </select>
                     {
-                        flag && (<Image className={ styles["flag"] } src={ flag } alt='' />)
+                        flag && (<Image className={ styles["flag"] } src={ flag } alt='' width={ 20 } height={ 20 } />)
                     }
                 </div>
                 <div className={ `${ styles["data-grid"] } ${ isOpenDesktop === 'hide' ? styles['four'] : '' }` }>

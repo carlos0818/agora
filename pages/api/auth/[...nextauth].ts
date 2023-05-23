@@ -1,3 +1,4 @@
+import { agoraApi } from '@/api'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 // import GithubProvider from 'next-auth/providers/github'
 import Credentials from 'next-auth/providers/credentials'
@@ -15,16 +16,20 @@ export const authOptions: NextAuthOptions = {
     Credentials({
       name: 'Custom Login',
       credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'email@google.com' },
+        email: { label: 'Email', type: 'email', placeholder: 'cbeanvides' },
         password: { label: 'Password', type: 'password', placeholder: 'Password' },
         captcha: {}
       },
       async authorize(credentials): Promise<any> {
-        console.log({credentials})
+        // console.log({credentials})
 
-        return await { id: 1, name: 'Carlos', lastname: 'Benavides', email: 'carlos@gmail.com' }
-
-        // return await dbUsers.checkUserEmailPassword(credentials!.email, credentials!.password)
+        try {
+          const { data } = await agoraApi.post('/user/login', { email: credentials!.email, password: credentials!.password })
+          // console.log(data)
+          return data
+        } catch (error) {
+          console.log(error)
+        }
       },
     }),
     // GithubProvider({

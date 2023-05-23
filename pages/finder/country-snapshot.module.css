@@ -19,7 +19,8 @@
 }
 
 .flag {
-    height: 32px;
+    block-size: 32px !important;
+    inline-size: auto !important;
     vertical-align: top;
 }
 

@@ -13,11 +13,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('/fonts/icomoon.eot?loxixp');
-  src:  url('/fonts/icomoon.eot?loxixp#iefix') format('embedded-opentype'),
-    url('/fonts/icomoon.ttf?loxixp') format('truetype'),
-    url('/fonts/icomoon.woff?loxixp') format('woff'),
-    url('/fonts/icomoon.svg?loxixp#icomoon') format('svg');
+  src:  url('/fonts/icomoon.eot?3lxzpt');
+  src:  url('/fonts/icomoon.eot?3lxzpt#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.ttf?3lxzpt') format('truetype'),
+    url('/fonts/icomoon.woff?3lxzpt') format('woff'),
+    url('/fonts/icomoon.svg?3lxzpt#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -73,6 +73,12 @@ details > summary::-webkit-details-marker {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-arrow-up:before {
+  content: "\e939";
+}
+.icon-arrow-down:before {
+  content: "\e93a";
+}
 .icon-star:before {
   content: "\e938";
 }
