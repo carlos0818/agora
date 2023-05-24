@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
-import { getSession, signIn } from 'next-auth/react'
+import { getSession, signIn, getProviders } from 'next-auth/react'
 import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
@@ -20,6 +21,14 @@ const LoginPage: NextPage = () => {
     const { executeRecaptcha } = useReCaptcha()
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
+
+    const [providers, setProviders] = useState<any>({})
+
+    useEffect(() => {
+        getProviders().then(prov => {
+            setProviders(prov)
+        })
+    }, [])
 
     const onLogin = async({ email, password }: FormData) => {
         const captcha = await executeRecaptcha("form_login")
@@ -66,7 +75,17 @@ const LoginPage: NextPage = () => {
                             <span>OR</span>
                             <hr className={ style['line'] } />
                         </div>
-                        <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} />
+                        {/* <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} /> */}
+                        <div>
+                            {
+                                Object.values(providers).map((provider: any) => {
+                                    if (provider.id === 'credentials') return (<div key='credentials'></div>)
+                                    return (
+                                        <button key={ provider.id } onClick={ () => signIn(provider.id) }>{ provider.name }</button>
+                                    )
+                                })
+                            }
+                        </div>
                         <p className={ style['terms'] }>
                             Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
                             texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica

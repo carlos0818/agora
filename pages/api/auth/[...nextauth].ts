@@ -38,10 +38,10 @@ export const authOptions: NextAuthOptions = {
   ],
 //   secret: process.env.NEXTAUTH_SECRET,
   // custom pages
-  // pages: {
-  //   signIn: '/login',
-  //   newUser: '/signup'
-  // },
+  pages: {
+    signIn: '/login',
+    newUser: '/signup'
+  },
   session: {
     maxAge: 2592000,
     strategy: 'jwt',
