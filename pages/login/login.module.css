@@ -36,7 +36,7 @@
     font-family: 'ebrima-bold';
 }
 
-.textfield {
+.field {
     border: 3px solid var(--agora-blue-dark);
     border-radius: 100px;
     color: var(--agora-blue-dark);
@@ -45,6 +45,10 @@
     outline: none;
     padding-block: 4px;
     padding-inline: 12px;
+}
+
+.field.field-error {
+    border-color: #CE0915;
 }
 
 .checkbox {
@@ -129,6 +133,11 @@
     text-align: justify;
     line-height: 11px;
     margin-inline: 22px;
+}
+
+.message-error {
+    color: #CE0915;
+    font-size: 12px;
 }
 
 @media screen and (min-width: 1024px) {

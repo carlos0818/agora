@@ -1,8 +1,7 @@
 import { agoraApi } from '@/api'
 import NextAuth, { NextAuthOptions } from 'next-auth'
-// import GithubProvider from 'next-auth/providers/github'
+import FacebookProvider from "next-auth/providers/facebook"
 import Credentials from 'next-auth/providers/credentials'
-// import { dbUsers } from '../../../database'
 
 declare module "next-auth" {
   interface Session {
@@ -32,17 +31,17 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
-    // GithubProvider({
-    //   clientId: process.env.GITHUB_ID!,
-    //   clientSecret: process.env.GITHUB_SECRET!,
-    // }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!
+    })
   ],
 //   secret: process.env.NEXTAUTH_SECRET,
   // custom pages
-  pages: {
-    signIn: '/login',
-    newUser: '/signup'
-  },
+  // pages: {
+  //   signIn: '/login',
+  //   newUser: '/signup'
+  // },
   session: {
     maxAge: 2592000,
     strategy: 'jwt',

@@ -51,7 +51,7 @@
 }
 
 .field.field-error {
-    border-color: red;
+    border-color: #CE0915;
 }
 
 /* .select {
@@ -152,7 +152,7 @@
 }
 
 .message-error {
-    color: red;
+    color: #CE0915;
     font-size: 12px;
 }
 

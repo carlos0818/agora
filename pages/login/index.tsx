@@ -38,21 +38,23 @@ const LoginPage: NextPage = () => {
                                     <label>Email</label>
                                     <input
                                         type='text'
-                                        className={ style['textfield'] }
+                                        className={ `${ style['field'] } ${ errors.email && style['field-error'] }` }
                                         { ...register('email', {
-                                            required: 'This field is required'
+                                            required: 'This field is required',
                                         })}
                                     />
+                                    { errors.email && <span className={ style['message-error'] }>{ errors.email.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
                                     <label>Password</label>
                                     <input
                                         type='password'
-                                        className={ style['textfield'] }
+                                        className={ `${ style['field'] } ${ errors.password && style['field-error'] }` }
                                         { ...register('password', {
                                             required: 'This field is required'
                                         })}
                                     />
+                                    { errors.password && <span className={ style['message-error'] }>{ errors.password.message }</span> }
                                 </div>
                             </div>
                             <div style={{ display: 'flex' }}>
