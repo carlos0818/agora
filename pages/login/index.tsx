@@ -10,7 +10,8 @@ import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './login.module.css'
 
-import loginButtons from '@/public/images/login-buttons.svg'
+// import loginButtons from '@/public/images/login-buttons.svg'
+import facebook from '@/public/images/fb-letter-white.png'
 
 type FormData = {
     email: string
@@ -76,13 +77,30 @@ const LoginPage: NextPage = () => {
                             <hr className={ style['line'] } />
                         </div>
                         {/* <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} /> */}
-                        <div>
+                        <div style={{ display: 'flex', flexDirection: 'column', marginBlock: 40 }}>
                             {
                                 Object.values(providers).map((provider: any) => {
-                                    if (provider.id === 'credentials') return (<div key='credentials'></div>)
-                                    return (
-                                        <button key={ provider.id } onClick={ () => signIn(provider.id) }>{ provider.name }</button>
-                                    )
+                                    if (provider.id === 'credentials') return (<></>)
+                                    if (provider.id === 'facebook') {
+                                        return (
+                                            <button
+                                                key={ provider.id }
+                                                onClick={ () => signIn(provider.id) }
+                                                className={ style['facebook-button'] }
+                                            >
+                                                <Image src={ facebook } alt='' className={ style['facebook-logo'] } />
+                                                Login with Facebook
+                                            </button>
+                                        )
+                                    }
+                                    // return (
+                                    //     <button
+                                    //         key={ provider.id }
+                                    //         onClick={ () => signIn(provider.id) }
+                                    //     >
+                                    //         { provider.name }
+                                    //     </button>
+                                    // )
                                 })
                             }
                         </div>

@@ -140,6 +140,26 @@
     font-size: 12px;
 }
 
+.facebook-button {
+    align-items: center;
+    background-color: #1877f2;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-family: 'ebrima-bold';
+    font-size: 16px;
+    gap: 16px;
+    margin: auto;
+    outline: none;
+    padding: 10px;
+}
+
+.facebook-logo {
+    block-size: auto;
+    inline-size: 10px;
+}
+
 @media screen and (min-width: 1024px) {
     .login-container {
         background-size: cover;

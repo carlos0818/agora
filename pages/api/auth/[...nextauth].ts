@@ -55,6 +55,7 @@ export const authOptions: NextAuthOptions = {
 
         switch (account.type) {
           case 'oauth':
+            // const { data } = await agoraApi.post()
             token.user = await { firstname: 'Carlos', lastname: 'Benavides', email: 'cbenavides0887@gmail.com' }
             break
           case 'credentials':

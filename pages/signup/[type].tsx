@@ -15,8 +15,7 @@ import style from './signup.module.css'
 import loginButtons from '@/public/images/login-buttons.svg'
 
 type FormData = {
-    firstname: string
-    lastname: string
+    fullname: string
     email: string
     password: string
     confirmPassword: string
@@ -33,11 +32,11 @@ const SignUpPage: NextPage = () => {
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormData>()
 
-    const onRegister = async({ firstname, lastname, email, password }: FormData) => {
+    const onRegister = async({ fullname, email, password }: FormData) => {
         const captcha = await executeRecaptcha("form_login")
         // console.log(captcha)
         setShowError(false)
-        const { hasError, message } = await registerUser(firstname, lastname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
+        const { hasError, message } = await registerUser(fullname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
 
         if (hasError) {
             setShowError(true)
@@ -57,26 +56,17 @@ const SignUpPage: NextPage = () => {
                         <form onSubmit={ handleSubmit(onRegister) } noValidate>
                             <div className={ style['form-container'] }>
                                 <div className={ style['form-row'] }>
-                                    <label>First name</label>
+                                    <label>Full name</label>
                                     <input
                                         type='text'
-                                        className={ `${ style['field'] } ${ errors.firstname && style['field-error'] }` }
-                                        { ...register('firstname', {
-                                            required: 'First name is required'
+                                        className={ `${ style['field'] } ${ errors.fullname && style['field-error'] }` }
+                                        { ...register('fullname', {
+                                            required: 'Fullname is required',
+                                            maxLength: 60
                                         })}
                                     />
-                                    { errors.firstname && <span className={ style['message-error'] }>{ errors.firstname.message }</span> }
-                                </div>
-                                <div className={ style['form-row'] }>
-                                    <label>Lastname</label>
-                                    <input
-                                        type='text'
-                                        className={ `${ style['field'] } ${ errors.lastname && style['field-error'] }` }
-                                        { ...register('lastname', {
-                                            required: 'Lastname is required'
-                                        })}
-                                    />
-                                    { errors.lastname && <span className={ style['message-error'] }>{ errors.lastname.message }</span> }
+                                    { errors.fullname && <span className={ style['message-error'] }>{ errors.fullname.message }</span> }
+                                    { errors.fullname && errors.fullname.type === 'maxLength' && <span className={ style['message-error'] }>The maximum character limit for fullname is 60</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
                                     <label>Email</label>
