@@ -1,6 +1,6 @@
 import { agoraApi } from '@/api'
 import NextAuth, { NextAuthOptions } from 'next-auth'
-import FacebookProvider from "next-auth/providers/facebook"
+import FacebookProvider from 'next-auth/providers/facebook'
 import Credentials from 'next-auth/providers/credentials'
 
 declare module "next-auth" {
@@ -49,7 +49,7 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, account, user }) {
-    //   console.log({ token, account, user })
+      console.log({ token, account, user })
       if (account) {
         token.accesToken = account.access_token
 
