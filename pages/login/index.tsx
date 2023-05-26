@@ -91,7 +91,7 @@ const LoginPage: NextPage = () => {
                                 )
                             }
                             <div style={{ display: 'flex' }}>
-                                <input type='submit' value='Log In' className={ `button-filled ${ style['button-style'] }` } />
+                                <input type='submit' value='Login' className={ `button-filled ${ style['button-style'] }` } />
                             </div>
                         </form>
                         <div className={ style['or-container'] }>

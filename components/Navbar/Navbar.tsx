@@ -53,7 +53,7 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                                 prefetch={ false }
                                 legacyBehavior
                             >
-                                <a className={ `button-outline` }>Log In</a>
+                                <a className={ `button-outline` }>Login</a>
                             </Link>
                         </>
                     ) : (
