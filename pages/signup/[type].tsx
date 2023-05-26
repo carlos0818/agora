@@ -26,7 +26,7 @@ const SignUpPage: NextPage = () => {
     const { query } = useRouter()
     const { registerUser } = useContext(AuthContext)
     const [showError, setShowError] = useState(false)
-    const [showErrorMessage, setErrorMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
 
     const { executeRecaptcha } = useReCaptcha()
 
@@ -77,6 +77,7 @@ const SignUpPage: NextPage = () => {
                                             required: 'Email is required',
                                             validate: {
                                                 matchPattern: (v) => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(v) || 'Not a valid email',
+                                                validateEmail: (v) => !showError || errorMessage
                                             }
                                         })}
                                     />

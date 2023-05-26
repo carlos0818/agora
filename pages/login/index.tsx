@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import { getSession, signIn, getProviders } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
@@ -19,16 +20,26 @@ type FormData = {
 }
 
 const LoginPage: NextPage = () => {
+    const router = useRouter()
     const { executeRecaptcha } = useReCaptcha()
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
     const [providers, setProviders] = useState<any>({})
+    const [showError, setShowError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         getProviders().then(prov => {
             setProviders(prov)
         })
+    }, [])
+
+    useEffect(() => {
+        if (router.query.error) {
+            setShowError(true)
+            setErrorMessage('Incorrect credentials')
+        }
     }, [])
 
     const onLogin = async({ email, password }: FormData) => {
@@ -67,6 +78,13 @@ const LoginPage: NextPage = () => {
                                     { errors.password && <span className={ style['message-error'] }>{ errors.password.message }</span> }
                                 </div>
                             </div>
+                            {
+                                showError && (
+                                    <div className={ style['form-row'] } style={{ alignItems: 'center', marginBlockStart: 8 }}>
+                                        <span style={{ color: '#CE0915' }}>{ errorMessage }</span>
+                                    </div>
+                                )
+                            }
                             <div style={{ display: 'flex' }}>
                                 <input type='submit' value='Log In' className={ `button-filled ${ style['button-style'] }` } />
                             </div>
