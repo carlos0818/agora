@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
 import { useForm } from 'react-hook-form'
+import Cookie from 'js-cookie'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
@@ -45,6 +46,16 @@ const LoginPage: NextPage = () => {
             setShowErrorSocial(true)
             setErrorMessageSocial('The user does not exist, please click on Sign up.')
         }
+    }, [])
+
+    useEffect(() => {
+        Cookie.set(
+            'additionalAuthParams',
+            JSON.stringify({
+              login: 'Y',
+              accountType: ''
+            })
+        )
     }, [])
 
     const onLogin = async({ email, password }: FormData) => {

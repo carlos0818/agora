@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 import { useReCaptcha } from 'next-recaptcha-v3'
 import { useForm } from 'react-hook-form'
+import Cookie from 'js-cookie'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 import { AuthContext } from '@/context/auth'
@@ -36,6 +37,16 @@ const SignUpPage: NextPage = () => {
         getProviders().then(prov => {
             setProviders(prov)
         })
+    }, [])
+
+    useEffect(() => {
+        Cookie.set(
+            'additionalAuthParams',
+            JSON.stringify({
+              login: 'N',
+              accountType: query.type!.toString().toUpperCase() === 'INVESTOR' ? 'I': query.type!.toString().toUpperCase() === 'ENTREPRENEUR' ? 'E' : 'X'
+            })
+        )
     }, [])
 
     const onRegister = async({ fullname, email, password }: FormData) => {
@@ -154,7 +165,9 @@ const SignUpPage: NextPage = () => {
                                         return (
                                             <button
                                                 key={ provider.id }
-                                                onClick={ () => signIn(provider.id) }
+                                                onClick={ () => {
+                                                    signIn(provider.id)
+                                                }}
                                                 className={ style['google-button'] }
                                             >
                                                 <Image src={ google } alt='' className={ style['google-logo'] } />
