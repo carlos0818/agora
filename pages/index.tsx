@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
@@ -12,6 +14,14 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ user }) => {
+  const router = useRouter()
+  
+  useEffect(() => {
+    if (router.pathname === '/#_=_') {
+      router.replace('/')
+    }
+  }, [])
+
   return (
     <>
       {
