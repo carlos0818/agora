@@ -134,7 +134,6 @@ const SignUpPage: NextPage = () => {
                             <span>OR</span>
                             <hr className={ style['line'] } />
                         </div>
-                        {/* <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} /> */}
                         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 16, inlineSize: 210, marginLeft: 'auto', marginRight: 'auto', marginBlock: 24 }}>
                             {
                                 Object.values(providers).map((provider: any) => {
@@ -147,7 +146,7 @@ const SignUpPage: NextPage = () => {
                                                 className={ style['facebook-button'] }
                                             >
                                                 <Image src={ facebook } alt='' className={ style['facebook-logo'] } />
-                                                Login with Facebook
+                                                Sign up with Facebook
                                             </button>
                                         )
                                     }
@@ -159,7 +158,7 @@ const SignUpPage: NextPage = () => {
                                                 className={ style['google-button'] }
                                             >
                                                 <Image src={ google } alt='' className={ style['google-logo'] } />
-                                                Login with Google
+                                                Sign up with Google
                                             </button>
                                         )
                                     }

@@ -28,6 +28,8 @@ const LoginPage: NextPage = () => {
     const [providers, setProviders] = useState<any>({})
     const [showError, setShowError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const [showErrorSocial, setShowErrorSocial] = useState(false)
+    const [errorMessageSocial, setErrorMessageSocial] = useState('')
 
     useEffect(() => {
         getProviders().then(prov => {
@@ -36,9 +38,12 @@ const LoginPage: NextPage = () => {
     }, [])
 
     useEffect(() => {
-        if (router.query.error) {
+        if (router.query.error === 'CredentialsSignin') {
             setShowError(true)
             setErrorMessage('Incorrect credentials')
+        } else if (router.query.error === 'Callback') {
+            setShowErrorSocial(true)
+            setErrorMessageSocial('The user does not exist, please click on Sign up.')
         }
     }, [])
 
@@ -94,7 +99,13 @@ const LoginPage: NextPage = () => {
                             <span>OR</span>
                             <hr className={ style['line'] } />
                         </div>
-                        {/* <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} /> */}
+                        {
+                            showErrorSocial && (
+                                <div style={{ marginBlockStart: 24, marginInline: 'auto', textAlign: 'center' }}>
+                                    <span style={{ color: '#CE0915' }}>{ errorMessageSocial }</span>
+                                </div>
+                            )
+                        }
                         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 16, inlineSize: 210, marginLeft: 'auto', marginRight: 'auto', marginBlock: 24 }}>
                             {
                                 Object.values(providers).map((provider: any) => {

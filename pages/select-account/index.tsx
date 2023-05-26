@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import moneyIcon from '@/public/images/money-icon.svg'
-import entrepreneurIcon from '@/public/images/entrepreneur-icon.svg'
-import expertIcon from '@/public/images/expert-icon.svg'
 
 import style from './select-accout.module.css'
 
@@ -31,7 +29,9 @@ const index: NextPage = () => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <a className={ `button-filled ${ style['button-text-size'] }` }>More information</a>
+                                    <a className={ `button-filled ${ style['button-text-size'] }` }>
+                                        More information
+                                    </a>
                                 </Link>
                             </div>
                         </div>
@@ -51,7 +51,9 @@ const index: NextPage = () => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <a className={ `button-filled ${ style['button-text-size'] }` }>More information</a>
+                                    <a className={ `button-filled ${ style['button-text-size'] }` }>
+                                        More information
+                                    </a>
                                 </Link>
                             </div>
                         </div>
@@ -71,7 +73,9 @@ const index: NextPage = () => {
                                     prefetch={ false }
                                     legacyBehavior
                                 >
-                                    <a className={ `button-filled ${ style['button-text-size'] }` }>More information</a>
+                                    <a className={ `button-filled ${ style['button-text-size'] }` }>
+                                        More information
+                                    </a>
                                 </Link>
                             </div>
                         </div>

@@ -10,9 +10,6 @@ declare module "next-auth" {
   }
 }
 
-console.log(process.env.GOOGLE_CLIENT_ID)
-console.log(process.env.GOOGLE_CLIENT_SECRET)
-
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -57,15 +54,19 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, account, user }) {
-      console.log({ token, account, user })
+      // console.log({ token, account, user })
       if (account) {
         token.accesToken = account.access_token
 
         switch (account.type) {
           case 'oauth':
             const source = account.provider === 'facebook' ? 'FA' : 'GO'
-            // const { data } = await agoraApi.post('/user/loginSocial', { email: user.email, fullname: user.name, source, type: 'I',  })
-            token.user =  await { fullname: 'Carlos Benavides', email: 'cbenavides0887@gmail.com'  }
+
+            const { data } = await agoraApi.post('/user/user-exists', { email: user.email })
+            token.user =  data
+            
+            // const { data } = await agoraApi.post('/user/login-social', { email: user.email, fullname: user.name, source, type: 'I',  })
+            // token.user =  await { fullname: 'Carlos Benavides', email: 'cbenavides0887@gmail.com' }
             break
           case 'credentials':
             token.user = user
@@ -76,7 +77,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
     async session({ session, token, user }) {
-    //   console.log({ session, token, user })
+      // console.log({ session, token, user })
 
       session.accessToken = token.accessToken as any
       session.user = token.user as any
