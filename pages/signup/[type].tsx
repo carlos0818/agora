@@ -134,7 +134,7 @@ const SignUpPage: NextPage = () => {
                             <span>OR</span>
                             <hr className={ style['line'] } />
                         </div>
-                        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 16, inlineSize: 210, marginLeft: 'auto', marginRight: 'auto', marginBlock: 24 }}>
+                        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 16, inlineSize: 230, marginLeft: 'auto', marginRight: 'auto', marginBlock: 24 }}>
                             {
                                 Object.values(providers).map((provider: any) => {
                                     if (provider.id === 'credentials') return (<div key='credentials'></div>)
