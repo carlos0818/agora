@@ -79,6 +79,7 @@
     position: absolute;
     block-size: 0;
     inline-size: 0;
+    opacity: 0;
 }
 
 .check {

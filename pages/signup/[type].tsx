@@ -111,7 +111,7 @@ const SignUpPage: NextPage = () => {
                                     />
                                     { errors.confirmPassword && <span className={ style['message-error'] }>{ errors.confirmPassword.message }</span> }
                                 </div>
-                                <div style={{ display: 'grid' }}>
+                                {/* <div style={{ display: 'grid' }}>
                                     <label className={ style['checkbox'] }>
                                         <input
                                             type='checkbox'
@@ -123,10 +123,10 @@ const SignUpPage: NextPage = () => {
                                         <span className={ style['check'] }></span>
                                     </label>
                                     { errors.checkbox && <><span className={ style['message-error'] } style={{ marginBlockStart: 8 }}>{ errors.checkbox.message }</span></> }
-                                </div>
+                                </div> */}
                             </div>
-                            <div style={{ display: 'flex' }}>
-                                <input type='submit' value='Sign Up' className={ `button-filled ${ style['button-style'] }` } />
+                            <div style={{ display: 'flex', marginTop: 16 }}>
+                                <input type='submit' value='Sign up' className={ `button-filled ${ style['button-style'] }` } />
                             </div>
                         </form>
                         <div className={ style['or-container'] }>
