@@ -15,9 +15,9 @@ interface Props {
 
 const Home: NextPage<Props> = ({ user }) => {
   const router = useRouter()
-  
+
   useEffect(() => {
-    if (router.pathname === '/#_=_') {
+    if (router.asPath === '/#_=_') {
       router.replace('/')
     }
   }, [])
@@ -38,16 +38,17 @@ const Home: NextPage<Props> = ({ user }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req })
+export const getServerSideProps: GetServerSideProps = async (ctx, /*{ req, params,  }*/) => {
+  console.log(ctx)
+  // const session = await getSession({ req })
 
-  if (session) {
-    return {
-      props: {
-        user: session.user
-      }
-    }
-  }
+  // if (session) {
+  //   return {
+  //     props: {
+  //       user: session.user
+  //     }
+  //   }
+  // }
 
   return {
     props: {}
