@@ -156,6 +156,50 @@
     font-size: 12px;
 }
 
+.facebook-button {
+    align-items: center;
+    background-color: #1877f2;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-family: 'ebrima-bold';
+    font-size: 16px;
+    gap: 16px;
+    justify-content: center;
+    inline-size: 100%;
+    margin: auto;
+    outline: none;
+    padding: 10px;
+}
+
+.facebook-logo {
+    block-size: auto;
+    inline-size: 10px;
+}
+
+.google-button {
+    align-items: center;
+    background-color: #DB4437;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-family: 'ebrima-bold';
+    font-size: 16px;
+    gap: 16px;
+    justify-content: center;
+    inline-size: 100%;
+    margin: auto;
+    outline: none;
+    padding: 10px;
+}
+
+.google-logo {
+    block-size: auto;
+    inline-size: 20px;
+}
+
 @media screen and (min-width: 1024px) {
     .signup-container {
         background-size: cover;

@@ -1,6 +1,6 @@
-import { FormEvent, useCallback, useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
-import { getSession, signIn } from 'next-auth/react'
+import { getSession, signIn, getProviders } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
@@ -12,7 +12,8 @@ import { AuthContext } from '@/context/auth'
 
 import style from './signup.module.css'
 
-import loginButtons from '@/public/images/login-buttons.svg'
+import facebook from '@/public/images/fb-letter-white.png'
+import google from '@/public/images/google-logo-button.png'
 
 type FormData = {
     fullname: string
@@ -25,22 +26,23 @@ type FormData = {
 const SignUpPage: NextPage = () => {
     const { query } = useRouter()
     const { registerUser } = useContext(AuthContext)
-    const [showError, setShowError] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('')
 
     const { executeRecaptcha } = useReCaptcha()
 
+    const [providers, setProviders] = useState<any>({})
     const { register, handleSubmit, getValues, setError, formState: { errors } } = useForm<FormData>()
+
+    useEffect(() => {
+        getProviders().then(prov => {
+            setProviders(prov)
+        })
+    }, [])
 
     const onRegister = async({ fullname, email, password }: FormData) => {
         const captcha = await executeRecaptcha("form_register")
-        // console.log(captcha)
-        setShowError(false)
         const { hasError, message } = await registerUser(fullname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
 
         if (hasError) {
-            // setShowError(true)
-            // setErrorMessage(message!)
             setError('email', { type: 'exists', message })
             return
         }
@@ -132,7 +134,38 @@ const SignUpPage: NextPage = () => {
                             <span>OR</span>
                             <hr className={ style['line'] } />
                         </div>
-                        <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} />
+                        {/* <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} /> */}
+                        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 16, inlineSize: 210, marginLeft: 'auto', marginRight: 'auto', marginBlock: 24 }}>
+                            {
+                                Object.values(providers).map((provider: any) => {
+                                    if (provider.id === 'credentials') return (<div key='credentials'></div>)
+                                    if (provider.id === 'facebook') {
+                                        return (
+                                            <button
+                                                key={ provider.id }
+                                                onClick={ () => signIn(provider.id) }
+                                                className={ style['facebook-button'] }
+                                            >
+                                                <Image src={ facebook } alt='' className={ style['facebook-logo'] } />
+                                                Login with Facebook
+                                            </button>
+                                        )
+                                    }
+                                    if (provider.id === 'google') {
+                                        return (
+                                            <button
+                                                key={ provider.id }
+                                                onClick={ () => signIn(provider.id) }
+                                                className={ style['google-button'] }
+                                            >
+                                                <Image src={ google } alt='' className={ style['google-logo'] } />
+                                                Login with Google
+                                            </button>
+                                        )
+                                    }
+                                })
+                            }
+                        </div>
                         <p className={ style['terms'] }>
                             Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
                             texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
