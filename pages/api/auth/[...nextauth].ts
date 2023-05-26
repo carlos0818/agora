@@ -63,9 +63,9 @@ export const authOptions: NextAuthOptions = {
 
         switch (account.type) {
           case 'oauth':
-            const source = account.provider === 'facebook' ? 'FA' : ''
-            // const { data } = await agoraApi.post('/user/loginSocial', { email: user.email, fullname: user.name, source, type: 'web' })
-            token.user =  await { fullname: 'Carlos Benavides', email: 'cbenavides0887@gmail.com' }
+            const source = account.provider === 'facebook' ? 'FA' : 'GO'
+            // const { data } = await agoraApi.post('/user/loginSocial', { email: user.email, fullname: user.name, source, type: 'I',  })
+            token.user =  await { fullname: 'Carlos Benavides', email: 'cbenavides0887@gmail.com'  }
             break
           case 'credentials':
             token.user = user

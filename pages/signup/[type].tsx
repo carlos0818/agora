@@ -33,7 +33,7 @@ const SignUpPage: NextPage = () => {
     const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormData>()
 
     const onRegister = async({ fullname, email, password }: FormData) => {
-        const captcha = await executeRecaptcha("form_login")
+        const captcha = await executeRecaptcha("form_register")
         // console.log(captcha)
         setShowError(false)
         const { hasError, message } = await registerUser(fullname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
