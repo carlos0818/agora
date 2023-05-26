@@ -58,7 +58,7 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                         </>
                     ) : (
                         <>
-                            <span>{ user.firstname } { user.lastname }</span>
+                            <span>{ user.fullname }</span>
                             <Image
                                 src={ userIcon }
                                 alt=''

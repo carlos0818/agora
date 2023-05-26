@@ -80,7 +80,7 @@ const LoginPage: NextPage = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', marginBlock: 40 }}>
                             {
                                 Object.values(providers).map((provider: any) => {
-                                    if (provider.id === 'credentials') return (<></>)
+                                    if (provider.id === 'credentials') return (<div key='credentials'></div>)
                                     if (provider.id === 'facebook') {
                                         return (
                                             <button
@@ -93,14 +93,6 @@ const LoginPage: NextPage = () => {
                                             </button>
                                         )
                                     }
-                                    // return (
-                                    //     <button
-                                    //         key={ provider.id }
-                                    //         onClick={ () => signIn(provider.id) }
-                                    //     >
-                                    //         { provider.name }
-                                    //     </button>
-                                    // )
                                 })
                             }
                         </div>
