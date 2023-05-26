@@ -1,7 +1,8 @@
 import { agoraApi } from '@/api'
 import NextAuth, { NextAuthOptions } from 'next-auth'
-import FacebookProvider from 'next-auth/providers/facebook'
 import Credentials from 'next-auth/providers/credentials'
+import FacebookProvider from 'next-auth/providers/facebook'
+import GoogleProvider from 'next-auth/providers/google'
 
 declare module "next-auth" {
   interface Session {
@@ -34,6 +35,10 @@ export const authOptions: NextAuthOptions = {
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID!,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET!
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
     })
   ],
 //   secret: process.env.NEXTAUTH_SECRET,
@@ -55,8 +60,9 @@ export const authOptions: NextAuthOptions = {
 
         switch (account.type) {
           case 'oauth':
-            // const { data } = await agoraApi.post()
-            token.user = await { firstname: 'Carlos', lastname: 'Benavides', email: 'cbenavides0887@gmail.com' }
+            const source = account.provider === 'facebook' ? 'FA' : ''
+            // const { data } = await agoraApi.post('/user/loginSocial', { email: user.email, fullname: user.name, source, type: 'web' })
+            token.user =  await { fullname: 'Carlos Benavides', email: 'cbenavides0887@gmail.com' }
             break
           case 'credentials':
             token.user = user

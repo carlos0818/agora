@@ -10,8 +10,8 @@ import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './login.module.css'
 
-// import loginButtons from '@/public/images/login-buttons.svg'
 import facebook from '@/public/images/fb-letter-white.png'
+import google from '@/public/images/google-logo-button.png'
 
 type FormData = {
     email: string
@@ -77,7 +77,7 @@ const LoginPage: NextPage = () => {
                             <hr className={ style['line'] } />
                         </div>
                         {/* <Image src={ loginButtons } alt='' style={{ display: 'block', margin: 'auto', marginBlock: 20 }} /> */}
-                        <div style={{ display: 'flex', flexDirection: 'column', marginBlock: 40 }}>
+                        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 16, inlineSize: 210, marginLeft: 'auto', marginRight: 'auto', marginBlock: 24 }}>
                             {
                                 Object.values(providers).map((provider: any) => {
                                     if (provider.id === 'credentials') return (<div key='credentials'></div>)
@@ -90,6 +90,18 @@ const LoginPage: NextPage = () => {
                                             >
                                                 <Image src={ facebook } alt='' className={ style['facebook-logo'] } />
                                                 Login with Facebook
+                                            </button>
+                                        )
+                                    }
+                                    if (provider.id === 'google') {
+                                        return (
+                                            <button
+                                                key={ provider.id }
+                                                onClick={ () => signIn(provider.id) }
+                                                className={ style['google-button'] }
+                                            >
+                                                <Image src={ google } alt='' className={ style['google-logo'] } />
+                                                Login with Google
                                             </button>
                                         )
                                     }
