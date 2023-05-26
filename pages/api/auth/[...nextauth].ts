@@ -10,6 +10,8 @@ declare module "next-auth" {
   }
 }
 
+console.log(process.env.GOOGLE_CLIENT_ID)
+
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
