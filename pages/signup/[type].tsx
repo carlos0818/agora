@@ -30,7 +30,7 @@ const SignUpPage: NextPage = () => {
 
     const { executeRecaptcha } = useReCaptcha()
 
-    const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormData>()
+    const { register, handleSubmit, getValues, setError, formState: { errors } } = useForm<FormData>()
 
     const onRegister = async({ fullname, email, password }: FormData) => {
         const captcha = await executeRecaptcha("form_register")
@@ -39,8 +39,9 @@ const SignUpPage: NextPage = () => {
         const { hasError, message } = await registerUser(fullname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
 
         if (hasError) {
-            setShowError(true)
-            setErrorMessage(message!)
+            // setShowError(true)
+            // setErrorMessage(message!)
+            setError('email', { type: 'exists', message })
             return
         }
 
@@ -76,8 +77,7 @@ const SignUpPage: NextPage = () => {
                                         { ...register('email', {
                                             required: 'Email is required',
                                             validate: {
-                                                matchPattern: (v) => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(v) || 'Not a valid email',
-                                                validateEmail: (v) => !showError || errorMessage
+                                                matchPattern: (v) => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(v) || 'Not a valid email'
                                             }
                                         })}
                                     />
