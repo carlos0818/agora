@@ -12,6 +12,7 @@ import style from './login.module.css'
 
 import facebook from '@/public/images/fb-letter-white.png'
 import google from '@/public/images/google-logo-button.png'
+import { useRouter } from 'next/router'
 
 type FormData = {
     email: string
@@ -19,6 +20,7 @@ type FormData = {
 }
 
 const LoginPage: NextPage = () => {
+    const router = useRouter()
     const { executeRecaptcha } = useReCaptcha()
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
@@ -29,6 +31,12 @@ const LoginPage: NextPage = () => {
         getProviders().then(prov => {
             setProviders(prov)
         })
+    }, [])
+
+    useEffect(() => {
+        if (router.pathname === '/#_=_') {
+            router.replace('/')
+        }
     }, [])
 
     const onLogin = async({ email, password }: FormData) => {
