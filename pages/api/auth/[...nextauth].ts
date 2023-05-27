@@ -105,7 +105,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           // console.log({credentials})
   
           try {
-            const { data } = await agoraApi.post('/user/login', { email: credentials!.email, password: credentials!.password })
+            const { data } = await agoraApi.post('/user/login', { email: credentials!.email, password: credentials!.password, captcha: credentials!.captcha })
             // console.log(data)
             return data
           } catch (error) {
