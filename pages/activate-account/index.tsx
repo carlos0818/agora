@@ -12,11 +12,13 @@ const ActivateAccount = () => {
     const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
-        const queryString = window.location.search
-        const urlParams = new URLSearchParams(queryString)
-        const email = urlParams.get('email')
-        const token = urlParams.get('token')
-        verifyToken(email || '', token || '')
+        if (typeof window !== undefined) {
+            const queryString = window.location.search
+            const urlParams = new URLSearchParams(queryString)
+            const email = urlParams.get('email')
+            const token = urlParams.get('token')
+            verifyToken(email || '', token || '')
+        }
     }, [])
 
     const verifyToken = async(email: string, token: string) => {
@@ -28,7 +30,8 @@ const ActivateAccount = () => {
             setLoading(false)
             setTimeout(async() => {
                 await signIn('credentials', { email, password: '', captcha: process.env.NEXT_PUBLIC_DEFAULT_CAPTCHA, loginToken: 'Y', token })
-                router.replace('/')
+                // router.push(process.env.NEXT_PUBLIC_REDIRECT_URL!)
+                window.location.href = '/'
             }, 3000)
         } catch (error: any) {
             // setData('We cannot find your registered user')
