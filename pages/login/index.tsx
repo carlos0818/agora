@@ -60,7 +60,7 @@ const LoginPage: NextPage = () => {
 
     const onLogin = async({ email, password }: FormData) => {
         const captcha = await executeRecaptcha("form_login")
-        await signIn('credentials', { email, password, captcha })
+        await signIn('credentials', { email, password, captcha, loginToken: 'N', token: '' })
     }
     
     return (

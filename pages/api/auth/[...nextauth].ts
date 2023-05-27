@@ -20,7 +20,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         credentials: {
           email: { label: 'Email', type: 'email', placeholder: 'cbeanvides' },
           password: { label: 'Password', type: 'password', placeholder: 'Password' },
-          captcha: {}
+          captcha: {},
+          loginToken: {},
+          token: {}
         },
         async authorize(credentials): Promise<any> {
           // console.log({credentials})
@@ -38,9 +40,14 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           }
   
           try {
-            const { data } = await agoraApi.post('/user/login', sendData)
-            // console.log(data)
-            return data
+            if (credentials?.loginToken === 'Y') {
+              const { data } = await agoraApi.post('/user/login-token', { email: credentials.email, token: credentials.token })
+              console.log(data)
+              return data
+            } else {
+              const { data } = await agoraApi.post('/user/login', sendData)
+              return data
+            }
           } catch (error) {
             console.log(error)
           }
