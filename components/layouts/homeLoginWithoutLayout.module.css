@@ -1,0 +1,67 @@
+.home-container {
+    background-attachment: fixed;
+    background-image: url('/images/clouds.jpg');
+    background-size: auto;
+    background-repeat: no-repeat;
+    padding-block-start: 100px;
+    padding-block-end: 100px;
+}
+
+.home-wrapper {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: auto;
+    max-inline-size: 1280px;
+    min-block-size: calc(100vh - 276px);
+    padding-inline: 14px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+}
+
+.circle-back {
+    background-color: var(--agora-blue-dark);
+    block-size: 60px;
+    border-radius: 50%;
+    bottom: 70px;
+    display: inline-block;
+    inline-size: 60px;
+    position: fixed;
+    right: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+    .home-container {
+        background-size: cover;
+        padding-block-start: 150px;
+        padding-block-end: 40px;
+    }
+
+    .home-wrapper {
+        padding-inline: 20px;
+    }
+
+    .notifications {
+        align-items: flex-end;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .circle-back {
+        block-size: 60px;
+        inline-size: 60px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .home-wrapper {
+        padding-inline: 0;
+    }
+}

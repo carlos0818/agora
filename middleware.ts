@@ -18,6 +18,7 @@ export async function middleware(req: NextRequest) {
 export const config = {
     matcher: [
         '/my-profile',
-        '/finder/:path*'
+        '/finder/:path*',
+        '/questionnaire'
     ],
 }
