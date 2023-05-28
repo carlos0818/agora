@@ -20,7 +20,7 @@ const Home: NextPage<Props> = ({ user }) => {
     if (router.asPath === '/#_=_') {
       router.replace('/')
     }
-  }, [])
+  }, [router])
 
   return (
     <>

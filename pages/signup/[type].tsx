@@ -47,7 +47,7 @@ const SignUpPage: NextPage = () => {
               accountType: query.type!.toString().toUpperCase() === 'INVESTOR' ? 'I': query.type!.toString().toUpperCase() === 'ENTREPRENEUR' ? 'E' : 'X'
             })
         )
-    }, [])
+    }, [query.type])
 
     const onRegister = async({ fullname, email, password }: FormData) => {
         const captcha = await executeRecaptcha("form_register")

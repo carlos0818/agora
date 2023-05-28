@@ -1,6 +1,6 @@
 import { agoraApi } from '@/api'
 import { NextApiRequest, NextApiResponse } from 'next'
-import NextAuth, { NextAuthOptions } from 'next-auth'
+import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
@@ -11,7 +11,7 @@ declare module "next-auth" {
   }
 }
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const NextAuth2 = (req: NextApiRequest, res: NextApiResponse) => {
   return NextAuth(req, res, {
     // Configure one or more authentication providers
     providers: [
@@ -86,6 +86,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
               if(req.cookies.additionalAuthParams) {
                 const { accountType, login } = JSON.parse(req.cookies.additionalAuthParams)
 
+                console.log(login)
+
                 if(login === 'Y') {
                   const { data } = await agoraApi.post('/user/user-exists', { email: user.email, fullname: user.name, source, type: accountType })
                   token.user = data
@@ -114,3 +116,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     }
   })
 }
+
+export default NextAuth2

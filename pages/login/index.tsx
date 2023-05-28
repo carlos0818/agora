@@ -46,7 +46,7 @@ const LoginPage: NextPage = () => {
             setShowErrorSocial(true)
             setErrorMessageSocial('The user does not exist, please click on Sign up.')
         }
-    }, [])
+    }, [router.query.error])
 
     useEffect(() => {
         Cookie.set(
