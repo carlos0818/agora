@@ -39,7 +39,7 @@ const Questionnaire: NextPage = () => {
                                 <div key={ `container-${ question.qnbr }-${ question.effdt }` }>
                                     <p key={ `title-${ question.qnbr }-${ question.effdt }` } style={{ fontFamily: 'ebrima-bold', fontSize: 24 }}>{ question.type === 'T' ? question.descr : null }</p>
                                     <p key={ `title-${ question.qnbr }-${ question.effdt }` } style={{ fontFamily: 'ebrima-bold', fontSize: 18 }}>{ question.type === 'S' ? question.descr : null }</p>
-                                    <p key={ `subtitle-${ question.qnbr }-${ question.effdt }` }>{ question.type ==='Q' ? `${ index + 1 }. ${ question.descr }` : null }</p>
+                                    <p key={ `subtitle-${ question.qnbr }-${ question.effdt }` }>{ question.type ==='Q' ? `${ question.correlative }. ${ question.descr }` : null }</p>
                                     <ul key={ `${ question.qnbr }-${ question.effdt }` }>
                                         {
                                             answers.map(answer => {
