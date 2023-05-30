@@ -10,7 +10,7 @@ export const CheckboxList: FC<Props> = ({ answers }) => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             {
                 answers.map(answer => (
-                    <div style={{ alignItems: 'center', display: 'flex', gap: 8 }}>
+                    <div key={ `${ answer.qnbr }-${ answer.anbr }` } style={{ alignItems: 'center', display: 'flex', gap: 8 }}>
                         <input type='checkbox' /> { answer.descr }
                     </div>
                 ))
