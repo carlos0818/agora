@@ -1,0 +1,13 @@
+@media screen and (min-width: 1024px) {
+    .window-glass {
+        inline-size: 1024px;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+    .window-glass {
+        inline-size: 1280px;
+    }
+
+}

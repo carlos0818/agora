@@ -4,15 +4,22 @@ import { NextPage } from 'next'
 import { agoraApi } from '@/api'
 import { IQuestion, IAnswer, ISelectBox } from '@/interfaces'
 
+import ReactPaginate from 'react-paginate'
+
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
 import { SelectBox } from '@/components/Questionnaire/SelectBox'
+import { Textfield } from '@/components/Questionnaire/Textfield'
+
 import countriesList from '@/db/countries'
+
+import styles from './questionnaire.module.css'
 
 const Questionnaire: NextPage = () => {
 
     const [questions, setQuestions] = useState<IQuestion[]>([])
     const [answers, setAnswers] = useState<IAnswer[]>([])
+    const [titles, setTitles] = useState([])
     const [loading, setLoading] = useState(false)
 
     const { countries } = countriesList
@@ -34,6 +41,24 @@ const Questionnaire: NextPage = () => {
         setLoading(false)
     }
 
+    const [ start, setStart ] = useState(0)
+    const [ end, setEnd ] = useState(0)
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
+
+    useEffect(() => {
+        const endOffset = itemOffset + 20;
+        setPageCount(Math.ceil(questions.length / 20));
+        setStart(itemOffset);
+        setEnd(endOffset);
+      }, [questions, itemOffset]);
+
+    const handlePageClick = (data: any) => {
+        console.log('page')
+        const newOffset = (data.selected * 20) % questions.length;
+        setItemOffset(newOffset);
+    }
+
     return (
         <HomeLoginWithoutMenuLayout
             title=''
@@ -44,7 +69,7 @@ const Questionnaire: NextPage = () => {
                     loading
                     ? <em className='spinner blue-agora' style={{ blockSize: 40, inlineSize: 40 }} />
                     : (
-                        <div className={ `window-glass` }>
+                        <div className={ `window-glass ${ styles['window-glass'] }` }>
                             <div className={ `window-glass-content` }>
                                 {
                                     questions.map(question => {
@@ -105,11 +130,36 @@ const Questionnaire: NextPage = () => {
                                                         (question.type === 'Q' && question.object === 'M') &&
                                                             <CheckboxList data={ dataArray } />
                                                     }
+                                                    {
+                                                        (question.type === 'Q' && question.object === 'F') &&
+                                                            <Textfield />
+                                                    }
                                                 </div>
                                             </div>
                                         )
                                     })
                                 }
+
+                                {/* <ReactPaginate
+                                    previousLabel={ 'Anterior' }
+                                    nextLabel={ 'Siguiente' }
+                                    breakLabel={ '...' }
+                                    marginPagesDisplayed={ 3 }
+                                    pageRangeDisplayed={ 6 }
+                                    pageCount={ pageCount }
+                                    onPageChange={ handlePageClick }
+                                    containerClassName={ 'mt-4 pagination justify-content-center' }
+                                    pageClassName={ 'page-item' }
+                                    pageLinkClassName={ 'page-link' }
+                                    previousClassName={ 'page-item' }
+                                    previousLinkClassName={ 'page-link' }
+                                    nextClassName={ 'page-item' }
+                                    nextLinkClassName={ 'page-link' }
+                                    breakClassName={ 'page-item' }
+                                    breakLinkClassName={ 'page-link' }
+                                    activeClassName={ 'active' }
+                                    renderOnZeroPageCount={null}
+                                /> */}
                             </div>
                         </div>
                     )

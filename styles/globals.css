@@ -454,6 +454,7 @@ details > summary::-webkit-details-marker {
   border: 2px solid var(--agora-blue-dark);
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
   outline: none;
   max-inline-size: 250px;
   padding-block: 8px;
@@ -462,10 +463,18 @@ details > summary::-webkit-details-marker {
   width: fit-content;
 }
 
-/* option:checked {
-  background-color: var(--dark-blue2);
-  color: white;
-} */
+.textfield {
+  background-color: white;
+  border: 2px solid var(--agora-blue-dark);
+  border-radius: 6px;
+  color: var(--agora-blue-dark);
+  font-family: 'Hind Siliguri';
+  font-size: 15px;
+  outline: none;
+  padding-block: 4px;
+  padding-inline: 12px;
+  position: relative;
+}
 
 @keyframes spinner-c7wet2 {
   100% {
@@ -491,6 +500,6 @@ details > summary::-webkit-details-marker {
   }
 
   .select {
-    max-inline-size: 900px;
+    max-inline-size: 700px;
   }
 }

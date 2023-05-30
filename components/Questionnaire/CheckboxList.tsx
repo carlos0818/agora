@@ -12,7 +12,7 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                 data.map(answer => (
                     <div key={ answer.id } style={{ alignItems: 'center', display: 'flex' }}>
                         <label className='checkbox'>
-                            <input type='checkbox' /> { answer.descr }
+                            <input type='checkbox' /> { answer.descr } - {`Score: ${ answer.score }`}
                             <span className='check'></span>
                         </label>
                     </div>

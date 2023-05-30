@@ -12,7 +12,7 @@ export const SelectBox: FC<Props> = ({ data }) => {
             <select className='select'>
                 {
                     data.map(resp => (
-                        <option key={ resp.id } value={ `${ resp.id }` }>{ resp.descr }</option>
+                        <option key={ resp.id } value={ `${ resp.id }` }>{ resp.descr } - Score: { resp.score }</option>
                     ))
                 }
             </select>
