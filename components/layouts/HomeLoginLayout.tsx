@@ -45,9 +45,15 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
         }
     }
 
+    const moveTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        document.getElementById('txtShare')!.focus();
+    }
+
     return (
         <>
             <div
+                style={{ scrollBehavior: 'smooth' }}
                 onClick={ () => setSubmenu(false) }
             >
                 <Head>
@@ -81,15 +87,18 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                             </div>
                             {
                                 showWrite && (
-                                    <div className={ styles['circle-write-desktop'] } ref={ circleDiv }></div>
+                                    <div
+                                        className={ styles['circle-write-desktop'] }
+                                        ref={ circleDiv }
+                                        onClick={ moveTop }></div>
                                 )
                             }
                         </div>
                     </div>
                     <NavbarMobile />
+                    <FooterDesktop />
                 </div>
             </div>
-            <FooterDesktop />
         </>
     )
 }

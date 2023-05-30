@@ -35,9 +35,9 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
     const registerUser = async(fullname: string, email: string, password: string, type: string, captcha: string): Promise<{hasError: boolean; message?: string}> => {
         try {
-            const { data } = await agoraApi.post('/user/register', { email, password, fullname, type, captcha })
+            await agoraApi.post('/user/register', { email, password, fullname, type, captcha })
             // console.log(data)
-            dispatch({ type: '[Auth] - Login', payload: data })
+            // dispatch({ type: '[Auth] - Login', payload: data })
             return {
                 hasError: false
             }

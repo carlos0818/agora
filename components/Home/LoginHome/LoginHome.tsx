@@ -22,7 +22,7 @@ export const LoginHome = () => {
                         alt='user icon'
                         className={ styles['user-icon'] }
                     />
-                    <input type='text' className={ styles['textfield-idea'] } placeholder='Share your idea with your contacts...' />
+                    <input type='text' id='txtShare' className={ styles['textfield-idea'] } placeholder='Share your idea with your contacts...' />
                     <Image src={ pencilIcon } alt='pencil icon' className={ styles['pencil-icon'] } />
                 </div>
 

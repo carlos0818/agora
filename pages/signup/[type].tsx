@@ -32,6 +32,7 @@ const SignUpPage: NextPage = () => {
 
     const [providers, setProviders] = useState<any>({})
     const { register, handleSubmit, getValues, setError, formState: { errors } } = useForm<FormData>()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getProviders().then(prov => {
@@ -50,15 +51,16 @@ const SignUpPage: NextPage = () => {
     }, [query.type])
 
     const onRegister = async({ fullname, email, password }: FormData) => {
+        setLoading(true)
+
         const captcha = await executeRecaptcha("form_register")
         const { hasError, message } = await registerUser(fullname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
 
         if (hasError) {
             setError('email', { type: 'exists', message })
-            return
         }
 
-        // await signIn('credentials', { email, password })
+        setLoading(false)
     }
     
     return (
@@ -136,8 +138,12 @@ const SignUpPage: NextPage = () => {
                                     { errors.checkbox && <><span className={ style['message-error'] } style={{ marginBlockStart: 8 }}>{ errors.checkbox.message }</span></> }
                                 </div> */}
                             </div>
-                            <div style={{ display: 'flex', marginTop: 16 }}>
-                                <input type='submit' value='Sign up' className={ `button-filled ${ style['button-style'] }` } />
+                            <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center', marginBlockStart: 40, marginBlockEnd: 30 }}>
+                                {
+                                    loading
+                                    ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
+                                    : <input type='submit' value='Sign up' className={ `button-filled ${ style['button-style'] }` } />
+                                }
                             </div>
                         </form>
                         <div className={ style['or-container'] }>

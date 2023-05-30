@@ -375,6 +375,34 @@ details > summary::-webkit-details-marker {
 [data-star^="4.9"]::after{width:98%}
 [data-star^="5"]::after{width:100%}
 
+.spinner {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side,#ffffff 94%,#0000) top/9px 9px no-repeat,
+         conic-gradient(#0000 30%,#ffffff);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
+  animation: spinner-c7wet2 1s infinite linear;
+}
+
+.spinner.white {
+  background: radial-gradient(farthest-side,#ffffff 94%,#0000) top/9px 9px no-repeat,
+         conic-gradient(#0000 30%,#ffffff);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
+}
+
+.spinner.blue-agora {
+  background: radial-gradient(farthest-side,#10284f 94%,#0000) top/4px 4px no-repeat,
+          conic-gradient(#0000 30%,#10284f);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
+}
+
+@keyframes spinner-c7wet2 {
+  100% {
+     transform: rotate(1turn);
+  }
+}
+
 /* VOTING STARS */
 
 @media screen and (min-width: 1024px) {

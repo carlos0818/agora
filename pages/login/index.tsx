@@ -31,6 +31,7 @@ const LoginPage: NextPage = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [showErrorSocial, setShowErrorSocial] = useState(false)
     const [errorMessageSocial, setErrorMessageSocial] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getProviders().then(prov => {
@@ -59,8 +60,10 @@ const LoginPage: NextPage = () => {
     }, [])
 
     const onLogin = async({ email, password }: FormData) => {
+        setLoading(true)
         const captcha = await executeRecaptcha("form_login")
         await signIn('credentials', { email, password, captcha, loginToken: 'N', token: '' })
+        setLoading(false)
     }
     
     return (
@@ -101,8 +104,12 @@ const LoginPage: NextPage = () => {
                                     </div>
                                 )
                             }
-                            <div style={{ display: 'flex' }}>
-                                <input type='submit' value='Login' className={ `button-filled ${ style['button-style'] }` } />
+                            <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center', marginBlockStart: 40, marginBlockEnd: 30 }}>
+                                {
+                                    loading
+                                    ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
+                                    : <input type='submit' value='Login' className={ `button-filled ${ style['button-style'] }` } />
+                                }
                             </div>
                         </form>
                         <div className={ style['or-container'] }>

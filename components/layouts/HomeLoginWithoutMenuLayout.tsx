@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { Navbar } from '../Navbar/Navbar'
 import { FooterDesktop } from '../Footer/FooterDesktop'
 
-import styles from './homeLoginWithoutLayout.module.css'
+import styles from './homeLoginWithoutMenuLayout.module.css'
 
 interface Props {
     children: JSX.Element
@@ -13,7 +14,7 @@ interface Props {
     showBack?: boolean
 }
 
-export const HomeLoginWithoutMenu: FC<Props> = ({ children, title, pageDescription, showBack = true }) => {
+export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDescription, showBack = true }) => {
     const circleDiv = useRef<HTMLInputElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
@@ -61,20 +62,20 @@ export const HomeLoginWithoutMenu: FC<Props> = ({ children, title, pageDescripti
                         </div>
                         {
                             showBack && (
-                                <div className={ styles['circle-back'] } ref={ circleDiv }></div>
+                                <Link
+                                    href='/my-profile'
+                                    passHref
+                                    prefetch={ false }
+                                    legacyBehavior
+                                >
+                                    <div className={ styles['circle-back'] } ref={ circleDiv }></div>
+                                </Link>
                             )
                         }
-                        {/* <div className={ styles['notifications'] }>
-                            {
-                                showWrite && (
-                                    <div className={ styles['circle-back'] } ref={ circleDiv }></div>
-                                )
-                            }
-                        </div> */}
                     </div>
+                    <FooterDesktop />
                 </div>
             </div>
-            <FooterDesktop />
         </>
     )
 }

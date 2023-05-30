@@ -3,7 +3,7 @@
     background-size: auto;
     background-repeat: no-repeat;
     padding: 40px;
-    min-block-size: calc(100vh - 206px);
+    min-block-size: calc(100vh - 250px);
 }
 
 .account-type-title {

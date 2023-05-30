@@ -6,6 +6,7 @@
     background-repeat: no-repeat;
     padding-block-start: 100px;
     padding-block-end: 100px;
+    scroll-behavior: smooth;
 }
 
 .home-wrapper {
@@ -34,7 +35,8 @@
     position: fixed;
 }
 
-.circle-write-desktop { 
+.circle-write-desktop {
+    cursor: pointer; 
     display: none;
 }
 

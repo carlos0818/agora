@@ -27,11 +27,12 @@
 
 .circle-back {
     background-color: var(--agora-blue-dark);
-    block-size: 60px;
+    block-size: 40px;
     border-radius: 50%;
     bottom: 70px;
+    cursor: pointer;
     display: inline-block;
-    inline-size: 60px;
+    inline-size: 40px;
     position: fixed;
     right: 30px;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
@@ -118,23 +119,30 @@ const MyProfilePage: NextPage = () => {
                         </p>
                     </div>
                 </div>
-                <div className={ `window-glass` }>
-                    <div className={ `window-glass-content` }>
-                        <div className={ styles['progress-container'] }>
-                            <progress className={ styles['progress-bar'] } value="100" max="100" />
-                            <Image
-                                src={ rocketProgressIcon }
-                                alt='Rocket image'
-                                className={ styles['rocket-image'] }
-                            />
-                        </div>
-                        <div className={ styles['progress-image'] }>
+                <Link
+                    href='/questionnaire'
+                    passHref
+                    prefetch={ false }
+                    legacyBehavior
+                >
+                    <div className={ `window-glass` } style={{ cursor: 'pointer' }}>
+                        <div className={ `window-glass-content` }>
+                            <div className={ styles['progress-container'] }>
+                                <progress className={ styles['progress-bar'] } value="100" max="100" />
+                                <Image
+                                    src={ rocketProgressIcon }
+                                    alt='Rocket image'
+                                    className={ styles['rocket-image'] }
+                                />
+                            </div>
+                            <div className={ styles['progress-image'] }>
 
+                            </div>
+                            <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
+                            <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
                         </div>
-                        <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
-                        <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
                     </div>
-                </div>
+                </Link>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>About us</p>

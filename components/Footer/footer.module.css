@@ -37,10 +37,13 @@
         inline-size: calc(100vw - 28px);
         justify-content: space-between;
         margin-inline: 20px;
-        margin-block-start: 40px;
-        margin-block-end: 16px;
+        margin-block-start: 80px;
         padding-block: 10px;
         padding-inline: 26px;
+    }
+
+    .container-footer-logout {
+        margin-block-end: 30px;
     }
 
     .options-container {
@@ -58,6 +61,7 @@
 
     .logo {
         block-size: auto;
+        cursor: pointer;
         inline-size: 110px;
     }
 }

@@ -2,7 +2,7 @@
     background-image: url('/images/clouds.jpg');
     background-size: auto;
     background-repeat: no-repeat;
-    min-block-size: calc(100vh - 316px);
+    min-block-size: calc(100vh - 360px);
     margin: auto;
     padding-block-start: 100px;
     padding-inline: 20px;
@@ -104,7 +104,6 @@
 .button-style {
     font-size: 20px;
     margin: auto;
-    margin-block-start: 24px;
 }
 
 .or-container {

@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -5,10 +6,14 @@ import style from './footer.module.css'
 
 import agoralogo from '@/public/images/agoralogo.png'
 
-export const FooterDesktop = () => {
+interface Props {
+    login?: boolean
+}
+
+export const FooterDesktop: FC<Props> = ({ login = true }) => {
     return (
         <footer className={ style['footer-desktop'] }>
-            <div className={ style['container-footer'] }>
+            <div className={ `${ style['container-footer'] } ${ !login && style['container-footer-logout'] }` }>
                 <div className={ style['options-container'] }>
                     <a>Terms and conditions</a>
                     <a>FAQ</a>
@@ -30,7 +35,14 @@ export const FooterDesktop = () => {
                         <a>Comments</a>
                     </Link>
                 </div>
-                <Image src={ agoralogo } alt='' className={ style['logo'] } />
+                <Link
+                    href='/'
+                    passHref
+                    prefetch={ false }
+                    legacyBehavior
+                >
+                    <Image src={ agoralogo } alt='' className={ style['logo'] } />
+                </Link>
             </div>
         </footer>
     )

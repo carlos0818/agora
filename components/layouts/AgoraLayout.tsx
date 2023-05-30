@@ -38,8 +38,8 @@ export const AgoraLayout: FC<Props> = ({ children, title, pageDescription, home 
                     />
                 </nav>
                 { children }
+                <FooterDesktop login={ false } />
             </div>
-            <FooterDesktop />
             <FooterMobile />
         </>
     )
