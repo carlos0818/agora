@@ -101,6 +101,10 @@ const Questionnaire: NextPage = () => {
                                                         (question.type === 'Q' && question.object === 'C') &&
                                                             <SelectBox data={ dataArray } />
                                                     }
+                                                    {
+                                                        (question.type === 'Q' && question.object === 'M') &&
+                                                            <CheckboxList data={ dataArray } />
+                                                    }
                                                 </div>
                                             </div>
                                         )

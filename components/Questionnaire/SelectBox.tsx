@@ -8,8 +8,8 @@ interface Props {
 
 export const SelectBox: FC<Props> = ({ data }) => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 12 }}>
-            <select style={{ width: 'fit-content' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 20 }}>
+            <select className='select'>
                 {
                     data.map(resp => (
                         <option key={ resp.id } value={ `${ resp.id }` }>{ resp.descr }</option>

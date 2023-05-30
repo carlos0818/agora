@@ -398,6 +398,75 @@ details > summary::-webkit-details-marker {
   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
 }
 
+.checkbox {
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  padding-left: 32px;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox input {
+  position: absolute;
+  block-size: 0;
+  inline-size: 0;
+  opacity: 0;
+}
+
+.check {
+  block-size: 18px;
+  border: 2px solid var(--agora-blue-dark);
+  border-radius: 5px;
+  inline-size: 18px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  /* back */
+}
+
+.checkbox input:checked ~ .check {
+  background-color: var(--agora-blue-dark);
+  /* background-color: red; */
+  border-color: var(--agora-blue-dark);
+  background-image: url('/images/checkmark-white.svg');
+  background-size: 18px 18px;
+}
+
+.check:checked {
+  border-color: green;
+}
+
+.check::before {
+  content: "";
+  background-image: none;
+}
+
+.select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+  background-image: url('/images/arrow-down.svg');
+  background-position: calc(100% - 10px);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: 2px solid var(--agora-blue-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  max-inline-size: 250px;
+  padding-block: 8px;
+  padding-inline-start: 10px;
+  padding-inline-end: 50px;
+  width: fit-content;
+}
+
+/* option:checked {
+  background-color: var(--dark-blue2);
+  color: white;
+} */
+
 @keyframes spinner-c7wet2 {
   100% {
      transform: rotate(1turn);
@@ -419,5 +488,9 @@ details > summary::-webkit-details-marker {
 
   .window-glass-content {
     padding: 25px;
+  }
+
+  .select {
+    max-inline-size: 900px;
   }
 }

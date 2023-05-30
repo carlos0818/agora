@@ -1,17 +1,20 @@
-import { IAnswer } from '@/interfaces'
 import { FC } from 'react'
+import { ISelectBox } from '@/interfaces'
 
 interface Props {
-    answers: IAnswer[]
+    data: ISelectBox[]
 }
 
-export const CheckboxList: FC<Props> = ({ answers }) => {
+export const CheckboxList: FC<Props> = ({ data }) => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 20, gap: 8 }}>
             {
-                answers.map(answer => (
-                    <div key={ `${ answer.qnbr }-${ answer.anbr }` } style={{ alignItems: 'center', display: 'flex', gap: 8 }}>
-                        <input type='checkbox' /> { answer.descr }
+                data.map(answer => (
+                    <div key={ answer.id } style={{ alignItems: 'center', display: 'flex' }}>
+                        <label className='checkbox'>
+                            <input type='checkbox' /> { answer.descr }
+                            <span className='check'></span>
+                        </label>
                     </div>
                 ))
             }
