@@ -32,6 +32,7 @@
 html {
   font-family: 'ebrima';
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {

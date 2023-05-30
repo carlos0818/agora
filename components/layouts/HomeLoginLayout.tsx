@@ -21,7 +21,7 @@ interface Props {
 
 export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
     const wrapperRef = useRef<HTMLInputElement>(null)
-    const circleDiv = useRef<HTMLInputElement>(null)
+    const circleDiv = useRef<HTMLDivElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
 
@@ -47,13 +47,13 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
 
     const moveTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
-        document.getElementById('txtShare')!.focus();
+        document.getElementById('txtShare')!.focus()
     }
 
     return (
         <>
             <div
-                style={{ scrollBehavior: 'smooth' }}
+                // id='top'
                 onClick={ () => setSubmenu(false) }
             >
                 <Head>
