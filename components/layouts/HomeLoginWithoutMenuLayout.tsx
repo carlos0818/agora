@@ -21,7 +21,7 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
 
     useEffect(() => {
         window.addEventListener('scroll', circleWrite)
-
+        
         return () => {
             window.removeEventListener('scroll', circleWrite)
         }
