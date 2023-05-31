@@ -28,6 +28,22 @@ const Questionnaire: NextPage = () => {
         loadQuestions()
     }, [])
 
+    useEffect(() => {
+        const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
+        const $wrapperPage = document.querySelector(`.wrapper-page`)
+        $wrapperPage?.classList.add('wrapper-hide')
+        $page?.classList.remove('wrapper-hide')
+    }, [start, data])
+
+    useEffect(() => {
+        const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
+        const $wrapperPage = document.querySelectorAll(`.wrapper-page`)
+        for (let i=0; i<$wrapperPage.length; i++) {
+            $wrapperPage[i].classList.add('wrapper-hide')
+        }
+        $page?.classList.remove('wrapper-hide')
+    }, [start])
+
     const loadQuestions = async() => {
         setLoading(true)
         try {
@@ -84,73 +100,83 @@ const Questionnaire: NextPage = () => {
                         <div className={ `window-glass ${ styles['window-glass'] }` }>
                             <div className={ `window-glass-content` }>
                                 {
-                                    data.slice(start, end).map(({ questions }: any) => {
-                                        return questions.map((question: any) => {
-                                            const dataArray: ISelectBox[] = []
-                                            return (
-                                                <div key={ `container-${ question.qnbr }-${ question.effdt }` }>
-                                                    <p
-                                                        key={ `title-${ question.qnbr }-${ question.effdt }` }
-                                                        style={{ fontFamily: 'ebrima-bold', fontSize: 24 }}
-                                                    >
-                                                        { question.type === 'T' ? question.descr : null }
-                                                    </p>
-                                                    <p
-                                                        key={ `subtitle-${ question.qnbr }-${ question.effdt }` } 
-                                                        style={{ fontFamily: 'ebrima-bold', fontSize: 18 }}
-                                                    >
-                                                        { question.type === 'S' ? question.descr : null }
-                                                    </p>
-                                                    <p
-                                                        key={ `question-${ question.qnbr }-${ question.effdt }` }
-                                                    >
-                                                        { question.type ==='Q' ? `${ question.correlative }. ${ question.descr }` : null }
-                                                    </p>
-                                                    <div key={ `${ question.qnbr }-${ question.effdt }` } style={{ marginBlockStart: 12 }}>
-                                                        {
-                                                            question.answers?.map((answer: any) => {
-                                                                if (answer.qnbr === question.qnbr && (question.object === 'L' || question.object === 'M')) {
-                                                                    dataArray.push({
-                                                                        id: `${ answer.qnbr }-${ answer.anbr }`,
-                                                                        score: answer.score,
-                                                                        descr: answer.descr,
-                                                                        show: answer.show,
-                                                                        hide: answer.hide,
-                                                                    })
-                                                                }
-                                                                return null
-                                                            })
-                                                        }
-                                                        {
-                                                            (question.type === 'Q' && question.object === 'L') && <SelectBox data={ dataArray } />
-                                                        }
-                                                        {
-                                                            (question.type === 'Q' && question.object === 'C') &&
-                                                                countries.map(country => {
-                                                                    dataArray.push({
-                                                                        id: country.id,
-                                                                        score: 0,
-                                                                        descr: country.name,
-                                                                    })
-                                                                    return null
-                                                                })
-                                                        }
-                                                        {
-                                                            (question.type === 'Q' && question.object === 'C') &&
-                                                                <SelectBox data={ dataArray } />
-                                                        }
-                                                        {
-                                                            (question.type === 'Q' && question.object === 'M') &&
-                                                                <CheckboxList data={ dataArray } />
-                                                        }
-                                                        {
-                                                            (question.type === 'Q' && question.object === 'F') &&
-                                                                <Textfield />
-                                                        }
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
+                                    data.map(({ questions }: any, index: number) => {
+                                        return (
+                                            <div
+                                                key={ `wrapper-${ index + 1 }` }
+                                                id={ `wrapper-${ index + 1 }` }
+                                                data-value={ `${ index + 1 }` }
+                                                className='wrapper-page wrapper-hide'>
+                                                {
+                                                    questions.map((question: any) => {
+                                                        const dataArray: ISelectBox[] = []
+                                                        return (
+                                                            <div key={ `container-${ question.qnbr }-${ question.effdt }` }>
+                                                                <p
+                                                                    key={ `title-${ question.qnbr }-${ question.effdt }` }
+                                                                    style={{ fontFamily: 'ebrima-bold', fontSize: 24 }}
+                                                                >
+                                                                    { question.type === 'T' ? question.descr : null }
+                                                                </p>
+                                                                <p
+                                                                    key={ `subtitle-${ question.qnbr }-${ question.effdt }` } 
+                                                                    style={{ fontFamily: 'ebrima-bold', fontSize: 18 }}
+                                                                >
+                                                                    { question.type === 'S' ? question.descr : null }
+                                                                </p>
+                                                                <p
+                                                                    key={ `question-${ question.qnbr }-${ question.effdt }` }
+                                                                >
+                                                                    { question.type ==='Q' ? `${ question.correlative }. ${ question.descr }` : null }
+                                                                </p>
+                                                                <div key={ `${ question.qnbr }-${ question.effdt }` } style={{ marginBlockStart: 12 }}>
+                                                                    {
+                                                                        question.answers?.map((answer: any) => {
+                                                                            if (answer.qnbr === question.qnbr && (question.object === 'L' || question.object === 'M')) {
+                                                                                dataArray.push({
+                                                                                    id: `${ answer.qnbr }-${ answer.anbr }`,
+                                                                                    score: answer.score,
+                                                                                    descr: answer.descr,
+                                                                                    show: answer.show,
+                                                                                    hide: answer.hide,
+                                                                                })
+                                                                            }
+                                                                            return null
+                                                                        })
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'L') && <SelectBox data={ dataArray } />
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'C') &&
+                                                                            countries.map(country => {
+                                                                                dataArray.push({
+                                                                                    id: country.id,
+                                                                                    score: 0,
+                                                                                    descr: country.name,
+                                                                                })
+                                                                                return null
+                                                                            })
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'C') &&
+                                                                            <SelectBox data={ dataArray } />
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'M') &&
+                                                                            <CheckboxList data={ dataArray } />
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'F') &&
+                                                                            <Textfield />
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        )
                                     })
                                 }
 

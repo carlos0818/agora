@@ -518,6 +518,10 @@ details > summary::-webkit-details-marker {
 .page-item:last-child .page-link {
   inline-size: 100px;
 }
+
+.wrapper-hide {
+  display: none;
+}
 /* PAGINATION */
 
 @media screen and (min-width: 1024px) {
