@@ -9,4 +9,5 @@ export interface IQuestion {
     type: string
     object: string
     bobject?: string | null
+    page: number
 }
