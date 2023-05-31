@@ -508,6 +508,12 @@ details > summary::-webkit-details-marker {
   padding: 0;
 }
 
+.page-item.active a {
+  background-color: transparent;
+  color: var(--dark-blue2);
+  cursor: auto;
+}
+
 .page-item:nth-of-type(1) .page-link,
 .page-item:last-child .page-link {
   inline-size: 100px;

@@ -85,9 +85,7 @@ const Questionnaire: NextPage = () => {
                             <div className={ `window-glass-content` }>
                                 {
                                     data.slice(start, end).map(({ questions }: any) => {
-                                        // console.log(questions)
                                         return questions.map((question: any) => {
-                                            // console.log(question)
                                             const dataArray: ISelectBox[] = []
                                             return (
                                                 <div key={ `container-${ question.qnbr }-${ question.effdt }` }>
