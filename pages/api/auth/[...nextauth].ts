@@ -42,7 +42,6 @@ const NextAuth2 = (req: NextApiRequest, res: NextApiResponse) => {
           try {
             if (credentials?.loginToken === 'Y') {
               const { data } = await agoraApi.post('/user/login-token', { email: credentials.email, token: credentials.token })
-              console.log(data)
               return data
             } else {
               const { data } = await agoraApi.post('/user/login', sendData)
@@ -85,8 +84,6 @@ const NextAuth2 = (req: NextApiRequest, res: NextApiResponse) => {
 
               if(req.cookies.additionalAuthParams) {
                 const { accountType, login } = JSON.parse(req.cookies.additionalAuthParams)
-
-                console.log(login)
 
                 if(login === 'Y') {
                   const { data } = await agoraApi.post('/user/user-exists', { email: user.email, fullname: user.name, source, type: accountType })

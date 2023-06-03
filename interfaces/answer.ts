@@ -7,5 +7,4 @@ export interface IAnswer {
     descr: string
     show: string
     hide: string
-    orderby: number
 }

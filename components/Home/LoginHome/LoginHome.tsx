@@ -1,7 +1,13 @@
+import { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
+
+import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { CardInfo } from '../Card/CardInfo'
+
+import { IWall } from '@/interfaces'
 
 import styles from './login.module.css'
 
@@ -9,6 +15,21 @@ import userIcon from '@/public/images/user-icon.svg'
 import pencilIcon from '@/public/images/pencil-icon.svg'
 
 export const LoginHome = () => {
+    const { user } = useContext(AuthContext)
+
+    const [agoraMessages, setAgoraMessages] = useState<IWall[]>([])
+
+    useEffect(() => {
+        if(user) {
+            loadAgoraMessages()
+        }
+    }, [user])
+
+    const loadAgoraMessages = async() => {
+        const { data } = await agoraApi.get<IWall[]>(`/wall/agora-messages?email=${ user?.email }`)
+        setAgoraMessages(data)
+    }
+
     return (
         <HomeLoginLayout
             showWrite
@@ -26,12 +47,17 @@ export const LoginHome = () => {
                     <Image src={ pencilIcon } alt='pencil icon' className={ styles['pencil-icon'] } />
                 </div>
 
-                <CardInfo
-                    title='Job Opportunity'
-                    date='Monday 5th 22:08'
-                    info='Nestlé is working on the integration of an application for the purchase and sale of its entire product line. It requires knowledgeable personnel in computer science and design. The integrated project together with Concreto Company will be starting this coming July 2023.'
-                    actions={ false }
-                />
+                {
+                    agoraMessages.map(message => (
+                        <CardInfo
+                            key={ message.index }
+                            title={ message.title }
+                            date={ message.dateposted }
+                            info={ message.body }
+                            actions={ false }
+                        />
+                    ))
+                }
 
                 <CardInfo
                     title='Agora recommends you...'

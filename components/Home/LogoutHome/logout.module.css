@@ -168,23 +168,30 @@
 }
 
 .video-container {
-    block-size: 60px;
+    /* block-size: 60px; */
     cursor: pointer;
     inline-size: calc(100% - 80px);
-    margin-block-start: 135px;
+    margin-block-start: 20px;
     margin-block-end: 50px;
     max-inline-size: 560px;
     position: relative;
 }
 
+.window-glass {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
 .video {
-    bottom: 0px;
-    inline-size: calc(100vw - 120px);
-    /* block-size: 280px; */
-    left: 18px;
+    /* bottom: 0px; */
+    block-size: 100%;
+    inline-size: 100%;
+    /* left: 18px; */
     max-inline-size: 560px;
-    position: absolute;
-    right: 50px;
+    /* position: absolute; */
+    /* right: 50px; */
 }
 
 .supported-container-mobile {
@@ -237,23 +244,23 @@
 
 @media screen and (min-width: 480px) {
     .video-container {
-        margin-block-start: 200px;
+        /* margin-block-start: 200px; */
     }
 }
 @media screen and (min-width: 550px) {
     .video-container {
-        margin-block-start: 250px;
+        /* margin-block-start: 250px; */
     }
 }
 @media screen and (min-width: 650px) {
     .video-container {
-        margin-block-start: 280px;
+        /* margin-block-start: 280px; */
     }
 }
 
 @media screen and (min-width: 768px) {
     .video-container {
-        margin-block-start: 320px;
+        /* margin-block-start: 320px; */
     }
 
     .rocket-title {
@@ -364,7 +371,7 @@
     }
 
     .video-container {
-        margin-block-start: 200px;
+        margin-block-start: 0;
         margin-block-end: 0;
         max-inline-size: auto;
         inline-size: 575px;

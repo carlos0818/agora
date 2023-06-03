@@ -21,7 +21,6 @@ type FormData = {
     email: string
     password: string
     confirmPassword: string
-    checkbox: boolean
 }
 
 const SignUpPage: NextPage = () => {
@@ -31,8 +30,9 @@ const SignUpPage: NextPage = () => {
     const { executeRecaptcha } = useReCaptcha()
 
     const [providers, setProviders] = useState<any>({})
-    const { register, handleSubmit, getValues, setError, formState: { errors } } = useForm<FormData>()
+    const { register, handleSubmit, getValues, setError, reset, formState: { errors } } = useForm<FormData>()
     const [loading, setLoading] = useState(false)
+    const [ok, setOk] = useState(false)
 
     useEffect(() => {
         getProviders().then(prov => {
@@ -58,6 +58,15 @@ const SignUpPage: NextPage = () => {
 
         if (hasError) {
             setError('email', { type: 'exists', message })
+        } else {
+            setOk(true)
+            reset({
+                fullname: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+            })
+            document.getElementById('txtFullname')!.focus()
         }
 
         setLoading(false)
@@ -75,6 +84,7 @@ const SignUpPage: NextPage = () => {
                                     <label>Full name</label>
                                     <input
                                         type='text'
+                                        id='txtFullname'
                                         className={ `${ style['field'] } ${ errors.fullname && style['field-error'] }` }
                                         { ...register('fullname', {
                                             required: 'Fullname is required',
@@ -124,20 +134,14 @@ const SignUpPage: NextPage = () => {
                                     />
                                     { errors.confirmPassword && <span className={ style['message-error'] }>{ errors.confirmPassword.message }</span> }
                                 </div>
-                                {/* <div style={{ display: 'grid' }}>
-                                    <label className={ style['checkbox'] }>
-                                        <input
-                                            type='checkbox'
-                                            id='checkbox'
-                                            { ...register('checkbox', {
-                                                required: 'Please, accept our terms and conditions'
-                                            })}
-                                        /> Accept terms and conditions
-                                        <span className={ style['check'] }></span>
-                                    </label>
-                                    { errors.checkbox && <><span className={ style['message-error'] } style={{ marginBlockStart: 8 }}>{ errors.checkbox.message }</span></> }
-                                </div> */}
                             </div>
+                            {
+                                ok && (
+                                    <div className={ style['form-row'] } style={{ alignItems: 'center', marginBlockStart: 30 }}>
+                                        <span style={{ color: '#006f0d' }}>Please check your email and confirm it</span>
+                                    </div>
+                                )
+                            }
                             <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center', marginBlockStart: 40, marginBlockEnd: 30 }}>
                                 {
                                     loading

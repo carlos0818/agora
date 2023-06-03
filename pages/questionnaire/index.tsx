@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
-
-import { agoraApi } from '@/api'
-import { IQuestion, IAnswer, ISelectBox } from '@/interfaces'
 
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
@@ -10,81 +7,51 @@ import { SelectBox } from '@/components/Questionnaire/SelectBox'
 import { Textfield } from '@/components/Questionnaire/Textfield'
 import { Paginate } from '@/components/Common/Paginate'
 
-import countriesList from '@/db/countries'
+import { useQuestionnaire } from '@/hooks/useQuestionnaire'
+import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
+import { ISelectBox } from '@/interfaces'
 
 import styles from './questionnaire.module.css'
 
 const Questionnaire: NextPage = () => {
+    const { user } = useContext(AuthContext)
 
-    const [data, setData] = useState<any>([])
-    const [loading, setLoading] = useState(false)
+    const [hide, setHide] = useState<string[]>([])
 
-    const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(0)
+    console.log(hide)
 
-    const { countries } = countriesList
-
-    useEffect(() => {
-        loadQuestions()
-    }, [])
-
-    useEffect(() => {
-        const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
-        const $wrapperPage = document.querySelector(`.wrapper-page`)
-        $wrapperPage?.classList.add('wrapper-hide')
-        $page?.classList.remove('wrapper-hide')
-    }, [start, data])
+    const {
+        loading,
+        data,
+        countries,
+        setStart,
+        setEnd,
+    } = useQuestionnaire()
 
     useEffect(() => {
-        const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
-        const $wrapperPage = document.querySelectorAll(`.wrapper-page`)
-        for (let i=0; i<$wrapperPage.length; i++) {
-            $wrapperPage[i].classList.add('wrapper-hide')
+        const $containerClass = document.querySelectorAll(`.container`)
+        for (let i=0; i<$containerClass.length; i++) {
+            $containerClass[i]?.classList.remove('wrapper-hide')
         }
-        $page?.classList.remove('wrapper-hide')
-    }, [start])
 
-    const loadQuestions = async() => {
-        setLoading(true)
-        try {
-            const { data: dataQuestion } = await agoraApi.get<IQuestion[]>('/question')
-            const { data: dataAnswer } = await agoraApi.get<IAnswer[]>('/question/answer')
-            loadData(dataQuestion, dataAnswer)
-        } catch (error) {
-            console.log(error)
-        }
-        setLoading(false)
-    }
+        hide.map(hide => {
+            const $container = document.querySelector(`#container-${ hide }`)
+            $container?.classList.add('wrapper-hide')
+        })
+    }, [hide])
 
-    const loadData = (questions: IQuestion[], answers: IAnswer[]) => {
-        let data: any = []
-
-        let count = 0
-        for (let j=0; j<questions.length; j++) {
-            if (Number(count) < Number(questions[j].page)) {
-                count = questions[j].page
+    useEffect(() => {
+        if(user) {
+            if(!localStorage.getItem('questionnaire')) {
+                getUserAnswers()
             }
         }
-        
-        for (let j=1; j<=count; j++) {
-            const respPage = questions.filter((question: IQuestion) => Number(question.page) === j)
+    }, [user])
 
-            for (let i=0; i<respPage.length; i++) {
-                data[j-1] = {
-                    questions: respPage,
-                }
-                if (respPage[i].type === 'Q') {
-                    const answersFilter = answers.filter((ans: IAnswer) => ans.qnbr === respPage[i].qnbr)
-
-                    data[j-1].questions[i] = {
-                        ...data[j-1].questions[i],
-                        answers: answersFilter
-                    }
-                }
-            }
-        }
-
-        setData(data)
+    const getUserAnswers = async() => {
+        const { data } = await agoraApi.get(`/question/user-answers?email=${ user?.email }&type=${ user?.type }`)
+        localStorage.setItem('questionnaire', JSON.stringify(data))
     }
 
     return (
@@ -105,29 +72,33 @@ const Questionnaire: NextPage = () => {
                                             <div
                                                 key={ `wrapper-${ index + 1 }` }
                                                 id={ `wrapper-${ index + 1 }` }
-                                                data-value={ `${ index + 1 }` }
-                                                className='wrapper-page wrapper-hide'>
+                                                className='wrapper-page wrapper-hide'
+                                            >
                                                 {
                                                     questions.map((question: any) => {
                                                         const dataArray: ISelectBox[] = []
                                                         return (
-                                                            <div key={ `container-${ question.qnbr }-${ question.effdt }` }>
+                                                            <div
+                                                                key={ `container-${ question.qnbr }` }
+                                                                id={ `container-${ question.qnbr }` }
+                                                                className='container'
+                                                            >
                                                                 <p
-                                                                    key={ `title-${ question.qnbr }-${ question.effdt }` }
+                                                                    key={ `title-${ question.qnbr }` }
                                                                     style={{ fontFamily: 'ebrima-bold', fontSize: 24 }}
                                                                 >
                                                                     { question.type === 'T' ? question.descr : null }
                                                                 </p>
                                                                 <p
-                                                                    key={ `subtitle-${ question.qnbr }-${ question.effdt }` } 
+                                                                    key={ `subtitle-${ question.qnbr }` } 
                                                                     style={{ fontFamily: 'ebrima-bold', fontSize: 18 }}
                                                                 >
                                                                     { question.type === 'S' ? question.descr : null }
                                                                 </p>
                                                                 <p
-                                                                    key={ `question-${ question.qnbr }-${ question.effdt }` }
+                                                                    key={ `question-${ question.qnbr }` }
                                                                 >
-                                                                    { question.type ==='Q' ? `${ question.correlative }. ${ question.descr }` : null }
+                                                                    { question.type ==='Q' ? `${ question.qnbr }. ${ question.descr }` : null }
                                                                 </p>
                                                                 <div key={ `${ question.qnbr }-${ question.effdt }` } style={{ marginBlockStart: 12 }}>
                                                                     {
@@ -145,7 +116,12 @@ const Questionnaire: NextPage = () => {
                                                                         })
                                                                     }
                                                                     {
-                                                                        (question.type === 'Q' && question.object === 'L') && <SelectBox data={ dataArray } />
+                                                                        (question.type === 'Q' && question.object === 'L') &&
+                                                                            <SelectBox
+                                                                                data={ dataArray }
+                                                                                hide={ hide }
+                                                                                setHide={ setHide }
+                                                                            />
                                                                     }
                                                                     {
                                                                         (question.type === 'Q' && question.object === 'C') &&
@@ -160,7 +136,9 @@ const Questionnaire: NextPage = () => {
                                                                     }
                                                                     {
                                                                         (question.type === 'Q' && question.object === 'C') &&
-                                                                            <SelectBox data={ dataArray } />
+                                                                            <SelectBox
+                                                                                data={ dataArray }
+                                                                            />
                                                                     }
                                                                     {
                                                                         (question.type === 'Q' && question.object === 'M') &&

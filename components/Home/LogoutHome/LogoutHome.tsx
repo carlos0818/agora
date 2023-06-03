@@ -143,28 +143,30 @@ export const LogoutHome = () => {
                         </p>
                     </div>
                     <div className={ `${ home['video-container'] }` }>
-                        {
-                            language === 'fr' && (
-                                <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
-                                    <source
-                                        src='./videos/welcome_fr.mp4'
-                                        type='video/mp4'
-                                    />
-                                </video>
-                            )
-                        }
-                        {
-                            language === 'en' && (
-                                <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
-                                    <source
-                                        src='./videos/welcome_en.webm'
-                                        type='video/mp4'
-                                    />
-                                    <source src="./videos/welcome_en.mov" type='video/mp4; codecs="hvc1"' />
-                                    <source src="./videos/welcome_en.webm" type="video/webm" />
-                                </video>
-                            )
-                        }
+                        <div className={ `window-glass ${ home['window-glass'] }` }>
+                            {
+                                language === 'fr' && (
+                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                        <source
+                                            src='./videos/welcome_fr.mp4'
+                                            type='video/mp4'
+                                        />
+                                    </video>
+                                )
+                            }
+                            {
+                                language === 'en' && (
+                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                        <source
+                                            src='./videos/welcome_en.webm'
+                                            type='video/mp4'
+                                        />
+                                        <source src="./videos/welcome_en.mov" type='video/mp4; codecs="hvc1"' />
+                                        <source src="./videos/welcome_en.webm" type="video/webm" />
+                                    </video>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </section>

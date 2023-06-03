@@ -1,5 +1,4 @@
 export interface IQuestion {
-    correlative: number
     qnbr: number
     effdt: string
     status: string
