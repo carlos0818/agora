@@ -236,33 +236,7 @@
     vertical-align: top;
 }
 
-/* @media screen and (min-width: 480px) {
-    .video-container {
-        margin-block-start: 120px;
-    }
-} */
-
-@media screen and (min-width: 480px) {
-    .video-container {
-        /* margin-block-start: 200px; */
-    }
-}
-@media screen and (min-width: 550px) {
-    .video-container {
-        /* margin-block-start: 250px; */
-    }
-}
-@media screen and (min-width: 650px) {
-    .video-container {
-        /* margin-block-start: 280px; */
-    }
-}
-
 @media screen and (min-width: 768px) {
-    .video-container {
-        /* margin-block-start: 320px; */
-    }
-
     .rocket-title {
         inline-size: auto;
     }
