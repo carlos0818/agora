@@ -19,8 +19,6 @@ const Questionnaire: NextPage = () => {
 
     const [hide, setHide] = useState<string[]>([])
 
-    console.log(hide)
-
     const {
         loading,
         data,
