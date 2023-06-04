@@ -40,10 +40,8 @@ export const LogoutHome = () => {
 
     const handleVideo = () => {
         if (!videoRef.current?.paused && !videoRef.current?.ended) {
-            console.log('pause')
             videoRef.current?.pause()
         } else {
-            console.log('play')
             videoRef.current?.play()
         }
     }
