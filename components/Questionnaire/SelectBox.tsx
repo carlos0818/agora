@@ -1,8 +1,9 @@
-import { Dispatch, FC, SetStateAction, useContext } from 'react'
+import { Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react'
 
-import { AuthContext } from '@/context/auth'
-import { ISelectBox } from '@/interfaces'
 import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
+
+import { ISelectBox } from '@/interfaces'
 
 interface Props {
     data: ISelectBox[]
@@ -11,22 +12,49 @@ interface Props {
 }
 
 export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
+    const { user } = useContext(AuthContext)
+
+    const [answer, setAnswer] = useState('')
+
+    useEffect(() => {
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        const idArr = data[0].id.split('-')
+        const qnbr = idArr[0]
+        const extravalue = data[0].extravalue || null
+        let answer = ''
+        for (let i=0; i<storage.length; i++) {
+            if (Number(storage[i].qnbr) === Number(qnbr)) {
+                if (extravalue)
+                    answer = `${ storage[i].qnbr }-${ storage[i].anbr }-${ extravalue }`
+                else
+                    answer = `${ storage[i].qnbr }-${ storage[i].anbr }`
+                break
+            }
+        }
+        setAnswer(answer)
+    }, [])
+
     const onSelectedOption = async(id: string) => {
         if (setHide) {
             const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
             const resp = data.filter(ans => ans.id === id)
-            const respArr = resp[0].id.split('-')
-            const qnbr = respArr[0]
-            const anbr = respArr[1]
+            const qnbr = Number(resp[0].qnbr)
+            const anbr = Number(resp[0].anbr)
+            const effdt = resp[0].effdt
+            const extravalue = resp[0].extravalue || null
 
             let flag = false
             for (let i=0; i<storage.length; i++) {
-                if (storage[i].qnbr === qnbr) {
+                if (Number(storage[i].qnbr) === Number(qnbr)) {
                     storage[i].qnbr = storage[i].qnbr
                     storage[i].anbr = anbr
                     flag = true
                     break
                 }
+            }
+
+            if (!flag) {
+                storage.push({ qnbr: Number(qnbr), anbr: Number(anbr) })
             }
 
             localStorage.setItem('questionnaire', JSON.stringify(storage))
@@ -66,12 +94,19 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
                     setHide(p => ([...p]))
                 }
             }
+
+            if (extravalue) {
+                agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
+                return
+            }
+            agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
         }
+
     }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 20 }}>
-            <select className='select' onChange={ (e) => onSelectedOption(e.target.value) }>
+            <select className='select' onChange={ (e) => onSelectedOption(e.target.value) } value={ answer }>
                 <option value="">Select an option</option>
                 {
                     data.map(resp => (

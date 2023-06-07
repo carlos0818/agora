@@ -1,6 +1,7 @@
 .background {
     background-image: url('/images/clouds.jpg');
     background-repeat: no-repeat;
+    background-attachment: fixed;
     /* background-color: #e8fdfe; */
 }
 

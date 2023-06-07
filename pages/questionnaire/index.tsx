@@ -18,6 +18,7 @@ const Questionnaire: NextPage = () => {
     const { user } = useContext(AuthContext)
 
     const [hide, setHide] = useState<string[]>([])
+    const [years, setYears] = useState<number[]>([])
 
     const {
         loading,
@@ -26,6 +27,21 @@ const Questionnaire: NextPage = () => {
         setStart,
         setEnd,
     } = useQuestionnaire()
+
+    const loadYears = () => {
+        const date = new Date()
+        let year = date.getFullYear()
+        const arrYears = []
+        for (let i=102; i>1; i--) {
+            arrYears.push(year)
+            year = year - 1
+        }
+        setYears(arrYears)
+    }
+
+    useEffect(() => {
+        loadYears()
+    }, [])
 
     useEffect(() => {
         const $containerClass = document.querySelectorAll(`.container`)
@@ -106,6 +122,9 @@ const Questionnaire: NextPage = () => {
                                                                                     id: `${ answer.qnbr }-${ answer.anbr }`,
                                                                                     score: answer.score,
                                                                                     descr: answer.descr,
+                                                                                    qnbr: question.qnbr,
+                                                                                    anbr: answer.anbr,
+                                                                                    effdt: question.effdt,
                                                                                     show: answer.show,
                                                                                     hide: answer.hide,
                                                                                 })
@@ -125,17 +144,43 @@ const Questionnaire: NextPage = () => {
                                                                         (question.type === 'Q' && question.object === 'C') &&
                                                                             countries.map(country => {
                                                                                 dataArray.push({
-                                                                                    id: country.id,
+                                                                                    id: `${ question.qnbr }-1-${ country.id }`,
                                                                                     score: 0,
                                                                                     descr: country.name,
+                                                                                    qnbr: question.qnbr,
+                                                                                    anbr: '1',
+                                                                                    effdt: question.effdt,
+                                                                                    extravalue: country.id
                                                                                 })
                                                                                 return null
+                                                                            })
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'Y') &&
+                                                                            years.map(year => {
+                                                                                dataArray.push({
+                                                                                    id: `${ question.qnbr }-1-${ year }`,
+                                                                                    score: 0,
+                                                                                    descr: year.toString(),
+                                                                                    qnbr: question.qnbr,
+                                                                                    anbr: '1',
+                                                                                    effdt: question.effdt,
+                                                                                    extravalue: year.toString(),
+                                                                                })
                                                                             })
                                                                     }
                                                                     {
                                                                         (question.type === 'Q' && question.object === 'C') &&
                                                                             <SelectBox
                                                                                 data={ dataArray }
+                                                                                setHide={ setHide }
+                                                                            />
+                                                                    }
+                                                                    {
+                                                                        (question.type === 'Q' && question.object === 'Y') &&
+                                                                            <SelectBox
+                                                                                data={ dataArray }
+                                                                                setHide={ setHide }
                                                                             />
                                                                     }
                                                                     {
