@@ -7,6 +7,7 @@ export interface ISelectBox {
     effdt: string
     show?: string
     hide?: string
+    bobject?: string
     extravalue?: string
     checked?: boolean
 }

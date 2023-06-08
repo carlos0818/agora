@@ -127,6 +127,7 @@ const Questionnaire: NextPage = () => {
                                                                                     effdt: question.effdt,
                                                                                     show: answer.show,
                                                                                     hide: answer.hide,
+                                                                                    bobject: question.bobject
                                                                                 })
                                                                             }
                                                                             return null
