@@ -21,10 +21,6 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         setAnswerValue(p => data)
 
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
-        // console.log('STORAGE:', storage)
-        const idArr = data[0].id.split('-')
-        const qnbr = idArr[0]
-        const anbr = idArr[1]
         
         for (let i=0; i<data.length; i++) {
             const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && Number(element.anbr) === Number(data[i].anbr))
@@ -35,46 +31,16 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                 console.log('No encontrado')
                 data[i].checked = false
             }
-
-            // console.log(storage.includes(data[i], 0))
         }
 
-        // data.map((resp: any) => {
-        //     storage.map((store: any) => {
-        //         // console.log(resp)
-        //         console.log(`${ Number(resp.qnbr) } === ${ Number(qnbr) }`)
-        //         console.log(`${ Number(resp.anbr) } === ${ Number(anbr) }`)
-        //         // if (Number(resp.qnbr) === Number(qnbr) && Number(resp.anbr) === Number(anbr)) {
-        //         if (Number(resp.qnbr) === Number(store.qnbr) && Number(resp.anbr) === Number(store.anbr)) {
-        //             // console.log('Son iguales')
-        //             // data[counter].checked = true
-        //             resp.checked = true
-        //         } else {
-        //             // console.log('No son iguales')
-        //             resp.checked = false
-        //         }
-        //     })
-        //     // console.log(counter)
-        //     counter ++
-        // })
-
-        // console.log('DATA:', data)
-
         setAnswerValue(p => data)
-        // setCheckValue(data[0].id)
     }, [])
 
     const onSelectedOption = async(event: ChangeEvent<HTMLInputElement>) => {
         const id = event.target.value
-        console.log(id)
-        const arrId = id.split('-')
-        // console.log('ID:', arrId[1])
-        setCheckValue(id)
 
         let storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         const resp = data.filter(ans => ans.id === id)
-        console.log('DATA:', data)
-        console.log('RESP:', resp)
         const qnbr = Number(resp[0].qnbr)
         const anbr = Number(resp[0].anbr)
         const effdt = resp[0].effdt
@@ -85,8 +51,6 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         
         const { data: response } = await agoraApi.get(`/question/get-user-question-version?email=${ user?.email }`)
         const info = { email: user?.email, qeffdt: effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), qversion: response.maxVersion }
-
-        console.log('INFO:', info)
 
         if (event.target.checked) {
             storage.push({ qnbr: Number(qnbr), anbr: Number(anbr) })
@@ -132,7 +96,6 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                                 type='checkbox'
                                 onChange={ onSelectedOption }
                                 value={ answer.id }
-                                // checked={ answer.checked }
                                 defaultChecked={ answer.checked }
                             /> { answer.descr } - {`Score: ${ answer.score } - ${ answer.checked }`}
                             <span className='check'></span>
