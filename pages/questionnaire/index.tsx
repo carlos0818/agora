@@ -185,7 +185,9 @@ const Questionnaire: NextPage = () => {
                                                                     }
                                                                     {
                                                                         (question.type === 'Q' && question.object === 'M') &&
-                                                                            <CheckboxList data={ dataArray } />
+                                                                            <CheckboxList
+                                                                                data={ dataArray }
+                                                                            />
                                                                     }
                                                                     {
                                                                         (question.type === 'Q' && question.object === 'F') &&
