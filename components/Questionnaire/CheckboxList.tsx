@@ -15,7 +15,6 @@ export const CheckboxList: FC<Props> = ({ data }) => {
     const [answerValue, setAnswerValue] = useState<ISelectBox[]>([])
     const [checks, setChecks] = useState(0)
     const [error, setError] = useState(true)
-    const [checkValue, setCheckValue] = useState('')
 
     useEffect(() => {
         setAnswerValue(p => data)
@@ -25,10 +24,8 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         for (let i=0; i<data.length; i++) {
             const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && Number(element.anbr) === Number(data[i].anbr))
             if (isFound) {
-                console.log('Encontrado')
                 data[i].checked = true
             } else {
-                console.log('No encontrado')
                 data[i].checked = false
             }
         }
