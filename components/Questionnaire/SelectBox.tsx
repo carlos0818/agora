@@ -35,6 +35,7 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
     }, [])
 
     const onSelectedOption = async(id: string) => {
+        setAnswer(id)
         if (setHide) {
             const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
             const resp = data.filter(ans => ans.id === id)
@@ -96,6 +97,7 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
             }
 
             if (extravalue) {
+                console.log({ email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
                 agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
                 return
             }

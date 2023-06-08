@@ -8,4 +8,5 @@ export interface ISelectBox {
     show?: string
     hide?: string
     extravalue?: string
+    checked?: boolean
 }

@@ -12,10 +12,28 @@ interface Props {
 export const CheckboxList: FC<Props> = ({ data }) => {
     const { user } = useContext(AuthContext)
 
-    const [answerValue, setAnswerValue] = useState()
+    const [answerValue, setAnswerValue] = useState<ISelectBox[]>([])
 
     useEffect(() => {
+        setAnswerValue(p => data)
 
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        const idArr = data[0].id.split('-')
+        const qnbr = idArr[0]
+        const anbr = idArr[1]
+
+        let counter = 0
+        storage.map((store: any) => {
+            if (Number(store.qnbr) === Number(qnbr) && Number(store.anbr) === Number(anbr)) {
+                console.log('Son iguales')
+                data[counter].checked = true
+            } else {
+                data[counter].checked = false
+            }
+            counter ++
+        })
+
+        setAnswerValue(p => data)
     }, [])
 
     const onSelectedOption = async(event: ChangeEvent<HTMLInputElement>) => {
@@ -47,14 +65,15 @@ export const CheckboxList: FC<Props> = ({ data }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 20, gap: 8 }}>
             {
-                data.map(answer => (
+                answerValue.map(answer => (
                     <div key={ answer.id } style={{ alignItems: 'center', display: 'flex' }}>
                         <label className='checkbox'>
                             <input
                                 type='checkbox'
                                 onChange={ onSelectedOption }
                                 value={ answer.id }
-                            /> { answer.descr } - {`Score: ${ answer.score }`}
+                                checked={ answer.checked }
+                            /> { answer.descr } - {`Score: ${ answer.score } - ${ answer.checked }`}
                             <span className='check'></span>
                         </label>
                     </div>
