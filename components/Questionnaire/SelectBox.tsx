@@ -18,23 +18,55 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
 
     useEffect(() => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
-        const idArr = data[0].id.split('-')
-        const qnbr = idArr[0]
-        const extravalue = data[0].extravalue || null
-        let answer = ''
-        for (let i=0; i<storage.length; i++) {
-            if (Number(storage[i].qnbr) === Number(qnbr)) {
-                if (extravalue)
-                    answer = `${ storage[i].qnbr }-${ storage[i].anbr }-${ extravalue }`
-                else
-                    answer = `${ storage[i].qnbr }-${ storage[i].anbr }`
-                break
+        
+        let answerValue = ''
+        for (let i=0; i<data.length; i++) {
+            console.log('ELEMENTO:', data[i])
+
+            if (data[i].extravalue) {
+                const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && element.extravalue === data[i].extravalue)
+                if (isFound) {
+                    // console.log(`ENCONTRO: ${ data[i].qnbr } - ${ data[i].extravalue }`)
+                    // data[i].checked = true
+                    answerValue = `${ data[i].qnbr }-${ data[i].anbr }-${ data[i].extravalue }`
+                } else {
+                    // data[i].checked = false
+                }
+            } else {
+                const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
+
+                if (isFound)
+                    answerValue = `${ data[i].qnbr }-${ data[i].anbr }`
             }
         }
-        setAnswer(answer)
+
+        setAnswer(answerValue)
+
+        // console.log('DATA:', data)
+
+        // const idArr = data[0].id.split('-')
+        // const qnbr = idArr[0]
+        // const extravalue = idArr[3] || null
+        // console.log('EXTRAVALUE:', extravalue)
+        // let answer = ''
+        // for (let i=1; i<storage.length; i++) {
+        //     if (Number(storage[i].qnbr) === Number(qnbr)) {
+        //         if (extravalue) {
+        //             answer = `${ storage[i].qnbr }-${ storage[i].anbr }-${ extravalue }`
+        //             console.log(answer)
+        //         } else
+        //             answer = `${ storage[i].qnbr }-${ storage[i].anbr }`
+        //         break
+        //     }
+        // }
+
+        // console.log('ANSWER:', answerValue)
+
+        // setAnswer(answerValue)
     }, [])
 
     const onSelectedOption = async(id: string) => {
+        console.log(id)
         setAnswer(id)
         if (setHide) {
             const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
@@ -49,13 +81,14 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
                 if (Number(storage[i].qnbr) === Number(qnbr)) {
                     storage[i].qnbr = storage[i].qnbr
                     storage[i].anbr = anbr
+                    storage[i].extravalue = extravalue
                     flag = true
                     break
                 }
             }
 
             if (!flag) {
-                storage.push({ qnbr: Number(qnbr), anbr: Number(anbr) })
+                storage.push({ qnbr: Number(qnbr), anbr: Number(anbr), extravalue: extravalue })
             }
 
             localStorage.setItem('questionnaire', JSON.stringify(storage))
@@ -97,7 +130,6 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
             }
 
             if (extravalue) {
-                console.log({ email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
                 agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
                 return
             }
@@ -115,6 +147,8 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
                         <option
                             key={ resp.id }
                             value={ resp.id }
+                            // defaultChecked={ resp.checked }
+                            // selected={ resp.checked }
                         >
                             { resp.descr } - Score: { resp.score }
                         </option>

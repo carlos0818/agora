@@ -46,8 +46,8 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         const min = arr[0]
         const max = arr[1]
         
-        const { data: response } = await agoraApi.get(`/question/get-user-question-version?email=${ user?.email }`)
-        const info = { email: user?.email, qeffdt: effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), qversion: response.maxVersion }
+        const { data: maxVersion } = await agoraApi.get<number>(`/question/get-user-question-version?email=${ user?.email }`)
+        const info = { email: user?.email, qeffdt: effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), qversion: maxVersion.toString() }
 
         if (event.target.checked) {
             storage.push({ qnbr: Number(qnbr), anbr: Number(anbr) })
