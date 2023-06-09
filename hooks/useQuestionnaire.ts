@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
 import { agoraApi } from '@/api'
 import countriesList from '@/db/countries'
@@ -18,19 +18,26 @@ export const useQuestionnaire = () => {
         loadQuestions()
     }, [])
 
-    useEffect(() => {
-        const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
-        $page?.classList.remove('wrapper-hide')
-    }, [start, data])
+    // useEffect(() => {
+    //     // console.log('start, data')
+    //     // console.log('START:', start)
+    //     // console.log('DATA:', data)
+    //     const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
+    //     console.log($page)
+    //     $page?.classList.remove('wrapper-hide')
+    // }, [start, data])
 
-    useEffect(() => {
-        const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
+    useLayoutEffect(() => {
+        console.log('start:', start)
+        // console.log('START:', start)
+        const $page = document.querySelector(`#wrapper-${ start + 1 }`)
+        console.log($page)
         const $wrapperPage = document.querySelectorAll(`.wrapper-page`)
         for (let i=0; i<$wrapperPage.length; i++) {
             $wrapperPage[i].classList.add('wrapper-hide')
         }
         $page?.classList.remove('wrapper-hide')
-    }, [start])
+    }, [start, data])
 
     const loadQuestions = async() => {
         setLoading(true)
