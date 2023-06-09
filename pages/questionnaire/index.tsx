@@ -13,6 +13,7 @@ import { AuthContext } from '@/context/auth'
 import { ISelectBox } from '@/interfaces'
 
 import styles from './questionnaire.module.css'
+import { ITextfield } from '@/interfaces/textfield'
 
 const Questionnaire: NextPage = () => {
     const { user } = useContext(AuthContext)
@@ -86,6 +87,7 @@ const Questionnaire: NextPage = () => {
                                                         {
                                                             questions.map((question: any) => {
                                                                 const dataArray: ISelectBox[] = []
+                                                                const textfield: ITextfield = { qnbr: '', effdt: '', extravalue: '' }
                                                                 return (
                                                                     <div
                                                                         key={ `container-${ question.qnbr }` }
@@ -187,7 +189,17 @@ const Questionnaire: NextPage = () => {
                                                                             }
                                                                             {
                                                                                 (question.type === 'Q' && question.object === 'F') &&
-                                                                                    <Textfield />
+                                                                                    question.answers.map((answer: any) => {
+                                                                                        textfield.qnbr = answer.qnbr
+                                                                                        textfield.effdt = question.effdt
+                                                                                        textfield.extravalue = answer.extravalue
+                                                                                    })
+                                                                            }
+                                                                            {
+                                                                                (question.type === 'Q' && question.object === 'F') &&
+                                                                                    <Textfield
+                                                                                        data={ textfield }
+                                                                                    />
                                                                             }
                                                                         </div>
                                                                     </div>
