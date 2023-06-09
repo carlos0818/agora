@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
@@ -39,7 +39,15 @@ export const CheckboxList: FC<Props> = ({ data }) => {
     const onSelectedOption = async(event: ChangeEvent<HTMLInputElement>) => {
         const id = event.target.value
 
-        let storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        let storage = []
+        try {
+            storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        } catch (error) {
+            const { data } = await agoraApi.get(`/question/user-answers?email=${ user?.email }&type=${ user?.type }`)
+            localStorage.setItem('questionnaire', JSON.stringify(data))
+            storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        }
+        
         const resp = data.filter(ans => ans.id === id)
         const qnbr = Number(resp[0].qnbr)
         const anbr = Number(resp[0].anbr)
