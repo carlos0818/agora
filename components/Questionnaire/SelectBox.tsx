@@ -21,16 +21,10 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
         
         let answerValue = ''
         for (let i=0; i<data.length; i++) {
-            console.log('ELEMENTO:', data[i])
-
             if (data[i].extravalue) {
                 const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && element.extravalue === data[i].extravalue)
                 if (isFound) {
-                    // console.log(`ENCONTRO: ${ data[i].qnbr } - ${ data[i].extravalue }`)
-                    // data[i].checked = true
                     answerValue = `${ data[i].qnbr }-${ data[i].anbr }-${ data[i].extravalue }`
-                } else {
-                    // data[i].checked = false
                 }
             } else {
                 const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
@@ -41,32 +35,9 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
         }
 
         setAnswer(answerValue)
-
-        // console.log('DATA:', data)
-
-        // const idArr = data[0].id.split('-')
-        // const qnbr = idArr[0]
-        // const extravalue = idArr[3] || null
-        // console.log('EXTRAVALUE:', extravalue)
-        // let answer = ''
-        // for (let i=1; i<storage.length; i++) {
-        //     if (Number(storage[i].qnbr) === Number(qnbr)) {
-        //         if (extravalue) {
-        //             answer = `${ storage[i].qnbr }-${ storage[i].anbr }-${ extravalue }`
-        //             console.log(answer)
-        //         } else
-        //             answer = `${ storage[i].qnbr }-${ storage[i].anbr }`
-        //         break
-        //     }
-        // }
-
-        // console.log('ANSWER:', answerValue)
-
-        // setAnswer(answerValue)
     }, [])
 
     const onSelectedOption = async(id: string) => {
-        console.log(id)
         setAnswer(id)
         if (setHide) {
             const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
@@ -147,8 +118,6 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
                         <option
                             key={ resp.id }
                             value={ resp.id }
-                            // defaultChecked={ resp.checked }
-                            // selected={ resp.checked }
                         >
                             { resp.descr } - Score: { resp.score }
                         </option>
