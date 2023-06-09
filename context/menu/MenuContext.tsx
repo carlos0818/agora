@@ -5,7 +5,7 @@ type HideMenu = 'original' | 'hide' | 'show'
 interface ContextProps {
     isOpen: HideMenu
     isOpenDesktop: HideMenu
-    isDarkMode: Boolean
+    isDarkMode: boolean
     toggleSideMenu: (state: HideMenu) => void
     toggleSideMenuDesktop: (state: HideMenu) => void
     toggleDarkMode: (state: boolean) => void

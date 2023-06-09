@@ -1,4 +1,4 @@
-import { FC, RefObject, useContext } from 'react'
+import { FC, RefObject, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -16,10 +16,15 @@ interface Props {
 }
 
 export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
-    const { toggleDarkMode } = useContext(MenuContext)
+    const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
 
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
     const router = useRouter()
+
+    useEffect(() => {
+        const darkMode = JSON.parse(localStorage.getItem('DarkMode')!)
+        toggleDarkMode(darkMode)
+    }, [])
 
     const toggleDark = () => {
         const darkMode = !JSON.parse(localStorage.getItem('DarkMode')!)
@@ -174,7 +179,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBlockStart: 20, paddingInline: 20 }}>
                                         <p style={{ color: '#10284F' }}>Dark mode</p>
                                         <label className="switch">
-                                            <input type="checkbox" onChange={ toggleDark } />
+                                            <input type="checkbox" onChange={ toggleDark } checked={ isDarkMode } />
                                             <span className="slider round"></span>
                                         </label>
                                     </div>
