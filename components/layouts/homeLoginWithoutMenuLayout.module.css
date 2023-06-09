@@ -1,10 +1,15 @@
 .home-container {
     background-attachment: fixed;
     background-image: url('/images/clouds.jpg');
-    background-size: auto;
+    background-size: auto 100%;
+    background-position: center;
     background-repeat: no-repeat;
     padding-block-start: 100px;
     padding-block-end: 100px;
+}
+
+.background-dark {
+    background-image: url('/images/cloudsnight.jpg');
 }
 
 .home-wrapper {
@@ -39,7 +44,6 @@
 
 @media screen and (min-width: 1024px) {
     .home-container {
-        background-size: cover;
         padding-block-start: 150px;
         padding-block-end: 40px;
     }

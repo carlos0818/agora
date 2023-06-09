@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useContext, useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -6,6 +6,7 @@ import { Navbar } from '../Navbar/Navbar'
 import { FooterDesktop } from '../Footer/FooterDesktop'
 
 import styles from './homeLoginWithoutMenuLayout.module.css'
+import { MenuContext } from '@/context/menu'
 
 interface Props {
     children: JSX.Element
@@ -15,6 +16,8 @@ interface Props {
 }
 
 export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDescription, showBack = true }) => {
+    const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
+
     const circleDiv = useRef<HTMLInputElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
@@ -26,6 +29,10 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
             window.removeEventListener('scroll', circleWrite)
         }
     }, [])
+
+    useEffect(() => {
+        toggleDarkMode(JSON.parse(localStorage.getItem('DarkMode')!))
+    }, [isDarkMode])
 
     const circleWrite = () => {
         if (circleDiv.current) {
@@ -55,7 +62,7 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
                         setSubmenu={ setSubmenu }
                     />
                 </nav>
-                <div className={ styles['home-container'] }>
+                <div className={ `${ styles['home-container'] } ${ isDarkMode ? styles['background-dark'] : '' }` }>
                     <div className={ styles['home-wrapper'] }>
                         <div className={ styles['content-container'] }>
                             { children }

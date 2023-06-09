@@ -21,13 +21,12 @@ interface Props {
 }
 
 export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
-    const { isDarkMode } = useContext(MenuContext)
+    const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
 
     const wrapperRef = useRef<HTMLInputElement>(null)
     const circleDiv = useRef<HTMLDivElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
-    const [darkMode, setDarkMode] = useState(false)
 
     useEffect(() => {
         window.addEventListener('scroll', circleWrite)
@@ -38,7 +37,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     }, [])
 
     useEffect(() => {
-        setDarkMode(JSON.parse(localStorage.getItem('DarkMode')!))
+        toggleDarkMode(JSON.parse(localStorage.getItem('DarkMode')!))
     }, [isDarkMode])
 
     const circleWrite = () => {
@@ -77,7 +76,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                         setSubmenu={ setSubmenu }
                     />
                 </nav>
-                <div className={ `${ styles['home-container'] } ${ darkMode ? styles['background-dark'] : '' }` }>
+                <div className={ `${ styles['home-container'] } ${ isDarkMode ? styles['background-dark'] : '' }` }>
                     <MenuMobile />
                     <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
                         <MenuDesktop
