@@ -7,12 +7,14 @@ type HideMenu = 'original' | 'hide' | 'show'
 export interface MenuState {
     isOpen: HideMenu
     isOpenDesktop: HideMenu
+    isDarkMode: boolean
 }
 
 
 const MENU_INITIAL_STATE: MenuState = {
     isOpen: 'original',
-    isOpenDesktop: 'original'
+    isOpenDesktop: 'original',
+    isDarkMode: false
 }
 
 interface Props {
@@ -31,11 +33,16 @@ export const MenuProvider: FC<Props> = ({ children }) => {
         dispatch({ type: '[Menu] - ToggleMenuDesktop', payload: state })
     }
 
+    const toggleDarkMode = (state: boolean) => {
+        dispatch({ type: '[Menu] - ToggleDarkMode', payload: state })
+    }
+
     return (
         <MenuContext.Provider value={{
             ...state,
             toggleSideMenu,
             toggleSideMenuDesktop,
+            toggleDarkMode,
         }}>
             { children }
         </MenuContext.Provider>

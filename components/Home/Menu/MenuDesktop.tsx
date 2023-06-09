@@ -1,4 +1,4 @@
-import { FC, RefObject, useState } from 'react'
+import { FC, RefObject, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -9,17 +9,23 @@ import styles from './menu-desktop.module.css'
 
 import homeIcon from '@/public/images/home-icon.svg'
 import leftArrowIcon from '@/public/images/left-arrow-icon.svg'
+import { MenuContext } from '@/context/menu'
 
 interface Props {
     wrapperRef: RefObject<HTMLInputElement>
 }
 
 export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
+    const { toggleDarkMode } = useContext(MenuContext)
+
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
     const router = useRouter()
 
-    const [openFinder, setOpenFinder] = useState(false)
-    const [openMyData, setOpenMyData] = useState(false)
+    const toggleDark = () => {
+        const darkMode = !JSON.parse(localStorage.getItem('DarkMode')!)
+        localStorage.setItem('DarkMode', JSON.stringify(darkMode))
+        toggleDarkMode(darkMode)
+    }
 
     return (
         <>
@@ -163,6 +169,15 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                             </ul>
                                         </div>
                                     </details>
+                                </li>
+                                <li>
+                                    <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBlockStart: 20, paddingInline: 20 }}>
+                                        <p style={{ color: '#10284F' }}>Dark mode</p>
+                                        <label className="switch">
+                                            <input type="checkbox" onChange={ toggleDark } />
+                                            <span className="slider round"></span>
+                                        </label>
+                                    </div>
                                 </li>
                             </ul>
                         </div>

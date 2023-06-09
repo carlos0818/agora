@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect } from 'react'
+import { FC, useRef, useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -11,6 +11,7 @@ import { FooterDesktop } from '../Footer/FooterDesktop'
 import styles from './homeLoginLayout.module.css'
 
 import notificationIcon from '@/public/images/notification-icons.svg'
+import { MenuContext } from '@/context/menu'
 
 interface Props {
     children: JSX.Element
@@ -20,10 +21,13 @@ interface Props {
 }
 
 export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
+    const { isDarkMode } = useContext(MenuContext)
+
     const wrapperRef = useRef<HTMLInputElement>(null)
     const circleDiv = useRef<HTMLDivElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
 
     useEffect(() => {
         window.addEventListener('scroll', circleWrite)
@@ -32,6 +36,10 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
             window.removeEventListener('scroll', circleWrite)
         }
     }, [])
+
+    useEffect(() => {
+        setDarkMode(JSON.parse(localStorage.getItem('DarkMode')!))
+    }, [isDarkMode])
 
     const circleWrite = () => {
         if (circleDiv.current) {
@@ -69,7 +77,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                         setSubmenu={ setSubmenu }
                     />
                 </nav>
-                <div className={ styles['home-container'] }>
+                <div className={ `${ styles['home-container'] } ${ darkMode ? styles['background-dark'] : '' }` }>
                     <MenuMobile />
                     <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
                         <MenuDesktop
