@@ -57,6 +57,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     }
 
     const logout = () => {
+        localStorage.removeItem('questionnaire')
         signOut()
     }
 
