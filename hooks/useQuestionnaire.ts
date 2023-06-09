@@ -19,20 +19,8 @@ export const useQuestionnaire = () => {
         loadQuestions()
     }, [])
 
-    // useEffect(() => {
-    //     // console.log('start, data')
-    //     // console.log('START:', start)
-    //     // console.log('DATA:', data)
-    //     const $page = document.querySelector(`#wrapper-${ start + 1 || 1 }`)
-    //     console.log($page)
-    //     $page?.classList.remove('wrapper-hide')
-    // }, [start, data])
-
     useEffect(() => {
-        console.log('start:', start)
-        // console.log('START:', start)
         const $page = document.querySelector(`#wrapper-${ start + 1 }`)
-        console.log($page)
         if (!$page) {
             setStatus(false)
         }

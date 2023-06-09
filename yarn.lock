@@ -165,6 +165,18 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
+"@react-input/core@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@react-input/core/-/core-1.0.1.tgz#f0836e8f3084f2d4e69a41d7d0e79ace6c56c754"
+  integrity sha512-eFWdXPlIsaupcPiqonIUPt8KqQY0MxAuDlEVjnWmpHAJjv1E0Hz6IG4OVFjgnNXkZFA6ZkcjXv17OyOmEaDgCg==
+
+"@react-input/number-format@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@react-input/number-format/-/number-format-1.0.13.tgz#6ba1c614f698c9036029a4636398427af8a2ce2b"
+  integrity sha512-qXgWQFCEgXXpfmhAKJCgUW8/f6uG3IsWPNlZ6lPwyI6RM7GC1gQsKbKibfAnBNcz/37pr89YjDlxbn3H5QIllQ==
+  dependencies:
+    "@react-input/core" "^1.0.1"
+
 "@react-leaflet/core@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@react-leaflet/core/-/core-2.1.0.tgz#383acd31259d7c9ae8fb1b02d5e18fe613c2a13d"
@@ -244,6 +256,13 @@
   version "18.0.10"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.10.tgz#3b66dec56aa0f16a6cc26da9e9ca96c35c0b4352"
   integrity sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-input-mask@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-input-mask/-/react-input-mask-3.0.2.tgz#60df645cdb2415c97a8f97316011eb3ede78dc1e"
+  integrity sha512-WTli3kUyvUqqaOLYG/so2pLqUvRb+n4qnx2He5klfqZDiQmRyD07jVIt/bco/1BrcErkPMtpOm+bHii4Oed6cQ==
   dependencies:
     "@types/react" "*"
 

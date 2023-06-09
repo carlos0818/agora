@@ -45,19 +45,6 @@ const Questionnaire: NextPage = () => {
     }, [])
 
     useEffect(() => {
-        // console.log(hide)
-        // const $containerClass = document.querySelectorAll(`.container`)
-        // for (let i=0; i<$containerClass.length; i++) {
-        //     $containerClass[i]?.classList.remove('wrapper-hide')
-        // }
-
-        // hide.map(hide => {
-        //     const $container = document.querySelector(`#container-${ hide }`)
-        //     $container?.classList.add('wrapper-hide')
-        // })
-    }, [hide])
-
-    useEffect(() => {
         if(user) {
             if(!localStorage.getItem('questionnaire') || !validJSON) {
                 getUserAnswers()

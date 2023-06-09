@@ -1,7 +1,9 @@
 .home-container {
     background-attachment: fixed;
     background-image: url('/images/clouds.jpg');
-    background-size: auto;
+    background-size: contain;
+    background-position: center;
+    height: 100vh;
     background-repeat: no-repeat;
     padding-block-start: 100px;
     padding-block-end: 100px;
@@ -50,7 +52,7 @@
 
 @media screen and (min-width: 1024px) {
     .home-container {
-        background-size: cover;
+        /* background-size: contain; */
         padding-block-start: 150px;
         padding-block-end: 40px;
     }
