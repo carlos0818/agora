@@ -21,26 +21,34 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
         
         let answerValue = ''
         for (let i=0; i<data.length; i++) {
-            if (data[i].extravalue) {
+            if (data[i].extravalue && data[i].extravalue !== undefined) {
                 const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && element.extravalue === data[i].extravalue)
                 if (isFound) {
                     answerValue = `${ data[i].qnbr }-${ data[i].anbr }-${ data[i].extravalue }`
                 }
             } else {
-                const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
+                const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && Number(element.anbr) === Number(data[i].anbr))
 
                 if (isFound)
                     answerValue = `${ data[i].qnbr }-${ data[i].anbr }`
             }
         }
-
+        
         setAnswer(answerValue)
     }, [])
 
     const onSelectedOption = async(id: string) => {
         setAnswer(id)
         if (setHide) {
-            const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+            let storage = []
+            try {
+                storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+            } catch (error) {
+                const { data } = await agoraApi.get(`/question/user-answers?email=${ user?.email }&type=${ user?.type }`)
+                localStorage.setItem('questionnaire', JSON.stringify(data))
+                storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+            }
+
             const resp = data.filter(ans => ans.id === id)
             const qnbr = Number(resp[0].qnbr)
             const anbr = Number(resp[0].anbr)

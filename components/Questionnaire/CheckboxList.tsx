@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
@@ -21,15 +21,18 @@ export const CheckboxList: FC<Props> = ({ data }) => {
 
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         
+        let countChecks = 0
         for (let i=0; i<data.length; i++) {
             const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && Number(element.anbr) === Number(data[i].anbr))
             if (isFound) {
                 data[i].checked = true
+                countChecks ++
             } else {
                 data[i].checked = false
             }
         }
-
+        
+        setChecks(countChecks)
         setAnswerValue(p => data)
     }, [])
 
