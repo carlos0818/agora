@@ -53,8 +53,8 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     }
 
     const moveTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
         document.getElementById('txtShare')!.focus()
+        window.scrollTo({ top: 0, behavior: 'auto' })
     }
 
     return (
