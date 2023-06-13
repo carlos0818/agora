@@ -1,0 +1,34 @@
+.table-three {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    max-inline-size: 900px;
+    margin-block-end: 24px;
+}
+
+.cell-three {
+    padding-block: 8px;
+    padding-inline: 32px;
+    border-block-end: 1px solid black;
+    border-inline-end: 1px solid black;
+}
+
+.cell-question {
+    border-inline-start: 1px solid black;
+    padding-inline: 12px;
+}
+
+.cell-three:nth-of-type(2),
+.cell-three:nth-of-type(3),
+.cell-three:nth-of-type(4) {
+    border-block-start: 1px solid black;
+}
+
+.textfield {
+    block-size: 100%;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    inline-size: 94px;
+    font-size: 14px;
+    text-align: center;
+}

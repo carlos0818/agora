@@ -1,4 +1,4 @@
-import React, { FC, FocusEvent, useContext } from 'react'
+import { ChangeEvent, FC, FocusEvent, useContext, useEffect, useState } from 'react'
 
 import { InputNumberFormat } from '@react-input/number-format'
 import { agoraApi } from '@/api'
@@ -12,11 +12,43 @@ interface Props {
 export const Textfield: FC<Props> = ({ data }) => {
     const { user } = useContext(AuthContext)
 
-    console.log(data)
+    const [answer, setAnswer] = useState('')
+
+    useEffect(() => {
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+
+        const isFound = storage.find((element: any) => Number(element.qnbr) === Number(data.qnbr))
+
+        if (isFound) {
+            setAnswer(isFound.extravalue)
+        }
+    }, [])
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setAnswer(event.target.value)
+    }
 
     const handleSave = async(event: FocusEvent<HTMLInputElement, Element>) => {
-        console.log(event.target.value)
-        await agoraApi.post('/question/save-question', { email: user?.email,  qnbr: data.qnbr.toString(), anbr: '1', effdt: data.effdt, extravalue: event.target.value })
+        const value = event.target.value
+
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        const isFound = storage.find((element: any) => Number(element.qnbr) === Number(data.qnbr))
+        let flag = false
+
+        if (isFound) {
+            isFound.qnbr = data.qnbr
+            isFound.anbr = 1
+            isFound.extravalue = value
+            flag = true
+        }
+
+        if (!flag) {
+            storage.push({ qnbr: Number(data.qnbr), anbr: 1, extravalue: value })
+        }
+
+        localStorage.setItem('questionnaire', JSON.stringify(storage))
+
+        await agoraApi.post('/question/save-question', { email: user?.email,  qnbr: data.qnbr.toString(), anbr: '1', effdt: data.effdt, extravalue: value })
     }
 
     return (
@@ -28,7 +60,8 @@ export const Textfield: FC<Props> = ({ data }) => {
                 maximumIntegerDigits={ 12 }
                 placeholder='9999999.99'
                 onBlur={ (e) => handleSave(e) }
-                value={ data.extravalue }
+                onChange={ handleChange }
+                value={ answer }
             />
         </div>
     )

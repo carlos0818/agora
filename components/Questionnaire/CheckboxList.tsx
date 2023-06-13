@@ -20,7 +20,7 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         setAnswerValue(p => data)
 
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
-        
+
         let countChecks = 0
         for (let i=0; i<data.length; i++) {
             const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr) && Number(element.anbr) === Number(data[i].anbr))
@@ -31,7 +31,7 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                 data[i].checked = false
             }
         }
-        
+
         setChecks(countChecks)
         setAnswerValue(p => data)
     }, [])

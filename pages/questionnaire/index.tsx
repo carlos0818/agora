@@ -5,15 +5,15 @@ import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithou
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
 import { SelectBox } from '@/components/Questionnaire/SelectBox'
 import { Textfield } from '@/components/Questionnaire/Textfield'
+import { Matrix } from '@/components/Questionnaire/Matrix'
 import { Paginate } from '@/components/Common/Paginate'
 
 import { useQuestionnaire } from '@/hooks/useQuestionnaire'
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
-import { ISelectBox } from '@/interfaces'
+import { ISelectBox, ITextfield, IMatrix } from '@/interfaces'
 
 import styles from './questionnaire.module.css'
-import { ITextfield } from '@/interfaces/textfield'
 
 const Questionnaire: NextPage = () => {
     const { user } = useContext(AuthContext)
@@ -87,6 +87,7 @@ const Questionnaire: NextPage = () => {
                                                         {
                                                             questions.map((question: any) => {
                                                                 const dataArray: ISelectBox[] = []
+                                                                const dataArray2: IMatrix[] = []
                                                                 const textfield: ITextfield = { qnbr: '', effdt: '', extravalue: '' }
                                                                 return (
                                                                     <div
@@ -199,6 +200,25 @@ const Questionnaire: NextPage = () => {
                                                                                 (question.type === 'Q' && question.object === 'F') &&
                                                                                     <Textfield
                                                                                         data={ textfield }
+                                                                                    />
+                                                                            }
+                                                                            {
+                                                                                (question.type === 'Q' && question.object === 'B') &&
+                                                                                question.answers.map((answer: any) => {
+                                                                                    dataArray2.push({
+                                                                                        descr: answer.descr,
+                                                                                        qnbr: question.qnbr,
+                                                                                        anbr: answer.anbr,
+                                                                                        effdt: question.effdt,
+                                                                                        extravalue: ''
+                                                                                    })
+                                                                                })
+                                                                            }
+                                                                            {
+                                                                                (question.type === 'Q' && question.object === 'B') &&
+                                                                                    <Matrix
+                                                                                        data={ dataArray2 }
+                                                                                        quantity={ question.bobject }
                                                                                     />
                                                                             }
                                                                         </div>

@@ -489,7 +489,7 @@ details > summary::-webkit-details-marker {
   gap: 10px;
   justify-content: center;
   list-style: none;
-  margin-block-start: 40px;
+  margin-block-start: 60px;
 }
 
 .page-link {
