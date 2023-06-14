@@ -85,6 +85,7 @@ export const LoginHome = () => {
                     info='I am grateful to be able to work with a great group of entrepreneurs. We are restructuring projects and adjusting details to be able to harvest the ideas well. We are working on the brand image and various launching campaigns that will make our products and services stand out. Our method is singular and collective.'
                     actions
                 />
+                
                 <div className={ styles['circle-write-mobile'] }></div>
             </>
         </HomeLoginLayout>

@@ -490,6 +490,7 @@ details > summary::-webkit-details-marker {
   justify-content: center;
   list-style: none;
   margin-block-start: 60px;
+  padding: 0;
 }
 
 .page-link {

@@ -48,7 +48,7 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
 
     return (
         <>
-            <div>
+            <div className={ styles['container-layout'] } onClick={ () => setSubmenu(false) }>
                 <Head>
                     <meta charSet="UTF-8" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
