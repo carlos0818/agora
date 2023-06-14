@@ -73,8 +73,6 @@ const Questionnaire: NextPage = () => {
             const $container = document.querySelector(`#container-${ hide }`)
             $container?.classList.add('wrapper-hide')
         })
-
-        console.log(hide)
     }, [hide])
 
     const detectOrientation = () => {
