@@ -63,6 +63,20 @@ const Questionnaire: NextPage = () => {
         }
     }, [user])
 
+    useEffect(() => {
+        const $containerClass = document.querySelectorAll(`.container`)
+        for (let i=0; i<$containerClass.length; i++) {
+            $containerClass[i]?.classList.remove('wrapper-hide')
+        }
+
+        hide.map(hide => {
+            const $container = document.querySelector(`#container-${ hide }`)
+            $container?.classList.add('wrapper-hide')
+        })
+
+        console.log(hide)
+    }, [hide])
+
     const detectOrientation = () => {
         let landscape = window.matchMedia("(orientation: landscape)")
 

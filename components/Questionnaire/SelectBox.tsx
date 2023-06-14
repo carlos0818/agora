@@ -39,7 +39,8 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
 
     const onSelectedOption = async(id: string) => {
         setAnswer(id)
-        if (setHide) {
+
+        if (setHide && id) {
             let storage = []
             try {
                 storage = JSON.parse(localStorage.getItem('questionnaire') || '')
@@ -96,7 +97,7 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
                 let filter: string[] = []
                 if (respShowSplit) {
                     filter = hide.filter((value: any) => {
-                        return !respShowSplit.includes(value)
+                        return respShowSplit.indexOf(value) < 0
                     })
                     setHide(p => filter)
                 }

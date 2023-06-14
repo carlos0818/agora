@@ -8,7 +8,6 @@ import { IAnswer, IQuestion } from '@/interfaces'
 export const useQuestionnaire = () => {
     const [data, setData] = useState<any>([])
     const [loading, setLoading] = useState(false)
-    const [status, setStatus] = useState(true)
 
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(0)
@@ -21,9 +20,6 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         const $page = document.querySelector(`#wrapper-${ start + 1 }`)
-        if (!$page) {
-            setStatus(false)
-        }
         const $wrapperPage = document.querySelectorAll(`.wrapper-page`)
         for (let i=0; i<$wrapperPage.length; i++) {
             $wrapperPage[i].classList.add('wrapper-hide')
