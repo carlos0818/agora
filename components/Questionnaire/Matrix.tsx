@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, Fragment, useContext, useEffect, useState } from 'react'
 import { InputNumberFormat } from '@react-input/number-format'
+import { NumericFormat } from 'react-number-format'
 
 import { IMatrix } from '@/interfaces'
 
@@ -148,11 +149,19 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
                                         className={ styles['cell-three'] }
                                         style={{ padding: 0 }}
                                     >
-                                        <InputNumberFormat
+                                        {/* <InputNumberFormat
                                             className={ styles['textfield'] }
                                             format='decimal'
                                             maximumFractionDigits={ 2 }
                                             maximumIntegerDigits={ 12 }
+                                            onBlur={ (e) => handleSave(e, answer, index) }
+                                            defaultValue={ value }
+                                        /> */}
+                                        <NumericFormat
+                                            className={ styles['textfield'] }
+                                            allowLeadingZeros
+                                            thousandSeparator=","
+                                            decimalSeparator="."
                                             onBlur={ (e) => handleSave(e, answer, index) }
                                             defaultValue={ value }
                                         />

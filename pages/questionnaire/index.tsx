@@ -1,4 +1,3 @@
-import { useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
 
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
@@ -9,95 +8,23 @@ import { Matrix } from '@/components/Questionnaire/Matrix'
 import { Paginate } from '@/components/Common/Paginate'
 
 import { useQuestionnaire } from '@/hooks/useQuestionnaire'
-import { agoraApi } from '@/api'
-import { AuthContext } from '@/context/auth'
 import { ISelectBox, ITextfield, IMatrix } from '@/interfaces'
 
 import styles from './questionnaire.module.css'
 
 const Questionnaire: NextPage = () => {
-    const { user } = useContext(AuthContext)
-
-    const [hide, setHide] = useState<string[]>([])
-    const [years, setYears] = useState<number[]>([])
-    const [validJSON, setValidJSON] = useState(false)
-    const [showQuestionnaire, setShowQuestionnaire] = useState(false)
-
     const {
         loading,
         data,
         countries,
+        years,
+        showQuestionnaire,
+        validJSON,
+        hide,
+        setHide,
         setStart,
         setEnd,
     } = useQuestionnaire()
-
-    const loadYears = () => {
-        const date = new Date()
-        let year = date.getFullYear()
-        const arrYears = []
-        for (let i=102; i>1; i--) {
-            arrYears.push(year)
-            year = year - 1
-        }
-        setYears(arrYears)
-    }
-
-    useEffect(() => {
-        detectOrientation()
-
-        return () => {
-            let landscape = window.matchMedia("(orientation: landscape)")
-            landscape.removeEventListener('change', detectOrientation)
-        }
-    }, [])
-
-    useEffect(() => {
-        loadYears()
-    }, [])
-
-    useEffect(() => {
-        if(user) {
-            if(!localStorage.getItem('questionnaire') || !validJSON) {
-                getUserAnswers()
-            }
-        }
-    }, [user])
-
-    useEffect(() => {
-        const $containerClass = document.querySelectorAll(`.container`)
-        for (let i=0; i<$containerClass.length; i++) {
-            $containerClass[i]?.classList.remove('wrapper-hide')
-        }
-
-        hide.map(hide => {
-            const $container = document.querySelector(`#container-${ hide }`)
-            $container?.classList.add('wrapper-hide')
-        })
-    }, [hide])
-
-    const detectOrientation = () => {
-        let landscape = window.matchMedia("(orientation: landscape)")
-
-        if (landscape.matches) {
-            setShowQuestionnaire(true)
-        } else {
-            setShowQuestionnaire(false)
-        }
-
-        landscape.addEventListener('change', function (e) {
-            if (e.matches) {
-                setShowQuestionnaire(true)
-            } else {
-                setShowQuestionnaire(false)
-            }
-        })
-    }
-
-    const getUserAnswers = async() => {
-        const { data } = await agoraApi.get(`/question/user-answers?email=${ user?.email }&type=${ user?.type }`)
-        localStorage.setItem('questionnaire', JSON.stringify(data))
-        setValidJSON(true)
-    }
 
     return (
         <HomeLoginWithoutMenuLayout

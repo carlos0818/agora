@@ -27,9 +27,14 @@ export const FooterMobile = () => {
             >
                 <a>Comments</a>
             </Link>
-            <a>
+            <Link
+                href='/'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
               <Image src={ agoralogo } alt='' width={ 140 } height={ 48 } />
-            </a>
+            </Link>
         </footer>
     )
 }

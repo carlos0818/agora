@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, FocusEvent, useContext, useEffect, useState } from 'react'
 
 import { InputNumberFormat } from '@react-input/number-format'
+import { NumericFormat } from 'react-number-format'
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
 import { ITextfield } from '@/interfaces/textfield'
@@ -53,12 +54,21 @@ export const Textfield: FC<Props> = ({ data }) => {
 
     return (
         <div style={{ marginBlockEnd: 20 }}>
-            <InputNumberFormat
+            {/* <InputNumberFormat
                 className='textfield'
                 format='decimal'
                 maximumFractionDigits={ 2 }
                 maximumIntegerDigits={ 12 }
                 placeholder='9999999.99'
+                onBlur={ (e) => handleSave(e) }
+                onChange={ handleChange }
+                value={ answer }
+            /> */}
+            <NumericFormat
+                className='textfield'
+                allowLeadingZeros
+                thousandSeparator=","
+                decimalSeparator="."
                 onBlur={ (e) => handleSave(e) }
                 onChange={ handleChange }
                 value={ answer }

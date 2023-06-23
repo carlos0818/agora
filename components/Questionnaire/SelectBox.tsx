@@ -128,7 +128,7 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
                             key={ resp.id }
                             value={ resp.id }
                         >
-                            { resp.descr } - Score: { resp.score }
+                            { resp.descr }
                         </option>
                     ))
                 }
