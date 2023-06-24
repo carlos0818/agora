@@ -36,6 +36,21 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         setAnswerValue(p => data)
     }, [])
 
+    useEffect(() => {
+        const qnbr = data[0].qnbr
+        const bobject = data[0].bobject
+        const arr = bobject!.split(',')
+        const min = arr[0]
+        const max = arr[1]
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        const checked = storage.filter((store: any) => store.qnbr === qnbr)
+        if (checked.length >= min && checked.length <= max) {
+            setError(false)
+        } else {
+            setError(true)
+        }
+    }, [checks])
+
     const onSelectedOption = async(event: ChangeEvent<HTMLInputElement>) => {
         const id = event.target.value
 

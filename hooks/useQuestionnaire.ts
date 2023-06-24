@@ -15,6 +15,9 @@ export const useQuestionnaire = () => {
     const [validJSON, setValidJSON] = useState(false)
     const [showQuestionnaire, setShowQuestionnaire] = useState(false)
     const [hide, setHide] = useState<string[]>([])
+    const [questionsAnswered, setQuestionsAnswered] = useState<string[]>([])
+
+    console.log('HIDE:', hide)
 
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(0)
@@ -27,6 +30,10 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         loadYears()
+    }, [])
+
+    useEffect(() => {
+        getQuestionsAswered()
     }, [])
 
     useEffect(() => {
@@ -145,6 +152,16 @@ export const useQuestionnaire = () => {
         setValidJSON(true)
     }
 
+    const getQuestionsAswered = () => {
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        const arr = []
+        for (let i=0; i<storage.length; i++) {
+            const id = `${ storage[i].qnbr }-${ storage[i].anbr }`
+            arr.push(id)
+        }
+        setQuestionsAnswered(arr)
+    }
+
     return {
         loading,
         data,
@@ -153,6 +170,7 @@ export const useQuestionnaire = () => {
         showQuestionnaire,
         validJSON,
         hide,
+        questionsAnswered,
         setHide,
         setStart,
         setEnd,

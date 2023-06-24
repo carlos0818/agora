@@ -21,6 +21,7 @@ const Questionnaire: NextPage = () => {
         showQuestionnaire,
         validJSON,
         hide,
+        questionsAnswered,
         setHide,
         setStart,
         setEnd,
@@ -104,6 +105,7 @@ const Questionnaire: NextPage = () => {
                                                                                     {
                                                                                         (question.type === 'Q' && question.object === 'L') &&
                                                                                             <SelectBox
+                                                                                                questionsAnswered={ questionsAnswered }
                                                                                                 data={ dataArray }
                                                                                                 hide={ hide }
                                                                                                 setHide={ setHide }

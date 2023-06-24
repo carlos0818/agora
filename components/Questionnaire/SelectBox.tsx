@@ -6,12 +6,13 @@ import { AuthContext } from '@/context/auth'
 import { ISelectBox } from '@/interfaces'
 
 interface Props {
+    questionsAnswered?: string[]
     data: ISelectBox[]
     hide?: string[]
     setHide?: Dispatch<SetStateAction<string[]>>
 }
 
-export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
+export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
     const { user } = useContext(AuthContext)
 
     const [answer, setAnswer] = useState('')
@@ -37,9 +38,26 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
         setAnswer(answerValue)
     }, [])
 
-    const onSelectedOption = async(id: string) => {
-        setAnswer(id)
+    useEffect(() => {
+        if (questionsAnswered) {
+            const idArr = data[0].id.split('-')
+            const qnbr = idArr[0]
 
+            const find = questionsAnswered.find(ans => {
+                const idArr2 = ans.split('-')
+                const qnbr2 = idArr2[0]
+                if (qnbr2 === qnbr) {
+                    return ans
+                }
+            })
+
+            if (find) {
+                onSelectedOption(find, false)
+            }
+        }
+    }, [])
+
+    const onSelectedOption = async(id: string, save: boolean) => {
         if (setHide && id) {
             let storage = []
             try {
@@ -51,76 +69,81 @@ export const SelectBox: FC<Props> = ({ data, hide = [], setHide }) => {
             }
 
             const resp = data.filter(ans => ans.id === id)
-            const qnbr = Number(resp[0].qnbr)
-            const anbr = Number(resp[0].anbr)
-            const effdt = resp[0].effdt
-            const extravalue = resp[0].extravalue || null
-
-            let flag = false
-            for (let i=0; i<storage.length; i++) {
-                if (Number(storage[i].qnbr) === Number(qnbr)) {
-                    storage[i].qnbr = storage[i].qnbr
-                    storage[i].anbr = anbr
-                    storage[i].extravalue = extravalue
-                    flag = true
-                    break
-                }
-            }
-
-            if (!flag) {
-                storage.push({ qnbr: Number(qnbr), anbr: Number(anbr), extravalue: extravalue })
-            }
-
-            localStorage.setItem('questionnaire', JSON.stringify(storage))
 
             if (resp.length > 0) {
-                const respShowSplit = resp[0].show?.split(',') || null
-                let respHideSplit: any
-                
-                if (resp[0].hide?.substring(0, 4) === 'qnbr') {
-                    const storage = JSON.parse(localStorage.getItem('questionnaire')!)
-                    const numberQuestion = Number(resp[0].hide?.substring(4, 7))
-                    const numberAnswer = resp[0].hide?.substring(8).split(':')
-                    for (let i=0; i<storage.length; i++) {
-                        if (Number(storage[i].qnbr) === numberQuestion) {
-                            for (let j=0; j<numberAnswer.length; j++) {
-                                if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
-                                    respHideSplit = numberAnswer[j].substring(3).split(',')
-                                }
-                            }
-                        }
+                const qnbr = Number(resp[0].qnbr)
+                const anbr = Number(resp[0].anbr)
+                const effdt = resp[0].effdt
+                const extravalue = resp[0].extravalue || null
+
+                let flag = false
+                for (let i=0; i<storage.length; i++) {
+                    if (Number(storage[i].qnbr) === Number(qnbr)) {
+                        storage[i].qnbr = storage[i].qnbr
+                        storage[i].anbr = anbr
+                        storage[i].extravalue = extravalue
+                        flag = true
+                        break
                     }
-                } else {
-                    respHideSplit = resp[0].hide?.split(',') || null
                 }
 
-                let filter: string[] = []
-                if (respShowSplit) {
-                    filter = hide.filter((value: any) => {
-                        return respShowSplit.indexOf(value) < 0
-                    })
-                    setHide(p => filter)
+                if (!flag) {
+                    storage.push({ qnbr: Number(qnbr), anbr: Number(anbr), extravalue: extravalue })
                 }
 
-                if(respHideSplit) {
-                    setHide(p => ([...p, ...respHideSplit]))
-                } else {
-                    setHide(p => ([...p]))
+                if (save)
+                    localStorage.setItem('questionnaire', JSON.stringify(storage))
+
+                if (resp.length > 0) {
+                    const respShowSplit = resp[0].show?.split(',') || null
+                    let respHideSplit: any
+                    
+                    if (resp[0].hide?.substring(0, 4) === 'qnbr') {
+                        // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
+                        // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
+                        // const numberAnswer = resp[0].hide?.substring(8).split(':')
+                        // for (let i=0; i<storage.length; i++) {
+                        //     if (Number(storage[i].qnbr) === numberQuestion) {
+                        //         for (let j=0; j<numberAnswer.length; j++) {
+                        //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
+                        //                 respHideSplit = numberAnswer[j].substring(3).split(',')
+                        //             }
+                        //         }
+                        //     }
+                        // }
+                    } else {
+                        respHideSplit = resp[0].hide?.split(',') || null
+                    }
+
+                    let filter: string[] = []
+                    if (respShowSplit) {
+                        filter = hide.filter((value: any) => respShowSplit.indexOf(value) < 0)
+                        if (save)
+                            setHide(p => filter)
+                    }
+
+                    if(respHideSplit) {
+                        setHide(p => ([...p, ...respHideSplit]))
+                    }
+                }
+
+                if (save) {
+                    setAnswer(id)
+
+                    if (extravalue) {
+                        agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
+                        return
+                    }
+                    agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
                 }
             }
 
-            if (extravalue) {
-                agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
-                return
-            }
-            agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
         }
-
     }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 20 }}>
-            <select className='select' onChange={ (e) => onSelectedOption(e.target.value) } value={ answer }>
+            <select className='select' onChange={ (e) => onSelectedOption(e.target.value, true) } value={ answer }>
                 <option value="">Select an option</option>
                 {
                     data.map(resp => (
