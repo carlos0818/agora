@@ -120,7 +120,7 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                                 onChange={ onSelectedOption }
                                 value={ answer.id }
                                 defaultChecked={ answer.checked }
-                            /> { answer.descr } - {`Score: ${ answer.score } - ${ answer.checked }`}
+                            /> { answer.descr }
                             <span className='check'></span>
                         </label>
                     </div>
