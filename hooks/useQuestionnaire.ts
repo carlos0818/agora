@@ -17,8 +17,6 @@ export const useQuestionnaire = () => {
     const [hide, setHide] = useState<string[]>([])
     const [questionsAnswered, setQuestionsAnswered] = useState<string[]>([])
 
-    console.log('HIDE:', hide)
-
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(0)
 

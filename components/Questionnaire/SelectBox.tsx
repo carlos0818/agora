@@ -143,8 +143,12 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', marginBlockEnd: 20 }}>
-            <select className='select' onChange={ (e) => onSelectedOption(e.target.value, true) } value={ answer }>
-                <option value="">Select an option</option>
+            <select
+                className='select'
+                style={{ fontFamily: answer !== '' ? 'ebrima' : 'ebrima-bold' }}
+                onChange={ (e) => onSelectedOption(e.target.value, true) } value={ answer }
+            >
+                <option value="" disabled selected hidden style={{ color: 'red' }}>Select an option</option>
                 {
                     data.map(resp => (
                         <option

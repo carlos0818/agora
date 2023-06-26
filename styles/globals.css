@@ -469,6 +469,18 @@ details > summary::-webkit-details-marker {
   width: fit-content;
 }
 
+select, select option {
+  color: var(--agora-blue-dark);
+}
+
+select.hidden {
+  display: none;
+}
+
+select.disabled {
+  color: #999999;
+}
+
 .textfield {
   background-color: white;
   border: 2px solid var(--agora-blue-dark);
