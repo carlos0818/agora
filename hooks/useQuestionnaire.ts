@@ -31,10 +31,6 @@ export const useQuestionnaire = () => {
     }, [])
 
     useEffect(() => {
-        getQuestionsAswered()
-    }, [])
-
-    useEffect(() => {
         const $page = document.querySelector(`#wrapper-${ start + 1 }`)
         const $wrapperPage = document.querySelectorAll(`.wrapper-page`)
         for (let i=0; i<$wrapperPage.length; i++) {
@@ -148,6 +144,7 @@ export const useQuestionnaire = () => {
         const { data } = await agoraApi.get(`/question/user-answers?email=${ user?.email }&type=${ user?.type }`)
         localStorage.setItem('questionnaire', JSON.stringify(data))
         setValidJSON(true)
+        getQuestionsAswered()
     }
 
     const getQuestionsAswered = () => {

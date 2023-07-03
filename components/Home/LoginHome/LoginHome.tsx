@@ -18,7 +18,6 @@ export const LoginHome = () => {
     const { user } = useContext(AuthContext)
 
     const [agoraMessages, setAgoraMessages] = useState<IWall[]>([])
-    const [agoraClose, setAgoraClose] = useState()
     const [cardCloseId, setCardCloseId] = useState<number | null>(null)
 
     useEffect(() => {
