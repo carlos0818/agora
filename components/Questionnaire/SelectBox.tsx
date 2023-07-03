@@ -148,7 +148,7 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                 style={{ fontFamily: answer !== '' ? 'ebrima' : 'ebrima-bold' }}
                 onChange={ (e) => onSelectedOption(e.target.value, true) } value={ answer }
             >
-                <option value="" disabled selected hidden style={{ color: 'red' }}>Select an option</option>
+                <option value="" disabled hidden style={{ color: 'red' }}>Select an option</option>
                 {
                     data.map(resp => (
                         <option

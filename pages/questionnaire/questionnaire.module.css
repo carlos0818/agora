@@ -1,3 +1,39 @@
+.progress-container {
+    inline-size: 100%;
+    margin: auto;
+    margin-block-end: 40px;
+    max-inline-size: 800px;
+    position: relative;
+}
+
+.progress-bar {
+    block-size: 24px;
+    inline-size: 100%;
+    border-radius: 15px;
+    background-color: #f2f2f2;
+}
+
+.progress-bar::-webkit-progress-bar {
+    border-radius: 15px;
+    background-color: #f2f2f2;
+}
+
+.progress-bar::-webkit-progress-value {
+    border-radius: 15px;
+    background-color: #07D91C;
+}
+
+.progress-bar::-moz-progress-bar {
+    border-radius: 15px;
+    background-color: #07D91C;
+}
+
+.rocket-image {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+}
+
 @media screen and (min-width: 1024px) {
     .window-glass {
         inline-size: 1024px;

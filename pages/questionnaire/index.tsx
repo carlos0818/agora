@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { NextPage } from 'next'
+import Image from 'next/image'
 
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
@@ -10,7 +12,12 @@ import { Paginate } from '@/components/Common/Paginate'
 import { useQuestionnaire } from '@/hooks/useQuestionnaire'
 import { ISelectBox, ITextfield, IMatrix } from '@/interfaces'
 
+import { AuthContext } from '@/context/auth'
+import { agoraApi } from '@/api'
+
 import styles from './questionnaire.module.css'
+
+import rocketProgressIcon from '@/public/images/rocket-progress.svg'
 
 const Questionnaire: NextPage = () => {
     const {
@@ -26,6 +33,16 @@ const Questionnaire: NextPage = () => {
         setStart,
         setEnd,
     } = useQuestionnaire()
+
+    const { user } = useContext(AuthContext)
+
+    const handleSubmit = async() => {
+        try {
+            await agoraApi.post('/question/submit-questionnaire', { email: user?.email })
+        } catch (error: any) {
+            console.log(error.response.data.message)
+        }
+    }
 
     return (
         <HomeLoginWithoutMenuLayout
@@ -46,6 +63,14 @@ const Questionnaire: NextPage = () => {
                                     : (
                                         <div className={ `window-glass ${ styles['window-glass'] }` }>
                                             <div className={ `window-glass-content` }>
+                                                <div className={ styles['progress-container'] }>
+                                                    <progress className={ styles['progress-bar'] } value="100" max="100" />
+                                                    <Image
+                                                        src={ rocketProgressIcon }
+                                                        alt='Rocket image'
+                                                        className={ styles['rocket-image'] }
+                                                    />
+                                                </div>
                                                 {
                                                     data.map(({ questions }: any, index: number) => {
                                                         return (
@@ -209,6 +234,27 @@ const Questionnaire: NextPage = () => {
                                                     setStart={ setStart }
                                                     setEnd={ setEnd }
                                                 />
+
+                                                <div style={{
+                                                    alignItems: 'center',
+                                                    blockSize: 40,
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    marginBlockStart: 40,
+                                                    marginBlockEnd: 30
+                                                }}>
+                                                    {
+                                                        loading
+                                                        ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
+                                                        : <input
+                                                            type='button'
+                                                            value='Submit'
+                                                            className={ `button-filled` }
+                                                            style={{ borderRadius: 6 }}
+                                                            onClick={ handleSubmit }
+                                                          />
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     )
