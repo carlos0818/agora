@@ -602,6 +602,45 @@ input:checked + .slider:before {
 }
 /* SWITCH */
 
+/* POPUP */
+.locked-background {
+  background-color: rgba(0,0,0,0.5);
+  block-size: 100%;
+  inline-size: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.window-glass-popup {
+  inline-size: 800px;
+  margin: auto;
+  top: 30%;
+  left: calc(50% - 400px);
+  position: absolute;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  margin-block-end: 20px;
+}
+
+.popup-body {
+  color: var(--agora-blue-dark);
+  font-size: 20px;
+  text-align: center;
+  margin-block-end: 20px;
+}
+
+.popup-close {
+  cursor: pointer;
+  font-family: 'ebrima-bold';
+  font-size: 20px;
+}
+/* POPUP */
+
 @media screen and (min-width: 1024px) {
   body {
     background-size: cover;
