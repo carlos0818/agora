@@ -5,6 +5,11 @@
     position: relative;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .card-title {
     color: var(--agora-blue-dark);
     font-family: 'ebrima-bold';

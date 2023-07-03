@@ -18,6 +18,8 @@ export const LoginHome = () => {
     const { user } = useContext(AuthContext)
 
     const [agoraMessages, setAgoraMessages] = useState<IWall[]>([])
+    const [agoraClose, setAgoraClose] = useState()
+    const [cardCloseId, setCardCloseId] = useState<number | null>(null)
 
     useEffect(() => {
         if(user) {
@@ -25,9 +27,25 @@ export const LoginHome = () => {
         }
     }, [user])
 
+    useEffect(() => {
+        if (cardCloseId) {
+            closeAgoraCard(cardCloseId)
+        }
+    }, [cardCloseId])
+
     const loadAgoraMessages = async() => {
         const { data } = await agoraApi.get<IWall[]>(`/wall/agora-messages?email=${ user?.email }`)
         setAgoraMessages(data)
+    }
+
+    const closeAgoraCard = async(index: number) => {
+        try {
+            await agoraApi.post('/wall/close-agora-message', { email: user?.email, index })
+            const filter = agoraMessages.filter(message => message.index !== index)
+            setAgoraMessages(filter)
+        } catch (error) {
+            
+        }
     }
 
     return (
@@ -43,7 +61,12 @@ export const LoginHome = () => {
                         alt='user icon'
                         className={ styles['user-icon'] }
                     />
-                    <input type='text' id='txtShare' className={ styles['textfield-idea'] } placeholder='Share your idea with your contacts...' />
+                    <input
+                        type='text'
+                        id='txtShare'
+                        className={ styles['textfield-idea'] }
+                        placeholder='Share your idea with your contacts...'
+                    />
                     <Image src={ pencilIcon } alt='pencil icon' className={ styles['pencil-icon'] } />
                 </div>
 
@@ -51,10 +74,13 @@ export const LoginHome = () => {
                     agoraMessages.map(message => (
                         <CardInfo
                             key={ message.index }
+                            index={ message.index }
                             title={ message.title }
                             date={ message.dateposted }
                             info={ message.body }
                             actions={ false }
+                            agoraCard
+                            setCardCloseId={ setCardCloseId }
                         />
                     ))
                 }
