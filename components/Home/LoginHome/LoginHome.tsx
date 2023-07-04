@@ -105,6 +105,7 @@ export const LoginHome = () => {
                             info={ message.body }
                             actions={ false }
                             agoraCard
+                            readMore
                             setCardCloseId={ setCardCloseId }
                         />
                     ))
