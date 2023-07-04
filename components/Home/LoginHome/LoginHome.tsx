@@ -57,7 +57,7 @@ export const LoginHome = () => {
     }
 
     const handleSavePost = async(event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter' && post.length > 5) {
+        if (event.key === 'Enter' && post.length > 0) {
             await agoraApi.post('/wall/save-user-post', { email: user?.email, body: post })
 
             const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
