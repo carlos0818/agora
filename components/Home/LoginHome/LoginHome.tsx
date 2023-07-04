@@ -13,6 +13,7 @@ import styles from './login.module.css'
 
 import userIcon from '@/public/images/user-icon.svg'
 import pencilIcon from '@/public/images/pencil-icon.svg'
+import { convertTimeZone } from '@/utils'
 
 export const LoginHome = () => {
     const { user } = useContext(AuthContext)
@@ -118,15 +119,17 @@ export const LoginHome = () => {
                 />
 
                 {
-                    userPosts.map(post => (
-                        <CardInfo
+                    userPosts.map(post => {
+                        const date = convertTimeZone(post.dateposted)
+
+                        return <CardInfo
                             key={ `${ post.index }-${ post.dateposted }` }
                             title={ post.fullname }
-                            date={ post.dateposted }
+                            date={ date }
                             info={ post.body }
                             actions
                         />
-                    ))
+                    })
                 }
                 
                 <div className={ styles['circle-write-mobile'] }></div>
