@@ -17,7 +17,7 @@
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     display: flex;
-    font-family: 'Hind Siliguri';
+    font-family: 'ebrima';
     font-size: 13px;
     font-weight: 500;
     inline-size: 100%;
@@ -61,7 +61,7 @@
     }
 
     .textfield-idea {
-        font-size: 16px;
+        font-size: 15px;
         padding-inline-end: 70px;
     }
 
