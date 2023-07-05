@@ -171,6 +171,7 @@
     .info-wrapper {
         display: flex;
         flex-direction: column;
+        align-items: center;
         /* max-inline-size: 477px; */
     }
 

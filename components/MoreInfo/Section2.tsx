@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import investorImage from '@/public/images/investor-image.png'
+import investorImage from '@/public/images/info-investor-image.png'
 import entrepreneurImage from '@/public/images/entrepreneur-image.png'
 import expertImage from '@/public/images/expert-image.png'
 
