@@ -171,7 +171,7 @@
     .info-wrapper {
         display: flex;
         flex-direction: column;
-        max-inline-size: 477px;
+        /* max-inline-size: 477px; */
     }
 
     .info-title {

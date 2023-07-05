@@ -3,7 +3,9 @@ import Image from 'next/image'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import infoInvestorImage from '@/public/images/info-investor-image.png'
+import investorImage from '@/public/images/investor-image.png'
+import entrepreneurImage from '@/public/images/entrepreneur-image.png'
+import expertImage from '@/public/images/expert-image.png'
 
 interface Props {
     type: string | undefined
@@ -36,7 +38,12 @@ export const Section2: FC<Props> = ({ type, paragraph1, paragraph2, paragraph3, 
                     )
                 }
             </div>
-            <Image src={ infoInvestorImage } alt='' className={ style['info-image'] } />
+            {/* <Image src={ infoInvestorImage } alt='' className={ style['info-image'] } /> */}
+            <Image
+                src={ type === 'investor' ? investorImage : type === 'entrepreneur' ? entrepreneurImage : expertImage }
+                alt={ type === 'investor' ? 'Investor Image' : type === 'entrepreneur' ? 'Entrepreneur image' : 'Expert image'}
+                className={ style['type-image'] }
+            />
         </div>
     )
 }

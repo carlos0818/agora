@@ -31,7 +31,7 @@ export const Section1: FC<Props> = ({ title, subtitle, type }) => {
                     <a className={`button-filled ${ style['button-desktop'] }`}>Sign up as { type }</a>
                 </Link>
             </div>
-            <div className={ style['container-two'] }>
+            {/* <div className={ style['container-two'] }>
                 <Image
                     src={ type === 'investor' ? investorImage : type === 'entrepreneur' ? entrepreneurImage : expertImage }
                     alt={ type === 'investor' ? 'Investor Image' : type === 'entrepreneur' ? 'Entrepreneur image' : 'Expert image'}
@@ -45,7 +45,7 @@ export const Section1: FC<Props> = ({ title, subtitle, type }) => {
                 >
                     <a className={`button-filled ${ style['button-mobile'] }`}>Sign up as { type }</a>
                 </Link>
-            </div>
+            </div> */}
         </div>
     )
 }
