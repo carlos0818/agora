@@ -85,7 +85,7 @@ const SignUpPage: NextPage = () => {
                                     <input
                                         type='text'
                                         id='txtFullname'
-                                        className={ `${ style['field'] } ${ errors.fullname && style['field-error'] }` }
+                                        className={ `field ${ errors.fullname && 'field-error' }` }
                                         { ...register('fullname', {
                                             required: 'Fullname is required',
                                             maxLength: 60
@@ -98,7 +98,7 @@ const SignUpPage: NextPage = () => {
                                     <label>Email</label>
                                     <input
                                         type='email'
-                                        className={ `${ style['field'] } ${ errors.email && style['field-error'] }` }
+                                        className={ `field ${ errors.email && 'field-error' }` }
                                         { ...register('email', {
                                             required: 'Email is required',
                                             validate: {
@@ -112,7 +112,7 @@ const SignUpPage: NextPage = () => {
                                     <label>Password</label>
                                     <input
                                         type='password'
-                                        className={ `${ style['field'] } ${ errors.password && style['field-error'] }` }
+                                        className={ `field ${ errors.password && 'field-error' }` }
                                         { ...register('password', {
                                             required: 'Password is required',
                                             validate: {
@@ -126,7 +126,7 @@ const SignUpPage: NextPage = () => {
                                     <label>Confirm password</label>
                                     <input
                                         type='password'
-                                        className={ `${ style['field'] } ${ errors.confirmPassword && style['field-error'] }` }
+                                        className={ `field ${ errors.confirmPassword && 'field-error' }` }
                                         { ...register('confirmPassword', {
                                             required: 'Confirm password is required',
                                             validate: value => value === getValues('password') || 'Passwords don\'t match'

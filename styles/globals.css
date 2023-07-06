@@ -444,6 +444,22 @@ details > summary::-webkit-details-marker {
   background-image: none;
 }
 
+.field {
+  background-color: white;
+  border: 3px solid var(--agora-blue-dark);
+  border-radius: 100px;
+  color: var(--agora-blue-dark);
+  font-family: 'ebrima';
+  font-size: 15px;
+  outline: none;
+  padding-block: 4px;
+  padding-inline: 12px;
+}
+
+.field.field-error {
+  border-color: #CE0915;
+}
+
 .select {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -482,12 +498,15 @@ select.disabled {
   border: 2px solid var(--agora-blue-dark);
   border-radius: 6px;
   color: var(--agora-blue-dark);
-  /* font-family: 'ebrima'; */
   font-size: 15px;
   outline: none;
   padding-block: 8px;
   padding-inline: 12px;
   position: relative;
+}
+
+input[type=file]::file-selector-button {
+  display: none;
 }
 
 /* PAGINATION */

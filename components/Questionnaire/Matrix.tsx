@@ -1,7 +1,7 @@
-import { ChangeEvent, FC, Fragment, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, FC, Fragment, SetStateAction, useContext, useEffect, useState } from 'react'
 import { NumericFormat } from 'react-number-format'
 
-import { IMatrix } from '@/interfaces'
+import { IMatrix, IQuestion } from '@/interfaces'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
@@ -11,9 +11,14 @@ import styles from './matrix.module.css'
 interface Props {
     data: IMatrix[]
     quantity: number
+    totalQuestions: IQuestion[]
+    questionsAnswered: string[]
+    hide: string[]
+    setTotalUserQuestions: Dispatch<SetStateAction<number>>
+    getQuestionsAnswered: () => void
 }
 
-export const Matrix: FC<Props> = ({ data, quantity }) => {
+export const Matrix: FC<Props> = ({ data, quantity, totalQuestions, questionsAnswered, hide, setTotalUserQuestions, getQuestionsAnswered }) => {
     const { user } = useContext(AuthContext)
 
     const [years, setYears] = useState<number[]>([])
@@ -71,6 +76,12 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
     }
 
     const handleSave = async(event: ChangeEvent<HTMLInputElement>, answer: any, index: number) => {
+        getQuestionsAnswered()
+    
+        const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
+        setTotalUserQuestions(total)
+        console.log(total)
+        
         const value = event.target.value
 
         const storage = JSON.parse(localStorage.getItem('questionnaire')!)

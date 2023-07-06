@@ -1,15 +1,20 @@
-import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
 
-import { ISelectBox } from '@/interfaces'
+import { IQuestion, ISelectBox } from '@/interfaces'
 
 interface Props {
     data: ISelectBox[]
+    totalQuestions: IQuestion[]
+    questionsAnswered: string[]
+    hide: string[]
+    setTotalUserQuestions: Dispatch<SetStateAction<number>>
+    getQuestionsAnswered: () => void
 }
 
-export const CheckboxList: FC<Props> = ({ data }) => {
+export const CheckboxList: FC<Props> = ({ data, totalQuestions, questionsAnswered, hide, setTotalUserQuestions, getQuestionsAnswered }) => {
     const { user } = useContext(AuthContext)
 
     const [answerValue, setAnswerValue] = useState<ISelectBox[]>([])
@@ -46,6 +51,12 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         const checked = storage.filter((store: any) => store.qnbr === qnbr)
         if (checked.length >= min && checked.length <= max) {
             setError(false)
+
+            getQuestionsAnswered()
+    
+            const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
+            setTotalUserQuestions(total)
+            console.log(total)
         } else {
             setError(true)
         }
@@ -99,6 +110,12 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         setChecks(checked.length)
         if (checked.length >= min && checked.length <= max) {
             setError(false)
+
+            getQuestionsAnswered()
+    
+            const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
+            setTotalUserQuestions(total)
+            console.log(total)
         } else {
             setError(true)
         }

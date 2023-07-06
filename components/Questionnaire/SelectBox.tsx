@@ -3,16 +3,19 @@ import { Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'r
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
 
-import { ISelectBox } from '@/interfaces'
+import { IQuestion, ISelectBox } from '@/interfaces'
 
 interface Props {
-    questionsAnswered?: string[]
+    totalQuestions: IQuestion[]
+    questionsAnswered: string[]
     data: ISelectBox[]
     hide?: string[]
     setHide?: Dispatch<SetStateAction<string[]>>
+    setTotalUserQuestions: Dispatch<SetStateAction<number>>
+    getQuestionsAnswered: () => void
 }
 
-export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
+export const SelectBox: FC<Props> = ({ totalQuestions, questionsAnswered, data, hide = [], setHide, setTotalUserQuestions, getQuestionsAnswered }) => {
     const { user } = useContext(AuthContext)
 
     const [answer, setAnswer] = useState('')
@@ -58,7 +61,14 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
     }, [])
 
     const onSelectedOption = async(id: string, save: boolean) => {
+        getQuestionsAnswered()
+
+        const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
+        setTotalUserQuestions(total)
+        console.log(total)
+
         if (setHide && id) {
+
             let storage = []
             try {
                 storage = JSON.parse(localStorage.getItem('questionnaire') || '')
@@ -118,8 +128,9 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                     let filter: string[] = []
                     if (respShowSplit) {
                         filter = hide.filter((value: any) => respShowSplit.indexOf(value) < 0)
-                        if (save)
+                        if (save) {
                             setHide(p => filter)
+                        }
                     }
 
                     if(respHideSplit) {

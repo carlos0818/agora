@@ -16,6 +16,8 @@ export const useQuestionnaire = () => {
     const [showQuestionnaire, setShowQuestionnaire] = useState(false)
     const [hide, setHide] = useState<string[]>([])
     const [questionsAnswered, setQuestionsAnswered] = useState<string[]>([])
+    const [totalQuestions, setTotalQuestions] = useState<IQuestion[]>([])
+    const [totalUserQuestions, setTotalUserQuestions] = useState(0)
 
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(0)
@@ -74,6 +76,7 @@ export const useQuestionnaire = () => {
             const { data: dataQuestion } = await agoraApi.get<IQuestion[]>('/question')
             const { data: dataAnswer } = await agoraApi.get<IAnswer[]>('/question/answer')
             loadData(dataQuestion, dataAnswer)
+            setTotalQuestions(dataQuestion)
         } catch (error) {
             console.log(error)
         }
@@ -144,10 +147,10 @@ export const useQuestionnaire = () => {
         const { data } = await agoraApi.get(`/question/user-answers?email=${ user?.email }&type=${ user?.type }`)
         localStorage.setItem('questionnaire', JSON.stringify(data))
         setValidJSON(true)
-        getQuestionsAswered()
+        getQuestionsAnswered()
     }
 
-    const getQuestionsAswered = () => {
+    const getQuestionsAnswered = () => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         const arr = []
         for (let i=0; i<storage.length; i++) {
@@ -165,7 +168,11 @@ export const useQuestionnaire = () => {
         showQuestionnaire,
         validJSON,
         hide,
+        totalQuestions,
         questionsAnswered,
+        totalUserQuestions,
+        setTotalUserQuestions,
+        getQuestionsAnswered,
         setHide,
         setStart,
         setEnd,

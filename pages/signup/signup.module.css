@@ -34,23 +34,6 @@
     font-family: 'ebrima-bold';
 }
 
-.field {
-    background-color: white;
-    border: 3px solid var(--agora-blue-dark);
-    border-radius: 100px;
-    color: var(--agora-blue-dark);
-    font-family: 'ebrima';
-    font-size: 15px;
-    outline: none;
-    padding-block: 4px;
-    padding-inline: 12px;
-    position: relative;
-}
-
-.field.field-error {
-    border-color: #CE0915;
-}
-
 .g-recaptcha {
     display: flex;
     justify-content: center;

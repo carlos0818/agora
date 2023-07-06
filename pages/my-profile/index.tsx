@@ -107,20 +107,50 @@ const MyProfilePage: NextPage = () => {
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>Required information</p>
                         <div className={ styles['required-text-container'] }>
-                            <p className={ styles['required-text'] }>Company name</p>
+                            <div className={ styles['form-group'] }>
+                                <label>Company name</label>
+                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+                            <div className={ styles['form-group'] }>
+                                <label>Profile photo</label>
+                                <input type='file' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+                            <div className={ styles['form-group'] }>
+                                <label>Email contact</label>
+                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+                            <div className={ styles['form-group'] }>
+                                <label>Phone</label>
+                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+                            <div className={ styles['form-group'] }>
+                                <label>Country</label>
+                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+                            <div className={ styles['form-group'] }>
+                                <label>City</label>
+                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+                            <div className={ styles['form-group'] }>
+                                <label>Address</label>
+                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                            </div>
+
+                            {/* <p className={ styles['required-text'] }>Company name</p>
                             <p className={ styles['required-text'] }>Profile photo</p>
                             <p className={ styles['required-text'] }>Email contact</p>
                             <p className={ styles['required-text'] }>Phone</p>
                             <p className={ styles['required-text'] }>Country</p>
                             <p className={ styles['required-text'] }>City</p>
-                            <p className={ styles['required-text'] }>Address</p>
-                            <hr style={{ border: '1px solid red', width: '100%' }} />
+                            <p className={ styles['required-text'] }>Address</p> */}
+
+                            {/* <hr style={{ border: '1px solid red', width: '100%' }} />
                             <p className={ styles['required-text'] }>Youtube video (optional)</p>
                             <p className={ styles['required-text'] }>Company URL (optional)</p>
                             <p className={ styles['required-text'] }>Facebook URL (optional)</p>
                             <p className={ styles['required-text'] }>Linkedin URL (optional)</p>
                             <p className={ styles['required-text'] }>Twitter URL (optional)</p>
-                            <p className={ styles['required-text'] }>Background picture (optional)</p>
+                            <p className={ styles['required-text'] }>Background picture (optional)</p> */}
                         </div>
                         <p className={ styles['required-description'] }>
                             In order to move forward with the process, we kindly request that you provide us with the necessary information as mentioned above.

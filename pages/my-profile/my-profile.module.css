@@ -86,16 +86,29 @@
     margin-block-start: 16px;
 }
 
-.required-text {
-    color: rgba(16, 40, 79, 0.7);
-    font-size: 16px;
-}
-
 .required-description {
     color: var(--agora-blue-dark);
     font-size: 13px;
-    margin-block-start: 16px;
+    margin-block-start: 32px;
     text-align: justify;
+}
+
+.form-group {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    inline-size: 100%;
+    justify-content: flex-start;
+    margin-block-start: 8px;
+}
+
+.form-group label {
+    inline-size: 150px;
+}
+
+.textfield {
+    inline-size: calc(100% - 24px);
 }
 
 .progress-container {
@@ -321,6 +334,18 @@
 
     .texts {
         font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .form-group {
+        align-items: center;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .textfield {
+        max-inline-size: 100%;
     }
 }
 

@@ -1,15 +1,21 @@
-import { ChangeEvent, FC, FocusEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, FC, FocusEvent, SetStateAction, useContext, useEffect, useState } from 'react'
 
 import { NumericFormat, PatternFormat } from 'react-number-format'
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
 import { ITextfield } from '@/interfaces/textfield'
+import { IQuestion } from '@/interfaces'
 
 interface Props {
     data: ITextfield
+    totalQuestions: IQuestion[]
+    questionsAnswered: string[]
+    hide: string[]
+    setTotalUserQuestions: Dispatch<SetStateAction<number>>
+    getQuestionsAnswered: () => void
 }
 
-export const Textfield: FC<Props> = ({ data }) => {
+export const Textfield: FC<Props> = ({ data, totalQuestions, questionsAnswered, hide, setTotalUserQuestions, getQuestionsAnswered }) => {
     const { user } = useContext(AuthContext)
 
     const [answer, setAnswer] = useState('')
@@ -29,6 +35,12 @@ export const Textfield: FC<Props> = ({ data }) => {
     }
 
     const handleSave = async(event: FocusEvent<HTMLInputElement, Element>) => {
+        getQuestionsAnswered()
+    
+        const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
+        setTotalUserQuestions(total)
+        console.log(total)
+
         const value = event.target.value
 
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')

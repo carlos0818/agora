@@ -78,7 +78,7 @@ const LoginPage: NextPage = () => {
                                     <label>Email</label>
                                     <input
                                         type='text'
-                                        className={ `${ style['field'] } ${ errors.email && style['field-error'] }` }
+                                        className={ `field ${ errors.email && 'field-error' }` }
                                         { ...register('email', {
                                             required: 'This field is required',
                                         })}
@@ -89,7 +89,7 @@ const LoginPage: NextPage = () => {
                                     <label>Password</label>
                                     <input
                                         type='password'
-                                        className={ `${ style['field'] } ${ errors.password && style['field-error'] }` }
+                                        className={ `field ${ errors.password && 'field-error' }` }
                                         { ...register('password', {
                                             required: 'This field is required'
                                         })}
