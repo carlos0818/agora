@@ -5,9 +5,11 @@ import countriesList from '@/db/countries'
 
 import { IAnswer, IQuestion } from '@/interfaces'
 import { AuthContext } from '@/context/auth'
+import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
+    const { answeredQuestions, updateTotalQuestions, updateAnsweredQuestions, updateAllAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [data, setData] = useState<any>([])
     const [loading, setLoading] = useState(false)
@@ -16,8 +18,6 @@ export const useQuestionnaire = () => {
     const [showQuestionnaire, setShowQuestionnaire] = useState(false)
     const [hide, setHide] = useState<string[]>([])
     const [questionsAnswered, setQuestionsAnswered] = useState<string[]>([])
-    const [totalQuestions, setTotalQuestions] = useState<IQuestion[]>([])
-    const [totalUserQuestions, setTotalUserQuestions] = useState(0)
 
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(0)
@@ -76,7 +76,8 @@ export const useQuestionnaire = () => {
             const { data: dataQuestion } = await agoraApi.get<IQuestion[]>('/question')
             const { data: dataAnswer } = await agoraApi.get<IAnswer[]>('/question/answer')
             loadData(dataQuestion, dataAnswer)
-            setTotalQuestions(dataQuestion)
+            const filter = dataQuestion.filter(question => question.type !== 'T' && question.type !== 'S')
+            updateTotalQuestions(filter.length)
         } catch (error) {
             console.log(error)
         }
@@ -157,7 +158,22 @@ export const useQuestionnaire = () => {
             const id = `${ storage[i].qnbr }-${ storage[i].anbr }`
             arr.push(id)
         }
+
+        let removeDuplicates: any = []
+        for (let i=0; i<arr.length; i++) {
+            const split = arr[i].split('-')
+            const find = removeDuplicates.find((remove: any) => {
+                const split2 = remove.split('-')
+                if (split[0] === split2[0]) {
+                    return remove
+                }
+            })
+            if (!find)
+                removeDuplicates.push(`${ split[0] }-${ split[1] }`)
+        }
+
         setQuestionsAnswered(arr)
+        updateAllAnsweredQuestions(removeDuplicates)
     }
 
     return {
@@ -168,10 +184,7 @@ export const useQuestionnaire = () => {
         showQuestionnaire,
         validJSON,
         hide,
-        totalQuestions,
         questionsAnswered,
-        totalUserQuestions,
-        setTotalUserQuestions,
         getQuestionsAnswered,
         setHide,
         setStart,

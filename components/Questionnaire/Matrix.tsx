@@ -1,25 +1,23 @@
 import { ChangeEvent, Dispatch, FC, Fragment, SetStateAction, useContext, useEffect, useState } from 'react'
 import { NumericFormat } from 'react-number-format'
 
-import { IMatrix, IQuestion } from '@/interfaces'
+import { IMatrix } from '@/interfaces'
 
 import { agoraApi } from '@/api'
+
 import { AuthContext } from '@/context/auth'
+import { QuestionnaireContext } from '@/context/questionnaire'
 
 import styles from './matrix.module.css'
 
 interface Props {
     data: IMatrix[]
     quantity: number
-    totalQuestions: IQuestion[]
-    questionsAnswered: string[]
-    hide: string[]
-    setTotalUserQuestions: Dispatch<SetStateAction<number>>
-    getQuestionsAnswered: () => void
 }
 
-export const Matrix: FC<Props> = ({ data, quantity, totalQuestions, questionsAnswered, hide, setTotalUserQuestions, getQuestionsAnswered }) => {
+export const Matrix: FC<Props> = ({ data, quantity }) => {
     const { user } = useContext(AuthContext)
+    const { answeredQuestions, updateAnsweredQuestions, deleteAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [years, setYears] = useState<number[]>([])
     const [values, setValues] = useState<any[]>([])
@@ -76,15 +74,12 @@ export const Matrix: FC<Props> = ({ data, quantity, totalQuestions, questionsAns
     }
 
     const handleSave = async(event: ChangeEvent<HTMLInputElement>, answer: any, index: number) => {
-        getQuestionsAnswered()
-    
-        const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
-        setTotalUserQuestions(total)
-        console.log(total)
-        
         const value = event.target.value
 
+        console.log('ANSWER:', answer)
+
         const storage = JSON.parse(localStorage.getItem('questionnaire')!)
+
         let split: any[] = []
         let flagSplit = false
         for (let i=0; i<storage.length; i++) {
@@ -122,8 +117,54 @@ export const Matrix: FC<Props> = ({ data, quantity, totalQuestions, questionsAns
         if (!flag) {
             storage.push({ qnbr: answer.qnbr, anbr: answer.anbr, extravalue: answerValues })
         }
-
+        
         localStorage.setItem('questionnaire', JSON.stringify(storage))
+        
+        let exists = false
+        for (let i=0; i<answeredQuestions.length; i++) {
+            const split = answeredQuestions[i].split('-')
+            if (Number(split[0]) === Number(answer.qnbr)) {
+                exists = true
+                break
+            }
+        }
+
+        if (!exists)
+            updateAnsweredQuestions(`${ answer.qnbr }-${ answer.anbr }`)
+
+        if (value === '') {
+            const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+            const filter = storage.filter((element: any) => {
+                if (Number(element.qnbr) === Number(answer.qnbr)) {
+                    const split = element.extravalue.split('|')
+                    console.log('SPLIT', split)
+                    let flag = false
+                    for (let i=0; i<split.length; i++) {
+                        if (split[i] !== '') {
+                            flag = true
+                            break
+                        }
+                    }
+    
+                    console.log('FLAG', flag)
+    
+                    if (!flag) {
+                        deleteAnsweredQuestions(`${ answer.qnbr }-${ answer.anbr }`)
+                        return null
+                    }
+                    return element
+                }
+                return element
+            })
+            console.log('FILTER', filter)
+            if (filter.length > 0) {
+                localStorage.setItem('questionnaire', JSON.stringify(filter))
+
+                const { data: maxVersion } = await agoraApi.get<number>(`/question/get-user-question-version?email=${ user?.email }`)
+                await agoraApi.post('/question/delete-question', { email: user?.email, qeffdt: answer.effdt, qnbr: answer.qnbr.toString(), anbr: answer.anbr.toString(), qversion: maxVersion.toString() })
+                return
+            }
+        }
 
         const { data: maxVersion } = await agoraApi.get<number>(`/question/get-user-question-version?email=${ user?.email }`)
         const info = { email: user?.email, qeffdt: answer.effdt, qnbr: answer.qnbr.toString(), anbr: answer.anbr.toString(), qversion: maxVersion.toString(), extravalue: answerValues }

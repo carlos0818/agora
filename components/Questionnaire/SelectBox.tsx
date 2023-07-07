@@ -2,21 +2,20 @@ import { Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'r
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
+import { QuestionnaireContext } from '@/context/questionnaire'
 
-import { IQuestion, ISelectBox } from '@/interfaces'
+import { ISelectBox } from '@/interfaces'
 
 interface Props {
-    totalQuestions: IQuestion[]
     questionsAnswered: string[]
     data: ISelectBox[]
     hide?: string[]
     setHide?: Dispatch<SetStateAction<string[]>>
-    setTotalUserQuestions: Dispatch<SetStateAction<number>>
-    getQuestionsAnswered: () => void
 }
 
-export const SelectBox: FC<Props> = ({ totalQuestions, questionsAnswered, data, hide = [], setHide, setTotalUserQuestions, getQuestionsAnswered }) => {
+export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
     const { user } = useContext(AuthContext)
+    const { updateHide, updateAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -61,14 +60,11 @@ export const SelectBox: FC<Props> = ({ totalQuestions, questionsAnswered, data, 
     }, [])
 
     const onSelectedOption = async(id: string, save: boolean) => {
-        getQuestionsAnswered()
-
-        const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
-        setTotalUserQuestions(total)
-        console.log(total)
+        if (answer === '' && save) {
+            updateAnsweredQuestions(id)
+        }
 
         if (setHide && id) {
-
             let storage = []
             try {
                 storage = JSON.parse(localStorage.getItem('questionnaire') || '')
@@ -130,6 +126,7 @@ export const SelectBox: FC<Props> = ({ totalQuestions, questionsAnswered, data, 
                         filter = hide.filter((value: any) => respShowSplit.indexOf(value) < 0)
                         if (save) {
                             setHide(p => filter)
+                            updateHide(filter.length)
                         }
                     }
 
@@ -148,7 +145,6 @@ export const SelectBox: FC<Props> = ({ totalQuestions, questionsAnswered, data, 
                     agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
                 }
             }
-
         }
     }
 

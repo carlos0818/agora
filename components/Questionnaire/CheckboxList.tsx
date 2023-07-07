@@ -1,21 +1,19 @@
-import { ChangeEvent, Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
 
 import { agoraApi } from '@/api'
-import { AuthContext } from '@/context/auth'
 
-import { IQuestion, ISelectBox } from '@/interfaces'
+import { AuthContext } from '@/context/auth'
+import { QuestionnaireContext } from '@/context/questionnaire'
+
+import { ISelectBox } from '@/interfaces'
 
 interface Props {
     data: ISelectBox[]
-    totalQuestions: IQuestion[]
-    questionsAnswered: string[]
-    hide: string[]
-    setTotalUserQuestions: Dispatch<SetStateAction<number>>
-    getQuestionsAnswered: () => void
 }
 
-export const CheckboxList: FC<Props> = ({ data, totalQuestions, questionsAnswered, hide, setTotalUserQuestions, getQuestionsAnswered }) => {
+export const CheckboxList: FC<Props> = ({ data }) => {
     const { user } = useContext(AuthContext)
+    const { answeredQuestions, updateAnsweredQuestions, deleteAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [answerValue, setAnswerValue] = useState<ISelectBox[]>([])
     const [checks, setChecks] = useState(0)
@@ -49,14 +47,27 @@ export const CheckboxList: FC<Props> = ({ data, totalQuestions, questionsAnswere
         const max = arr[1]
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         const checked = storage.filter((store: any) => store.qnbr === qnbr)
+        if (checked.length < min || checked.length > max) {
+            for (let i=0; i<answeredQuestions.length; i++) {
+                const split = answeredQuestions[i].split('-')
+                if (split[0] === qnbr.toString()) {
+                    console.log('CHECKBOX:', answeredQuestions[i])
+                    deleteAnsweredQuestions(answeredQuestions[i])
+                }
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        const qnbr = data[0].qnbr
+        const bobject = data[0].bobject
+        const arr = bobject!.split(',')
+        const min = arr[0]
+        const max = arr[1]
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        const checked = storage.filter((store: any) => store.qnbr === qnbr)
         if (checked.length >= min && checked.length <= max) {
             setError(false)
-
-            getQuestionsAnswered()
-    
-            const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
-            setTotalUserQuestions(total)
-            console.log(total)
         } else {
             setError(true)
         }
@@ -110,14 +121,10 @@ export const CheckboxList: FC<Props> = ({ data, totalQuestions, questionsAnswere
         setChecks(checked.length)
         if (checked.length >= min && checked.length <= max) {
             setError(false)
-
-            getQuestionsAnswered()
-    
-            const total = Number(((questionsAnswered.length * 100) / (totalQuestions.length - hide.length)).toFixed(0))
-            setTotalUserQuestions(total)
-            console.log(total)
+            updateAnsweredQuestions(`${ qnbr }-${ anbr }`)
         } else {
             setError(true)
+            deleteAnsweredQuestions(`${ qnbr }-${ anbr }`)
         }
     }
 

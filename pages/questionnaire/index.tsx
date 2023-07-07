@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
-import Image from 'next/image'
 
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
@@ -13,11 +12,11 @@ import { useQuestionnaire } from '@/hooks/useQuestionnaire'
 import { ISelectBox, ITextfield, IMatrix } from '@/interfaces'
 
 import { AuthContext } from '@/context/auth'
+import { QuestionnaireContext } from '@/context/questionnaire'
 import { agoraApi } from '@/api'
 
 import styles from './questionnaire.module.css'
 
-import rocketProgressIcon from '@/public/images/rocket-progress.svg'
 import { Modal } from '@/components/Common/Modal'
 
 const Questionnaire: NextPage = () => {
@@ -29,10 +28,7 @@ const Questionnaire: NextPage = () => {
         showQuestionnaire,
         validJSON,
         hide,
-        totalQuestions,
         questionsAnswered,
-        totalUserQuestions,
-        setTotalUserQuestions,
         getQuestionsAnswered,
         setHide,
         setStart,
@@ -40,6 +36,7 @@ const Questionnaire: NextPage = () => {
     } = useQuestionnaire()
 
     const { user } = useContext(AuthContext)
+    const { percentage, totalQuestions, hide: globalHide, answeredQuestions, updateHide, updatePercentage, updateAllAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [errorMessage, setErrorMessage] = useState(null)
     const [error, setError] = useState(false)
@@ -58,6 +55,18 @@ const Questionnaire: NextPage = () => {
             setSubmitLoading(false)
         }
     }
+
+    useEffect(() => {
+        console.log('answeredQuestions', answeredQuestions)
+        console.log('totalQuestions:', totalQuestions)
+        console.log('globalHide:', globalHide)
+
+        updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
+    }, [questionsAnswered, globalHide, answeredQuestions, totalQuestions])
+
+    useEffect(() => {
+        updateHide(hide.length)
+    }, [hide])
 
     return (
         <>
@@ -80,13 +89,8 @@ const Questionnaire: NextPage = () => {
                                             <div className={ `window-glass ${ styles['window-glass'] }` }>
                                                 <div className={ `window-glass-content` }>
                                                     <div className={ styles['progress-container'] }>
-                                                        <progress className={ styles['progress-bar'] } value={ totalUserQuestions } max="100">
-                                                            {/* <Image
-                                                                src={ rocketProgressIcon }
-                                                                alt='Rocket image'
-                                                                className={ styles['rocket-image'] }
-                                                            /> */}
-                                                        </progress>
+                                                        <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
+                                                        { (percentage !== Infinity && !isNaN(percentage)) && percentage }
                                                     </div>
                                                     {
                                                         data.map(({ questions }: any, index: number) => {
@@ -147,13 +151,13 @@ const Questionnaire: NextPage = () => {
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'L') &&
                                                                                                 <SelectBox
-                                                                                                    totalQuestions={ totalQuestions }
+                                                                                                    // totalQuestions={ totalQuestions }
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
                                                                                                     hide={ hide }
                                                                                                     setHide={ setHide }
-                                                                                                    setTotalUserQuestions={ setTotalUserQuestions }
-                                                                                                    getQuestionsAnswered={ getQuestionsAnswered }
+                                                                                                    // setTotalUserQuestions={ setTotalUserQuestions }
+                                                                                                    // getQuestionsAnswered={ getQuestionsAnswered }
                                                                                                 />
                                                                                         }
                                                                                         {
@@ -188,34 +192,34 @@ const Questionnaire: NextPage = () => {
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'C') &&
                                                                                                 <SelectBox
-                                                                                                    totalQuestions={ totalQuestions }
+                                                                                                    // totalQuestions={ totalQuestions }
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
                                                                                                     setHide={ setHide }
-                                                                                                    setTotalUserQuestions={ setTotalUserQuestions }
-                                                                                                    getQuestionsAnswered={ getQuestionsAnswered }
+                                                                                                    // setTotalUserQuestions={ setTotalUserQuestions }
+                                                                                                    // getQuestionsAnswered={ getQuestionsAnswered }
                                                                                                 />
                                                                                         }
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'Y') &&
                                                                                                 <SelectBox
-                                                                                                    totalQuestions={ totalQuestions }
+                                                                                                    // totalQuestions={ totalQuestions }
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
                                                                                                     setHide={ setHide }
-                                                                                                    setTotalUserQuestions={ setTotalUserQuestions }
-                                                                                                    getQuestionsAnswered={ getQuestionsAnswered }
+                                                                                                    // setTotalUserQuestions={ setTotalUserQuestions }
+                                                                                                    // getQuestionsAnswered={ getQuestionsAnswered }
                                                                                                 />
                                                                                         }
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'M') &&
                                                                                                 <CheckboxList
-                                                                                                    totalQuestions={ totalQuestions }
-                                                                                                    questionsAnswered={ questionsAnswered }
-                                                                                                    hide={ hide }
+                                                                                                    // totalQuestions={ totalQuestions }
+                                                                                                    // questionsAnswered={ questionsAnswered }
+                                                                                                    // hide={ hide }
                                                                                                     data={ dataArray }
-                                                                                                    setTotalUserQuestions={ setTotalUserQuestions }
-                                                                                                    getQuestionsAnswered={ getQuestionsAnswered }
+                                                                                                    // setTotalUserQuestions={ setTotalUserQuestions }
+                                                                                                    // getQuestionsAnswered={ getQuestionsAnswered }
                                                                                                 />
                                                                                         }
                                                                                         {
@@ -230,11 +234,11 @@ const Questionnaire: NextPage = () => {
                                                                                             (question.type === 'Q' && question.object === 'F') &&
                                                                                                 <Textfield
                                                                                                     data={ textfield }
-                                                                                                    totalQuestions={ totalQuestions }
-                                                                                                    questionsAnswered={ questionsAnswered }
-                                                                                                    hide={ hide }
-                                                                                                    setTotalUserQuestions={ setTotalUserQuestions }
-                                                                                                    getQuestionsAnswered={ getQuestionsAnswered }
+                                                                                                    // totalQuestions={ totalQuestions }
+                                                                                                    // questionsAnswered={ questionsAnswered }
+                                                                                                    // hide={ hide }
+                                                                                                    // setTotalUserQuestions={ setTotalUserQuestions }
+                                                                                                    // getQuestionsAnswered={ getQuestionsAnswered }
                                                                                                 />
                                                                                         }
                                                                                         {
@@ -254,11 +258,11 @@ const Questionnaire: NextPage = () => {
                                                                                                 <Matrix
                                                                                                     data={ dataArray2 }
                                                                                                     quantity={ question.bobject }
-                                                                                                    totalQuestions={ totalQuestions }
-                                                                                                    questionsAnswered={ questionsAnswered }
-                                                                                                    hide={ hide }
-                                                                                                    setTotalUserQuestions={ setTotalUserQuestions }
-                                                                                                    getQuestionsAnswered={ getQuestionsAnswered }
+                                                                                                    // totalQuestions={ totalQuestions }
+                                                                                                    // questionsAnswered={ questionsAnswered }
+                                                                                                    // hide={ hide }
+                                                                                                    // setTotalUserQuestions={ setTotalUserQuestions }
+                                                                                                    // getQuestionsAnswered={ getQuestionsAnswered }
                                                                                                 />
                                                                                         }
                                                                                     </div>
