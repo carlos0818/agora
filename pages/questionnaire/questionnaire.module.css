@@ -10,7 +10,7 @@
     block-size: 24px;
     inline-size: 100%;
     border-radius: 15px;
-    background-color: #f2f2f2;
+    background-color: white;
     background-image: url('/images/rocket-progress.svg');
     background-repeat: no-repeat;
     background-position-x: calc(100% - 8px);
@@ -19,7 +19,7 @@
 
 .progress-bar::-webkit-progress-bar {
     border-radius: 15px;
-    background-color: #f2f2f2;
+    background-color: white;
 }
 
 .progress-bar::-webkit-progress-value {

@@ -1,6 +1,6 @@
-import { ChangeEvent, Dispatch, FC, FocusEvent, SetStateAction, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, FocusEvent, useContext, useEffect, useState } from 'react'
 
-import { NumericFormat, PatternFormat } from 'react-number-format'
+import { NumericFormat } from 'react-number-format'
 
 import { agoraApi } from '@/api'
 
@@ -10,11 +10,6 @@ import { ITextfield } from '@/interfaces/textfield'
 
 interface Props {
     data: ITextfield
-    // totalQuestions: IQuestion[]
-    // questionsAnswered: string[]
-    // hide: string[]
-    // setTotalUserQuestions: Dispatch<SetStateAction<number>>
-    // getQuestionsAnswered: () => void
 }
 
 export const Textfield: FC<Props> = ({ data }) => {

@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FC, Fragment, SetStateAction, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, Fragment, useContext, useEffect, useState } from 'react'
 import { NumericFormat } from 'react-number-format'
 
 import { IMatrix } from '@/interfaces'
@@ -76,8 +76,6 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
     const handleSave = async(event: ChangeEvent<HTMLInputElement>, answer: any, index: number) => {
         const value = event.target.value
 
-        console.log('ANSWER:', answer)
-
         const storage = JSON.parse(localStorage.getItem('questionnaire')!)
 
         let split: any[] = []
@@ -137,7 +135,6 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
             const filter = storage.filter((element: any) => {
                 if (Number(element.qnbr) === Number(answer.qnbr)) {
                     const split = element.extravalue.split('|')
-                    console.log('SPLIT', split)
                     let flag = false
                     for (let i=0; i<split.length; i++) {
                         if (split[i] !== '') {
@@ -145,8 +142,6 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
                             break
                         }
                     }
-    
-                    console.log('FLAG', flag)
     
                     if (!flag) {
                         deleteAnsweredQuestions(`${ answer.qnbr }-${ answer.anbr }`)
@@ -156,7 +151,7 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
                 }
                 return element
             })
-            console.log('FILTER', filter)
+
             if (filter.length > 0) {
                 localStorage.setItem('questionnaire', JSON.stringify(filter))
 

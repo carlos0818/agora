@@ -185,7 +185,6 @@ export const useQuestionnaire = () => {
         validJSON,
         hide,
         questionsAnswered,
-        getQuestionsAnswered,
         setHide,
         setStart,
         setEnd,

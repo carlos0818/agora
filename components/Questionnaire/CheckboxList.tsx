@@ -41,21 +41,33 @@ export const CheckboxList: FC<Props> = ({ data }) => {
 
     useEffect(() => {
         const qnbr = data[0].qnbr
+        const anbr = data[0].anbr
         const bobject = data[0].bobject
         const arr = bobject!.split(',')
         const min = arr[0]
         const max = arr[1]
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         const checked = storage.filter((store: any) => store.qnbr === qnbr)
-        if (checked.length < min || checked.length > max) {
+
+        // console.log('aaaaaaaaaaaaaaaaaa')
+        if (!(checked.length >= min && checked.length <= max)) {
             for (let i=0; i<answeredQuestions.length; i++) {
                 const split = answeredQuestions[i].split('-')
-                if (split[0] === qnbr.toString()) {
-                    console.log('CHECKBOX:', answeredQuestions[i])
+                console.log('split[0]', split[0])
+                console.log('split[1]', split[1])
+                if (Number(split[0]) === Number(qnbr)) {
+                    console.log('entró', answeredQuestions[i])
                     deleteAnsweredQuestions(answeredQuestions[i])
                 }
             }
         }
+
+        // for (let i=0; i<answeredQuestions.length; i++) {
+        //     const split = answeredQuestions[i].split('-')
+        //     if (split[0] === qnbr.toString()) {
+        //         deleteAnsweredQuestions(answeredQuestions[i])
+        //     }
+        // }
     }, [])
 
     useEffect(() => {
@@ -121,10 +133,25 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         setChecks(checked.length)
         if (checked.length >= min && checked.length <= max) {
             setError(false)
-            updateAnsweredQuestions(`${ qnbr }-${ anbr }`)
+
+            let flag = false
+            for (let i=0; i<answeredQuestions.length; i++) {
+                const split = answeredQuestions[i].split('-')
+                if (Number(split[0]) === Number(qnbr)) {
+                    flag = true
+                }
+            }
+            if (!flag)
+                updateAnsweredQuestions(`${ qnbr }-${ anbr }`)
         } else {
             setError(true)
-            deleteAnsweredQuestions(`${ qnbr }-${ anbr }`)
+            console.log('entró')
+            for (let i=0; i<answeredQuestions.length; i++) {
+                const split = answeredQuestions[i].split('-')
+                if (Number(split[0]) === Number(qnbr)) {
+                    deleteAnsweredQuestions(`${ qnbr }-${ split[1] }`)
+                }
+            }
         }
     }
 
