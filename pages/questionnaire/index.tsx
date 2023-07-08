@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
@@ -34,8 +35,10 @@ const Questionnaire: NextPage = () => {
         setEnd,
     } = useQuestionnaire()
 
+    const router = useRouter()
+
     const { user } = useContext(AuthContext)
-    const { percentage, totalQuestions, hide: globalHide, answeredQuestions, updateHide, updatePercentage, updateAllAnsweredQuestions } = useContext(QuestionnaireContext)
+    const { percentage } = useContext(QuestionnaireContext)
 
     const [errorMessage, setErrorMessage] = useState(null)
     const [error, setError] = useState(false)
@@ -48,32 +51,14 @@ const Questionnaire: NextPage = () => {
         try {
             await agoraApi.post('/question/submit-questionnaire', { email: user?.email })
             setSubmitLoading(false)
+            router.replace('/my-profile')
         } catch (error: any) {
             setError(true)
             setErrorMessage(error.response.data.message)
             setSubmitLoading(false)
         }
     }
-
-    useEffect(() => {
-        if (answeredQuestions.length > 0 && totalQuestions > 0) {
-            updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
-        } else {
-            updatePercentage(0)
-        }
-    }, [questionsAnswered, globalHide, answeredQuestions, totalQuestions])
-
-    useEffect(() => {
-        let removeDuplicates: string[] = []
-        for (let i=0; i<hide.length; i++) {
-            const find = removeDuplicates.find((remove: any) => remove === hide[i])
-            if (!find)
-                removeDuplicates.push(hide[i])
-        }
-
-        updateHide(removeDuplicates.length)
-    }, [hide])
-
+    
     return (
         <>
             <HomeLoginWithoutMenuLayout
@@ -266,26 +251,30 @@ const Questionnaire: NextPage = () => {
                                                         setEnd={ setEnd }
                                                     />
 
-                                                    <div style={{
-                                                        alignItems: 'center',
-                                                        blockSize: 40,
-                                                        display: 'flex',
-                                                        justifyContent: 'center',
-                                                        marginBlockStart: 40,
-                                                        marginBlockEnd: 30
-                                                    }}>
-                                                        {
-                                                            submitLoading
-                                                            ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
-                                                            : <input
-                                                                type='button'
-                                                                value='Submit'
-                                                                className={ `button-filled` }
-                                                                style={{ borderRadius: 6 }}
-                                                                onClick={ handleSubmit }
-                                                            />
-                                                        }
-                                                    </div>
+                                                    {
+                                                        percentage === 100 && (
+                                                            <div style={{
+                                                                alignItems: 'center',
+                                                                blockSize: 40,
+                                                                display: 'flex',
+                                                                justifyContent: 'center',
+                                                                marginBlockStart: 40,
+                                                                marginBlockEnd: 30
+                                                            }}>
+                                                                {
+                                                                    submitLoading
+                                                                    ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
+                                                                    : <input
+                                                                        type='button'
+                                                                        value='Submit'
+                                                                        className={ `button-filled` }
+                                                                        style={{ borderRadius: 6 }}
+                                                                        onClick={ handleSubmit }
+                                                                    />
+                                                                }
+                                                            </div>
+                                                        )
+                                                    }
                                                 </div>
                                             </div>
                                         )

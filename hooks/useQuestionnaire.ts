@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { agoraApi } from '@/api'
 import countriesList from '@/db/countries'
@@ -9,7 +10,18 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
-    const { answeredQuestions, updateTotalQuestions, updateAnsweredQuestions, updateAllAnsweredQuestions } = useContext(QuestionnaireContext)
+
+    const router = useRouter()
+
+    const {
+        totalQuestions,
+        hide: globalHide,
+        answeredQuestions,
+        updateTotalQuestions,
+        updateHide,
+        updatePercentage,
+        updateAllAnsweredQuestions,
+    } = useContext(QuestionnaireContext)
 
     const [data, setData] = useState<any>([])
     const [loading, setLoading] = useState(false)
@@ -59,6 +71,12 @@ export const useQuestionnaire = () => {
     }, [user])
 
     useEffect(() => {
+        if (user) {
+            validateCompleteQuestionnaire()
+        }
+    }, [user])
+
+    useEffect(() => {
         const $containerClass = document.querySelectorAll(`.container`)
         for (let i=0; i<$containerClass.length; i++) {
             $containerClass[i]?.classList.remove('wrapper-hide')
@@ -69,6 +87,33 @@ export const useQuestionnaire = () => {
             $container?.classList.add('wrapper-hide')
         })
     }, [hide])
+
+    useEffect(() => {
+        if (answeredQuestions.length > 0 && totalQuestions > 0) {
+            updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
+        } else {
+            updatePercentage(0)
+        }
+    }, [questionsAnswered, globalHide, answeredQuestions, totalQuestions])
+
+    useEffect(() => {
+        let removeDuplicates: string[] = []
+        for (let i=0; i<hide.length; i++) {
+            const find = removeDuplicates.find((remove: any) => remove === hide[i])
+            if (!find)
+                removeDuplicates.push(hide[i])
+        }
+
+        updateHide(removeDuplicates.length)
+    }, [hide])
+
+    const validateCompleteQuestionnaire = async() => {
+        try {
+            await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
+        } catch (error) {
+            router.replace('/my-profile')
+        }
+    }
 
     const loadQuestions = async() => {
         setLoading(true)
