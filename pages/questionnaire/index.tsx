@@ -64,7 +64,14 @@ const Questionnaire: NextPage = () => {
     }, [questionsAnswered, globalHide, answeredQuestions, totalQuestions])
 
     useEffect(() => {
-        updateHide(hide.length)
+        let removeDuplicates: string[] = []
+        for (let i=0; i<hide.length; i++) {
+            const find = removeDuplicates.find((remove: any) => remove === hide[i])
+            if (!find)
+                removeDuplicates.push(hide[i])
+        }
+
+        updateHide(removeDuplicates.length)
     }, [hide])
 
     return (
@@ -89,7 +96,9 @@ const Questionnaire: NextPage = () => {
                                                 <div className={ `window-glass-content` }>
                                                     <div className={ styles['progress-container'] }>
                                                         <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
-                                                        { (percentage !== Infinity && !isNaN(percentage)) && percentage }
+                                                        <span className={ styles['percent-text'] }>
+                                                            { (percentage !== Infinity && !isNaN(percentage)) && percentage } %
+                                                        </span>
                                                     </div>
                                                     {
                                                         data.map(({ questions }: any, index: number) => {

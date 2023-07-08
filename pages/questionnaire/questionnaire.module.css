@@ -40,10 +40,18 @@
     background-position-y: calc(100% - 5px);
 }
 
-.rocket-image {
+.percent-text {
+    align-items: center;
+    block-size: 24px;
+    color: var(--agora-blue-dark);
+    display: flex;
+    font-family: 'ebrima-bold';
+    font-size: 15px;
+    justify-content: center;
+    left: 0;
     position: absolute;
-    top: 5px;
-    right: 8px;
+    right: 0;
+    top: 0;
 }
 
 @media screen and (min-width: 1024px) {
