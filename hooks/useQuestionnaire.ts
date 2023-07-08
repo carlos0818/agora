@@ -138,6 +138,7 @@ export const useQuestionnaire = () => {
         landscape.addEventListener('change', function (e) {
             if (e.matches) {
                 setShowQuestionnaire(true)
+                location.reload()
             } else {
                 setShowQuestionnaire(false)
             }

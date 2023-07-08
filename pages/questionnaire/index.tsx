@@ -56,7 +56,6 @@ const Questionnaire: NextPage = () => {
     }
 
     useEffect(() => {
-        console.log('answeredQuestions', answeredQuestions)
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
             updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
         } else {

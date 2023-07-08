@@ -49,25 +49,14 @@ export const CheckboxList: FC<Props> = ({ data }) => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         const checked = storage.filter((store: any) => store.qnbr === qnbr)
 
-        // console.log('aaaaaaaaaaaaaaaaaa')
         if (!(checked.length >= min && checked.length <= max)) {
             for (let i=0; i<answeredQuestions.length; i++) {
                 const split = answeredQuestions[i].split('-')
-                console.log('split[0]', split[0])
-                console.log('split[1]', split[1])
                 if (Number(split[0]) === Number(qnbr)) {
-                    console.log('entró', answeredQuestions[i])
                     deleteAnsweredQuestions(answeredQuestions[i])
                 }
             }
         }
-
-        // for (let i=0; i<answeredQuestions.length; i++) {
-        //     const split = answeredQuestions[i].split('-')
-        //     if (split[0] === qnbr.toString()) {
-        //         deleteAnsweredQuestions(answeredQuestions[i])
-        //     }
-        // }
     }, [])
 
     useEffect(() => {
@@ -145,7 +134,6 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                 updateAnsweredQuestions(`${ qnbr }-${ anbr }`)
         } else {
             setError(true)
-            console.log('entró')
             for (let i=0; i<answeredQuestions.length; i++) {
                 const split = answeredQuestions[i].split('-')
                 if (Number(split[0]) === Number(qnbr)) {
