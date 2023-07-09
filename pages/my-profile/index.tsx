@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,13 +6,26 @@ import Image from 'next/image'
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { Activity } from '@/components/Profile/Activity'
 import { Comment } from '@/components/Profile/Comment'
+import { useQuestionnaire } from '@/hooks/useQuestionnaire'
+
+import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
+import { QuestionnaireContext } from '@/context/questionnaire'
 
 import styles from './my-profile.module.css'
 
-import rocketProgressIcon from '@/public/images/rocket-progress.svg'
 import arrowDownIcon from '@/public/images/arrow-down.svg'
 
 const MyProfilePage: NextPage = () => {
+    const { user } = useContext(AuthContext)
+    const {
+        percentage,
+        hide: globalHide,
+        answeredQuestions,
+        masterHide,
+        updateMasterHide,
+        updateHide,
+    } = useContext(QuestionnaireContext)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -28,6 +41,86 @@ const MyProfilePage: NextPage = () => {
     const [value12, setValue12] = useState(0)
     const [value13, setValue13] = useState(0)
     const [value14, setValue14] = useState(0)
+
+    const [showRocket, setShowRocket] = useState(false)
+
+    const { data } = useQuestionnaire()
+    
+    useEffect(() => {
+        if (user) {
+            validateCompleteQuestionnaire()
+        }
+    }, [user])
+
+    useEffect(() => {
+        // console.log('entró 1')
+        // updateMasterHide([])
+        // if (masterHide.length === 0) {
+            data.map((page: any) => {
+                page.questions.map((question: any) => {
+                    if (question.answers && question.object === 'L') {
+                        const answers = question.answers
+                        const find = answeredQuestions.find((answered: any) => {
+                            const split = answered.split('-')
+                            if (Number(split[0]) === Number(question.qnbr)) {
+                                return answered
+                            }
+                            return null
+                        })
+                        
+                        if (find) {
+                            const split = find.split('-')
+                            const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
+                            if (resp.length > 0) {
+                                const respShowSplit = resp[0].show?.split(',') || null
+                                let respHideSplit: any
+                                if (resp[0].hide?.substring(0, 4) === 'qnbr') {
+                                    // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
+                                    // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
+                                    // const numberAnswer = resp[0].hide?.substring(8).split(':')
+                                    // for (let i=0; i<storage.length; i++) {
+                                    //     if (Number(storage[i].qnbr) === numberQuestion) {
+                                    //         for (let j=0; j<numberAnswer.length; j++) {
+                                    //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
+                                    //                 respHideSplit = numberAnswer[j].substring(3).split(',')
+                                    //             }
+                                    //         }
+                                    //     }
+                                    // }
+                                } else {
+                                    respHideSplit = resp[0].hide?.split(',') || null
+                                }
+    
+                                if (respHideSplit) {
+                                    updateMasterHide([...respHideSplit])
+                                }
+                            }
+                        }
+                    }
+                })
+            })
+        // }
+    }, [data])
+    
+    useEffect(() => {
+        // console.log('entró 2')
+        let removeDuplicates: any = []
+        for (let i=0; i<masterHide.length; i++) {
+            const find = removeDuplicates.find((remove: any) => remove === masterHide[i])
+            if (!find)
+                removeDuplicates.push(masterHide[i])
+        }
+        updateHide(removeDuplicates.length)
+    }, [masterHide, globalHide])
+
+    const validateCompleteQuestionnaire = async() => {
+        try {
+            await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
+            setShowRocket(true)
+        } catch (error) {
+            setShowRocket(false)
+        }
+    }
     
     const handleValues = () => {
         setTimeout(() => {
@@ -158,30 +251,34 @@ const MyProfilePage: NextPage = () => {
                         </p>
                     </div>
                 </div>
-                <Link
-                    href='/questionnaire'
-                    passHref
-                    prefetch={ false }
-                    legacyBehavior
-                >
-                    <div className={ `window-glass` } style={{ cursor: 'pointer' }}>
-                        <div className={ `window-glass-content` }>
-                            <div className={ styles['progress-container'] }>
-                                <progress className={ styles['progress-bar'] } value="100" max="100" />
-                                <Image
-                                    src={ rocketProgressIcon }
-                                    alt='Rocket image'
-                                    className={ styles['rocket-image'] }
-                                />
-                            </div>
-                            <div className={ styles['progress-image'] }>
+                {
+                    showRocket && (
+                        <Link
+                            href='/questionnaire'
+                            passHref
+                            prefetch={ false }
+                            legacyBehavior
+                        >
+                            <div className={ `window-glass` } style={{ cursor: 'pointer' }}>
+                                <div className={ `window-glass-content` }>
+                                    <div className={ styles['progress-container'] }>
+                                        <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
+                                        {/* <Image
+                                            src={ rocketProgressIcon }
+                                            alt='Rocket image'
+                                            className={ styles['rocket-image'] }
+                                        /> */}
+                                    </div>
+                                    <div className={ styles['progress-image'] }>
 
+                                    </div>
+                                    <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
+                                    <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
+                                </div>
                             </div>
-                            <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
-                            <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
-                        </div>
-                    </div>
-                </Link>
+                        </Link>
+                    )
+                }
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>About us</p>

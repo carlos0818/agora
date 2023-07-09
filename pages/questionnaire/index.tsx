@@ -38,11 +38,16 @@ const Questionnaire: NextPage = () => {
     const router = useRouter()
 
     const { user } = useContext(AuthContext)
-    const { percentage } = useContext(QuestionnaireContext)
+    const { percentage, totalQuestions, hide: globalHide, answeredQuestions } = useContext(QuestionnaireContext)
 
     const [errorMessage, setErrorMessage] = useState(null)
     const [error, setError] = useState(false)
     const [submitLoading, setSubmitLoading] = useState(false)
+
+    console.log('totalQuestions', totalQuestions)
+    console.log('answeredQuestions', answeredQuestions)
+    console.log('globalHide:', globalHide)
+    console.log('percentage:', percentage)
 
     const handleSubmit = async() => {
         setError(false)
@@ -184,7 +189,6 @@ const Questionnaire: NextPage = () => {
                                                                                                 <SelectBox
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
-                                                                                                    setHide={ setHide }
                                                                                                 />
                                                                                         }
                                                                                         {
@@ -192,7 +196,6 @@ const Questionnaire: NextPage = () => {
                                                                                                 <SelectBox
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
-                                                                                                    setHide={ setHide }
                                                                                                 />
                                                                                         }
                                                                                         {

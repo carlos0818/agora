@@ -10,6 +10,7 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
+    const { masterHide, updateMasterHide } = useContext(QuestionnaireContext)
 
     const router = useRouter()
 
@@ -89,6 +90,8 @@ export const useQuestionnaire = () => {
     }, [hide])
 
     useEffect(() => {
+        // console.log('answeredQuestions', answeredQuestions)
+        // console.log('masterHide', masterHide)
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
             updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
         } else {

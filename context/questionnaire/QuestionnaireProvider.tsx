@@ -6,6 +6,7 @@ export interface QuestionnaireState {
     percentage: number
     totalQuestions: number
     hide: number
+    masterHide: string[]
     answeredQuestions: string[]
 }
 
@@ -13,6 +14,7 @@ const QUESTIONNAIRE_INITIAL_STATE: QuestionnaireState = {
     percentage: 0,
     totalQuestions: 0,
     hide: 0,
+    masterHide: [],
     answeredQuestions: []
 }
 
@@ -23,6 +25,10 @@ interface Props {
 export const QuestionnaireProvider: FC<Props> = ({ children }) => {
 
     const [state, dispatch] = useReducer(questionnaireReducer, QUESTIONNAIRE_INITIAL_STATE)
+
+    const updateMasterHide = (data: string[]) => {
+        dispatch({ type: '[Questionnaire] - MasterHide', payload: data })
+    }
 
     const updatePercentage = (total: number) => {
         dispatch({ type: '[Questionnaire] - Percentage', payload: total })
@@ -51,6 +57,7 @@ export const QuestionnaireProvider: FC<Props> = ({ children }) => {
     return (
         <QuestionnaireContext.Provider value={{
             ...state,
+            updateMasterHide,
             updatePercentage,
             updateTotalQuestions,
             updateHide,

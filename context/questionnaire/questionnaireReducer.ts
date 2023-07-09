@@ -4,12 +4,18 @@ type AuthActionType =
     | { type: '[Questionnaire] - Percentage', payload: number }
     | { type: '[Questionnaire] - Total Questions', payload: number }
     | { type: '[Questionnaire] - Hide', payload: number }
+    | { type: '[Questionnaire] - MasterHide', payload: string[] }
     | { type: '[Questionnaire] - AnsweredQuestions', payload: string }
     | { type: '[Questionnaire] - AllAnsweredQuestions', payload: string[] }
     | { type: '[Questionnaire] - DeleteAnsweredQuestions', payload: string }
 
 export const questionnaireReducer = (state: QuestionnaireState, action: AuthActionType): QuestionnaireState => {
     switch (action.type) {
+        case '[Questionnaire] - MasterHide':
+            return {
+                ...state,
+                masterHide: [...state.masterHide, ...action.payload]
+            }
         case '[Questionnaire] - Percentage':
             return {
                 ...state,
