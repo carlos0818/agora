@@ -472,6 +472,7 @@ details > summary::-webkit-details-marker {
   border: 2px solid var(--agora-blue-dark);
   border-radius: 6px;
   cursor: pointer;
+  font-family: 'ebrima';
   font-size: 15px;
   outline: none;
   max-inline-size: 250px;
@@ -498,6 +499,7 @@ select.disabled {
   border: 2px solid var(--agora-blue-dark);
   border-radius: 6px;
   color: var(--agora-blue-dark);
+  font-family: 'ebrima';
   font-size: 15px;
   outline: none;
   padding-block: 8px;

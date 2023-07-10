@@ -43,6 +43,7 @@ const MyProfilePage: NextPage = () => {
     const [value14, setValue14] = useState(0)
 
     const [showRocket, setShowRocket] = useState(false)
+    const [myProfile, setMyProfile] = useState(false)
 
     const { data } = useQuestionnaire()
     
@@ -53,57 +54,51 @@ const MyProfilePage: NextPage = () => {
     }, [user])
 
     useEffect(() => {
-        // console.log('entró 1')
-        // updateMasterHide([])
-        // if (masterHide.length === 0) {
-            data.map((page: any) => {
-                page.questions.map((question: any) => {
-                    if (question.answers && question.object === 'L') {
-                        const answers = question.answers
-                        const find = answeredQuestions.find((answered: any) => {
-                            const split = answered.split('-')
-                            if (Number(split[0]) === Number(question.qnbr)) {
-                                return answered
+        data.map((page: any) => {
+            page.questions.map((question: any) => {
+                if (question.answers && question.object === 'L') {
+                    const answers = question.answers
+                    const find = answeredQuestions.find((answered: any) => {
+                        const split = answered.split('-')
+                        if (Number(split[0]) === Number(question.qnbr)) {
+                            return answered
+                        }
+                        return null
+                    })
+                    
+                    if (find) {
+                        const split = find.split('-')
+                        const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
+                        if (resp.length > 0) {
+                            let respHideSplit: any
+                            if (resp[0].hide?.substring(0, 4) === 'qnbr') {
+                                // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
+                                // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
+                                // const numberAnswer = resp[0].hide?.substring(8).split(':')
+                                // for (let i=0; i<storage.length; i++) {
+                                //     if (Number(storage[i].qnbr) === numberQuestion) {
+                                //         for (let j=0; j<numberAnswer.length; j++) {
+                                //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
+                                //                 respHideSplit = numberAnswer[j].substring(3).split(',')
+                                //             }
+                                //         }
+                                //     }
+                                // }
+                            } else {
+                                respHideSplit = resp[0].hide?.split(',') || null
                             }
-                            return null
-                        })
-                        
-                        if (find) {
-                            const split = find.split('-')
-                            const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
-                            if (resp.length > 0) {
-                                const respShowSplit = resp[0].show?.split(',') || null
-                                let respHideSplit: any
-                                if (resp[0].hide?.substring(0, 4) === 'qnbr') {
-                                    // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
-                                    // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
-                                    // const numberAnswer = resp[0].hide?.substring(8).split(':')
-                                    // for (let i=0; i<storage.length; i++) {
-                                    //     if (Number(storage[i].qnbr) === numberQuestion) {
-                                    //         for (let j=0; j<numberAnswer.length; j++) {
-                                    //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
-                                    //                 respHideSplit = numberAnswer[j].substring(3).split(',')
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }
-                                } else {
-                                    respHideSplit = resp[0].hide?.split(',') || null
-                                }
-    
-                                if (respHideSplit) {
-                                    updateMasterHide([...respHideSplit])
-                                }
+
+                            if (respHideSplit) {
+                                updateMasterHide([...respHideSplit])
                             }
                         }
                     }
-                })
+                }
             })
-        // }
+        })
     }, [data])
     
     useEffect(() => {
-        // console.log('entró 2')
         let removeDuplicates: any = []
         for (let i=0; i<masterHide.length; i++) {
             const find = removeDuplicates.find((remove: any) => remove === masterHide[i])
@@ -119,6 +114,15 @@ const MyProfilePage: NextPage = () => {
             setShowRocket(true)
         } catch (error) {
             setShowRocket(false)
+        }
+    }
+
+    const isMyProfile = async() => {
+        try {
+            await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
+            setMyProfile(true)
+        } catch (error) {
+            setMyProfile(false)
         }
     }
     
@@ -183,7 +187,7 @@ const MyProfilePage: NextPage = () => {
                                 </div>
                                 <div className={ styles['profile-info-content-right'] }>
                                     <p className={ `${ styles['info-text'] }` }>Lima, Lima - Perú</p>
-                                    <p className={ `${ styles['info-text'] } ${ styles['address-text'] }` }>Insert your address</p>
+                                    <p className={ `${ styles['info-text'] }` }>Cristobal de Peralta Sur 1235, Santiago de Surco</p>
                                     <p className={ `${ styles['info-text'] }` }>https://www.quarklink.com</p>
                                     <p className={ `${ styles['info-text'] }` }>+51991049432</p>
                                 </div>
@@ -196,61 +200,65 @@ const MyProfilePage: NextPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className={ `window-glass` }>
-                    <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                        <p className={ styles['card-title'] }>Required information</p>
-                        <div className={ styles['required-text-container'] }>
-                            <div className={ styles['form-group'] }>
-                                <label>Company name</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
-                            </div>
-                            <div className={ styles['form-group'] }>
-                                <label>Profile photo</label>
-                                <input type='file' className={ `field ${ styles['textfield'] }` } />
-                            </div>
-                            <div className={ styles['form-group'] }>
-                                <label>Email contact</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
-                            </div>
-                            <div className={ styles['form-group'] }>
-                                <label>Phone</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
-                            </div>
-                            <div className={ styles['form-group'] }>
-                                <label>Country</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
-                            </div>
-                            <div className={ styles['form-group'] }>
-                                <label>City</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
-                            </div>
-                            <div className={ styles['form-group'] }>
-                                <label>Address</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
-                            </div>
+                {
+                    myProfile && (
+                        <div className={ `window-glass` }>
+                            <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                                <p className={ styles['card-title'] }>Required information</p>
+                                <div className={ styles['required-text-container'] }>
+                                    <div className={ styles['form-group'] }>
+                                        <label>Company name</label>
+                                        <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
+                                    <div className={ styles['form-group'] }>
+                                        <label>Profile photo</label>
+                                        <input type='file' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
+                                    <div className={ styles['form-group'] }>
+                                        <label>Email contact</label>
+                                        <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
+                                    <div className={ styles['form-group'] }>
+                                        <label>Phone</label>
+                                        <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
+                                    <div className={ styles['form-group'] }>
+                                        <label>Country</label>
+                                        <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
+                                    <div className={ styles['form-group'] }>
+                                        <label>City</label>
+                                        <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
+                                    <div className={ styles['form-group'] }>
+                                        <label>Address</label>
+                                        <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                    </div>
 
-                            {/* <p className={ styles['required-text'] }>Company name</p>
-                            <p className={ styles['required-text'] }>Profile photo</p>
-                            <p className={ styles['required-text'] }>Email contact</p>
-                            <p className={ styles['required-text'] }>Phone</p>
-                            <p className={ styles['required-text'] }>Country</p>
-                            <p className={ styles['required-text'] }>City</p>
-                            <p className={ styles['required-text'] }>Address</p> */}
+                                    {/* <p className={ styles['required-text'] }>Company name</p>
+                                    <p className={ styles['required-text'] }>Profile photo</p>
+                                    <p className={ styles['required-text'] }>Email contact</p>
+                                    <p className={ styles['required-text'] }>Phone</p>
+                                    <p className={ styles['required-text'] }>Country</p>
+                                    <p className={ styles['required-text'] }>City</p>
+                                    <p className={ styles['required-text'] }>Address</p> */}
 
-                            {/* <hr style={{ border: '1px solid red', width: '100%' }} />
-                            <p className={ styles['required-text'] }>Youtube video (optional)</p>
-                            <p className={ styles['required-text'] }>Company URL (optional)</p>
-                            <p className={ styles['required-text'] }>Facebook URL (optional)</p>
-                            <p className={ styles['required-text'] }>Linkedin URL (optional)</p>
-                            <p className={ styles['required-text'] }>Twitter URL (optional)</p>
-                            <p className={ styles['required-text'] }>Background picture (optional)</p> */}
+                                    {/* <hr style={{ border: '1px solid red', width: '100%' }} />
+                                    <p className={ styles['required-text'] }>Youtube video (optional)</p>
+                                    <p className={ styles['required-text'] }>Company URL (optional)</p>
+                                    <p className={ styles['required-text'] }>Facebook URL (optional)</p>
+                                    <p className={ styles['required-text'] }>Linkedin URL (optional)</p>
+                                    <p className={ styles['required-text'] }>Twitter URL (optional)</p>
+                                    <p className={ styles['required-text'] }>Background picture (optional)</p> */}
+                                </div>
+                                <p className={ styles['required-description'] }>
+                                    In order to move forward with the process, we kindly request that you provide us with the necessary information as mentioned above.
+                                    This information is crucial to ensure a smooth and efficient process.
+                                </p>
+                            </div>
                         </div>
-                        <p className={ styles['required-description'] }>
-                            In order to move forward with the process, we kindly request that you provide us with the necessary information as mentioned above.
-                            This information is crucial to ensure a smooth and efficient process.
-                        </p>
-                    </div>
-                </div>
+                    )
+                }
                 {
                     showRocket && (
                         <Link
@@ -282,11 +290,16 @@ const MyProfilePage: NextPage = () => {
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>About us</p>
-                        <p className={ styles['about-description'] }>
+                        <textarea className='textfield' style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}>
                             We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                             dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                             food security and the environment of North Eastern Uganda.
-                        </p>
+                        </textarea>
+                        {/* <p className={ styles['about-description'] }>
+                            We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                            food security and the environment of North Eastern Uganda.
+                        </p> */}
                     </div>
                 </div>
                 <div className={ `window-glass` }>
@@ -296,13 +309,20 @@ const MyProfilePage: NextPage = () => {
                         </div>
                         <div className={ styles['video-text-container'] }>
                             <p className={ styles['card-title'] }>Video</p>
-                            <p className={ styles['video-description'] }>
+                            {/* <p className={ styles['video-description'] }>
                                 We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                                 food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                                 food security and the environment of North Eastern Uganda.
-                            </p>
+                            </p> */}
+                            <textarea className='textfield' style={{ blockSize: 150 }}>
+                                We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                food security and the environment of North Eastern Uganda.
+                            </textarea>
                         </div>
                     </div>
                 </div>
@@ -425,7 +445,7 @@ const MyProfilePage: NextPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className={ `window-glass` }>
+                {/* <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <div style={{ position: 'relative' }}>
                             <details className={ styles['title-container'] }>
@@ -443,8 +463,8 @@ const MyProfilePage: NextPage = () => {
                             </details>
                         </div>
                     </div>
-                </div>
-                <div className={ `window-glass` }>
+                </div> */}
+                {/* <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>Activity</p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBlockStart: 24 }}>
@@ -479,7 +499,7 @@ const MyProfilePage: NextPage = () => {
                             />
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>Comments</p>
