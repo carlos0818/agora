@@ -189,6 +189,8 @@ const Questionnaire: NextPage = () => {
                                                                                                 <SelectBox
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
+                                                                                                    hide={ hide }
+                                                                                                    setHide={ setHide }
                                                                                                 />
                                                                                         }
                                                                                         {
@@ -196,6 +198,8 @@ const Questionnaire: NextPage = () => {
                                                                                                 <SelectBox
                                                                                                     questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
+                                                                                                    hide={ hide }
+                                                                                                    setHide={ setHide }
                                                                                                 />
                                                                                         }
                                                                                         {
