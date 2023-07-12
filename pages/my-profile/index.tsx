@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,6 +8,8 @@ import { Activity } from '@/components/Profile/Activity'
 import { Comment } from '@/components/Profile/Comment'
 import { useQuestionnaire } from '@/hooks/useQuestionnaire'
 
+import countriesList from '@/db/countries';
+
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
 import { QuestionnaireContext } from '@/context/questionnaire'
@@ -15,9 +17,13 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 import styles from './my-profile.module.css'
 
 import arrowDownIcon from '@/public/images/arrow-down.svg'
+import { IEntrepreneur } from '@/interfaces/entrepreneur'
 
 const MyProfilePage: NextPage = () => {
     const { user } = useContext(AuthContext)
+
+    const { countries } = countriesList
+
     const {
         percentage,
         hide: globalHide,
@@ -26,6 +32,8 @@ const MyProfilePage: NextPage = () => {
         updateMasterHide,
         updateHide,
     } = useContext(QuestionnaireContext)
+
+    const [loadingPic, setLoadingPic] = useState(false)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -45,13 +53,50 @@ const MyProfilePage: NextPage = () => {
     const [showRocket, setShowRocket] = useState(false)
     const [myProfile, setMyProfile] = useState(false)
 
+    const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
+    const [companyName, setCompanyName] = useState('')
+    const [profilePic, setProfilePic] = useState('')
+    const [emailContact, setEmailContact] = useState('')
+    const [phone, setPhone] = useState('')
+    const [country, setCountry] = useState('')
+    const [city, setCity] = useState('')
+    const [address, setAddress] = useState('')
+
+    const fileInputRef = useRef<HTMLInputElement>(null)
+    const companyNameRef = useRef<HTMLInputElement>(null)
+    const emailContactRef = useRef<HTMLInputElement>(null)
+    const phoneRef = useRef<HTMLInputElement>(null)
+    const countryRef = useRef<HTMLSelectElement>(null)
+    const cityRef = useRef<HTMLInputElement>(null)
+    const addressRef = useRef<HTMLInputElement>(null)
+
     const { data } = useQuestionnaire()
     
     useEffect(() => {
         if (user) {
             validateCompleteQuestionnaire()
+            loadDataEntrepreneur()
         }
     }, [user])
+
+    useEffect(() => {
+        if (entrepreneurData) {
+            companyNameRef.current!.value = entrepreneurData.name
+            emailContactRef.current!.value = entrepreneurData.email_contact
+            phoneRef.current!.value = entrepreneurData.phone
+            countryRef.current!.value = entrepreneurData.country
+            cityRef.current!.value = entrepreneurData.city
+            addressRef.current!.value = entrepreneurData.address
+
+            setProfilePic(entrepreneurData.profilepic)
+            setCompanyName(entrepreneurData.name)
+            setEmailContact(entrepreneurData.email_contact)
+            setPhone(entrepreneurData.phone)
+            setCountry(countries.find(c => c.alpha3 === entrepreneurData.country && entrepreneurData.country !== '')?.name!)
+            setCity(entrepreneurData.city)
+            setAddress(entrepreneurData.address)
+        }
+    }, [entrepreneurData])
 
     useEffect(() => {
         data.map((page: any) => {
@@ -108,12 +153,44 @@ const MyProfilePage: NextPage = () => {
         updateHide(removeDuplicates.length)
     }, [masterHide, globalHide])
 
+    const loadDataEntrepreneur = async() => {
+        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data?email=${ user?.email }`)
+        setEntrepreneurData(data)
+    }
+
     const validateCompleteQuestionnaire = async() => {
         try {
             await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
             setShowRocket(true)
         } catch (error) {
             setShowRocket(false)
+        }
+    }
+
+    const onFileSelected = async({ target }: ChangeEvent<HTMLInputElement>) => {
+        setLoadingPic(true)
+
+        if (!target.files || target.files.length === 0) {
+            return
+        }
+
+        const formData = new FormData()
+        formData.append('file', target.files[0])
+
+        try {
+            const { data: url } = await agoraApi.post('/files/user-profile', formData)
+            const data = {
+                profilepic: url,
+                email: user?.email
+            }
+            await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
+            console.log(url)
+            setProfilePic(url)
+
+            setLoadingPic(false)
+        } catch (error) {
+            console.log(error)
+            setLoadingPic(false)
         }
     }
 
@@ -145,6 +222,45 @@ const MyProfilePage: NextPage = () => {
         }, 100)
     }
 
+    const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>, type: string) => {
+        const value = event.target.value
+        let data = {
+            [type]: value,
+            email: user?.email
+        }
+
+        switch (type) {
+            case 'name':
+                setCompanyName(value)
+                break
+            case 'email_contact':
+                setEmailContact(value)
+                break
+            case 'phone':
+                setPhone(value)
+                break
+            case 'country':
+                const country: string = countries.find(c => c.alpha3 === value && value !== '')?.name!
+                console.log(country)
+                setCountry(country)
+                break
+            case 'city':
+                setCity(value)
+                break
+            case 'address':
+                setAddress(value)
+                break
+            default:
+                break
+        }
+
+        try {
+            await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
+        } catch (error: any) {
+            // console.log(error.response.data.message)
+        }
+    }
+
     return (
         <HomeLoginLayout
             title=''
@@ -156,21 +272,31 @@ const MyProfilePage: NextPage = () => {
                         <div className={ styles['cover-image'] }>
                             <div className={ `window-glass ${ styles['profile-image-container'] }` }>
                                 <div className={ `window-glass-content ${ styles['profile-image'] }` }>
-
+                                    {
+                                        profilePic && (
+                                            <Image
+                                                src={ decodeURI(profilePic) }
+                                                alt=''
+                                                className={ styles['profile-picture'] }
+                                                width={ 200 }
+                                                height={ 200 }
+                                            />
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
                         <div className={ styles['profile-info-container-mobile'] }>
-                            <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>QuarkLink</p>
-                            <p className={ styles['info-text'] }>by Carlos Benavides</p>
+                            <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>{ companyName }</p>
+                            <p className={ styles['info-text'] }>by { user?.fullname }</p>
                             <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
                             <div className={ styles['stars-container'] }>
 
                             </div>
-                            <p className={ `${ styles['info-text'] }` }>Lima, Lima - Perú</p>
-                            <p className={ `${ styles['info-text'] } ${ styles['address-text'] }` }>Insert your address</p>
-                            <p className={ `${ styles['info-text'] }` }>www.brimstonenergy.com</p>
-                            <p className={ `${ styles['info-text'] }` }>+151004285311</p>
+                            <p className={ `${ styles['info-text'] }` }>{ city }-{ country }</p>
+                            <p className={ `${ styles['info-text'] }` }>{ address }</p>
+                            <p className={ `${ styles['info-text'] }` }>{ entrepreneurData?.web }</p>
+                            <p className={ `${ styles['info-text'] }` }>{ phone }</p>
                             <div className={ styles['social-container'] }>
 
                             </div>
@@ -178,18 +304,32 @@ const MyProfilePage: NextPage = () => {
                         <div className={ styles['profile-info-container-desktop'] }>
                             <div className={ styles['profile-info-row1'] }>
                                 <div className={ styles['profile-info-content-left'] }>
-                                    <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>QuarkLink</p>
-                                    <p className={ `${ styles['info-text'] } ${ styles['user-name'] }` }>by Carlos Benavides</p>
-                                    <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>
+                                        { companyName }
+                                    </p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['user-name'] }` }>
+                                        by { user?.fullname }
+                                    </p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>
+                                        Member 2 months ago
+                                    </p>
                                     <div className={ styles['stars-container'] }>
                                         <i className='icon-star' data-star="3.5"></i>
                                     </div>
                                 </div>
                                 <div className={ styles['profile-info-content-right'] }>
-                                    <p className={ `${ styles['info-text'] }` }>Lima, Lima - Perú</p>
-                                    <p className={ `${ styles['info-text'] }` }>Cristobal de Peralta Sur 1235, Santiago de Surco</p>
-                                    <p className={ `${ styles['info-text'] }` }>https://www.quarklink.com</p>
-                                    <p className={ `${ styles['info-text'] }` }>+51991049432</p>
+                                    <p className={ `${ styles['info-text'] }` }>
+                                        { city } - { country }
+                                    </p>
+                                    <p className={ `${ styles['info-text'] }` }>
+                                        { address }
+                                    </p>
+                                    <p className={ `${ styles['info-text'] }` }>
+                                        { entrepreneurData?.web }
+                                    </p>
+                                    <p className={ `${ styles['info-text'] }` }>
+                                        { phone }
+                                    </p>
                                 </div>
                             </div>
                             <div style={{ marginInlineStart: 24, marginBlockStart: 20 }}>
@@ -206,40 +346,91 @@ const MyProfilePage: NextPage = () => {
                         <div className={ styles['required-text-container'] }>
                             <div className={ styles['form-group'] }>
                                 <label>Company name</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                <input
+                                    ref={ companyNameRef }
+                                    type='text'
+                                    className={ `field ${ styles['textfield'] }` }
+                                    onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'name') }
+                                />
                             </div>
                             <div className={ styles['form-group'] }>
-                                <label>Profile photo</label>
-                                <input type='file' className={ `field ${ styles['textfield'] }` } />
+                                <label>Profile picture</label>
+                                    {
+                                        !loadingPic ? (
+                                            <div style={{ inlineSize: 'calc(100% - 24px)' }}>
+                                                <input
+                                                    type='button'
+                                                    className={ `button-filled` }
+                                                    value='Upload image'
+                                                    onClick={ () => fileInputRef.current?.click() }
+                                                />
+                                                <input
+                                                    ref={ fileInputRef }
+                                                    type="file"
+                                                    accept='image/png, image/jpg, image/jpeg'
+                                                    style={{ display: 'none' }}
+                                                    onChange={ onFileSelected }
+                                                />
+                                            </div>
+                                        ) : (
+                                            <em className='spinner blue-agora' style={{ blockSize: 24, inlineSize: 24 }} />
+                                        )
+                                    }
                             </div>
                             <div className={ styles['form-group'] }>
                                 <label>Email contact</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                <input
+                                    ref={ emailContactRef }
+                                    type='text'
+                                    className={ `field ${ styles['textfield'] }` }
+                                    onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'email_contact') }
+                                />
                             </div>
                             <div className={ styles['form-group'] }>
                                 <label>Phone</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                <input
+                                    ref={ phoneRef }
+                                    type='text'
+                                    className={ `field ${ styles['textfield'] }` }
+                                    onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'phone') }
+                                />
                             </div>
                             <div className={ styles['form-group'] }>
                                 <label>Country</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                <div style={{ inlineSize: 'calc(100% - 24px)' }}>
+                                    <select
+                                        ref={ countryRef }
+                                        className='field select'
+                                        style={{ borderRadius: 100, paddingBlock: '6px !important' }}
+                                        onChange={ (event) => handleUpdateEntrepreneurInfo(event, 'country') }
+                                        defaultValue={ country }
+                                    >
+                                        {
+                                            countries.map(country => (
+                                                <option key={ country.alpha3 } value={ country.alpha3 }>{ country.name }</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
                             </div>
                             <div className={ styles['form-group'] }>
                                 <label>City</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                <input
+                                    ref={ cityRef }
+                                    type='text'
+                                    className={ `field ${ styles['textfield'] }` }
+                                    onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'city') }
+                                />
                             </div>
                             <div className={ styles['form-group'] }>
                                 <label>Address</label>
-                                <input type='text' className={ `field ${ styles['textfield'] }` } />
+                                <input
+                                    ref={ addressRef }
+                                    type='text'
+                                    className={ `field ${ styles['textfield'] }` }
+                                    onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'address') }
+                                />
                             </div>
-
-                            {/* <p className={ styles['required-text'] }>Company name</p>
-                            <p className={ styles['required-text'] }>Profile photo</p>
-                            <p className={ styles['required-text'] }>Email contact</p>
-                            <p className={ styles['required-text'] }>Phone</p>
-                            <p className={ styles['required-text'] }>Country</p>
-                            <p className={ styles['required-text'] }>City</p>
-                            <p className={ styles['required-text'] }>Address</p> */}
 
                             {/* <hr style={{ border: '1px solid red', width: '100%' }} />
                             <p className={ styles['required-text'] }>Youtube video (optional)</p>
@@ -255,42 +446,35 @@ const MyProfilePage: NextPage = () => {
                         </p>
                     </div>
                 </div>
-                {
-                    showRocket && (
-                        <Link
-                            href='/questionnaire'
-                            passHref
-                            prefetch={ false }
-                            legacyBehavior
-                        >
-                            <div className={ `window-glass` } style={{ cursor: 'pointer' }}>
-                                <div className={ `window-glass-content` }>
-                                    <div className={ styles['progress-container'] }>
-                                        <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
-                                        {/* <Image
-                                            src={ rocketProgressIcon }
-                                            alt='Rocket image'
-                                            className={ styles['rocket-image'] }
-                                        /> */}
-                                    </div>
-                                    <div className={ styles['progress-image'] }>
-
-                                    </div>
-                                    <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
-                                    <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
-                                </div>
+                <Link
+                    href='/questionnaire'
+                    passHref
+                    prefetch={ false }
+                    legacyBehavior
+                >
+                    <div className={ `window-glass` } style={{ cursor: 'pointer' }}>
+                        <div className={ `window-glass-content` }>
+                            <div className={ styles['progress-container'] }>
+                                <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
                             </div>
-                        </Link>
-                    )
-                }
+                            <div className={ styles['progress-image'] }>
+
+                            </div>
+                            <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
+                            <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
+                        </div>
+                    </div>
+                </Link>
                 <div className={ `window-glass` }>
                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                         <p className={ styles['card-title'] }>About us</p>
-                        <textarea className='textfield' style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}>
-                            We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                        <textarea
+                            className='textfield'
+                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                            value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                             dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                            food security and the environment of North Eastern Uganda.
-                        </textarea>
+                            food security and the environment of North Eastern Uganda.'
+                        />
                         {/* <p className={ styles['about-description'] }>
                             We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                             dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
@@ -312,13 +496,15 @@ const MyProfilePage: NextPage = () => {
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                                 food security and the environment of North Eastern Uganda.
                             </p> */}
-                            <textarea className='textfield' style={{ blockSize: 150 }}>
-                                We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                            <textarea
+                                className='textfield'
+                                style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
                                 food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
                                 dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                food security and the environment of North Eastern Uganda.
-                            </textarea>
+                                food security and the environment of North Eastern Uganda.'
+                            />
                         </div>
                     </div>
                 </div>

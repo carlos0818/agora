@@ -22,6 +22,16 @@
 .profile-image {
     block-size: 55px;
     inline-size: 55px;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-picture {
+    block-size: 55px;
+    inline-size: 55px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .profile-info-container-mobile {
@@ -135,6 +145,7 @@
     border-radius: 15px;
     background-color: #07D91C;
     background-image: url('/images/rocket-progress.svg');
+    background-size: 30px;
     background-repeat: no-repeat;
     background-position-x: calc(100% - 8px);
     background-position-y: calc(100% - 5px);
@@ -362,6 +373,11 @@
 }
 
 @media screen and (min-width: 1200px) {
+    .progress-bar::-webkit-progress-value {
+        background-position-y: calc(100% - 6px);
+        background-size: 50px;
+    }
+
     .cover-image {
         block-size: 256px;
     }
@@ -374,6 +390,11 @@
     .profile-image {
         block-size: 75px;
         inline-size: 75px;
+    }
+
+    .profile-picture {
+        block-size: 130px;
+        inline-size: 130px;
     }
 
     .profile-info-container-mobile {
