@@ -27,8 +27,8 @@
 }
 
 .profile-picture {
-    block-size: 55px;
-    inline-size: 55px;
+    block-size: 90px;
+    inline-size: 90px;
     position: absolute;
     top: 0;
     left: 0;
@@ -411,6 +411,7 @@
         display: flex;
         padding-inline-start: 195px;
         padding-block: 5px;
+        min-block-size: 111px;
     }
 
     .profile-info-content-left {

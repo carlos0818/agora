@@ -33,6 +33,7 @@ const MyProfilePage: NextPage = () => {
         updateHide,
     } = useContext(QuestionnaireContext)
 
+    const [loading, setLoading] = useState(false)
     const [loadingPic, setLoadingPic] = useState(false)
 
     const [value1, setValue1] = useState(0)
@@ -154,8 +155,10 @@ const MyProfilePage: NextPage = () => {
     }, [masterHide, globalHide])
 
     const loadDataEntrepreneur = async() => {
+        setLoading(true)
         const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data?email=${ user?.email }`)
         setEntrepreneurData(data)
+        setLoading(false)
     }
 
     const validateCompleteQuestionnaire = async() => {
