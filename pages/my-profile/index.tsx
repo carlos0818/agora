@@ -260,7 +260,7 @@ const MyProfilePage: NextPage = () => {
         try {
             await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
         } catch (error: any) {
-            // console.log(error.response.data.message)
+            console.log(error)
         }
     }
 
