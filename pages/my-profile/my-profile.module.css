@@ -114,7 +114,7 @@
 }
 
 .form-group label {
-    inline-size: 150px;
+    inline-size: 120px;
 }
 
 .textfield {
@@ -362,6 +362,8 @@
 
 @media screen and (min-width: 1024px) {
     .form-group {
+        display: grid;
+        grid-template-columns: 150px 1fr;
         align-items: center;
         flex-direction: row;
         gap: 16px;

@@ -281,8 +281,8 @@ const MyProfilePage: NextPage = () => {
                                                 src={ decodeURI(profilePic) }
                                                 alt=''
                                                 className={ styles['profile-picture'] }
-                                                width={ 200 }
-                                                height={ 200 }
+                                                width={ 300 }
+                                                height={ 300 }
                                             />
                                         )
                                     }
