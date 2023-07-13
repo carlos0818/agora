@@ -182,12 +182,12 @@ const MyProfilePage: NextPage = () => {
 
         try {
             const { data: url } = await agoraApi.post('/files/user-profile', formData)
+            console.log(url)
             const data = {
                 profilepic: url,
                 email: user?.email
             }
             await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
-            console.log(url)
             setProfilePic(url)
 
             setLoadingPic(false)
