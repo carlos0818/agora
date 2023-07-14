@@ -31,7 +31,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         if (status === 'authenticated') {
             dispatch({ type: '[Auth] - Login', payload: data?.user as IUser })
         }
-    }, [status, data])
+    }, [status])
 
     const registerUser = async(fullname: string, email: string, password: string, type: string, captcha: string): Promise<{hasError: boolean; message?: string}> => {
         try {
