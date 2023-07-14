@@ -132,6 +132,7 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
 
         if (value === '') {
             const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+            console.log('STORAGE:', storage)
             const filter = storage.filter((element: any) => {
                 if (Number(element.qnbr) === Number(answer.qnbr)) {
                     const split = element.extravalue.split('|')
@@ -152,7 +153,9 @@ export const Matrix: FC<Props> = ({ data, quantity }) => {
                 return element
             })
 
-            if (filter.length > 0) {
+            console.log('FILTER:', filter)
+
+            if (filter.length !== storage.length) {
                 localStorage.setItem('questionnaire', JSON.stringify(filter))
 
                 const { data: maxVersion } = await agoraApi.get<number>(`/question/get-user-question-version?email=${ user?.email }`)
