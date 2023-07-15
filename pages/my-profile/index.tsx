@@ -161,7 +161,7 @@ const MyProfilePage: NextPage = () => {
                             </div>
                         </div>
                         {
-                            !(companyName !== '' && city !== '' && country !== '' && address !== '' && emailContact !== '' && phone !== '') && (
+                            !(companyName && city && country && address && emailContact && phone) && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
@@ -222,8 +222,8 @@ const MyProfilePage: NextPage = () => {
                                                 <div style={{ inlineSize: 'calc(100% - 24px)' }}>
                                                     <select
                                                         ref={ countryRef }
-                                                        className='field select'
-                                                        style={{ borderRadius: 100, paddingBlock: '6px !important' }}
+                                                        className={`select field ${ styles['select'] }` }
+                                                        style={{ borderRadius: 100 }}
                                                         onChange={ (event) => handleUpdateEntrepreneurInfo(event, 'country') }
                                                         defaultValue={ country }
                                                     >
@@ -294,7 +294,7 @@ const MyProfilePage: NextPage = () => {
                             )
                         }
                         {
-                            (!showRocket && companyName !== '' && city !== '' && country !== '' && address !== '' && emailContact !== '' && phone !== '') && (
+                            (!showRocket && companyName && city && country && address && emailContact && phone) && (
                                 <>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>

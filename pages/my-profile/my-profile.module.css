@@ -121,6 +121,10 @@
     inline-size: calc(100% - 24px);
 }
 
+.select { 
+    padding-block: 4px !important;
+}
+
 .progress-container {
     position: relative;
 }

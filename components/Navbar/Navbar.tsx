@@ -73,13 +73,20 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                         <div className={ `window-glass ${ styles['submenu'] }` } onClick={ ev => ev.stopPropagation() }>
                             <div className={ `window-glass-content ${ styles['window-glass-content'] }` }>
                                 <ul className={ styles['options-container'] }>
-                                    <li>
-                                        <Image
-                                            src={ editIcon }
-                                            alt=''
-                                        />
-                                        <span>Edit my profile</span>
-                                    </li>
+                                    <Link
+                                        href='/edit-profile'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li>
+                                            <Image
+                                                src={ editIcon }
+                                                alt=''
+                                            />
+                                            <span>Edit my profile</span>
+                                        </li>
+                                    </Link>
                                     <li onClick={ logout }>
                                         <Image
                                             src={ signoutIcon }

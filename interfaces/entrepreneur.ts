@@ -12,4 +12,5 @@ export interface IEntrepreneur {
     facebook: string
     linkedin: string
     twitter: string
+    backpic: string
 }
