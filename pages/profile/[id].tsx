@@ -83,9 +83,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         }, 100)
     }
 
-    console.log(`${ !showRocket} - ${ companyName } - ${ city } - ${ country } - ${ address } - ${ emailContact } - ${ phone }`)
-    console.log(!showRocket && companyName && city && country && address && emailContact && phone)
-
     return (
         <HomeLoginLayout
             title=''
