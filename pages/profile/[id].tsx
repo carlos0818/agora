@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -12,9 +12,17 @@ import { useProfile } from '@/hooks/useProfile'
 import styles from './my-profile.module.css'
 
 import arrowDownIcon from '@/public/images/arrow-down.svg'
+import { agoraApi } from '@/api'
 
-const MyProfilePage: NextPage = () => {
+interface Props {
+    id: string
+    email: string
+    fullname: string
+}
+
+const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
     const {
+        isMyAccount,
         countries,
         loading,
         loadingPic,
@@ -24,6 +32,7 @@ const MyProfilePage: NextPage = () => {
         companyName,
         emailContact,
         city,
+        countryId,
         country,
         address,
         phone,
@@ -38,7 +47,7 @@ const MyProfilePage: NextPage = () => {
         percentage,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
-    } = useProfile()
+    } = useProfile(email, id)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -108,7 +117,7 @@ const MyProfilePage: NextPage = () => {
                                 </div>
                                 <div className={ styles['profile-info-container-mobile'] }>
                                     <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>{ companyName }</p>
-                                    <p className={ styles['info-text'] }>by { user?.fullname }</p>
+                                    <p className={ styles['info-text'] }>by { fullname }</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
                                     <div className={ styles['stars-container'] }>
 
@@ -128,7 +137,7 @@ const MyProfilePage: NextPage = () => {
                                                 { companyName }
                                             </p>
                                             <p className={ `${ styles['info-text'] } ${ styles['user-name'] }` }>
-                                                by { user?.fullname }
+                                                by { fullname }
                                             </p>
                                             <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>
                                                 Member 2 months ago
@@ -161,7 +170,7 @@ const MyProfilePage: NextPage = () => {
                             </div>
                         </div>
                         {
-                            !(companyName && city && country && address && emailContact && phone) && (
+                            !(companyName && city && country && address && emailContact && phone) && isMyAccount && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
@@ -225,7 +234,7 @@ const MyProfilePage: NextPage = () => {
                                                         className={`select field ${ styles['select'] }` }
                                                         style={{ borderRadius: 100 }}
                                                         onChange={ (event) => handleUpdateEntrepreneurInfo(event, 'country') }
-                                                        defaultValue={ country }
+                                                        defaultValue={ countryId }
                                                     >
                                                         {
                                                             countries.map(country => (
@@ -271,7 +280,7 @@ const MyProfilePage: NextPage = () => {
                             )
                         }
                         {
-                            showRocket && (
+                            showRocket && isMyAccount && (
                                 <Link
                                     href='/questionnaire'
                                     passHref
@@ -545,4 +554,34 @@ const MyProfilePage: NextPage = () => {
     )
 }
 
-export default MyProfilePage
+
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+    const { id } = params as { id: string }
+    let email = ''
+    let fullname = ''
+
+    try {
+        // await agoraApi.get(`/user/id-exists?id=${ id }`)
+        const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`)
+        email = data.email
+        fullname = data.fullname
+    } catch (error) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {
+            id,
+            email,
+            fullname,
+        }
+    }
+}
+
+export default ProfilePage

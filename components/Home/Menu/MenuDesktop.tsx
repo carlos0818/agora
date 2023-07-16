@@ -4,12 +4,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { useMenuDesktop } from '@/hooks/useMenuDesktop'
+import { AuthContext } from '@/context/auth'
+import { MenuContext } from '@/context/menu'
 
 import styles from './menu-desktop.module.css'
 
 import homeIcon from '@/public/images/home-icon.svg'
 import leftArrowIcon from '@/public/images/left-arrow-icon.svg'
-import { MenuContext } from '@/context/menu'
 
 interface Props {
     wrapperRef: RefObject<HTMLInputElement>
@@ -17,6 +18,7 @@ interface Props {
 
 export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
+    const { user } = useContext(AuthContext)
 
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
     const router = useRouter()
@@ -61,13 +63,13 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     </li>
                                 </Link>
                                 <Link
-                                    href='/my-profile'
+                                    href={ `/profile/${ user?.id }` }
                                     passHref
                                     prefetch={ false }
                                     legacyBehavior
                                 >
                                     <li
-                                        className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
+                                        className={ `${ styles['option'] } ${ router.pathname === '/profile/[id]' ? styles['selected'] : '' }` }
                                         // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile

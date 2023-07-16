@@ -79,7 +79,9 @@ const EditProfile: NextPage = () => {
     }
 
     const loadAccountTypeData = async() => {
-        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data?email=${ user?.email }`)
+        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-email?email=${ user?.email }`)
+
+        console.log(data)
 
         setProfilePic(data.profilepic)
         setBackgroundPic(data.backpic)
@@ -108,8 +110,6 @@ const EditProfile: NextPage = () => {
 
         await agoraApi.post('/user/update-user-info', { email: user?.email, fullname: fullnameRef.current?.value })
     }
-
-    console.log(errors.profilePicture)
 
     const onSaveTypeAccountData = async({
         name,
@@ -174,8 +174,6 @@ const EditProfile: NextPage = () => {
                 linkedin: linkedinUrl ? linkedinUrl : '',
                 twitter: twitterUrl ? twitterUrl : '',
             }
-
-            console.log(data)
 
             await agoraApi.post(`/entrepreneur/update`, data)
         } catch (error) {

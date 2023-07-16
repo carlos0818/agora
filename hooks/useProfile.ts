@@ -8,7 +8,7 @@ import countriesList from '@/db/countries'
 import { useQuestionnaire } from './useQuestionnaire'
 import { IEntrepreneur } from '@/interfaces/entrepreneur'
 
-export const useProfile = () => {
+export const useProfile = (email: string, id: string) => {
     const { user } = useContext(AuthContext)
 
     const { countries } = countriesList
@@ -25,7 +25,7 @@ export const useProfile = () => {
     const [loading, setLoading] = useState(false)
     const [loadingPic, setLoadingPic] = useState(false)
     const [showRocket, setShowRocket] = useState(false)
-    const [myProfile, setMyProfile] = useState(false)
+    const [isMyAccount, setIsMyAccount] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -33,6 +33,7 @@ export const useProfile = () => {
     const [emailContact, setEmailContact] = useState('')
     const [phone, setPhone] = useState('')
     const [country, setCountry] = useState('')
+    const [countryId, setCountryId] = useState<string>('')
     const [city, setCity] = useState('')
     const [address, setAddress] = useState('')
 
@@ -45,6 +46,14 @@ export const useProfile = () => {
     const addressRef = useRef<HTMLInputElement>(null)
 
     const { data } = useQuestionnaire()
+
+    useEffect(() => {
+        if (user) {
+            if (user.email === email) {
+                setIsMyAccount(true)
+            }
+        }
+    }, [user])
     
     useEffect(() => {
         if (user) {
@@ -69,6 +78,7 @@ export const useProfile = () => {
             setEmailContact(entrepreneurData.email_contact)
             setPhone(entrepreneurData.phone)
             setCountry(countries.find(c => c.alpha3 === entrepreneurData.country && entrepreneurData.country !== '')?.name!)
+            setCountryId(countries.find(c => c.alpha3 === entrepreneurData.country && entrepreneurData.country !== '')?.alpha3!)
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
         }
@@ -131,7 +141,7 @@ export const useProfile = () => {
 
     const loadDataEntrepreneur = async() => {
         setLoading(true)
-        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data?email=${ user?.email }`)
+        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ id }`)
         setEntrepreneurData(data)
         setLoading(false)
     }
@@ -171,15 +181,6 @@ export const useProfile = () => {
         }
     }
 
-    const isMyProfile = async() => {
-        try {
-            await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
-            setMyProfile(true)
-        } catch (error) {
-            setMyProfile(false)
-        }
-    }
-
     const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>, type: string) => {
         const value = event.target.value
         let data = {
@@ -199,7 +200,6 @@ export const useProfile = () => {
                 break
             case 'country':
                 const country: string = countries.find(c => c.alpha3 === value && value !== '')?.name!
-                console.log(country)
                 setCountry(country)
                 break
             case 'city':
@@ -220,6 +220,7 @@ export const useProfile = () => {
     }
 
     return {
+        isMyAccount,
         countries,
         loading,
         loadingPic,
@@ -229,6 +230,7 @@ export const useProfile = () => {
         companyName,
         emailContact,
         city,
+        countryId,
         country,
         address,
         phone,

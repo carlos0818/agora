@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { AuthContext } from '@/context/auth'
 import { MenuContext } from '@/context/menu'
 
 import styles from './menu-mobile.module.css'
@@ -11,6 +12,8 @@ import homeIcon from '@/public/images/home-icon.svg'
 
 export const MenuMobile = () => {
     const { isOpen, toggleSideMenu } = useContext(MenuContext)
+    const { user } = useContext(AuthContext)
+
     const router = useRouter()
 
     const [openFinder, setOpenFinder] = useState(false)
@@ -35,13 +38,13 @@ export const MenuMobile = () => {
                         </li>
                     </Link>
                     <Link
-                        href='/my-profile'
+                        href={ `/profile/${ user?.id }` }
                         passHref
                         prefetch={ false }
                         legacyBehavior
                     >
                         <li
-                            className={ `${ styles['option'] } ${ router.pathname === '/my-profile' ? styles['selected'] : '' }` }
+                            className={ `${ styles['option'] } ${ router.pathname === '/profile/[id]' ? styles['selected'] : '' }` }
                             onClick={ () => toggleSideMenu('original') }
                         >
                             <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
