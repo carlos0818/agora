@@ -83,6 +83,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         }, 100)
     }
 
+    console.log(`${ !showRocket} - ${ companyName } - ${ city } - ${ country } - ${ address } - ${ emailContact } - ${ phone }`)
+    console.log(!showRocket && companyName && city && country && address && emailContact && phone)
+
     return (
         <HomeLoginLayout
             title=''
@@ -303,23 +306,28 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                             )
                         }
                         {
-                            (!showRocket && companyName && city && country && address && emailContact && phone) && (
+                            (!showRocket || (companyName && city && country && address && emailContact && phone)) && (
                                 <>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                             <p className={ styles['card-title'] }>About us</p>
-                                            <textarea
-                                                className='textfield'
-                                                style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                food security and the environment of North Eastern Uganda.'
-                                            />
-                                            {/* <p className={ styles['about-description'] }>
-                                                We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                food security and the environment of North Eastern Uganda.
-                                            </p> */}
+                                            {
+                                                isMyAccount ? (
+                                                    <textarea
+                                                        className='textfield'
+                                                        style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                        value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                                        dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                                        food security and the environment of North Eastern Uganda.'
+                                                    />
+                                                ) : (
+                                                    <p className={ styles['about-description'] }>
+                                                        We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                                        dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                                        food security and the environment of North Eastern Uganda.
+                                                    </p>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                     <div className={ `window-glass` }>
@@ -329,22 +337,27 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                                             </div>
                                             <div className={ styles['video-text-container'] }>
                                                 <p className={ styles['card-title'] }>Video</p>
-                                                {/* <p className={ styles['video-description'] }>
-                                                    We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                    dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                    food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                    dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                    food security and the environment of North Eastern Uganda.
-                                                </p> */}
-                                                <textarea
-                                                    className='textfield'
-                                                    style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                    value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                    dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                    food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                    dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                    food security and the environment of North Eastern Uganda.'
-                                                />
+                                                {
+                                                    isMyAccount ? (
+                                                        <textarea
+                                                            className='textfield'
+                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                            value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                                            food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                                            food security and the environment of North Eastern Uganda.'
+                                                        />
+                                                    ) : (
+                                                        <p className={ styles['video-description'] }>
+                                                            We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                                            food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
+                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
+                                                            food security and the environment of North Eastern Uganda.
+                                                        </p>
+                                                    )
+                                                }
                                             </div>
                                         </div>
                                     </div>

@@ -120,7 +120,7 @@ const Questionnaire: NextPage = () => {
                                                                                         key={ `question-${ question.qnbr }` }
                                                                                         style={{ color: '#10284F' }}
                                                                                     >
-                                                                                        { question.type ==='Q' ? `${ question.qnbr }. ${ question.descr }` : null }
+                                                                                        { question.type ==='Q' ? `${ question.descr }` : null }
                                                                                     </p>
                                                                                     <div key={ `${ question.qnbr }-${ question.effdt }` } style={{ marginBlockStart: 12 }}>
                                                                                         {
