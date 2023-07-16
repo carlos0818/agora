@@ -7,6 +7,7 @@ import { FooterDesktop } from '../Footer/FooterDesktop'
 
 import styles from './homeLoginWithoutMenuLayout.module.css'
 import { MenuContext } from '@/context/menu'
+import { AuthContext } from '@/context/auth'
 
 interface Props {
     children: JSX.Element
@@ -17,6 +18,7 @@ interface Props {
 
 export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDescription, showBack = true }) => {
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
+    const { user } = useContext(AuthContext)
 
     const circleDiv = useRef<HTMLInputElement>(null)
 
@@ -70,7 +72,7 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
                         {
                             showBack && (
                                 <Link
-                                    href='/my-profile'
+                                    href={ `/profile/${ user?.id }` }
                                     passHref
                                     prefetch={ false }
                                     legacyBehavior

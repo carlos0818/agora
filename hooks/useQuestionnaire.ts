@@ -90,8 +90,6 @@ export const useQuestionnaire = () => {
     }, [hide])
 
     useEffect(() => {
-        // console.log('answeredQuestions', answeredQuestions)
-        // console.log('masterHide', masterHide)
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
             updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
         } else {
@@ -112,9 +110,9 @@ export const useQuestionnaire = () => {
 
     const validateCompleteQuestionnaire = async() => {
         try {
-            await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
+            await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
         } catch (error) {
-            router.replace('/my-profile')
+            router.replace(`/profile/${ user?.id }`)
         }
     }
 

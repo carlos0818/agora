@@ -554,15 +554,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
     )
 }
 
-
-
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const { id } = params as { id: string }
     let email = ''
     let fullname = ''
 
     try {
-        // await agoraApi.get(`/user/id-exists?id=${ id }`)
+        await agoraApi.get(`/question/validate-complete-questionnaire-by-id?id=${ id }`)
         const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`)
         email = data.email
         fullname = data.fullname

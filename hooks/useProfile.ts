@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { AuthContext } from '@/context/auth'
 import { QuestionnaireContext } from '@/context/questionnaire'
@@ -10,6 +11,8 @@ import { IEntrepreneur } from '@/interfaces/entrepreneur'
 
 export const useProfile = (email: string, id: string) => {
     const { user } = useContext(AuthContext)
+
+    const router = useRouter()
 
     const { countries } = countriesList
 
@@ -57,6 +60,7 @@ export const useProfile = (email: string, id: string) => {
     
     useEffect(() => {
         if (user) {
+            validateRequiredData()
             validateCompleteQuestionnaire()
             loadDataEntrepreneur()
         }
@@ -140,18 +144,26 @@ export const useProfile = (email: string, id: string) => {
     }, [masterHide, globalHide])
 
     const loadDataEntrepreneur = async() => {
-        setLoading(true)
         const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ id }`)
         setEntrepreneurData(data)
-        setLoading(false)
     }
 
     const validateCompleteQuestionnaire = async() => {
         try {
-            await agoraApi.get(`/question/validate-complete-questionnaire?email=${ user?.email }`)
+            await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
             setShowRocket(true)
         } catch (error) {
             setShowRocket(false)
+        }
+    }
+
+    const validateRequiredData = async() => {
+        setLoading(true)
+        try {
+            await agoraApi.get(`/entrepreneur/validate-required-data?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
+            setLoading(false)
+        } catch (error) {
+            router.replace('/')
         }
     }
 

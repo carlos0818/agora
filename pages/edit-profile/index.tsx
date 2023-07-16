@@ -81,8 +81,6 @@ const EditProfile: NextPage = () => {
     const loadAccountTypeData = async() => {
         const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-email?email=${ user?.email }`)
 
-        console.log(data)
-
         setProfilePic(data.profilepic)
         setBackgroundPic(data.backpic)
         setVideo(data.videourl)
