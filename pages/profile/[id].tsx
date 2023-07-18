@@ -302,7 +302,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                             )
                         }
                         {
-                            (!showRocket || (companyName && city && country && address && emailContact && phone)) && (
+                            (!showRocket && (companyName && city && country && address && emailContact && phone)) && (
                                 <>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>
