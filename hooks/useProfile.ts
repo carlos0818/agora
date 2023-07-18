@@ -60,9 +60,9 @@ export const useProfile = (email: string, id: string) => {
     
     useEffect(() => {
         if (user) {
-            validateCompleteQuestionnaire()
-            validateRequiredData()
             loadDataEntrepreneur()
+            validateRequiredData()
+            validateCompleteQuestionnaire()
         }
     }, [user])
 
@@ -71,7 +71,7 @@ export const useProfile = (email: string, id: string) => {
             if (user?.email === email) {
                 setIsMyAccount(true)
             }
-            
+
             if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
                 companyNameRef.current!.value = entrepreneurData.name
                 emailContactRef.current!.value = entrepreneurData.email_contact
@@ -90,7 +90,7 @@ export const useProfile = (email: string, id: string) => {
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
         }
-    }, [entrepreneurData, isMyAccount])
+    }, [user, entrepreneurData, isMyAccount])
 
     useEffect(() => {
         data.map((page: any) => {
