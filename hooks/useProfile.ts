@@ -67,7 +67,11 @@ export const useProfile = (email: string, id: string) => {
     }, [user])
 
     useEffect(() => {
-        if (entrepreneurData && isMyAccount) {
+        if (entrepreneurData) {
+            if (user?.email === email) {
+                setIsMyAccount(true)
+            }
+            
             if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
                 companyNameRef.current!.value = entrepreneurData.name
                 emailContactRef.current!.value = entrepreneurData.email_contact
@@ -75,10 +79,6 @@ export const useProfile = (email: string, id: string) => {
                 countryRef.current!.value = entrepreneurData.country
                 cityRef.current!.value = entrepreneurData.city
                 addressRef.current!.value = entrepreneurData.address
-            }
-
-            if (user?.email === email) {
-                setIsMyAccount(true)
             }
 
             setProfilePic(entrepreneurData.profilepic)
