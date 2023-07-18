@@ -87,7 +87,7 @@ export const useProfile = (email: string, id: string) => {
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
         }
-    })
+    }, [entrepreneurData, profilePic, companyName, emailContact, phone, country, city, address])
 
     useEffect(() => {
         data.map((page: any) => {
