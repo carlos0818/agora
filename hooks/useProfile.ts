@@ -69,14 +69,16 @@ export const useProfile = (email: string, id: string) => {
 
     useEffect(() => {
         if (entrepreneurData) {
-            if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
-                companyNameRef.current!.value = entrepreneurData.name
-                emailContactRef.current!.value = entrepreneurData.email_contact
-                phoneRef.current!.value = entrepreneurData.phone
-                countryRef.current!.value = entrepreneurData.country
-                cityRef.current!.value = entrepreneurData.city
-                addressRef.current!.value = entrepreneurData.address
-            }
+            setTimeout(() => {
+                if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
+                    companyNameRef.current!.value = entrepreneurData.name
+                    emailContactRef.current!.value = entrepreneurData.email_contact
+                    phoneRef.current!.value = entrepreneurData.phone
+                    countryRef.current!.value = entrepreneurData.country
+                    cityRef.current!.value = entrepreneurData.city
+                    addressRef.current!.value = entrepreneurData.address
+                }
+            }, 500)
 
             setProfilePic(entrepreneurData.profilepic)
             setCompanyName(entrepreneurData.name)
@@ -87,7 +89,7 @@ export const useProfile = (email: string, id: string) => {
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
         }
-    }, [entrepreneurData, countryId])
+    }, [entrepreneurData])
 
     useEffect(() => {
         data.map((page: any) => {
