@@ -49,6 +49,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         handleUpdateEntrepreneurInfo,
     } = useProfile(email, id)
 
+    console.log(companyNameRef)
+    console.log(emailContactRef)
+    console.log(phoneRef)
+    console.log(countryRef)
+    console.log(cityRef)
+    console.log(addressRef)
+
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
     const [value3, setValue3] = useState(0)
