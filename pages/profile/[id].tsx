@@ -177,7 +177,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                             </div>
                         </div>
                         {
-                            !(companyName && city && country && address && emailContact && phone) && (
+                            !(companyName && city && country && address && emailContact && phone) && isMyAccount && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
@@ -189,7 +189,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                                                     type='text'
                                                     className={ `field ${ styles['textfield'] }` }
                                                     onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'name') }
-                                                    value={ companyName }
                                                 />
                                             </div>
                                             <div className={ styles['form-group'] }>

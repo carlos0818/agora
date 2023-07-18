@@ -8,6 +8,7 @@ import { agoraApi } from '@/api'
 import countriesList from '@/db/countries'
 import { useQuestionnaire } from './useQuestionnaire'
 import { IEntrepreneur } from '@/interfaces/entrepreneur'
+import { useForm } from 'react-hook-form'
 
 export const useProfile = (email: string, id: string) => {
     const { user } = useContext(AuthContext)
@@ -90,7 +91,7 @@ export const useProfile = (email: string, id: string) => {
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
         }
-    }, [entrepreneurData])
+    })
 
     useEffect(() => {
         data.map((page: any) => {
