@@ -60,9 +60,6 @@ export const useProfile = (email: string, id: string) => {
     
     useEffect(() => {
         if (user) {
-            if (user.email === email) {
-                setIsMyAccount(true)
-            }
             validateCompleteQuestionnaire()
             validateRequiredData()
             loadDataEntrepreneur()
@@ -78,6 +75,10 @@ export const useProfile = (email: string, id: string) => {
                 countryRef.current!.value = entrepreneurData.country
                 cityRef.current!.value = entrepreneurData.city
                 addressRef.current!.value = entrepreneurData.address
+            }
+
+            if (user?.email === email) {
+                setIsMyAccount(true)
             }
 
             setProfilePic(entrepreneurData.profilepic)
