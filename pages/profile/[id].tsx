@@ -49,12 +49,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         handleUpdateEntrepreneurInfo,
     } = useProfile(email, id)
 
-    console.log(companyNameRef)
-    console.log(emailContactRef)
-    console.log(phoneRef)
-    console.log(countryRef)
-    console.log(cityRef)
-    console.log(addressRef)
+    console.log(companyName)
+    // console.log(emailContactRef)
+    // console.log(phoneRef)
+    // console.log(countryRef)
+    // console.log(cityRef)
+    // console.log(addressRef)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -177,7 +177,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                             </div>
                         </div>
                         {
-                            !(companyName && city && country && address && emailContact && phone) && isMyAccount && (
+                            !(companyName && city && country && address && emailContact && phone) && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
@@ -189,6 +189,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                                                     type='text'
                                                     className={ `field ${ styles['textfield'] }` }
                                                     onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'name') }
+                                                    value={ companyName }
                                                 />
                                             </div>
                                             <div className={ styles['form-group'] }>

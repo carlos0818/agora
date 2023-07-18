@@ -36,7 +36,7 @@ export const useProfile = (email: string, id: string) => {
     const [emailContact, setEmailContact] = useState('')
     const [phone, setPhone] = useState('')
     const [country, setCountry] = useState('')
-    const [countryId, setCountryId] = useState<string>('')
+    const [countryId, setCountryId] = useState('')
     const [city, setCity] = useState('')
     const [address, setAddress] = useState('')
 
@@ -90,7 +90,7 @@ export const useProfile = (email: string, id: string) => {
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
         }
-    }, [user, entrepreneurData, isMyAccount])
+    }, [entrepreneurData])
 
     useEffect(() => {
         data.map((page: any) => {
