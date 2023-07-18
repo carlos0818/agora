@@ -91,7 +91,8 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
-            updatePercentage(Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)))
+            const result = Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)) > 100 ? 100 : Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0))
+            updatePercentage(result)
         } else {
             updatePercentage(0)
         }
