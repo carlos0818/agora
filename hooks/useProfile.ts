@@ -70,8 +70,8 @@ export const useProfile = (email: string, id: string) => {
     }, [user])
 
     useEffect(() => {
-        if (entrepreneurData) {
-            console.log('entró')
+        console.log('entró')
+        if (entrepreneurData && isMyAccount) {
             if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
                 companyNameRef.current!.value = entrepreneurData.name
                 emailContactRef.current!.value = entrepreneurData.email_contact
