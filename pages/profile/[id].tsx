@@ -28,7 +28,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         loadingPic,
         showRocket,
         profilePic,
-        user,
         companyName,
         emailContact,
         city,
@@ -48,13 +47,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         onFileSelected,
         handleUpdateEntrepreneurInfo,
     } = useProfile(email, id)
-
-    console.log(companyName)
-    // console.log(emailContactRef)
-    // console.log(phoneRef)
-    // console.log(countryRef)
-    // console.log(cityRef)
-    // console.log(addressRef)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)

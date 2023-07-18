@@ -51,13 +51,13 @@ export const useProfile = (email: string, id: string) => {
 
     const { data } = useQuestionnaire()
 
-    // useEffect(() => {
-    //     if (user) {
-    //         if (user.email === email) {
-    //             setIsMyAccount(true)
-    //         }
-    //     }
-    // }, [user])
+    useEffect(() => {
+        if (user) {
+            if (user.email === email) {
+                setIsMyAccount(true)
+            }
+        }
+    }, [user])
     
     useEffect(() => {
         if (user) {
@@ -69,10 +69,6 @@ export const useProfile = (email: string, id: string) => {
 
     useEffect(() => {
         if (entrepreneurData) {
-            if (user?.email === email) {
-                setIsMyAccount(true)
-            }
-
             if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
                 companyNameRef.current!.value = entrepreneurData.name
                 emailContactRef.current!.value = entrepreneurData.email_contact
@@ -243,7 +239,6 @@ export const useProfile = (email: string, id: string) => {
         loadingPic,
         showRocket,
         profilePic,
-        user,
         companyName,
         emailContact,
         city,
