@@ -40,6 +40,10 @@ export const useProfile = (email: string, id: string) => {
     const [countryId, setCountryId] = useState('')
     const [city, setCity] = useState('')
     const [address, setAddress] = useState('')
+    const [aboutUs, setAboutUs] = useState('')
+    const [videoDesc, setVideoDesc] = useState('')
+    const [backPic, setBackPic] = useState('')
+    const [videoUrl, setVideoUrl] = useState('')
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const companyNameRef = useRef<HTMLInputElement>(null)
@@ -88,6 +92,10 @@ export const useProfile = (email: string, id: string) => {
             setCountryId(countries.find(c => c.alpha3 === entrepreneurData.country && entrepreneurData.country !== '')?.alpha3!)
             setCity(entrepreneurData.city)
             setAddress(entrepreneurData.address)
+            setAboutUs(entrepreneurData.aboutus)
+            setVideoDesc(entrepreneurData.videodesc)
+            setBackPic(entrepreneurData.backpic)
+            setVideoUrl(entrepreneurData.videourl)
         }
     }, [entrepreneurData])
 
@@ -148,6 +156,7 @@ export const useProfile = (email: string, id: string) => {
 
     const loadDataEntrepreneur = async() => {
         const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ id }`)
+        console.log(data)
         setEntrepreneurData(data)
     }
 
@@ -196,7 +205,7 @@ export const useProfile = (email: string, id: string) => {
         }
     }
 
-    const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>, type: string) => {
+    const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>, type: string) => {
         const value = event.target.value
         let data = {
             [type]: value,
@@ -237,6 +246,7 @@ export const useProfile = (email: string, id: string) => {
     return {
         isMyAccount,
         countries,
+        user,
         loading,
         loadingPic,
         showRocket,
@@ -248,6 +258,10 @@ export const useProfile = (email: string, id: string) => {
         country,
         address,
         phone,
+        aboutUs,
+        videoDesc,
+        backPic,
+        videoUrl,
         companyNameRef,
         emailContactRef,
         fileInputRef,

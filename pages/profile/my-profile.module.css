@@ -3,14 +3,20 @@
     padding-inline: 8px;
 }
 
-.cover-image {
+.cover-image-container {
     align-items: center;
     background-color: green;
     block-size: 118px;
     display: flex;
     inline-size: 100%;
     justify-content: center;
+    /* overflow: hidden; */
     position: relative;
+}
+
+.cover-image {
+    block-size: 118px;
+    inline-size: 100%;
 }
 
 .profile-image-container {
@@ -20,8 +26,8 @@
 }
 
 .profile-image {
-    block-size: 55px;
-    inline-size: 55px;
+    block-size: 58px;
+    inline-size: 58px;
     overflow: hidden;
     position: relative;
 }
@@ -341,6 +347,34 @@
     text-align: right;
 }
 
+@media screen and (min-width: 500px) {
+    .cover-image {
+        block-size: 200px;
+    }
+
+    .profile-image-container {
+        bottom: -100px;
+    }
+
+    .profile-info-container-mobile {
+        margin-block-start: 110px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .cover-image {
+        block-size: 250px;
+    }
+
+    .profile-image-container {
+        bottom: -125px;
+    }
+
+    .profile-info-container-mobile {
+        margin-block-start: 135px;
+    }
+}
+
 @media screen and (min-width: 600px) {
     .window-content {
         padding-inline: 16px;
@@ -376,12 +410,21 @@
     .textfield {
         max-inline-size: 100%;
     }
+
+    .profile-picture {
+        block-size: 105px;
+        inline-size: 105px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
     .progress-bar::-webkit-progress-value {
         background-position-y: calc(100% - 6px);
         background-size: 50px;
+    }
+
+    .cover-image-container {
+        block-size: 256px;
     }
 
     .cover-image {

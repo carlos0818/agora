@@ -13,4 +13,6 @@ export interface IEntrepreneur {
     linkedin: string
     twitter: string
     backpic: string
+    aboutus: string
+    videodesc: string
 }

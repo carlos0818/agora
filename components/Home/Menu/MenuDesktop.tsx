@@ -59,7 +59,8 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                         className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
                                         // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Home
+                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                        Home
                                     </li>
                                 </Link>
                                 <Link
@@ -72,7 +73,8 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                         className={ `${ styles['option'] } ${ router.pathname === '/profile/[id]' ? styles['selected'] : '' }` }
                                         // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My profile
+                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                        My profile
                                     </li>
                                 </Link>
                                 <li>
@@ -101,11 +103,12 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                                 }
                                             ` }
                                         >
-                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Finder
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Finder
                                         </summary>
                                         <div className={ styles['accordion-content'] }>
                                             <ul className={ styles['submenu-container'] }>
-                                                <Link
+                                                {/* <Link
                                                     href='/finder/country-snapshot'
                                                     passHref
                                                     prefetch={ false }
@@ -123,22 +126,65 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                                 </li>
                                                 <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/portfolio' ? styles['selected'] : '' }` }>
                                                     <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
-                                                </li>
+                                                </li> */}
                                                 <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/entrepreneur' ? styles['selected'] : '' }` }>
-                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Entrepreneur
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Entrepreneur
                                                 </li>
                                                 <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/investors' ? styles['selected'] : '' }` }>
-                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Investors
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Investors
                                                 </li>
                                                 <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/experts' ? styles['selected'] : '' }` }>
-                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Experts
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Experts
                                                 </li>
                                             </ul>
                                         </div>
                                     </details>
                                 </li>
+                                <li>
+                                    <details
+                                        open={
+                                            router.pathname === '/infographics/country-snapshot'
+                                        }
+                                    >
+                                        <summary
+                                            className={
+                                                `
+                                                ${ styles['option'] }
+                                                ${
+                                                    router.pathname === '/infographics/country-snapshot'
+                                                    ? styles['selected'] : ''
+                                                }
+                                            ` }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Infographics
+                                        </summary>
+                                        <div className={ styles['accordion-content'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                <Link
+                                                    href='/infographics/country-snapshot'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ `${ styles['submenu-option'] } ${ router.pathname === '/infographics/country-snapshot' ? styles['selected'] : '' }` }
+                                                        // onClick={ () => toggleSideMenuDesktop('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Countries
+                                                    </li>
+                                                </Link>
+                                            </ul>
+                                        </div>
+                                    </details>
+                                </li>
                                 <li className={ `${ styles['option'] } ${ router.pathname === '/contacts' ? styles['selected'] : '' }` }>
-                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Contacts
+                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                    Contacts
                                 </li>
                                 <li>
                                     <details
@@ -160,18 +206,22 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                                 }
                                             ` }
                                         >
-                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> My data
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            My data
                                         </summary>
                                         <div className={ styles['last-submenu'] }>
                                             <ul className={ styles['submenu-container'] }>
                                                 <li className={ styles['submenu-option'] }>
-                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Dashboard
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Dashboard
                                                 </li>
                                                 <li className={ styles['submenu-option'] }>
-                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Inbox
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Inbox
                                                 </li>
                                                 <li className={ styles['submenu-option'] }>
-                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Notifications
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Notifications
                                                 </li>
                                             </ul>
                                         </div>

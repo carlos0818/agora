@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -24,6 +24,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
     const {
         isMyAccount,
         countries,
+        user,
         loading,
         loadingPic,
         showRocket,
@@ -35,6 +36,10 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         country,
         address,
         phone,
+        aboutUs,
+        videoDesc,
+        backPic,
+        videoUrl,
         companyNameRef,
         emailContactRef,
         fileInputRef,
@@ -47,6 +52,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         onFileSelected,
         handleUpdateEntrepreneurInfo,
     } = useProfile(email, id)
+
+    const aboutRef = useRef<HTMLTextAreaElement>(null)
+    const videoDescRef = useRef<HTMLTextAreaElement>(null)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -97,7 +105,18 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                     <>
                         <div className={ `window-glass` }>
                             <div className={ `window-glass-content` } style={{ padding: 0, overflow: 'hidden' }}>
-                                <div className={ styles['cover-image'] }>
+                                <div className={ styles['cover-image-container'] }>
+                                    {
+                                        backPic && (
+                                            <Image
+                                                src={ backPic }
+                                                alt=''
+                                                width={ 1280 }
+                                                height={ 400 }
+                                                className={ styles['cover-image'] }
+                                            />
+                                        )
+                                    }
                                     <div className={ `window-glass ${ styles['profile-image-container'] }` }>
                                         <div className={ `window-glass-content ${ styles['profile-image'] }` }>
                                             {
@@ -310,17 +329,15 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                                             {
                                                 isMyAccount ? (
                                                     <textarea
+                                                        ref={ aboutRef }
                                                         className='textfield'
                                                         style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                        value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                        dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                        food security and the environment of North Eastern Uganda.'
+                                                        defaultValue={ aboutUs }
+                                                        onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'aboutus') }
                                                     />
                                                 ) : (
                                                     <p className={ styles['about-description'] }>
-                                                        We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                        dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                        food security and the environment of North Eastern Uganda.
+                                                        { aboutUs }
                                                     </p>
                                                 )
                                             }
@@ -328,154 +345,162 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                                     </div>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content ${ styles['video-container'] }` }>
-                                            <div className={ styles['video'] }>
-
-                                            </div>
+                                            {
+                                                videoUrl ? (
+                                                    <video controls className={ styles['video'] }>
+                                                        <source src={ videoUrl } />
+                                                    </video>
+                                                ) : (
+                                                    <div className={ styles['video'] }></div>
+                                                )
+                                            }
                                             <div className={ styles['video-text-container'] }>
                                                 <p className={ styles['card-title'] }>Video</p>
                                                 {
                                                     isMyAccount ? (
                                                         <textarea
+                                                            ref={ videoDescRef }
                                                             className='textfield'
                                                             style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                            value='We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                            food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                            food security and the environment of North Eastern Uganda.'
+                                                            defaultValue={ videoDesc }
+                                                            onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
                                                         />
                                                     ) : (
                                                         <p className={ styles['video-description'] }>
-                                                            We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                            food security and the environment of North Eastern Uganda. We promote the growing, protection and consumption of Moringa and Shea nut health and skin Care products. We produce Aica Moringa
-                                                            dried leaf powder, tea leaves, Moringa seed oil, Shea nut butter, Moringa and shea cosmetics for the improvement of the livelihoods,
-                                                            food security and the environment of North Eastern Uganda.
+                                                            { videoDesc }
                                                         </p>
                                                     )
                                                 }
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={ `window-glass` }>
-                                        <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                                            <div style={{ position: 'relative' }}>
-                                                <details className={ styles['title-container'] }>
-                                                    <summary className={ styles['accordion-title'] }>
-                                                        Pitch Deck
-                                                        <Image
-                                                            src={ arrowDownIcon }
-                                                            alt=''
-                                                            style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
-                                                        />
-                                                    </summary>
-                                                    <p className={ styles['accordion-content'] }>
-                                                        Pitch Deck content
-                                                    </p>
-                                                </details>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={ `window-glass` }>
-                                        <div className={ `window-glass-content ${ styles['window-content'] }` }>
-                                            <div style={{ position: 'relative' }}>
-                                                <details className={ styles['title-container'] }>
-                                                    <summary className={ styles['accordion-title'] } onClick={ handleValues }>
-                                                        Qualification
-                                                        <Image
-                                                            src={ arrowDownIcon }
-                                                            alt=''
-                                                            style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
-                                                        />
-                                                    </summary>
-                                                    <div className={ styles['accordion-content'] }>
-                                                        <div className={ styles['qualification-section-container'] }>
-                                                            <hr className={ styles['center-line'] } />
-
-                                                            <p className={ styles['texts'] }>Future prospect and Innovation projects</p>
-
-                                                            <span></span>
-                                                            <progress className={ styles['progress-bar-qualification'] } value={ value1 } max="100" />
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Outlook</p>
-
-                                                            <span></span>
-                                                            <progress className={ styles['progress-bar-qualification'] } value={ value2 } max="100" />
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Innovations Projects</p>
-                                                        </div>
-                                                        <div className={ styles['qualification-section-container'] }>
-                                                            <hr className={ styles['center-line'] } />
-
-                                                            <p className={ styles['texts'] }>Governance and enterprise risk management (ERM)</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value3 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Governance</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value4 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Enterprise Risk Management</p>
-                                                        </div>
-                                                        <div className={ styles['qualification-section-container'] }>
-                                                            <hr className={ styles['center-line'] } />
-
-                                                            <p className={ `${ styles['texts'] } ${ styles['group-risk'] }` }>Risk assessment</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value5 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Credit risk</p>
-
-                                                            <span></span>
-                                                            <progress className={ styles['progress-bar-qualification'] } value={ value6 } max="100" />
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market risk</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value7 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Country risk</p>
-
-                                                            <span></span>
-                                                            <progress className={ styles['progress-bar-qualification'] } value={ value8 } max="100" />
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Operational risk</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value9 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business and strategic risk</p>
-
-                                                            <span></span>
-                                                            <progress className={ styles['progress-bar-qualification'] } value={ value10 } max="100" />
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Social and environment risk</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value11 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Funding liquidity and Solvency risk</p>
-                                                        </div>
-                                                        <div className={ styles['qualification-section-container'] }>
-                                                            <hr className={ styles['center-line'] } />
-
-                                                            <p className={ `${ styles['texts'] } ${ styles['group-sdg'] }` }>Type of SME and Sustainable Development Goals (SDG)</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value12 } max="100" />
-                                                            <p></p>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>SDGs and impact</p>
-                                                        </div>
-                                                        <div className={ styles['qualification-section-container'] }>
-                                                            <hr className={ styles['center-line'] } />
-
-                                                            <p className={ styles['texts'] }>Business strategy market conditions</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value13 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market conditions</p>
-
-                                                            <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value14 } max="100" />
-                                                            <span></span>
-                                                            <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business lines strategy</p>
-                                                        </div>
+                                    {
+                                        user?.type === 'E' && (
+                                            <div className={ `window-glass` }>
+                                                <div className={ `window-glass-content` } style={{ padding: 16 }}>
+                                                    <div style={{ position: 'relative' }}>
+                                                        <details className={ styles['title-container'] }>
+                                                            <summary className={ styles['accordion-title'] }>
+                                                                Pitch Deck
+                                                                <Image
+                                                                    src={ arrowDownIcon }
+                                                                    alt=''
+                                                                    style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
+                                                                />
+                                                            </summary>
+                                                            <p className={ styles['accordion-content'] }>
+                                                                Pitch Deck content
+                                                            </p>
+                                                        </details>
+                                                        
                                                     </div>
-                                                </details>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        )
+                                    }
+                                    {
+                                        user?.type === 'E' && (
+                                            <div className={ `window-glass` }>
+                                                <div className={ `window-glass-content ${ styles['window-content'] }` }>
+                                                    <div style={{ position: 'relative' }}>
+                                                        <details className={ styles['title-container'] }>
+                                                            <summary className={ styles['accordion-title'] } onClick={ handleValues }>
+                                                                Qualification
+                                                                <Image
+                                                                    src={ arrowDownIcon }
+                                                                    alt=''
+                                                                    style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
+                                                                />
+                                                            </summary>
+                                                            <div className={ styles['accordion-content'] }>
+                                                                <div className={ styles['qualification-section-container'] }>
+                                                                    <hr className={ styles['center-line'] } />
+
+                                                                    <p className={ styles['texts'] }>Future prospect and Innovation projects</p>
+
+                                                                    <span></span>
+                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value1 } max="100" />
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Outlook</p>
+
+                                                                    <span></span>
+                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value2 } max="100" />
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Innovations Projects</p>
+                                                                </div>
+                                                                <div className={ styles['qualification-section-container'] }>
+                                                                    <hr className={ styles['center-line'] } />
+
+                                                                    <p className={ styles['texts'] }>Governance and enterprise risk management (ERM)</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value3 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Governance</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value4 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Enterprise Risk Management</p>
+                                                                </div>
+                                                                <div className={ styles['qualification-section-container'] }>
+                                                                    <hr className={ styles['center-line'] } />
+
+                                                                    <p className={ `${ styles['texts'] } ${ styles['group-risk'] }` }>Risk assessment</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value5 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Credit risk</p>
+
+                                                                    <span></span>
+                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value6 } max="100" />
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market risk</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value7 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Country risk</p>
+
+                                                                    <span></span>
+                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value8 } max="100" />
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Operational risk</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value9 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business and strategic risk</p>
+
+                                                                    <span></span>
+                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value10 } max="100" />
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Social and environment risk</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value11 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Funding liquidity and Solvency risk</p>
+                                                                </div>
+                                                                <div className={ styles['qualification-section-container'] }>
+                                                                    <hr className={ styles['center-line'] } />
+
+                                                                    <p className={ `${ styles['texts'] } ${ styles['group-sdg'] }` }>Type of SME and Sustainable Development Goals (SDG)</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value12 } max="100" />
+                                                                    <p></p>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>SDGs and impact</p>
+                                                                </div>
+                                                                <div className={ styles['qualification-section-container'] }>
+                                                                    <hr className={ styles['center-line'] } />
+
+                                                                    <p className={ styles['texts'] }>Business strategy market conditions</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value13 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market conditions</p>
+
+                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value14 } max="100" />
+                                                                    <span></span>
+                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business lines strategy</p>
+                                                                </div>
+                                                            </div>
+                                                        </details>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
                                     {/* <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                             <div style={{ position: 'relative' }}>
