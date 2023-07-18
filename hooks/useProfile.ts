@@ -50,16 +50,19 @@ export const useProfile = (email: string, id: string) => {
 
     const { data } = useQuestionnaire()
 
+    // useEffect(() => {
+    //     if (user) {
+    //         if (user.email === email) {
+    //             setIsMyAccount(true)
+    //         }
+    //     }
+    // }, [user])
+    
     useEffect(() => {
         if (user) {
             if (user.email === email) {
                 setIsMyAccount(true)
             }
-        }
-    }, [user])
-    
-    useEffect(() => {
-        if (user) {
             validateRequiredData()
             validateCompleteQuestionnaire()
             loadDataEntrepreneur()
@@ -68,6 +71,7 @@ export const useProfile = (email: string, id: string) => {
 
     useEffect(() => {
         if (entrepreneurData) {
+            console.log('entró')
             if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
                 companyNameRef.current!.value = entrepreneurData.name
                 emailContactRef.current!.value = entrepreneurData.email_contact
