@@ -63,14 +63,13 @@ export const useProfile = (email: string, id: string) => {
             if (user.email === email) {
                 setIsMyAccount(true)
             }
-            validateRequiredData()
             validateCompleteQuestionnaire()
+            validateRequiredData()
             loadDataEntrepreneur()
         }
     }, [user])
 
     useEffect(() => {
-        console.log('entró')
         if (entrepreneurData && isMyAccount) {
             if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
                 companyNameRef.current!.value = entrepreneurData.name
