@@ -290,7 +290,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                                     <div className={ `window-glass` } style={{ cursor: 'pointer' }}>
                                         <div className={ `window-glass-content` }>
                                             <div className={ styles['progress-container'] }>
-                                                <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
+                                                <progress className={ styles['progress-bar'] } value={ percentage > 100 ? 100 : percentage } max="100" />
                                             </div>
                                             <div className={ styles['progress-image'] }>
 

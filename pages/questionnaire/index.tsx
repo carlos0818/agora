@@ -80,7 +80,7 @@ const Questionnaire: NextPage = () => {
                                             <div className={ `window-glass ${ styles['window-glass'] }` }>
                                                 <div className={ `window-glass-content` }>
                                                     <div className={ styles['progress-container'] }>
-                                                        <progress className={ styles['progress-bar'] } value={ percentage } max="100" />
+                                                        <progress className={ styles['progress-bar'] } value={ percentage > 100 ? 100 : percentage } max="100" />
                                                         <span className={ styles['percent-text'] }>
                                                             { (percentage !== Infinity && !isNaN(percentage)) && percentage } %
                                                         </span>
