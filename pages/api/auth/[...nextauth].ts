@@ -73,8 +73,13 @@ const NextAuth2 = (req: NextApiRequest, res: NextApiResponse) => {
       updateAge: 86400,
     },
     callbacks: {
-      async jwt({ token, account, user }) {
+      async jwt({ token, account, user, trigger, session }) {
         // console.log({ token, account, user })
+
+        if (trigger === 'update') {
+          token.user = session.user
+        }
+
         if (account) {
           token.accesToken = account.access_token
   

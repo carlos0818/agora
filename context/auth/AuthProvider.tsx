@@ -25,7 +25,9 @@ interface Props {
 export const AuthProvider: FC<Props> = ({ children }) => {
 
     const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE)
-    const { data, status } = useSession()
+    const { data, status, update } = useSession()
+
+    console.log(data)
 
     useEffect(() => {
         if (status === 'authenticated') {
@@ -33,11 +35,23 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         }
     }, [status])
 
+    const updateName = (user: IUser) => {
+        // console.log(user.fullname)
+        // if (data && data.user) data!.user.name = user.fullname
+        update({
+            ...data,
+            user: {
+                ...data?.user,
+                name: user.fullname,
+                fullname: user.fullname,
+            }
+        })
+        dispatch({ type: '[Auth] - Update Full Name', payload: user as IUser })
+    }
+
     const registerUser = async(fullname: string, email: string, password: string, type: string, captcha: string): Promise<{hasError: boolean; message?: string}> => {
         try {
             await agoraApi.post('/user/register', { email, password, fullname, type, captcha })
-            // console.log(data)
-            // dispatch({ type: '[Auth] - Login', payload: data })
             return {
                 hasError: false
             }
@@ -65,6 +79,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         <AuthContext.Provider value={{
             ...state,
             registerUser,
+            updateName,
             logout,
         }}>
             { children }

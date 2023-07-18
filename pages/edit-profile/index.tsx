@@ -32,7 +32,7 @@ type FormData = {
 }
 
 const EditProfile: NextPage = () => {
-    const { user } = useContext(AuthContext)
+    const { user, updateName } = useContext(AuthContext)
 
     const { countries } = countriesList
 
@@ -106,6 +106,15 @@ const EditProfile: NextPage = () => {
             return
         }
 
+        updateName({
+            id: user?.id!,
+            email: user?.email!,
+            type: user?.type!,
+            token: user?.token!,
+            fullname: fullnameRef.current?.value!,
+            name: fullnameRef.current?.value!,
+        })
+
         await agoraApi.post('/user/update-user-info', { email: user?.email, fullname: fullnameRef.current?.value })
     }
 
@@ -154,6 +163,11 @@ const EditProfile: NextPage = () => {
                 formDataVideo.append('video', video[0])
                 const { data: videoUrl } = await agoraApi.post('/files/video', formDataVideo)
                 videoString = videoUrl
+            }
+
+            const userObj = {
+                id: user?.id,
+
             }
 
             const data = {
