@@ -106,10 +106,21 @@ const Questionnaire: NextPage = () => {
                                                                                 >
                                                                                     <p
                                                                                         key={ `title-${ question.qnbr }` }
-                                                                                        style={{ color: '#10284F', fontFamily: 'ebrima-bold', fontSize: 24 }}
-                                                                                    >
+                                                                                        style={{ color: '#10284F', fontFamily: 'ebrima-bold', fontSize: 24, textAlign: 'center' }}
+                                                                                        >
                                                                                         { question.type === 'T' ? question.descr : null }
                                                                                     </p>
+                                                                                    {
+                                                                                        question.video && (
+                                                                                            <div className={ `window-glass ${ styles['window-glass-video'] }` }>
+                                                                                                <div className={ styles['video-container'] }>
+                                                                                                    <video className={ styles['video'] } controls>
+                                                                                                        <source src={ question.video } />
+                                                                                                    </video>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        )
+                                                                                    }
                                                                                     <p
                                                                                         key={ `subtitle-${ question.qnbr }` } 
                                                                                         style={{ color: '#10284F', fontFamily: 'ebrima-bold', fontSize: 18 }}

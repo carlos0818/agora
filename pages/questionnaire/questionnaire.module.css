@@ -1,3 +1,21 @@
+.window-glass-video {
+    margin: auto;
+    margin-block-start: 10px;
+    width: fit-content;
+}
+
+.video-container {
+    /* border: 1px solid red; */
+    block-size: 250px;
+    inline-size: 500px;
+    /* position: absolute; */
+}
+
+.video {
+    block-size: 250px;
+    inline-size: 500px;
+}
+
 .progress-container {
     inline-size: 100%;
     margin: auto;
