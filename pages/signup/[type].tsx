@@ -52,9 +52,24 @@ const SignUpPage: NextPage = () => {
 
     const onRegister = async({ fullname, email, password }: FormData) => {
         setLoading(true)
+        let type = ''
+
+        switch (query.type!.toString()) {
+            case 'entrepreneur':
+                type = 'E'
+                break
+            case 'investor':
+                type = 'I'
+                break
+            case 'expert':
+                type = 'X'
+                break
+            default:
+                break
+        }
 
         const captcha = await executeRecaptcha("form_register")
-        const { hasError, message } = await registerUser(fullname, email, password, query.type!.toString().toUpperCase().substring(0,1), captcha)
+        const { hasError, message } = await registerUser(fullname, email, password, type, captcha)
 
         if (hasError) {
             setError('email', { type: 'exists', message })
