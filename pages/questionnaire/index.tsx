@@ -49,7 +49,7 @@ const Questionnaire: NextPage = () => {
         setSubmitLoading(true)
 
         try {
-            await agoraApi.post('/question/submit-questionnaire', { email: user?.email })
+            await agoraApi.post('/question/submit-questionnaire-entrepreneur', { email: user?.email })
             setSubmitLoading(false)
             router.replace(`/profile/${ user?.id }`)
         } catch (error: any) {

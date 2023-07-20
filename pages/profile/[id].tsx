@@ -7,12 +7,12 @@ import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { Activity } from '@/components/Profile/Activity'
 import { Comment } from '@/components/Profile/Comment'
 
+import { agoraApi } from '@/api'
 import { useProfile } from '@/hooks/useProfile'
 
 import styles from './my-profile.module.css'
 
 import arrowDownIcon from '@/public/images/arrow-down.svg'
-import { agoraApi } from '@/api'
 
 interface Props {
     id: string

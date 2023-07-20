@@ -10,10 +10,9 @@ import { AuthContext } from '@/context/auth'
 import countriesList from '@/db/countries'
 import { agoraApi } from '@/api'
 
-import { IUser } from '@/interfaces'
+import { IUser, IEntrepreneur, IInvestor, IExpert } from '@/interfaces'
 
 import styles from './edit-profile.module.css'
-import { IEntrepreneur } from '@/interfaces/entrepreneur'
 
 type FormData = {
     name: string
@@ -79,24 +78,41 @@ const EditProfile: NextPage = () => {
     }
 
     const loadAccountTypeData = async() => {
-        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-email?email=${ user?.email }`)
+        let data = null
 
-        setProfilePic(data.profilepic)
-        setBackgroundPic(data.backpic)
-        setVideo(data.videourl)
+        switch (user?.type) {
+            case 'E':
+                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-email?email=${ user?.email }`)
+                data = entrepreneur
+                break
+            case 'I':
+                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-email?email=${ user?.email }`)
+                data = investor
+                break
+            case 'X':
+                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-email?email=${ user?.email }`)
+                data = expert
+                break
+            default:
+                break
+        }
 
-        setValue('profilePicture', data.profilepic)
-        setValue('name', data.name)
-        setValue('emailContact', data.email_contact)
-        setValue('phone', data.phone)
-        setValue('country', data.country)
-        setValue('city', data.city)
-        setValue('address', data.address)
-        setValue('companyUrl', data.web)
-        setValue('facebookUrl', data.facebook)
-        setValue('linkedinUrl', data.linkedin)
-        setValue('twitterUrl', data.twitter)
-        setValue('backgroundPicture', data.backpic)
+        setProfilePic(data!.profilepic)
+        setBackgroundPic(data!.backpic)
+        setVideo(data!.videourl)
+
+        setValue('profilePicture', data!.profilepic)
+        setValue('name', data!.name)
+        setValue('emailContact', data!.email_contact)
+        setValue('phone', data!.phone)
+        setValue('country', data!.country)
+        setValue('city', data!.city)
+        setValue('address', data!.address)
+        setValue('companyUrl', data!.web)
+        setValue('facebookUrl', data!.facebook)
+        setValue('linkedinUrl', data!.linkedin)
+        setValue('twitterUrl', data!.twitter)
+        setValue('backgroundPicture', data!.backpic)
     }
 
     const handleSaveUser = async() => {
@@ -165,11 +181,6 @@ const EditProfile: NextPage = () => {
                 videoString = videoUrl
             }
 
-            const userObj = {
-                id: user?.id,
-
-            }
-
             const data = {
                 email: user?.email,
                 name,
@@ -187,7 +198,19 @@ const EditProfile: NextPage = () => {
                 twitter: twitterUrl ? twitterUrl : '',
             }
 
-            await agoraApi.post(`/entrepreneur/update`, data)
+            switch (user?.type) {
+                case 'E':
+                    await agoraApi.post(`/entrepreneur/update`, data)
+                    break
+                case 'I':
+                    await agoraApi.post(`/investor/update`, data)
+                    break
+                case 'X':
+                    await agoraApi.post(`/expert/update`, data)
+                    break
+                default:
+                    break
+            }
         } catch (error) {
             console.log(error)
         }

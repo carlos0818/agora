@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import style from '../../pages/more-info/more-info.module.css'
 
-import moneyIcon from '@/public/images/money-icon.svg'
+import investor1 from '@/public/images/investor-1.png'
 
 interface Props {
     type: string | undefined
@@ -15,7 +15,7 @@ const data = [
         info: [
             {
                 title: 'ACCESS TO NEW INVESTMENT OPPORTUNITIES',
-                description: 'Agora provides a platform for investors to learn about new investment opportunities in frontier, emerging and developing economies that they may have otherwise overlooked.'
+                description: 'Agora provides a platform for investors to learn about new investment opportunities in frontier, emerging and developing economies that they may have otherwise overlooked.',
             },
             {
                 title: 'TRUSTED SOURCE',
@@ -104,11 +104,11 @@ export const Section4: FC<Props> = ({ type }) => {
         <div className={ style['section-four-container'] }>
             {
                 (type === 'investor') && (
-                    data[0].info.map(inf => {
+                    data[0].info.map((inf, idx) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src={ moneyIcon } alt='' className={ style['specs-icon'] } />
+                                <Image src='/static/investor-1.png' alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )
@@ -121,7 +121,7 @@ export const Section4: FC<Props> = ({ type }) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src={ moneyIcon } alt='' className={ style['specs-icon'] } />
+                                <Image src='./images/investor-1.png' alt='' className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )
@@ -134,7 +134,7 @@ export const Section4: FC<Props> = ({ type }) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src={ moneyIcon } alt='' className={ style['specs-icon'] } />
+                                <Image src='./images/investor-1.png' alt='' className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )

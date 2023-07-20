@@ -10,7 +10,6 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
-    const { masterHide, updateMasterHide } = useContext(QuestionnaireContext)
 
     const router = useRouter()
 
@@ -38,8 +37,9 @@ export const useQuestionnaire = () => {
     const { countries } = countriesList
 
     useEffect(() => {
-        loadQuestions()
-    }, [])
+        if (user)
+            loadQuestions()
+    }, [user])
 
     useEffect(() => {
         loadYears()
@@ -120,11 +120,24 @@ export const useQuestionnaire = () => {
     const loadQuestions = async() => {
         setLoading(true)
         try {
-            const { data: dataQuestion } = await agoraApi.get<IQuestion[]>('/question')
-            const { data: dataAnswer } = await agoraApi.get<IAnswer[]>('/question/answer')
-            loadData(dataQuestion, dataAnswer)
-            const filter = dataQuestion.filter(question => question.type !== 'T' && question.type !== 'S')
-            updateTotalQuestions(filter.length)
+            switch (user?.type) {
+                case 'E':
+                    const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>('/question/entrepreneur')
+                    const { data: dataAnswerExp } = await agoraApi.get<IAnswer[]>('/question/answer-entrepreneur')
+                    loadData(dataQuestionExp, dataAnswerExp)
+                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S')
+                    updateTotalQuestions(filterExp.length)
+                    break
+                case 'I':
+                    const { data: dataQuestionInv } = await agoraApi.get<IQuestion[]>('/question/investor')
+                    const { data: dataAnswerInv } = await agoraApi.get<IAnswer[]>('/question/answer-investor')
+                    loadData(dataQuestionInv, dataAnswerInv)
+                    const filterInv = dataQuestionInv.filter(question => question.type !== 'T' && question.type !== 'S')
+                    updateTotalQuestions(filterInv.length)
+                    break
+                default:
+                    break
+            }
         } catch (error) {
             console.log(error)
         }

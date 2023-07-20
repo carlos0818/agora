@@ -7,8 +7,8 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 import { agoraApi } from '@/api'
 import countriesList from '@/db/countries'
 import { useQuestionnaire } from './useQuestionnaire'
-import { IEntrepreneur } from '@/interfaces/entrepreneur'
-import { useForm } from 'react-hook-form'
+
+import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
 
 export const useProfile = (email: string, id: string) => {
     const { user } = useContext(AuthContext)
@@ -65,9 +65,14 @@ export const useProfile = (email: string, id: string) => {
     
     useEffect(() => {
         if (user) {
-            loadDataEntrepreneur()
-            validateRequiredData()
-            validateCompleteQuestionnaire()
+            setLoading(true)
+            Promise.all([
+                loadData(),
+                validateRequiredData(),
+                validateCompleteQuestionnaire()
+            ]).then(() => {
+                setLoading(false)
+            })
         }
     }, [user])
 
@@ -154,10 +159,23 @@ export const useProfile = (email: string, id: string) => {
         updateHide(removeDuplicates.length)
     }, [masterHide, globalHide])
 
-    const loadDataEntrepreneur = async() => {
-        const { data } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ id }`)
-        console.log(data)
-        setEntrepreneurData(data)
+    const loadData = async() => {
+        switch (user?.type) {
+            case 'E':
+                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ id }`)
+                setEntrepreneurData(entrepreneur)
+                break
+            case 'I':
+                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ id }`)
+                setEntrepreneurData(investor)
+                break
+            case 'X':
+                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ id }`)
+                setEntrepreneurData(expert)
+                break
+            default:
+                break
+        }
     }
 
     const validateCompleteQuestionnaire = async() => {
@@ -170,10 +188,20 @@ export const useProfile = (email: string, id: string) => {
     }
 
     const validateRequiredData = async() => {
-        setLoading(true)
         try {
-            await agoraApi.get(`/entrepreneur/validate-required-data?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
-            setLoading(false)
+            switch (user?.type) {
+                case 'E':
+                    await agoraApi.get(`/entrepreneur/validate-required-data?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
+                    break
+                case 'I':
+                    await agoraApi.get(`/investor/validate-required-data?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
+                    break
+                case 'X':
+                    await agoraApi.get(`/expert/validate-required-data?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
+                    break
+                default:
+                    break
+            }
         } catch (error) {
             router.replace('/')
         }
@@ -195,9 +223,20 @@ export const useProfile = (email: string, id: string) => {
                 profilepic: url,
                 email: user?.email
             }
-            await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
+            switch (user?.type) {
+                case 'E':
+                    await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
+                    break
+                case 'I':
+                    await agoraApi.post('/investor/update-investor-info', data)
+                    break
+                case 'X':
+                    await agoraApi.post('/expert/update-expert-info', data)
+                    break
+                default:
+                    break
+            }
             setProfilePic(url)
-
             setLoadingPic(false)
         } catch (error) {
             console.log(error)
@@ -237,7 +276,19 @@ export const useProfile = (email: string, id: string) => {
         }
 
         try {
-            await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
+            switch (user?.type) {
+                case 'E':
+                    await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
+                    break
+                case 'I':
+                    await agoraApi.post('/investor/update-investor-info', data)
+                    break
+                case 'X':
+                    await agoraApi.post('/expert/update-expert-info', data)
+                    break
+                default:
+                    break
+            }
         } catch (error: any) {
             console.log(error)
         }
