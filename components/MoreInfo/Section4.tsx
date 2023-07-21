@@ -108,7 +108,7 @@ export const Section4: FC<Props> = ({ type }) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src='/static/investor-1.png' alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
+                                <Image src={ `/images/inv-${ idx + 1 }.png` } alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )
@@ -117,11 +117,11 @@ export const Section4: FC<Props> = ({ type }) => {
             }
             {
                 (type === 'entrepreneur') && (
-                    data[1].info.map(inf => {
+                    data[1].info.map((inf, idx) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src='/static/investor-1.png' alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
+                                <Image src={ `/images/entre-${ idx + 1 }.png` } alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )
@@ -130,11 +130,11 @@ export const Section4: FC<Props> = ({ type }) => {
             }
             {
                 (type === 'expert') && (
-                    data[2].info.map(inf => {
+                    data[2].info.map((inf, idx) => {
                         return (
                             <div key={ inf.title } className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>{ inf.title }</h3>
-                                <Image src='/static/investor-1.png' alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
+                                <Image src={ `/images/exp-${ idx + 1 }.png` } alt='' width={ 448 } height={ 672 } className={ style['specs-icon'] } />
                                 <p className={ style['specs-description'] }>{ inf.description }</p>
                             </div>
                         )

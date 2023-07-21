@@ -107,15 +107,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
                             <div className={ `window-glass-content` } style={{ padding: 0, overflow: 'hidden' }}>
                                 <div className={ styles['cover-image-container'] }>
                                     {
-                                        backPic && (
-                                            <Image
-                                                src={ backPic }
-                                                alt=''
-                                                width={ 1280 }
-                                                height={ 400 }
-                                                className={ styles['cover-image'] }
-                                            />
-                                        )
+                                        <Image
+                                            src={ backPic ? backPic : '/images/user-background.jpg' }
+                                            alt=''
+                                            width={ 1280 }
+                                            height={ 400 }
+                                            className={ styles['cover-image'] }
+                                        />
                                     }
                                     <div className={ `window-glass ${ styles['profile-image-container'] }` }>
                                         <div className={ `window-glass-content ${ styles['profile-image'] }` }>

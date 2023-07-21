@@ -5,7 +5,7 @@
 
 .cover-image-container {
     align-items: center;
-    background-color: green;
+    background-color: transparent;
     block-size: 118px;
     display: flex;
     inline-size: 100%;
