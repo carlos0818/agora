@@ -102,7 +102,7 @@ export const useQuestionnaire = () => {
         let removeDuplicates: string[] = []
         for (let i=0; i<hide.length; i++) {
             const find = removeDuplicates.find((remove: any) => remove === hide[i])
-            if (!find)
+            if (!find && hide[i].length < 4)
                 removeDuplicates.push(hide[i])
         }
 
@@ -122,11 +122,11 @@ export const useQuestionnaire = () => {
         try {
             switch (user?.type) {
                 case 'E':
-                    const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>('/question/entrepreneur')
-                    const { data: dataAnswerExp } = await agoraApi.get<IAnswer[]>('/question/answer-entrepreneur')
-                    loadData(dataQuestionExp, dataAnswerExp)
-                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S')
-                    updateTotalQuestions(filterExp.length)
+                    const { data: dataQuestionEnt } = await agoraApi.get<IQuestion[]>('/question/entrepreneur')
+                    const { data: dataAnswerEnt } = await agoraApi.get<IAnswer[]>('/question/answer-entrepreneur')
+                    loadData(dataQuestionEnt, dataAnswerEnt)
+                    const filterEnt = dataQuestionEnt.filter(question => question.type !== 'T' && question.type !== 'S')
+                    updateTotalQuestions(filterEnt.length)
                     break
                 case 'I':
                     const { data: dataQuestionInv } = await agoraApi.get<IQuestion[]>('/question/investor')
@@ -134,6 +134,13 @@ export const useQuestionnaire = () => {
                     loadData(dataQuestionInv, dataAnswerInv)
                     const filterInv = dataQuestionInv.filter(question => question.type !== 'T' && question.type !== 'S')
                     updateTotalQuestions(filterInv.length)
+                    break
+                case 'X':
+                    const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>('/question/expert')
+                    const { data: dataAnswerExp } = await agoraApi.get<IAnswer[]>('/question/answer-expert')
+                    loadData(dataQuestionExp, dataAnswerExp)
+                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S')
+                    updateTotalQuestions(filterExp.length)
                     break
                 default:
                     break

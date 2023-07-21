@@ -49,9 +49,25 @@ const Questionnaire: NextPage = () => {
         setSubmitLoading(true)
 
         try {
-            await agoraApi.post('/question/submit-questionnaire-entrepreneur', { email: user?.email })
-            setSubmitLoading(false)
-            router.replace(`/profile/${ user?.id }`)
+            switch (user?.type) {
+                case 'E':
+                    await agoraApi.post('/question/submit-questionnaire-entrepreneur', { email: user?.email })
+                    setSubmitLoading(false)
+                    router.replace(`/profile/${ user?.id }`)
+                    break
+                case 'I':
+                    await agoraApi.post('/question/submit-questionnaire-investor', { email: user?.email })
+                    setSubmitLoading(false)
+                    router.replace(`/profile/${ user?.id }`)
+                    break
+                case 'X':
+                    await agoraApi.post('/question/submit-questionnaire-expert', { email: user?.email })
+                    setSubmitLoading(false)
+                    router.replace(`/profile/${ user?.id }`)
+                    break
+                default:
+                    break
+            }
         } catch (error: any) {
             setError(true)
             setErrorMessage(error.response.data.message)
@@ -131,7 +147,7 @@ const Questionnaire: NextPage = () => {
                                                                                         key={ `question-${ question.qnbr }` }
                                                                                         style={{ color: '#10284F' }}
                                                                                     >
-                                                                                        { question.type ==='Q' ? `${ question.descr }` : null }
+                                                                                        { question.type ==='Q' ? `${ question.qnbr }. ${ question.descr }` : null }
                                                                                     </p>
                                                                                     <div key={ `${ question.qnbr }-${ question.effdt }` } style={{ marginBlockStart: 12 }}>
                                                                                         {
