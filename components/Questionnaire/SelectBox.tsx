@@ -14,6 +14,7 @@ interface Props {
 }
 
 export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
+    // console.log('data', data)
     const { user } = useContext(AuthContext)
     const { updateHide, updateAnsweredQuestions } = useContext(QuestionnaireContext)
 
@@ -136,10 +137,10 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                 setAnswer(id)
 
                 if (extravalue) {
-                    agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
+                    agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
                     return
                 }
-                agoraApi.post('/question/save-question', { email: user?.email, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
+                agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
             }
         }
     }

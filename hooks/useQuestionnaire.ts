@@ -91,6 +91,7 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
+            // Restamos 1 a answeredQuestion para quitar el qnbr 0, que es el validator
             const result = Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)) > 100 ? 100 : Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0))
             updatePercentage(result)
         } else {
@@ -139,7 +140,7 @@ export const useQuestionnaire = () => {
                     const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>('/question/expert')
                     const { data: dataAnswerExp } = await agoraApi.get<IAnswer[]>('/question/answer-expert')
                     loadData(dataQuestionExp, dataAnswerExp)
-                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S')
+                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S' && question.qnbr !== 0)
                     updateTotalQuestions(filterExp.length)
                     break
                 default:
@@ -150,6 +151,10 @@ export const useQuestionnaire = () => {
         }
         setLoading(false)
     }
+
+    // console.log('totalQuestions', totalQuestions)
+    // console.log('globalHide', globalHide)
+    // console.log('answeredQuestions', answeredQuestions)
 
     const loadData = (questions: IQuestion[], answers: IAnswer[]) => {
         let data: any = []
@@ -240,8 +245,10 @@ export const useQuestionnaire = () => {
                 removeDuplicates.push(`${ split[0] }-${ split[1] }`)
         }
 
+        const filter = removeDuplicates.filter((remove: any) => remove !== '0-1')
+
         setQuestionsAnswered(arr)
-        updateAllAnsweredQuestions(removeDuplicates)
+        updateAllAnsweredQuestions(filter)
     }
 
     return {
