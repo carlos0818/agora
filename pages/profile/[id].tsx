@@ -18,9 +18,10 @@ interface Props {
     id: string
     email: string
     fullname: string
+    type: string
 }
 
-const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
+const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     const {
         isMyAccount,
         countries,
@@ -51,7 +52,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname }) => {
         percentage,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
-    } = useProfile(email, id)
+    } = useProfile(email, id, type)
+
+    console.log()
 
     const aboutRef = useRef<HTMLTextAreaElement>(null)
     const videoDescRef = useRef<HTMLTextAreaElement>(null)
@@ -590,12 +593,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const { id } = params as { id: string }
     let email = ''
     let fullname = ''
+    let type = ''
 
     try {
         await agoraApi.get(`/question/validate-complete-questionnaire-by-id?id=${ id }`)
         const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`)
         email = data.email
         fullname = data.fullname
+        type = data.type
     } catch (error) {
         return {
             redirect: {
@@ -610,6 +615,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
             id,
             email,
             fullname,
+            type,
         }
     }
 }

@@ -55,7 +55,7 @@ export const Textfield: FC<Props> = ({ data }) => {
     
             localStorage.setItem('questionnaire', JSON.stringify(storage))
     
-            await agoraApi.post('/question/save-question', { email: user?.email, qnbr: data.qnbr.toString(), anbr: '1', effdt: data.effdt, extravalue: value })
+            await agoraApi.post('/question/save-question', { email: user?.email, qnbr: data.qnbr.toString(), type: user?.type, anbr: '1', effdt: data.effdt, extravalue: value })
         } else {
             deleteAnsweredQuestions(`${ data.qnbr }-1`)
 

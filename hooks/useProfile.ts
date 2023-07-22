@@ -10,7 +10,7 @@ import { useQuestionnaire } from './useQuestionnaire'
 
 import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
 
-export const useProfile = (email: string, id: string) => {
+export const useProfile = (email: string, id: string, type: string) => {
     const { user } = useContext(AuthContext)
 
     const router = useRouter()
@@ -160,7 +160,7 @@ export const useProfile = (email: string, id: string) => {
     }, [masterHide, globalHide])
 
     const loadData = async() => {
-        switch (user?.type) {
+        switch (type) {
             case 'E':
                 const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ id }`)
                 setEntrepreneurData(entrepreneur)
@@ -189,7 +189,7 @@ export const useProfile = (email: string, id: string) => {
 
     const validateRequiredData = async() => {
         try {
-            switch (user?.type) {
+            switch (type) {
                 case 'E':
                     await agoraApi.get(`/entrepreneur/validate-required-data?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
                     break
@@ -223,7 +223,7 @@ export const useProfile = (email: string, id: string) => {
                 profilepic: url,
                 email: user?.email
             }
-            switch (user?.type) {
+            switch (type) {
                 case 'E':
                     await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
                     break
@@ -276,7 +276,7 @@ export const useProfile = (email: string, id: string) => {
         }
 
         try {
-            switch (user?.type) {
+            switch (type) {
                 case 'E':
                     await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
                     break
