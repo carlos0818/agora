@@ -54,8 +54,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         handleUpdateEntrepreneurInfo,
     } = useProfile(email, id, type)
 
-    console.log()
-
     const aboutRef = useRef<HTMLTextAreaElement>(null)
     const videoDescRef = useRef<HTMLTextAreaElement>(null)
 

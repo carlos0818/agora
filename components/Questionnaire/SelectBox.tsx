@@ -16,7 +16,7 @@ interface Props {
 export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
     // console.log('data', data)
     const { user } = useContext(AuthContext)
-    const { updateHide, updateAnsweredQuestions } = useContext(QuestionnaireContext)
+    const { updateHide, updateAnsweredQuestions, updateMasterHide } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -41,27 +41,31 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
         setAnswer(answerValue)
     }, [])
 
-    useEffect(() => {
-        if (questionsAnswered) {
-            const idArr = data[0].id.split('-')
-            const qnbr = idArr[0]
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         console.log('aaaaaa')
+    //         // console.log(new Date())
+    //         if (questionsAnswered) {
+    //             const idArr = data[0].id.split('-')
+    //             const qnbr = idArr[0]
+    
+    //             const find = questionsAnswered.find(ans => {
+    //                 const idArr2 = ans.split('-')
+    //                 const qnbr2 = idArr2[0]
+    //                 if (qnbr2 === qnbr) {
+    //                     return ans
+    //                 }
+    //             })
+    
+    //             if (find) {
+    //                 onSelectedOption(find, false)
+    //             }
+    //         }
+    //     }, 1000)
+    // }, [])
 
-            const find = questionsAnswered.find(ans => {
-                const idArr2 = ans.split('-')
-                const qnbr2 = idArr2[0]
-                if (qnbr2 === qnbr) {
-                    return ans
-                }
-            })
-
-            if (find) {
-                onSelectedOption(find, false)
-            }
-        }
-    }, [])
-
-    const onSelectedOption = async(id: string, save: boolean) => {
-        if (answer === '' && save) {
+    const onSelectedOption = async(id: string) => {
+        if (answer === '') {
             updateAnsweredQuestions(id)
         }
 
@@ -97,11 +101,13 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                 storage.push({ qnbr: Number(qnbr), anbr: Number(anbr), extravalue: extravalue })
             }
 
-            if (save)
+            // if (save)
                 localStorage.setItem('questionnaire', JSON.stringify(storage))
 
             const respShowSplit = resp[0].show?.split(',') || null
             let respHideSplit: any
+
+            // console.log(respShowSplit)
             
             if (resp[0].hide?.substring(0, 4) === 'qnbr') {
                 // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
@@ -123,17 +129,19 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
             let filter: string[] = []
             if (respShowSplit) {
                 filter = hide.filter((value: any) => respShowSplit.indexOf(value) < 0)
-                if (save) {
+                // if (save) {
                     setHide(p => filter)
                     updateHide(filter.length)
-                }
+                    updateMasterHide(filter)
+                // }
             }
 
             if(respHideSplit) {
                 setHide(p => ([...p, ...respHideSplit]))
+                updateMasterHide(respHideSplit)
             }
 
-            if (save) {
+            // if (save) {
                 setAnswer(id)
 
                 if (extravalue) {
@@ -141,7 +149,7 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                     return
                 }
                 agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
-            }
+            // }
         }
     }
 
@@ -150,7 +158,7 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
             <select
                 className='select'
                 style={{ fontFamily: answer !== '' ? 'ebrima' : 'ebrima-bold' }}
-                onChange={ (e) => onSelectedOption(e.target.value, true) } value={ answer }
+                onChange={ (e) => onSelectedOption(e.target.value) } value={ answer }
             >
                 <option value="" disabled hidden style={{ color: 'red' }}>Select an option</option>
                 {

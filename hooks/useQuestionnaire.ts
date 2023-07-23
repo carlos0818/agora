@@ -10,6 +10,7 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
+    const { masterHide, updateMasterHide } = useContext(QuestionnaireContext)
 
     const router = useRouter()
 
@@ -78,16 +79,61 @@ export const useQuestionnaire = () => {
     }, [user])
 
     useEffect(() => {
+        data.map((page: any) => {
+            page.questions.map((question: any) => {
+                if (question.answers && question.object === 'L') {
+                    const answers = question.answers
+                    const find = answeredQuestions.find((answered: any) => {
+                        const split = answered.split('-')
+                        if (Number(split[0]) === Number(question.qnbr)) {
+                            return answered
+                        }
+                        return null
+                    })
+                    
+                    if (find) {
+                        const split = find.split('-')
+                        const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
+                        if (resp.length > 0) {
+                            let respHideSplit: any
+                            if (resp[0].hide?.substring(0, 4) === 'qnbr') {
+                                // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
+                                // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
+                                // const numberAnswer = resp[0].hide?.substring(8).split(':')
+                                // for (let i=0; i<storage.length; i++) {
+                                //     if (Number(storage[i].qnbr) === numberQuestion) {
+                                //         for (let j=0; j<numberAnswer.length; j++) {
+                                //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
+                                //                 respHideSplit = numberAnswer[j].substring(3).split(',')
+                                //             }
+                                //         }
+                                //     }
+                                // }
+                            } else {
+                                respHideSplit = resp[0].hide?.split(',') || null
+                            }
+
+                            if (respHideSplit) {
+                                updateMasterHide([...respHideSplit])
+                            }
+                        }
+                    }
+                }
+            })
+        })
+    }, [data])
+
+    useEffect(() => {
         const $containerClass = document.querySelectorAll(`.container`)
         for (let i=0; i<$containerClass.length; i++) {
             $containerClass[i]?.classList.remove('wrapper-hide')
         }
 
-        hide.map(hide => {
+        masterHide.map(hide => {
             const $container = document.querySelector(`#container-${ hide }`)
             $container?.classList.add('wrapper-hide')
         })
-    }, [hide])
+    }, [masterHide])
 
     useEffect(() => {
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
@@ -108,7 +154,7 @@ export const useQuestionnaire = () => {
         }
 
         updateHide(removeDuplicates.length)
-    }, [hide])
+    }, [masterHide])
 
     const validateCompleteQuestionnaire = async() => {
         try {

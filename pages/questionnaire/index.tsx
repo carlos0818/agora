@@ -35,8 +35,6 @@ const Questionnaire: NextPage = () => {
         setEnd,
     } = useQuestionnaire()
 
-    // console.log('hide', hide)
-
     const router = useRouter()
 
     const { user } = useContext(AuthContext)
