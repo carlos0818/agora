@@ -7,6 +7,8 @@ interface ContextProps {
     masterHide: string[]
     answeredQuestions: string[]
     updateMasterHide: (data: string[]) => void
+    newMasterHide: (data: string[]) => void
+    removeMasterHide: (data: string[]) => void
     updatePercentage: (total: number) => void
     updateTotalQuestions: (total: number) => void
     updateHide: (total: number) => void

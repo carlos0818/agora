@@ -30,6 +30,14 @@ export const QuestionnaireProvider: FC<Props> = ({ children }) => {
         dispatch({ type: '[Questionnaire] - MasterHide', payload: data })
     }
 
+    const newMasterHide = (data: string[]) => {
+        dispatch({ type: '[Questionnaire] - New MasterHide', payload: data })
+    }
+
+    const removeMasterHide = (data: string[]) => {
+        dispatch({ type: '[Questionnaire] - Remove MasterHide', payload: data })
+    }
+
     const updatePercentage = (total: number) => {
         dispatch({ type: '[Questionnaire] - Percentage', payload: total })
     }
@@ -58,6 +66,8 @@ export const QuestionnaireProvider: FC<Props> = ({ children }) => {
         <QuestionnaireContext.Provider value={{
             ...state,
             updateMasterHide,
+            newMasterHide,
+            removeMasterHide,
             updatePercentage,
             updateTotalQuestions,
             updateHide,

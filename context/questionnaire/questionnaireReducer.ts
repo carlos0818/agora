@@ -5,6 +5,8 @@ type AuthActionType =
     | { type: '[Questionnaire] - Total Questions', payload: number }
     | { type: '[Questionnaire] - Hide', payload: number }
     | { type: '[Questionnaire] - MasterHide', payload: string[] }
+    | { type: '[Questionnaire] - New MasterHide', payload: string[] }
+    | { type: '[Questionnaire] - Remove MasterHide', payload: string[] }
     | { type: '[Questionnaire] - AnsweredQuestions', payload: string }
     | { type: '[Questionnaire] - AllAnsweredQuestions', payload: string[] }
     | { type: '[Questionnaire] - DeleteAnsweredQuestions', payload: string }
@@ -15,6 +17,16 @@ export const questionnaireReducer = (state: QuestionnaireState, action: AuthActi
             return {
                 ...state,
                 masterHide: [...state.masterHide, ...action.payload]
+            }
+        case '[Questionnaire] - New MasterHide':
+            return {
+                ...state,
+                masterHide: action.payload
+            }
+        case '[Questionnaire] - Remove MasterHide':
+            return {
+                ...state,
+                masterHide: state.masterHide.filter(master => action.payload.indexOf(master))
             }
         case '[Questionnaire] - Percentage':
             return {

@@ -16,7 +16,7 @@ interface Props {
 export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
     // console.log('data', data)
     const { user } = useContext(AuthContext)
-    const { updateHide, updateAnsweredQuestions, updateMasterHide } = useContext(QuestionnaireContext)
+    const { updateHide, updateAnsweredQuestions, newMasterHide, removeMasterHide } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -130,15 +130,15 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
             if (respShowSplit) {
                 filter = hide.filter((value: any) => respShowSplit.indexOf(value) < 0)
                 // if (save) {
-                    setHide(p => filter)
+                    // setHide(p => filter)
                     updateHide(filter.length)
-                    updateMasterHide(filter)
+                    removeMasterHide(filter)
                 // }
             }
 
             if(respHideSplit) {
-                setHide(p => ([...p, ...respHideSplit]))
-                updateMasterHide(respHideSplit)
+                // setHide(p => ([...p, ...respHideSplit]))
+                newMasterHide(respHideSplit)
             }
 
             // if (save) {

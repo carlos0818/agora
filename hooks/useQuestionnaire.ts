@@ -154,6 +154,7 @@ export const useQuestionnaire = () => {
         }
 
         updateHide(removeDuplicates.length)
+        // updateMasterHide(removeDuplicates)
     }, [masterHide])
 
     const validateCompleteQuestionnaire = async() => {
