@@ -138,7 +138,7 @@ export const useQuestionnaire = () => {
     useEffect(() => {
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
             // Restamos 1 a answeredQuestion para quitar el qnbr 0, que es el validator
-            const result = Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0)) > 100 ? 100 : Number(((answeredQuestions.length * 100) / (totalQuestions - globalHide)).toFixed(0))
+            const result = Number((((answeredQuestions.length - 1) * 100) / ((totalQuestions - 1) - (globalHide - 1))).toFixed(0)) > 100 ? 100 : Number((((answeredQuestions.length - 1) * 100) / ((totalQuestions - 1) - (globalHide -1))).toFixed(0))
             updatePercentage(result)
         } else {
             updatePercentage(0)
@@ -147,10 +147,10 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         let removeDuplicates: string[] = []
-        for (let i=0; i<hide.length; i++) {
+        for (let i=0; i<masterHide.length; i++) {
             const find = removeDuplicates.find((remove: any) => remove === hide[i])
-            if (!find && hide[i].length < 4)
-                removeDuplicates.push(hide[i])
+            if (!find && masterHide[i].length < 4)
+                removeDuplicates.push(masterHide[i])
         }
 
         updateHide(removeDuplicates.length)
@@ -187,7 +187,7 @@ export const useQuestionnaire = () => {
                     const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>('/question/expert')
                     const { data: dataAnswerExp } = await agoraApi.get<IAnswer[]>('/question/answer-expert')
                     loadData(dataQuestionExp, dataAnswerExp)
-                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S' && question.qnbr !== 0)
+                    const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S')
                     updateTotalQuestions(filterExp.length)
                     break
                 default:
@@ -292,10 +292,10 @@ export const useQuestionnaire = () => {
                 removeDuplicates.push(`${ split[0] }-${ split[1] }`)
         }
 
-        const filter = removeDuplicates.filter((remove: any) => remove !== '0-1')
+        // const filter = removeDuplicates.filter((remove: any) => remove !== '0-1')
 
         setQuestionsAnswered(arr)
-        updateAllAnsweredQuestions(filter)
+        updateAllAnsweredQuestions(removeDuplicates)
     }
 
     return {
