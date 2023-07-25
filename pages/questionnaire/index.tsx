@@ -33,6 +33,7 @@ const Questionnaire: NextPage = () => {
         setHide,
         setStart,
         setEnd,
+        setSelectBox,
     } = useQuestionnaire()
 
     const router = useRouter()
@@ -175,6 +176,7 @@ const Questionnaire: NextPage = () => {
                                                                                                     data={ dataArray }
                                                                                                     hide={ hide }
                                                                                                     setHide={ setHide }
+                                                                                                    setSelectBox={ setSelectBox }
                                                                                                 />
                                                                                         }
                                                                                         {

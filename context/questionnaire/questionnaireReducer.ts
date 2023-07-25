@@ -26,7 +26,7 @@ export const questionnaireReducer = (state: QuestionnaireState, action: AuthActi
         case '[Questionnaire] - Remove MasterHide':
             return {
                 ...state,
-                masterHide: state.masterHide.filter(master => action.payload.indexOf(master))
+                masterHide: state.masterHide.filter(master => action.payload.indexOf(master) < 0)
             }
         case '[Questionnaire] - Percentage':
             return {

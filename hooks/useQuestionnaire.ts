@@ -10,7 +10,7 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
-    const { masterHide, updateMasterHide } = useContext(QuestionnaireContext)
+    const { masterHide, updateMasterHide, removeMasterHide, newMasterHide } = useContext(QuestionnaireContext)
 
     const router = useRouter()
 
@@ -31,20 +31,12 @@ export const useQuestionnaire = () => {
     const [showQuestionnaire, setShowQuestionnaire] = useState(false)
     const [hide, setHide] = useState<string[]>([])
     const [questionsAnswered, setQuestionsAnswered] = useState<string[]>([])
+    const [selectBox, setSelectBox] = useState<string | null>(null)
 
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(0)
 
     const { countries } = countriesList
-
-    useEffect(() => {
-        if (user)
-            loadQuestions()
-    }, [user])
-
-    useEffect(() => {
-        loadYears()
-    }, [])
 
     useEffect(() => {
         const $page = document.querySelector(`#wrapper-${ start + 1 }`)
@@ -56,6 +48,10 @@ export const useQuestionnaire = () => {
     })
 
     useEffect(() => {
+        loadYears()
+    }, [])
+
+    useEffect(() => {
         detectOrientation()
 
         return () => {
@@ -65,63 +61,121 @@ export const useQuestionnaire = () => {
     }, [])
 
     useEffect(() => {
-        if(user) {
+        if (user) {
+            setLoading(true)
             if(!localStorage.getItem('questionnaire') || !validJSON) {
-                getUserAnswers()
+                Promise.all([
+                    loadQuestions(),
+                    getUserAnswers(),
+                    validateCompleteQuestionnaire()
+                ]).then(() => {
+                    setLoading(false)
+                })
+            } else {
+                Promise.all([
+                    loadQuestions(),
+                    validateCompleteQuestionnaire()
+                ]).then(() => {
+                    setLoading(false)
+                })
             }
         }
     }, [user])
 
     useEffect(() => {
         if (user) {
-            validateCompleteQuestionnaire()
+            // setLoading(true)
+            Promise.all([
+                loadQuestions(),
+                getUserAnswers(),
+                validateCompleteQuestionnaire()
+            ]).then(() => {
+                // setLoading(false)
+            })
         }
-    }, [user])
+    }, [selectBox])
 
     useEffect(() => {
-        data.map((page: any) => {
-            page.questions.map((question: any) => {
-                if (question.answers && question.object === 'L') {
-                    const answers = question.answers
-                    const find = answeredQuestions.find((answered: any) => {
-                        const split = answered.split('-')
-                        if (Number(split[0]) === Number(question.qnbr)) {
-                            return answered
-                        }
-                        return null
-                    })
-                    
-                    if (find) {
-                        const split = find.split('-')
-                        const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
-                        if (resp.length > 0) {
-                            let respHideSplit: any
-                            if (resp[0].hide?.substring(0, 4) === 'qnbr') {
-                                // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
-                                // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
-                                // const numberAnswer = resp[0].hide?.substring(8).split(':')
-                                // for (let i=0; i<storage.length; i++) {
-                                //     if (Number(storage[i].qnbr) === numberQuestion) {
-                                //         for (let j=0; j<numberAnswer.length; j++) {
-                                //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
-                                //                 respHideSplit = numberAnswer[j].substring(3).split(',')
-                                //             }
-                                //         }
-                                //     }
-                                // }
-                            } else {
-                                respHideSplit = resp[0].hide?.split(',') || null
+        if (data.length > 0) {
+            let hideArr: string[] = []
+            for (let i = 0; i<data.length; i++) {
+                const questions = data[i].questions
+                for (let j=0; j<questions.length; j++) {
+                    const question = questions[j]
+                    if (question.answers && question.object === 'L') {
+                        const answers = question.answers
+                        const find = answeredQuestions.find((answered: any) => {
+                            const split = answered.split('-')
+                            if (Number(split[0]) === Number(question.qnbr)) {
+                                return answered
                             }
+                            return null
+                        })
+                        
+                        if (find) {
+                            const split = find.split('-')
+                            const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
+                            if (resp.length > 0) {
+                                const respShowSplit = resp[0].show?.split(',') || null
+                                let respHideSplit: any
+                                if (resp[0].hide?.substring(0, 4) === 'qnbr') {
+                                    // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
+                                    // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
+                                    // const numberAnswer = resp[0].hide?.substring(8).split(':')
+                                    // for (let i=0; i<storage.length; i++) {
+                                    //     if (Number(storage[i].qnbr) === numberQuestion) {
+                                    //         for (let j=0; j<numberAnswer.length; j++) {
+                                    //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
+                                    //                 respHideSplit = numberAnswer[j].substring(3).split(',')
+                                    //             }
+                                    //         }
+                                    //     }
+                                    // }
+                                } else {
+                                    respHideSplit = resp[0].hide?.split(',') || null
+                                }
 
-                            if (respHideSplit) {
-                                updateMasterHide([...respHideSplit])
+                                if (respShowSplit) {
+                                    if (respShowSplit.length > 0) {
+                                        for (let k=0; k<respShowSplit.length; k++) {
+                                            const showSplit = respShowSplit[k]
+                                            for(let l=0; l<hideArr.length; l++) {
+                                                const hide = hideArr[l]
+                                                if (showSplit === hide) {
+                                                    hideArr.splice(l, 1)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+    
+                                if (respHideSplit) {
+                                    if(respHideSplit.length > 0) {
+                                        for (let k=0; k<respHideSplit.length; k++) {
+                                            const hideSplit = respHideSplit[k]
+                                            let flag = false
+                                            for (let l=0; l<hideArr.length; l++) {
+                                                const hide = hideArr[l]
+                                                if (hideSplit === hide) {
+                                                    flag = true
+                                                }
+                                            }
+    
+                                            if (!flag) {
+                                                hideArr.push(hideSplit)
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
-            })
-        })
-    }, [data])
+            }
+            updateHide(hideArr.length)
+            newMasterHide(hideArr)
+        }
+    }, [data, answeredQuestions])
 
     useEffect(() => {
         const $containerClass = document.querySelectorAll(`.container`)
@@ -133,7 +187,7 @@ export const useQuestionnaire = () => {
             const $container = document.querySelector(`#container-${ hide }`)
             $container?.classList.add('wrapper-hide')
         })
-    }, [masterHide])
+    }, [masterHide, selectBox])
 
     useEffect(() => {
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
@@ -145,17 +199,17 @@ export const useQuestionnaire = () => {
         }
     }, [questionsAnswered, globalHide, answeredQuestions, totalQuestions])
 
-    useEffect(() => {
-        let removeDuplicates: string[] = []
-        for (let i=0; i<masterHide.length; i++) {
-            const find = removeDuplicates.find((remove: any) => remove === hide[i])
-            if (!find && masterHide[i].length < 4)
-                removeDuplicates.push(masterHide[i])
-        }
+    // useEffect(() => {
+    //     let removeDuplicates: string[] = []
+    //     for (let i=0; i<masterHide.length; i++) {
+    //         const find = removeDuplicates.find((remove: any) => remove === hide[i])
+    //         if (!find && masterHide[i].length < 4)
+    //             removeDuplicates.push(masterHide[i])
+    //     }
 
-        updateHide(removeDuplicates.length)
-        // updateMasterHide(removeDuplicates)
-    }, [masterHide])
+    //     updateHide(removeDuplicates.length)
+    //     // updateMasterHide(removeDuplicates)
+    // }, [masterHide])
 
     const validateCompleteQuestionnaire = async() => {
         try {
@@ -166,12 +220,13 @@ export const useQuestionnaire = () => {
     }
 
     const loadQuestions = async() => {
-        setLoading(true)
+        // setLoading(true)
         try {
             switch (user?.type) {
                 case 'E':
                     const { data: dataQuestionEnt } = await agoraApi.get<IQuestion[]>('/question/entrepreneur')
                     const { data: dataAnswerEnt } = await agoraApi.get<IAnswer[]>('/question/answer-entrepreneur')
+                    console.log(dataAnswerEnt)
                     loadData(dataQuestionEnt, dataAnswerEnt)
                     const filterEnt = dataQuestionEnt.filter(question => question.type !== 'T' && question.type !== 'S')
                     updateTotalQuestions(filterEnt.length)
@@ -196,7 +251,7 @@ export const useQuestionnaire = () => {
         } catch (error) {
             console.log(error)
         }
-        setLoading(false)
+        // setLoading(false)
     }
 
     // console.log('totalQuestions', totalQuestions)
@@ -273,6 +328,7 @@ export const useQuestionnaire = () => {
 
     const getQuestionsAnswered = () => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        console.log('storage', storage)
         const arr = []
         for (let i=0; i<storage.length; i++) {
             const id = `${ storage[i].qnbr }-${ storage[i].anbr }`
@@ -310,5 +366,6 @@ export const useQuestionnaire = () => {
         setHide,
         setStart,
         setEnd,
+        setSelectBox,
     }
 }

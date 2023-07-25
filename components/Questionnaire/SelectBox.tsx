@@ -11,12 +11,12 @@ interface Props {
     data: ISelectBox[]
     hide: string[]
     setHide: Dispatch<SetStateAction<string[]>>
+    setSelectBox?: Dispatch<SetStateAction<string | null>>
 }
 
-export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide }) => {
-    // console.log('data', data)
+export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide, setSelectBox }) => {
     const { user } = useContext(AuthContext)
-    const { updateHide, updateAnsweredQuestions, newMasterHide, removeMasterHide } = useContext(QuestionnaireContext)
+    const { updateHide, answeredQuestions, updateAnsweredQuestions, masterHide, newMasterHide, removeMasterHide } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -40,29 +40,6 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
         
         setAnswer(answerValue)
     }, [])
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         console.log('aaaaaa')
-    //         // console.log(new Date())
-    //         if (questionsAnswered) {
-    //             const idArr = data[0].id.split('-')
-    //             const qnbr = idArr[0]
-    
-    //             const find = questionsAnswered.find(ans => {
-    //                 const idArr2 = ans.split('-')
-    //                 const qnbr2 = idArr2[0]
-    //                 if (qnbr2 === qnbr) {
-    //                     return ans
-    //                 }
-    //             })
-    
-    //             if (find) {
-    //                 onSelectedOption(find, false)
-    //             }
-    //         }
-    //     }, 1000)
-    // }, [])
 
     const onSelectedOption = async(id: string) => {
         if (answer === '') {
@@ -101,8 +78,7 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                 storage.push({ qnbr: Number(qnbr), anbr: Number(anbr), extravalue: extravalue })
             }
 
-            // if (save)
-                localStorage.setItem('questionnaire', JSON.stringify(storage))
+            localStorage.setItem('questionnaire', JSON.stringify(storage))
 
             const respShowSplit = resp[0].show?.split(',') || null
             let respHideSplit: any
@@ -126,30 +102,72 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
                 respHideSplit = resp[0].hide?.split(',') || null
             }
 
-            let filter: string[] = []
-            if (respShowSplit) {
-                filter = hide.filter((value: any) => respShowSplit.indexOf(value) < 0)
-                // if (save) {
-                    // setHide(p => filter)
-                    updateHide(filter.length)
-                    removeMasterHide(filter)
-                // }
-            }
+            // let hideArr: string[] = []
 
-            if(respHideSplit) {
-                // setHide(p => ([...p, ...respHideSplit]))
-                newMasterHide(respHideSplit)
-            }
-
-            // if (save) {
-                setAnswer(id)
-
-                if (extravalue) {
-                    agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
-                    return
-                }
-                agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
+            // if (respShowSplit) {
+            //     if (respShowSplit.length > 0) {
+            //         for (let k=0; k<respShowSplit.length; k++) {
+            //             const showSplit = respShowSplit[k]
+            //             for(let l=0; l<hideArr.length; l++) {
+            //                 const hide = hideArr[l]
+            //                 if (showSplit === hide) {
+            //                     hideArr.splice(l, 1)
+            //                 }
+            //             }
+            //         }
+            //     }
             // }
+
+            // if (respHideSplit) {
+            //     if(respHideSplit.length > 0) {
+            //         for (let k=0; k<respHideSplit.length; k++) {
+            //             const hideSplit = respHideSplit[k]
+            //             let flag = false
+            //             for (let l=0; l<hideArr.length; l++) {
+            //                 const hide = hideArr[l]
+            //                 if (hideSplit === hide) {
+            //                     // console.log(hide)
+            //                     flag = true
+            //                     // hideArr.push(hide)
+            //                 }
+            //             }
+
+            //             if (!flag) {
+            //                 hideArr.push(hideSplit)
+            //             }
+            //         }
+            //     }
+            // }
+
+            // updateHide(hideArr.length)
+            // newMasterHide(hideArr)
+
+            // let filter: string[] = []
+            // if (respShowSplit) {
+            //     filter = masterHide.filter((value: any) => respShowSplit.indexOf(value) < 0)
+            //     console.log(filter)
+            //     // if (save) {
+            //         // setHide(p => filter)
+            //         updateHide(filter.length)
+            //         removeMasterHide(filter)
+            //     // }
+            // }
+
+            // if(respHideSplit) {
+            //     // setHide(p => ([...p, ...respHideSplit]))
+            //     newMasterHide(respHideSplit)
+            // }
+
+            setAnswer(id)
+
+            if (extravalue) {
+                await agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString(), extravalue })
+                return
+            }
+            await agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
+
+            if (setSelectBox && respHideSplit)
+                setSelectBox(id)
         }
     }
 
