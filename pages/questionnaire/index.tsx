@@ -28,9 +28,6 @@ const Questionnaire: NextPage = () => {
         years,
         showQuestionnaire,
         validJSON,
-        hide,
-        questionsAnswered,
-        setHide,
         setStart,
         setEnd,
         setSelectBox,
@@ -172,10 +169,7 @@ const Questionnaire: NextPage = () => {
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'L') &&
                                                                                                 <SelectBox
-                                                                                                    questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
-                                                                                                    hide={ hide }
-                                                                                                    setHide={ setHide }
                                                                                                     setSelectBox={ setSelectBox }
                                                                                                 />
                                                                                         }
@@ -211,19 +205,13 @@ const Questionnaire: NextPage = () => {
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'C') &&
                                                                                                 <SelectBox
-                                                                                                    questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
-                                                                                                    hide={ hide }
-                                                                                                    setHide={ setHide }
                                                                                                 />
                                                                                         }
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'Y') &&
                                                                                                 <SelectBox
-                                                                                                    questionsAnswered={ questionsAnswered }
                                                                                                     data={ dataArray }
-                                                                                                    hide={ hide }
-                                                                                                    setHide={ setHide }
                                                                                                 />
                                                                                         }
                                                                                         {

@@ -22,7 +22,6 @@ export const useProfile = (email: string, id: string, type: string) => {
         hide: globalHide,
         answeredQuestions,
         masterHide,
-        updateMasterHide,
         updateHide,
         newMasterHide,
     } = useContext(QuestionnaireContext)

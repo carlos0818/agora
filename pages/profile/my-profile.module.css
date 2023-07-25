@@ -138,12 +138,13 @@
 .progress-bar {
     width: 100%;
     height: 24px;
+    border: transparent;
     border-radius: 15px;
     background-color: white;
-    background-image: url('/images/rocket-progress.svg');
+    /* background-image: url('/images/rocket-progress.svg');
     background-repeat: no-repeat;
     background-position-x: calc(100% - 8px);
-    background-position-y: calc(100% - 15px);
+    background-position-y: calc(100% - 15px); */
 }
 
 .progress-bar::-webkit-progress-bar {
@@ -418,7 +419,22 @@
 }
 
 @media screen and (min-width: 1200px) {
+    .progress-bar::-webkit-progress-bar {
+        background-position-y: calc(100% - 6px);
+        background-size: 50px;
+    }
+
+    .progress-bar::-moz-progress-bar {
+        background-position-y: calc(100% - 6px);
+        background-size: 50px;
+    }
+
     .progress-bar::-webkit-progress-value {
+        background-position-y: calc(100% - 6px);
+        background-size: 50px;
+    }
+
+    .progress-bar::-moz-progress-value {
         background-position-y: calc(100% - 6px);
         background-size: 50px;
     }

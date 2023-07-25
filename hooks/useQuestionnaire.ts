@@ -10,7 +10,7 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 export const useQuestionnaire = () => {
     const { user } = useContext(AuthContext)
-    const { masterHide, updateMasterHide, removeMasterHide, newMasterHide } = useContext(QuestionnaireContext)
+    const { masterHide, newMasterHide } = useContext(QuestionnaireContext)
 
     const router = useRouter()
 
@@ -29,8 +29,6 @@ export const useQuestionnaire = () => {
     const [years, setYears] = useState<number[]>([])
     const [validJSON, setValidJSON] = useState(false)
     const [showQuestionnaire, setShowQuestionnaire] = useState(false)
-    const [hide, setHide] = useState<string[]>([])
-    const [questionsAnswered, setQuestionsAnswered] = useState<string[]>([])
     const [selectBox, setSelectBox] = useState<string | null>(null)
 
     const [start, setStart] = useState(0)
@@ -84,14 +82,11 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         if (user) {
-            // setLoading(true)
             Promise.all([
                 loadQuestions(),
                 getUserAnswers(),
                 validateCompleteQuestionnaire()
-            ]).then(() => {
-                // setLoading(false)
-            })
+            ])
         }
     }, [selectBox])
 
@@ -197,19 +192,7 @@ export const useQuestionnaire = () => {
         } else {
             updatePercentage(0)
         }
-    }, [questionsAnswered, globalHide, answeredQuestions, totalQuestions])
-
-    // useEffect(() => {
-    //     let removeDuplicates: string[] = []
-    //     for (let i=0; i<masterHide.length; i++) {
-    //         const find = removeDuplicates.find((remove: any) => remove === hide[i])
-    //         if (!find && masterHide[i].length < 4)
-    //             removeDuplicates.push(masterHide[i])
-    //     }
-
-    //     updateHide(removeDuplicates.length)
-    //     // updateMasterHide(removeDuplicates)
-    // }, [masterHide])
+    }, [globalHide, answeredQuestions, totalQuestions])
 
     const validateCompleteQuestionnaire = async() => {
         try {
@@ -220,13 +203,11 @@ export const useQuestionnaire = () => {
     }
 
     const loadQuestions = async() => {
-        // setLoading(true)
         try {
             switch (user?.type) {
                 case 'E':
                     const { data: dataQuestionEnt } = await agoraApi.get<IQuestion[]>('/question/entrepreneur')
                     const { data: dataAnswerEnt } = await agoraApi.get<IAnswer[]>('/question/answer-entrepreneur')
-                    console.log(dataAnswerEnt)
                     loadData(dataQuestionEnt, dataAnswerEnt)
                     const filterEnt = dataQuestionEnt.filter(question => question.type !== 'T' && question.type !== 'S')
                     updateTotalQuestions(filterEnt.length)
@@ -251,12 +232,7 @@ export const useQuestionnaire = () => {
         } catch (error) {
             console.log(error)
         }
-        // setLoading(false)
     }
-
-    // console.log('totalQuestions', totalQuestions)
-    // console.log('globalHide', globalHide)
-    // console.log('answeredQuestions', answeredQuestions)
 
     const loadData = (questions: IQuestion[], answers: IAnswer[]) => {
         let data: any = []
@@ -328,7 +304,6 @@ export const useQuestionnaire = () => {
 
     const getQuestionsAnswered = () => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
-        console.log('storage', storage)
         const arr = []
         for (let i=0; i<storage.length; i++) {
             const id = `${ storage[i].qnbr }-${ storage[i].anbr }`
@@ -348,9 +323,6 @@ export const useQuestionnaire = () => {
                 removeDuplicates.push(`${ split[0] }-${ split[1] }`)
         }
 
-        // const filter = removeDuplicates.filter((remove: any) => remove !== '0-1')
-
-        setQuestionsAnswered(arr)
         updateAllAnsweredQuestions(removeDuplicates)
     }
 
@@ -361,9 +333,6 @@ export const useQuestionnaire = () => {
         years,
         showQuestionnaire,
         validJSON,
-        hide,
-        questionsAnswered,
-        setHide,
         setStart,
         setEnd,
         setSelectBox,

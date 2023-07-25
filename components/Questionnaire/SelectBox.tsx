@@ -7,16 +7,13 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 import { ISelectBox } from '@/interfaces'
 
 interface Props {
-    questionsAnswered: string[]
     data: ISelectBox[]
-    hide: string[]
-    setHide: Dispatch<SetStateAction<string[]>>
     setSelectBox?: Dispatch<SetStateAction<string | null>>
 }
 
-export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHide, setSelectBox }) => {
+export const SelectBox: FC<Props> = ({ data, setSelectBox }) => {
     const { user } = useContext(AuthContext)
-    const { updateHide, answeredQuestions, updateAnsweredQuestions, masterHide, newMasterHide, removeMasterHide } = useContext(QuestionnaireContext)
+    const { updateAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -101,62 +98,6 @@ export const SelectBox: FC<Props> = ({ questionsAnswered, data, hide = [], setHi
             } else {
                 respHideSplit = resp[0].hide?.split(',') || null
             }
-
-            // let hideArr: string[] = []
-
-            // if (respShowSplit) {
-            //     if (respShowSplit.length > 0) {
-            //         for (let k=0; k<respShowSplit.length; k++) {
-            //             const showSplit = respShowSplit[k]
-            //             for(let l=0; l<hideArr.length; l++) {
-            //                 const hide = hideArr[l]
-            //                 if (showSplit === hide) {
-            //                     hideArr.splice(l, 1)
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
-
-            // if (respHideSplit) {
-            //     if(respHideSplit.length > 0) {
-            //         for (let k=0; k<respHideSplit.length; k++) {
-            //             const hideSplit = respHideSplit[k]
-            //             let flag = false
-            //             for (let l=0; l<hideArr.length; l++) {
-            //                 const hide = hideArr[l]
-            //                 if (hideSplit === hide) {
-            //                     // console.log(hide)
-            //                     flag = true
-            //                     // hideArr.push(hide)
-            //                 }
-            //             }
-
-            //             if (!flag) {
-            //                 hideArr.push(hideSplit)
-            //             }
-            //         }
-            //     }
-            // }
-
-            // updateHide(hideArr.length)
-            // newMasterHide(hideArr)
-
-            // let filter: string[] = []
-            // if (respShowSplit) {
-            //     filter = masterHide.filter((value: any) => respShowSplit.indexOf(value) < 0)
-            //     console.log(filter)
-            //     // if (save) {
-            //         // setHide(p => filter)
-            //         updateHide(filter.length)
-            //         removeMasterHide(filter)
-            //     // }
-            // }
-
-            // if(respHideSplit) {
-            //     // setHide(p => ([...p, ...respHideSplit]))
-            //     newMasterHide(respHideSplit)
-            // }
 
             setAnswer(id)
 

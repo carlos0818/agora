@@ -573,6 +573,10 @@ input[type=file]::file-selector-button {
   inline-size: 100px;
 }
 
+.disabled-page {
+  display: none;
+}
+
 .wrapper-hide {
   display: none;
 }

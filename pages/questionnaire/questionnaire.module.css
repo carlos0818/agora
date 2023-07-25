@@ -28,12 +28,13 @@
 .progress-bar {
     block-size: 24px;
     inline-size: 100%;
+    border: transparent;
     border-radius: 15px;
     background-color: white;
-    background-image: url('/images/rocket-progress.svg');
+    /* background-image: url('/images/rocket-progress.svg');
     background-repeat: no-repeat;
     background-position-x: calc(100% - 8px);
-    background-position-y: calc(100% - 15px);
+    background-position-y: calc(100% - 15px); */
 }
 
 .progress-bar::-webkit-progress-bar {

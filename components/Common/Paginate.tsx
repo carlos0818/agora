@@ -32,7 +32,7 @@ export const Paginate: FC<Props> = ({ items, itemsPerPage, setStart, setEnd }) =
             nextLabel={ 'Next' }
             breakLabel={ '...' }
             marginPagesDisplayed={ 3 }
-            pageRangeDisplayed={ 6 }
+            pageRangeDisplayed={ 80 }
             pageCount={ pageCount }
             onPageChange={ handlePageClick }
             containerClassName={ 'pagination' }
@@ -46,6 +46,8 @@ export const Paginate: FC<Props> = ({ items, itemsPerPage, setStart, setEnd }) =
             breakLinkClassName={ 'page-link' }
             activeClassName={ 'active' }
             renderOnZeroPageCount={null}
+            disabledClassName={ 'disabled-page' }
+            disabledLinkClassName={ 'disabled-page' }
         />
     )
 }
