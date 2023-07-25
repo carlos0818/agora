@@ -129,7 +129,7 @@ const Questionnaire: NextPage = () => {
                                                                                             <div className={ `window-glass ${ styles['window-glass-video'] }` }>
                                                                                                 <div className={ styles['video-container'] }>
                                                                                                     <video className={ styles['video'] } controls>
-                                                                                                        <source src={ question.video } />
+                                                                                                        <source src={ question.video } type='video/webm' />
                                                                                                     </video>
                                                                                                 </div>
                                                                                             </div>
