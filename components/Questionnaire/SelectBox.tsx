@@ -8,12 +8,13 @@ import { ISelectBox } from '@/interfaces'
 
 interface Props {
     data: ISelectBox[]
+    selectBox?: string | null
     setSelectBox?: Dispatch<SetStateAction<string | null>>
 }
 
-export const SelectBox: FC<Props> = ({ data, setSelectBox }) => {
+export const SelectBox: FC<Props> = ({ data, selectBox = null, setSelectBox }) => {
     const { user } = useContext(AuthContext)
-    const { updateAnsweredQuestions } = useContext(QuestionnaireContext)
+    const { masterHide, updateAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -37,6 +38,20 @@ export const SelectBox: FC<Props> = ({ data, setSelectBox }) => {
         
         setAnswer(answerValue)
     }, [])
+
+    useEffect(() => {
+        const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
+        
+        let answerValue = ''
+        for (let i=0; i<data.length; i++) {
+            const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
+            const find = storage.find((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
+            
+            if (!isFound) {
+                setAnswer('')
+            }
+        }
+    }, [selectBox])
 
     const onSelectedOption = async(id: string) => {
         if (answer === '') {
@@ -107,8 +122,29 @@ export const SelectBox: FC<Props> = ({ data, setSelectBox }) => {
             }
             await agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
 
-            if (setSelectBox && (respHideSplit || respShowSplit))
+            if (setSelectBox && (respHideSplit || respShowSplit)) {
                 setSelectBox(id)
+            }
+
+            if (respHideSplit) {
+                // console.log('masterHide', masterHide)
+                // console.log('respHideSplit', respHideSplit)
+
+                // const verify = respHideSplit.find((hide: any) => hide === qnbr)
+                // console.log(verify)
+                // if (!verify) {
+                //     setAnswer('')
+                // }
+
+                // console.log('masterHide', masterHide)
+                // console.log('respHideSplit', respHideSplit)
+
+                // const verify = masterHide.find(master => respHideSplit.indexOf(master) !== -1)
+                // console.log(verify)
+                // if (!verify) {
+                //     setAnswer('')
+                // }
+            }
         }
     }
 

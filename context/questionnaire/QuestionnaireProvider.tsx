@@ -73,7 +73,7 @@ export const QuestionnaireProvider: FC<Props> = ({ children }) => {
             updateHide,
             updateAnsweredQuestions,
             updateAllAnsweredQuestions,
-            deleteAnsweredQuestions
+            deleteAnsweredQuestions,
         }}>
             { children }
         </QuestionnaireContext.Provider>

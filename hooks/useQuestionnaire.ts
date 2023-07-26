@@ -333,6 +333,7 @@ export const useQuestionnaire = () => {
         years,
         showQuestionnaire,
         validJSON,
+        selectBox,
         setStart,
         setEnd,
         setSelectBox,

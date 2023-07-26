@@ -28,6 +28,7 @@ const Questionnaire: NextPage = () => {
         years,
         showQuestionnaire,
         validJSON,
+        selectBox,
         setStart,
         setEnd,
         setSelectBox,
@@ -193,6 +194,7 @@ const Questionnaire: NextPage = () => {
                                                                                             (question.type === 'Q' && question.object === 'L') &&
                                                                                                 <SelectBox
                                                                                                     data={ dataArray }
+                                                                                                    selectBox={ selectBox }
                                                                                                     setSelectBox={ setSelectBox }
                                                                                                 />
                                                                                         }
