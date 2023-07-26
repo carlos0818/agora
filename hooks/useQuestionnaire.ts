@@ -186,8 +186,9 @@ export const useQuestionnaire = () => {
 
     useEffect(() => {
         if (answeredQuestions.length > 0 && totalQuestions > 0) {
+            const filter = masterHide.filter(master => Number(master) < 1000)
             // Restamos 1 a answeredQuestion para quitar el qnbr 0, que es el validator
-            const result = Number((((answeredQuestions.length - 1) * 100) / ((totalQuestions - 1) - (globalHide - 1))).toFixed(0)) > 100 ? 100 : Number((((answeredQuestions.length - 1) * 100) / ((totalQuestions - 1) - (globalHide -1))).toFixed(0))
+            const result = Number((((answeredQuestions.length - 1) * 100) / ((totalQuestions - 1) - (filter.length - 1))).toFixed(0)) > 100 ? 100 : Number((((answeredQuestions.length - 1) * 100) / ((totalQuestions - 1) - (filter.length -1))).toFixed(0))
             updatePercentage(result)
         } else {
             updatePercentage(0)
