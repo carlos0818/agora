@@ -14,7 +14,7 @@ interface Props {
 
 export const SelectBox: FC<Props> = ({ data, selectBox = null, setSelectBox }) => {
     const { user } = useContext(AuthContext)
-    const { masterHide, updateAnsweredQuestions } = useContext(QuestionnaireContext)
+    const { updateAnsweredQuestions } = useContext(QuestionnaireContext)
 
     const [answer, setAnswer] = useState('')
 
@@ -42,11 +42,8 @@ export const SelectBox: FC<Props> = ({ data, selectBox = null, setSelectBox }) =
     useEffect(() => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
         
-        let answerValue = ''
         for (let i=0; i<data.length; i++) {
             const isFound = storage.some((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
-            const find = storage.find((element: any) => Number(element.qnbr) === Number(data[i].qnbr))
-            
             if (!isFound) {
                 setAnswer('')
             }
@@ -94,8 +91,6 @@ export const SelectBox: FC<Props> = ({ data, selectBox = null, setSelectBox }) =
 
             const respShowSplit = resp[0].show?.split(',') || null
             let respHideSplit: any
-
-            // console.log(respShowSplit)
             
             if (resp[0].hide?.substring(0, 4) === 'qnbr') {
                 // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
@@ -124,26 +119,6 @@ export const SelectBox: FC<Props> = ({ data, selectBox = null, setSelectBox }) =
 
             if (setSelectBox && (respHideSplit || respShowSplit)) {
                 setSelectBox(id)
-            }
-
-            if (respHideSplit) {
-                // console.log('masterHide', masterHide)
-                // console.log('respHideSplit', respHideSplit)
-
-                // const verify = respHideSplit.find((hide: any) => hide === qnbr)
-                // console.log(verify)
-                // if (!verify) {
-                //     setAnswer('')
-                // }
-
-                // console.log('masterHide', masterHide)
-                // console.log('respHideSplit', respHideSplit)
-
-                // const verify = masterHide.find(master => respHideSplit.indexOf(master) !== -1)
-                // console.log(verify)
-                // if (!verify) {
-                //     setAnswer('')
-                // }
             }
         }
     }
