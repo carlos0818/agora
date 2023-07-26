@@ -72,6 +72,21 @@ const Questionnaire: NextPage = () => {
             setSubmitLoading(false)
         }
     }
+
+    const handlePlay = (qnbr: string, url: string) => {
+        console.log('Play')
+        const $video = document.getElementById(`video-${ qnbr }`) as HTMLVideoElement
+        $video.src = url
+        setTimeout(() => {
+            $video.play()
+        }, 500)
+    }
+
+    // const handlePause = (qnbr: string, url: string) => {
+    //     const $video = document.getElementById(`video-${ qnbr }`) as HTMLVideoElement
+    //     // $video.src = url
+    //     $video.pause()
+    // }
     
     return (
         <>
@@ -128,8 +143,16 @@ const Questionnaire: NextPage = () => {
                                                                                         question.video && (
                                                                                             <div className={ `window-glass ${ styles['window-glass-video'] }` }>
                                                                                                 <div className={ styles['video-container'] }>
-                                                                                                    <video className={ styles['video'] } controls>
-                                                                                                        <source src={ question.video } type='video/webm' />
+                                                                                                    <video
+                                                                                                        id={ `video-${ question.qnbr }` }
+                                                                                                        className={ styles['video'] }
+                                                                                                        controls
+                                                                                                        // src={ question.video }
+                                                                                                        onClick={ () => handlePlay(question.qnbr, question.video) }
+                                                                                                        // onPlay={ () => handlePlay(question.qnbr, question.video) }
+                                                                                                        // onPause={ () => handlePause(question.qnbr, question.video) }
+                                                                                                    >
+                                                                                                        <source type='video/webm' />
                                                                                                     </video>
                                                                                                 </div>
                                                                                             </div>

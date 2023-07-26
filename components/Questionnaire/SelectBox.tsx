@@ -107,7 +107,7 @@ export const SelectBox: FC<Props> = ({ data, setSelectBox }) => {
             }
             await agoraApi.post('/question/save-question', { email: user?.email, type: user?.type, effdt, qnbr: qnbr.toString(), anbr: anbr.toString() })
 
-            if (setSelectBox && respHideSplit)
+            if (setSelectBox && (respHideSplit || respShowSplit))
                 setSelectBox(id)
         }
     }
