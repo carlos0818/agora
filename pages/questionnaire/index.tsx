@@ -5,7 +5,9 @@ import { useRouter } from 'next/router'
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { CheckboxList } from '@/components/Questionnaire/CheckboxList'
 import { SelectBox } from '@/components/Questionnaire/SelectBox'
-import { Textfield } from '@/components/Questionnaire/Textfield'
+import { TextfieldNumber } from '@/components/Questionnaire/TextfieldNumber'
+import { TextfieldAll } from '@/components/Questionnaire/TextfieldAll'
+import { TextArea } from '@/components/Questionnaire/TextArea'
 import { Matrix } from '@/components/Questionnaire/Matrix'
 import { Paginate } from '@/components/Common/Paginate'
 
@@ -75,19 +77,12 @@ const Questionnaire: NextPage = () => {
     }
 
     const handlePlay = (qnbr: string, url: string) => {
-        console.log('Play')
         const $video = document.getElementById(`video-${ qnbr }`) as HTMLVideoElement
+        const $play = document.getElementById(`play-${ qnbr }`) as HTMLVideoElement
+        $play.style.display = 'none'
         $video.src = url
-        setTimeout(() => {
-            $video.play()
-        }, 500)
+        $video.play()
     }
-
-    // const handlePause = (qnbr: string, url: string) => {
-    //     const $video = document.getElementById(`video-${ qnbr }`) as HTMLVideoElement
-    //     // $video.src = url
-    //     $video.pause()
-    // }
     
     return (
         <>
@@ -142,18 +137,34 @@ const Questionnaire: NextPage = () => {
                                                                                     </p>
                                                                                     {
                                                                                         question.video && (
-                                                                                            <div className={ `window-glass ${ styles['window-glass-video'] }` }>
-                                                                                                <div className={ styles['video-container'] }>
+                                                                                            <div
+                                                                                                className={ `window-glass ${ styles['window-glass-video'] }` }
+                                                                                                
+                                                                                            >
+                                                                                                <div
+                                                                                                    className={ styles['video-container'] }
+                                                                                                >
+                                                                                                    <div
+                                                                                                        id={ `play-${ question.qnbr }` }
+                                                                                                        style={{
+                                                                                                            inlineSize: 60,
+                                                                                                            blockSize: 60,
+                                                                                                            borderRadius: 200,
+                                                                                                            backgroundColor: 'green',
+                                                                                                            position: 'absolute',
+                                                                                                            zIndex: 1,
+                                                                                                            top: 'calc(50% - 30px)',
+                                                                                                            left: 'calc(50% - 30px)',
+                                                                                                            cursor: 'pointer',
+                                                                                                        }}
+                                                                                                        onClick={ () => handlePlay(question.qnbr, question.video) }
+                                                                                                    ></div>
                                                                                                     <video
                                                                                                         id={ `video-${ question.qnbr }` }
                                                                                                         className={ styles['video'] }
                                                                                                         controls
-                                                                                                        // src={ question.video }
-                                                                                                        onClick={ () => handlePlay(question.qnbr, question.video) }
-                                                                                                        // onPlay={ () => handlePlay(question.qnbr, question.video) }
-                                                                                                        // onPause={ () => handlePause(question.qnbr, question.video) }
                                                                                                     >
-                                                                                                        <source type='video/webm' />
+                                                                                                        <source id={ `source-${ question.qnbr }` } type='video/webm' />
                                                                                                     </video>
                                                                                                 </div>
                                                                                             </div>
@@ -255,7 +266,35 @@ const Questionnaire: NextPage = () => {
                                                                                         }
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'F') &&
-                                                                                                <Textfield
+                                                                                                <TextfieldNumber
+                                                                                                    data={ textfield }
+                                                                                                />
+                                                                                        }
+                                                                                        {
+                                                                                            (question.type === 'Q' && question.object === 'T') &&
+                                                                                                question.answers.map((answer: any) => {
+                                                                                                    textfield.qnbr = answer.qnbr
+                                                                                                    textfield.effdt = question.effdt
+                                                                                                    textfield.extravalue = answer.extravalue
+                                                                                                })
+                                                                                        }
+                                                                                        {
+                                                                                            (question.type === 'Q' && question.object === 'T') &&
+                                                                                                <TextfieldAll
+                                                                                                    data={ textfield }
+                                                                                                />
+                                                                                        }
+                                                                                        {
+                                                                                            (question.type === 'Q' && question.object === 'A') &&
+                                                                                                question.answers.map((answer: any) => {
+                                                                                                    textfield.qnbr = answer.qnbr
+                                                                                                    textfield.effdt = question.effdt
+                                                                                                    textfield.extravalue = answer.extravalue
+                                                                                                })
+                                                                                        }
+                                                                                        {
+                                                                                            (question.type === 'Q' && question.object === 'A') &&
+                                                                                                <TextArea
                                                                                                     data={ textfield }
                                                                                                 />
                                                                                         }

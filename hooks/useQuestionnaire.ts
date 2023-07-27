@@ -112,23 +112,7 @@ export const useQuestionnaire = () => {
                             const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
                             if (resp.length > 0) {
                                 const respShowSplit = resp[0].show?.split(',') || null
-                                let respHideSplit: any
-                                if (resp[0].hide?.substring(0, 4) === 'qnbr') {
-                                    // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
-                                    // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
-                                    // const numberAnswer = resp[0].hide?.substring(8).split(':')
-                                    // for (let i=0; i<storage.length; i++) {
-                                    //     if (Number(storage[i].qnbr) === numberQuestion) {
-                                    //         for (let j=0; j<numberAnswer.length; j++) {
-                                    //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
-                                    //                 respHideSplit = numberAnswer[j].substring(3).split(',')
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }
-                                } else {
-                                    respHideSplit = resp[0].hide?.split(',') || null
-                                }
+                                const respHideSplit = resp[0].hide?.split(',') || null
 
                                 if (respShowSplit) {
                                     if (respShowSplit.length > 0) {

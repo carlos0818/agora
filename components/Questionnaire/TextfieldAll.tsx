@@ -1,7 +1,5 @@
 import { ChangeEvent, FC, FocusEvent, useContext, useEffect, useState } from 'react'
 
-import { NumericFormat } from 'react-number-format'
-
 import { agoraApi } from '@/api'
 
 import { AuthContext } from '@/context/auth'
@@ -12,7 +10,8 @@ interface Props {
     data: ITextfield
 }
 
-export const Textfield: FC<Props> = ({ data }) => {
+export const TextfieldAll: FC<Props> = ({ data }) => {
+    console.log(data)
     const { user } = useContext(AuthContext)
     const { updateAnsweredQuestions, deleteAnsweredQuestions } = useContext(QuestionnaireContext)
 
@@ -70,20 +69,7 @@ export const Textfield: FC<Props> = ({ data }) => {
 
     return (
         <div style={{ marginBlockEnd: 20 }}>
-            <NumericFormat
-                className='textfield'
-                allowLeadingZeros
-                thousandSeparator=","
-                decimalSeparator="."
-                onBlur={ (e) => handleSave(e) }
-                onChange={ handleChange }
-                value={ answer }
-            />
-            {/* <PatternFormat
-                format="###,###,###,###.##"
-                allowEmptyFormatting
-                mask="_"
-            /> */}
+            <input type='text' className='textfield' onChange={ handleChange } onBlur={ handleSave } />
         </div>
     )
 }

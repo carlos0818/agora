@@ -9,7 +9,7 @@
     /* border: 1px solid red; */
     block-size: 250px;
     inline-size: 500px;
-    /* position: absolute; */
+    position: relative;
 }
 
 .video {
