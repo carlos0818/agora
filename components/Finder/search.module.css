@@ -1,0 +1,120 @@
+.search-container {
+    background-color: var(--agora-blue-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-block: 16px;
+    padding-inline: 10px;
+}
+
+.search-containers {
+    display: grid;
+    grid-template-columns: 1fr;
+    inline-size: 100%;
+}
+
+.search-container label {
+    color: white;
+    font-family: 'ebrima';
+}
+
+.textfield {
+    inline-size: 100px;
+}
+
+.check {
+    background-color: white !important;
+    block-size: 15px;
+    border: 2px solid white;
+    inline-size: 15px;
+}
+
+.checkbox input:checked ~ .check {
+    background-color: white;
+    border-color: white;
+    background-image: url('/images/checkmark-blue.svg');
+    background-size: 18px 18px;
+}
+
+.select {
+    inline-size: 100%;
+    border-radius: 50px;
+    max-inline-size: auto;
+}
+
+.max-min-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.max-min-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.container-one {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.container-two {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    inline-size: 100%;
+    margin-block-start: 12px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    inline-size: 100%;
+}
+
+.form-row-label {
+    inline-size: 60px;
+}
+
+@media screen and (min-width: 500px) {
+    .textfield {
+        inline-size: auto;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .search-containers {
+        grid-template-columns: 1fr 130px;
+    }
+
+    .container-two {
+        gap: 30px;
+    }
+
+    .form-row {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .max-min-container {
+        margin-inline-start: 30px;
+    }
+
+    .max-min-wrapper {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .textfield {
+        max-inline-size: 150px;
+    }
+
+    .select {
+        max-inline-size: 492px !important;
+    }
+}

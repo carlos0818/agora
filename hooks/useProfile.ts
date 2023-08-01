@@ -44,6 +44,9 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [videoDesc, setVideoDesc] = useState('')
     const [backPic, setBackPic] = useState('')
     const [videoUrl, setVideoUrl] = useState('')
+    const [facebook, setFacebook] = useState('')
+    const [linkedin, setLinkedin] = useState('')
+    const [twitter, setTwitter] = useState('')
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const companyNameRef = useRef<HTMLInputElement>(null)
@@ -101,6 +104,9 @@ export const useProfile = (email: string, id: string, type: string) => {
             setVideoDesc(entrepreneurData.videodesc)
             setBackPic(entrepreneurData.backpic)
             setVideoUrl(entrepreneurData.videourl)
+            setFacebook(entrepreneurData.facebook)
+            setLinkedin(entrepreneurData.linkedin)
+            setTwitter(entrepreneurData.twitter)
         }
     }, [entrepreneurData])
 
@@ -126,23 +132,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                             const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
                             if (resp.length > 0) {
                                 const respShowSplit = resp[0].show?.split(',') || null
-                                let respHideSplit: any
-                                if (resp[0].hide?.substring(0, 4) === 'qnbr') {
-                                    // const storage = JSON.parse(localStorage.getItem('questionnaire')!)
-                                    // const numberQuestion = Number(resp[0].hide?.substring(4, 7))
-                                    // const numberAnswer = resp[0].hide?.substring(8).split(':')
-                                    // for (let i=0; i<storage.length; i++) {
-                                    //     if (Number(storage[i].qnbr) === numberQuestion) {
-                                    //         for (let j=0; j<numberAnswer.length; j++) {
-                                    //             if (Number(storage[i].anbr) === Number(numberAnswer[j].substring(0, 2))) {
-                                    //                 respHideSplit = numberAnswer[j].substring(3).split(',')
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }
-                                } else {
-                                    respHideSplit = resp[0].hide?.split(',') || null
-                                }
+                                const respHideSplit = resp[0].hide?.split(',') || null
 
                                 if (respShowSplit) {
                                     if (respShowSplit.length > 0) {
@@ -313,14 +303,17 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
 
         try {
-            switch (type) {
+            switch (user?.type) {
                 case 'E':
+                    console.log('E')
                     await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
                     break
                 case 'I':
+                    console.log('I')
                     await agoraApi.post('/investor/update-investor-info', data)
                     break
                 case 'X':
+                    console.log('X')
                     await agoraApi.post('/expert/update-expert-info', data)
                     break
                 default:
@@ -350,6 +343,9 @@ export const useProfile = (email: string, id: string, type: string) => {
         videoDesc,
         backPic,
         videoUrl,
+        facebook,
+        linkedin,
+        twitter,
         companyNameRef,
         emailContactRef,
         fileInputRef,

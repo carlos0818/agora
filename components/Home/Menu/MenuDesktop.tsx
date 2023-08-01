@@ -127,10 +127,17 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                                 <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/portfolio' ? styles['selected'] : '' }` }>
                                                     <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
                                                 </li> */}
-                                                <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/entrepreneur' ? styles['selected'] : '' }` }>
-                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                    Entrepreneur
-                                                </li>
+                                                <Link
+                                                    href={ `/finder/entrepreneur` }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/entrepreneur' ? styles['selected'] : '' }` }>
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Entrepreneur
+                                                    </li>
+                                                </Link>
                                                 <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/investors' ? styles['selected'] : '' }` }>
                                                     {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                     Investors
@@ -211,10 +218,9 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                         </summary>
                                         <div className={ styles['last-submenu'] }>
                                             <ul className={ styles['submenu-container'] }>
-                                                <li className={ styles['submenu-option'] }>
-                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                {/* <li className={ styles['submenu-option'] }>
                                                     Dashboard
-                                                </li>
+                                                </li> */}
                                                 <li className={ styles['submenu-option'] }>
                                                     {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                     Inbox

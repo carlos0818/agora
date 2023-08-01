@@ -41,6 +41,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         videoDesc,
         backPic,
         videoUrl,
+        facebook,
+        linkedin,
+        twitter,
         companyNameRef,
         emailContactRef,
         fileInputRef,
@@ -144,7 +147,48 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ `${ styles['info-text'] }` }>{ entrepreneurData?.web }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ phone }</p>
                                     <div className={ styles['social-container'] }>
-
+                                        {
+                                            facebook && (
+                                                <Link
+                                                    href={ facebook }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <a target='_blank'>
+                                                        <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                    </a>
+                                                </Link>
+                                            )
+                                        }
+                                        {
+                                            linkedin && (
+                                                <Link
+                                                    href={ linkedin }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <a target='_blank'>
+                                                        <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                    </a>
+                                                </Link>
+                                            )
+                                        }
+                                        {
+                                            twitter && (
+                                                <Link
+                                                    href={ twitter }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <a target='_blank'>
+                                                        <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                    </a>
+                                                </Link>
+                                            )
+                                        }
                                     </div>
                                 </div>
                                 <div className={ styles['profile-info-container-desktop'] }>
@@ -180,7 +224,48 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     </div>
                                     <div style={{ marginInlineStart: 24, marginBlockStart: 20 }}>
                                         <div className={ styles['social-container'] }>
-
+                                            {
+                                                facebook && (
+                                                    <Link
+                                                        href={ facebook }
+                                                        passHref
+                                                        prefetch={ false }
+                                                        legacyBehavior
+                                                    >
+                                                        <a target='_blank'>
+                                                            <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                        </a>
+                                                    </Link>
+                                                )
+                                            }
+                                            {
+                                                linkedin && (
+                                                    <Link
+                                                        href={ linkedin }
+                                                        passHref
+                                                        prefetch={ false }
+                                                        legacyBehavior
+                                                    >
+                                                        <a target='_blank'>
+                                                            <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                        </a>
+                                                    </Link>
+                                                )
+                                            }
+                                            {
+                                                twitter && (
+                                                    <Link
+                                                        href={ twitter }
+                                                        passHref
+                                                        prefetch={ false }
+                                                        legacyBehavior
+                                                    >
+                                                        <a target='_blank'>
+                                                            <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                        </a>
+                                                    </Link>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -279,14 +364,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'address') }
                                                 />
                                             </div>
-
-                                            {/* <hr style={{ border: '1px solid red', width: '100%' }} />
-                                            <p className={ styles['required-text'] }>Youtube video (optional)</p>
-                                            <p className={ styles['required-text'] }>Company URL (optional)</p>
-                                            <p className={ styles['required-text'] }>Facebook URL (optional)</p>
-                                            <p className={ styles['required-text'] }>Linkedin URL (optional)</p>
-                                            <p className={ styles['required-text'] }>Twitter URL (optional)</p>
-                                            <p className={ styles['required-text'] }>Background picture (optional)</p> */}
                                         </div>
                                         <p className={ styles['required-description'] }>
                                             In order to move forward with the process, we kindly request that you provide us with the necessary information as mentioned above.

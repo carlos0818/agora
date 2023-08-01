@@ -427,13 +427,12 @@ details > summary::-webkit-details-marker {
   /* back */
 }
 
-.checkbox input:checked ~ .check {
+/* .checkbox input:checked ~ .check {
   background-color: var(--agora-blue-dark);
-  /* background-color: red; */
   border-color: var(--agora-blue-dark);
   background-image: url('/images/checkmark-white.svg');
   background-size: 18px 18px;
-}
+} */
 
 .check:checked {
   border-color: green;
@@ -450,10 +449,14 @@ details > summary::-webkit-details-marker {
   border-radius: 100px;
   color: var(--agora-blue-dark);
   font-family: 'ebrima';
-  font-size: 15px;
+  font-size: 13px;
   outline: none;
   padding-block: 4px;
   padding-inline: 12px;
+}
+
+.field::placeholder {
+  color: black;
 }
 
 .field.field-error {
@@ -703,5 +706,9 @@ input:checked + .slider:before {
 
   .select {
     max-inline-size: 700px;
+  }
+
+  .field {
+    font-size: 15px;
   }
 }

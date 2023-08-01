@@ -102,10 +102,20 @@ export const MenuMobile = () => {
                                     <li className={ styles['submenu-option'] }>
                                         <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
                                     </li> */}
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Entrepreneur
-                                    </li>
+                                    <Link
+                                        href={ `/finder/entrepreneur` }
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Entrepreneur
+                                        </li>
+                                    </Link>
                                     <li className={ styles['submenu-option'] }>
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                         Investors
@@ -147,7 +157,7 @@ export const MenuMobile = () => {
                                     >
                                         <li
                                             className={ `${ styles['submenu-option'] } ${ router.pathname === '/infographics/country-snapshot' ? styles['selected'] : '' }` }
-                                            // onClick={ () => toggleSideMenuDesktop('original') }
+                                            onClick={ () => toggleSideMenu('original') }
                                         >
                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                             Countries
@@ -169,23 +179,23 @@ export const MenuMobile = () => {
                             </summary>
                             <div className={ styles['accordion-content'] }>
                                 <ul className={ styles['submenu-container'] }>
-                                    <Link
+                                    {/* <Link
                                         href='/finder/country-snapshot'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
                                     >
                                         <li className={ styles['submenu-option'] }>
-                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                             Dashboard
                                         </li>
-                                    </Link>
+                                    </Link> */}
                                     <li className={ styles['submenu-option'] }>
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                         Inbox
                                     </li>
                                     <li className={ styles['submenu-option'] }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Notifications
+                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                        Notifications
                                     </li>
                                 </ul>
                             </div>

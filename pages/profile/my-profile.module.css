@@ -85,8 +85,11 @@
 
 .social-container {
     block-size: 30px;
-    border: 1px solid red;
-    inline-size: 190px;
+    cursor: pointer;
+    display: flex;
+    gap: 20px;
+    /* inline-size: 190px; */
+    width: fit-content;
 }
 
 .card-title {
