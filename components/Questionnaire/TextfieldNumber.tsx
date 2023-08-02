@@ -13,7 +13,6 @@ interface Props {
 }
 
 export const TextfieldNumber: FC<Props> = ({ data }) => {
-    // console.log(data)
     const { user } = useContext(AuthContext)
     const { updateAnsweredQuestions, deleteAnsweredQuestions } = useContext(QuestionnaireContext)
 
@@ -37,26 +36,24 @@ export const TextfieldNumber: FC<Props> = ({ data }) => {
         const value = event.target.value
 
         if (value !== '') {
-            updateAnsweredQuestions(`${ data.qnbr }-1`)
-
+            
             const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
             const isFound = storage.find((element: any) => Number(element.qnbr) === Number(data.qnbr))
             let flag = false
-    
+            
             if (isFound) {
                 isFound.qnbr = data.qnbr
                 isFound.anbr = 1
                 isFound.extravalue = value
                 flag = true
             }
-    
+            
             if (!flag) {
                 storage.push({ qnbr: Number(data.qnbr), anbr: 1, extravalue: value })
+                updateAnsweredQuestions(`${ data.qnbr }-1`)
             }
     
             localStorage.setItem('questionnaire', JSON.stringify(storage))
-
-            console.log({ email: user?.email, qnbr: data.qnbr.toString(), type: user?.type, anbr: '1', effdt: data.effdt, extravalue: value })
     
             await agoraApi.post('/question/save-question', { email: user?.email, qnbr: data.qnbr.toString(), type: user?.type, anbr: '1', effdt: data.effdt, extravalue: value })
         } else {
