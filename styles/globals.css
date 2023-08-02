@@ -416,7 +416,7 @@ details > summary::-webkit-details-marker {
   opacity: 0;
 }
 
-.check {
+.check-blue {
   block-size: 18px;
   border: 2px solid var(--agora-blue-dark);
   border-radius: 5px;
@@ -427,12 +427,31 @@ details > summary::-webkit-details-marker {
   /* back */
 }
 
-/* .checkbox input:checked ~ .check {
+.check-white {
+  background-color: white;
+  block-size: 18px;
+  border: 2px solid white;
+  border-radius: 5px;
+  inline-size: 18px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  /* back */
+}
+
+.checkbox input:checked ~ .check-blue {
   background-color: var(--agora-blue-dark);
   border-color: var(--agora-blue-dark);
   background-image: url('/images/checkmark-white.svg');
   background-size: 18px 18px;
-} */
+}
+
+.checkbox input:checked ~ .check-white {
+  background-color: white;
+  border-color: white;
+  background-image: url('/images/checkmark-blue.svg');
+  background-size: 18px 18px;
+}
 
 .check:checked {
   border-color: green;

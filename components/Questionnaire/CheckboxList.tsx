@@ -160,7 +160,7 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                                 value={ answer.id }
                                 defaultChecked={ answer.checked }
                             /> { answer.descr }
-                            <span className='check'></span>
+                            <span className='check-blue'></span>
                         </label>
                     </div>
                 ))

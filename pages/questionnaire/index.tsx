@@ -123,6 +123,7 @@ const Questionnaire: NextPage = () => {
                                                                             const dataArray: ISelectBox[] = []
                                                                             const dataArray2: IMatrix[] = []
                                                                             const textfield: ITextfield = { qnbr: '', effdt: '', extravalue: '' }
+                                                                            const textfieldAll: ITextfield = { qnbr: '', effdt: '', extravalue: '' }
                                                                             return (
                                                                                 <div
                                                                                     key={ `container-${ question.qnbr }` }
@@ -273,15 +274,15 @@ const Questionnaire: NextPage = () => {
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'T') &&
                                                                                                 question.answers.map((answer: any) => {
-                                                                                                    textfield.qnbr = answer.qnbr
-                                                                                                    textfield.effdt = question.effdt
-                                                                                                    textfield.extravalue = answer.extravalue
+                                                                                                    textfieldAll.qnbr = answer.qnbr
+                                                                                                    textfieldAll.effdt = question.effdt
+                                                                                                    textfieldAll.extravalue = answer.extravalue
                                                                                                 })
                                                                                         }
                                                                                         {
                                                                                             (question.type === 'Q' && question.object === 'T') &&
                                                                                                 <TextfieldAll
-                                                                                                    data={ textfield }
+                                                                                                    data={ textfieldAll }
                                                                                                 />
                                                                                         }
                                                                                         {

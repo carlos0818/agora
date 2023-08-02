@@ -1,0 +1,6 @@
+.checkbox input:checked ~ .check {
+    background-color: var(--agora-blue-dark);
+    border-color: var(--agora-blue-dark);
+    background-image: url('/images/checkmark-white.svg');
+    background-size: 18px 18px;
+}

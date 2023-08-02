@@ -90,6 +90,8 @@ export const useQuestionnaire = () => {
         }
     }, [selectBox])
 
+    console.log('data', data)
+
     useEffect(() => {
         if (data.length > 0) {
             let hideArr: string[] = []

@@ -55,12 +55,9 @@ export const MenuMobile = () => {
                     <li>
                         <details
                             open={
-                                router.pathname === '/finder/country-snapshot' ||
-                                router.pathname === '/finder/sector' ||
-                                router.pathname === '/finder/portfolio' ||
-                                router.pathname === '/finder/entrepreneur' ||
-                                router.pathname === '/finder/investors' ||
-                                router.pathname === '/finder/experts'
+                                router.query.type === 'entrepreneur' ||
+                                router.query.type === 'investors' ||
+                                router.query.type === 'experts'
                             }
                         >
                             <summary
@@ -68,12 +65,9 @@ export const MenuMobile = () => {
                                     `
                                     ${ styles['option'] }
                                     ${
-                                        router.pathname === '/finder/country-snapshot' ||
-                                        router.pathname === '/finder/sector' ||
-                                        router.pathname === '/finder/portfolio' ||
-                                        router.pathname === '/finder/entrepreneur' ||
-                                        router.pathname === '/finder/investors' ||
-                                        router.pathname === '/finder/experts'
+                                        router.query.type === 'entrepreneur' ||
+                                        router.query.type === 'investors' ||
+                                        router.query.type === 'experts'
                                         ? styles['selected'] : ''
                                     }
                                 ` }
@@ -116,14 +110,34 @@ export const MenuMobile = () => {
                                             Entrepreneur
                                         </li>
                                     </Link>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Investors
-                                    </li>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Experts
-                                    </li>
+                                    <Link
+                                        href={ `/finder/investors` }
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Investors
+                                        </li>
+                                    </Link>
+                                    <Link
+                                        href={ `/finder/experts` }
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Experts
+                                        </li>
+                                    </Link>
                                 </ul>
                             </div>
                         </details>

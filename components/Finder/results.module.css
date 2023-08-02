@@ -3,21 +3,20 @@
 }
 
 .results-wrapper {
-    cursor: pointer;
     display: grid;
     gap: 32px;
     grid-template-columns: 1fr;
-    
 }
 
 
 
 .card-container {
+    animation-fill-mode: forwards;
+    cursor: pointer;
     margin: auto;
     position: relative;
     width: fit-content;
     transition: transform 0.6s ease;
-    animation-fill-mode: forwards;
 }
 
 .card-front, .card-back {
@@ -26,7 +25,6 @@
     align-items: center;
     position: absolute;
     inline-size: 100%;
-    /* border: 1px solid red; */
     top: 70px;
 }
 

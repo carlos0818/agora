@@ -42,7 +42,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
 
     const circleWrite = () => {
         if (circleDiv.current) {
-            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100) {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
                 circleDiv.current.style.position = 'absolute'
                 circleDiv.current.style.bottom = '170px'
             } else {
@@ -60,7 +60,6 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     return (
         <>
             <div
-                // id='top'
                 onClick={ () => setSubmenu(false) }
             >
                 <Head>

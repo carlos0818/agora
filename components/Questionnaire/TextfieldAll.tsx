@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const TextfieldAll: FC<Props> = ({ data }) => {
-    console.log(data)
+    // console.log(data)
     const { user } = useContext(AuthContext)
     const { updateAnsweredQuestions, deleteAnsweredQuestions } = useContext(QuestionnaireContext)
 
@@ -21,6 +21,8 @@ export const TextfieldAll: FC<Props> = ({ data }) => {
         const storage = JSON.parse(localStorage.getItem('questionnaire') || '')
 
         const isFound = storage.find((element: any) => Number(element.qnbr) === Number(data.qnbr))
+
+        console.log('isFound', isFound)
 
         if (isFound) {
             setAnswer(isFound.extravalue)
@@ -69,7 +71,7 @@ export const TextfieldAll: FC<Props> = ({ data }) => {
 
     return (
         <div style={{ marginBlockEnd: 20 }}>
-            <input type='text' className='textfield' onChange={ handleChange } onBlur={ handleSave } />
+            <input type='text' className='textfield' onChange={ handleChange } onBlur={ handleSave } defaultValue={ answer } />
         </div>
     )
 }

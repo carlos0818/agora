@@ -140,11 +140,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ styles['info-text'] }>by { fullname }</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
                                     <div className={ styles['stars-container'] }>
-
+                                        <i className='icon-star' data-star="3.5" style={{ fontSize: 13 }}></i>
                                     </div>
                                     <p className={ `${ styles['info-text'] }` }>{ city }-{ country }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ address }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ entrepreneurData?.web }</p>
+                                    <p className={ `${ styles['info-text'] }` }>{ emailContact }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ phone }</p>
                                     <div className={ styles['social-container'] }>
                                         {
@@ -156,7 +157,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     legacyBehavior
                                                 >
                                                     <a target='_blank'>
-                                                        <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                        <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
                                                     </a>
                                                 </Link>
                                             )
@@ -216,6 +217,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             </p>
                                             <p className={ `${ styles['info-text'] }` }>
                                                 { entrepreneurData?.web }
+                                            </p>
+                                            <p className={ `${ styles['info-text'] }` }>
+                                                { emailContact }
                                             </p>
                                             <p className={ `${ styles['info-text'] }` }>
                                                 { phone }

@@ -76,6 +76,7 @@ export const TextArea: FC<Props> = ({ data }) => {
                 style={{ blockSize: 100, inlineSize: 600 }}
                 onChange={ handleChange }
                 onBlur={ handleSave }
+                defaultValue={ answer }
             />
         </div>
     )

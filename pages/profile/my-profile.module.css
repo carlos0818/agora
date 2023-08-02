@@ -44,7 +44,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 4px;
     margin-block-start: 70px;
     padding: 10px;
 }
@@ -77,6 +76,7 @@
     block-size: 20px;
     inline-size: 150px;
     margin-block-start: 0;
+    text-align: center;
 }
 
 .address-text {
@@ -88,7 +88,7 @@
     cursor: pointer;
     display: flex;
     gap: 20px;
-    /* inline-size: 190px; */
+    margin-block-start: 8px;
     width: fit-content;
 }
 
@@ -477,6 +477,7 @@
 
     .profile-info-row1 {
         display: flex;
+        gap: 12px;
         padding-inline-start: 195px;
         padding-block: 5px;
         min-block-size: 111px;
@@ -491,7 +492,7 @@
         display: flex;
         flex-grow: 1;
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
         padding-inline-end: 10px;
     }
 
@@ -516,6 +517,7 @@
 
     .stars-container {
         margin-block-start: 4px;
+        text-align: left;
     }
 
     .required-description {
