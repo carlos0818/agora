@@ -151,19 +151,25 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                 : <p style={{ color: 'green' }}>Correctly selected options</p>
             }
             {
-                answerValue.map(answer => (
-                    <div key={ answer.id } style={{ alignItems: 'center', display: 'flex' }}>
-                        <label className='checkbox'>
-                            <input
-                                type='checkbox'
-                                onChange={ onSelectedOption }
-                                value={ answer.id }
-                                defaultChecked={ answer.checked }
-                            /> { answer.descr }
-                            <span className='check-blue'></span>
-                        </label>
-                    </div>
-                ))
+                answerValue.map(answer => {
+                    const split = answer.descr.split('<br>')
+                    return (
+                        <>
+                            <div key={ answer.id } style={{ alignItems: 'center', display: 'flex' }}>
+                                <label className='checkbox'>
+                                    <input
+                                        type='checkbox'
+                                        onChange={ onSelectedOption }
+                                        value={ answer.id }
+                                        defaultChecked={ answer.checked }
+                                    /> { answer.descr }
+                                    <span className='check-blue'></span>
+                                </label>
+                            </div>
+                            { split.length > 1 && <span>{ split[1] }</span> }
+                        </>
+                    )
+                })
             }
         </div>
     )

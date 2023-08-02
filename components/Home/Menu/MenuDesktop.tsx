@@ -70,7 +70,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
                                     legacyBehavior
                                 >
                                     <li
-                                        className={ `${ styles['option'] } ${ router.pathname === '/profile/[id]' ? styles['selected'] : '' }` }
+                                        className={ `${ styles['option'] } ${ router.query.id ? styles['selected'] : '' }` }
                                         // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}

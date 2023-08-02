@@ -668,19 +668,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const { id } = params as { id: string }
-    let email = ''
-    let fullname = ''
-    let type = ''
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+    const { id } = query
 
-    try {
-        await agoraApi.get(`/question/validate-complete-questionnaire-by-id?id=${ id }`)
-        const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`)
-        email = data.email
-        fullname = data.fullname
-        type = data.type
-    } catch (error) {
+    const { data: validate } = await agoraApi.get(`/question/validate-complete-questionnaire-by-id?id=${ id }`)
+    const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`)
+
+    if (validate.response === '0' || data.response === '0') {
         return {
             redirect: {
                 destination: '/',
@@ -688,6 +682,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
             }
         }
     }
+
+    const email = data.data.email
+    const fullname = data.data.fullname
+    const type = data.data.type
 
     return {
         props: {
