@@ -26,18 +26,6 @@ export const Results: FC<Props> = ({ search, loadingSearch }) => {
                     )
                     : (
                         <div className={ styles['results-wrapper'] }>
-                            {/* <div className={ styles['card-container'] } tabIndex={ 0 }>
-                                <div className={ styles['user-circle'] }></div>
-                                <div className={ styles['card'] }>
-                                    <div className={ styles['card-front'] }>
-                                        <p className={ styles['card-title'] }>Prueba</p>
-                                        <div className={ styles['card-wrapper'] }>
-                                            <p className={ styles['card-subtitle'] }>Country</p>
-                                            <p className={ styles['card-info'] }>Colombia</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
                             {
                                 search.map((res, idx) => (
                                     <div key={ res.id } className={ styles['card-container'] } tabIndex={ idx }>
@@ -116,8 +104,8 @@ export const Results: FC<Props> = ({ search, loadingSearch }) => {
                                                         router.query.type === 'entrepreneur'
                                                         ? (
                                                             <>
-                                                                <p className={ styles['card-subtitle'] }>Funding Needs</p>
-                                                                <p className={ styles['card-info'] }>{ res.back1 }</p>
+                                                                <p className={ styles['card-subtitle'] }>Funding Needs (USD)</p>
+                                                                <p className={ styles['card-info'] }>${ res.back1 }</p>
                                                             </>
                                                         )
                                                         : router.query.type === 'investors'
@@ -191,7 +179,18 @@ export const Results: FC<Props> = ({ search, loadingSearch }) => {
                                                 >
                                                     <a
                                                         type='button'
-                                                        className='button-filled'
+                                                        className={ `button-outline ${ styles['connect-button'] }` }
+                                                    >Connect</a>
+                                                </Link>
+                                                <Link
+                                                    href={ `/profile/${ res.id }` }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <a
+                                                        type='button'
+                                                        className={ `button-filled ${ styles['profile-button'] }` }
                                                     >View profile</a>
                                                 </Link>
                                             </div>

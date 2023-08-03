@@ -151,7 +151,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         {
                                             facebook && (
                                                 <Link
-                                                    href={ facebook }
+                                                    href={ `https://www.facebook.com/${ facebook }` }
                                                     passHref
                                                     prefetch={ false }
                                                     legacyBehavior
@@ -165,7 +165,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         {
                                             linkedin && (
                                                 <Link
-                                                    href={ linkedin }
+                                                    href={ `https://www.linkedin.com/in/${ linkedin }` }
                                                     passHref
                                                     prefetch={ false }
                                                     legacyBehavior
@@ -179,7 +179,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         {
                                             twitter && (
                                                 <Link
-                                                    href={ twitter }
+                                                    href={ `https://www.twitter.com/${ twitter }` }
                                                     passHref
                                                     prefetch={ false }
                                                     legacyBehavior
@@ -231,7 +231,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             {
                                                 facebook && (
                                                     <Link
-                                                        href={ facebook }
+                                                        href={ `https://www.facebook.com/${ facebook }` }
                                                         passHref
                                                         prefetch={ false }
                                                         legacyBehavior
@@ -245,7 +245,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             {
                                                 linkedin && (
                                                     <Link
-                                                        href={ linkedin }
+                                                        href={ `https://www.linkedin.com/in/${ linkedin }` }
                                                         passHref
                                                         prefetch={ false }
                                                         legacyBehavior
@@ -259,7 +259,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             {
                                                 twitter && (
                                                     <Link
-                                                        href={ twitter }
+                                                        href={ `https://www.twitter.com/${ twitter }` }
                                                         passHref
                                                         prefetch={ false }
                                                         legacyBehavior
@@ -276,7 +276,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             </div>
                         </div>
                         {
-                            !(companyName && city && country && address && emailContact && phone) && isMyAccount && (
+                            !(companyName && city && country && address && emailContact && phone && profilePic) && isMyAccount && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
@@ -401,7 +401,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             )
                         }
                         {
-                            (!showRocket && (companyName && city && country && address && emailContact && phone)) && (
+                            (!showRocket && (companyName && city && country && address && emailContact && phone && profilePic)) && (
                                 <>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>

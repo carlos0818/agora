@@ -44,6 +44,8 @@ const EditProfile: NextPage = () => {
     const [profilePic, setProfilePic] = useState('')
     const [backgroundPic, setBackgroundPic] = useState('')
     const [video, setVideo] = useState('')
+    const [showUserMessage, setShowUserMessage] = useState(false)
+    const [showDataMessage, setShowDataMessage] = useState(false)
 
     useEffect(() => {
         if (user) {
@@ -132,6 +134,12 @@ const EditProfile: NextPage = () => {
         })
 
         await agoraApi.post('/user/update-user-info', { email: user?.email, fullname: fullnameRef.current?.value })
+
+        setShowUserMessage(true)
+
+        setTimeout(() => {
+            setShowUserMessage(false)
+        }, 3000)
     }
 
     const onSaveTypeAccountData = async({
@@ -211,6 +219,12 @@ const EditProfile: NextPage = () => {
                 default:
                     break
             }
+
+            setShowDataMessage(true)
+
+            setTimeout(() => {
+                setShowDataMessage(false)
+            }, 3000)
         } catch (error) {
             console.log(error)
         }
@@ -248,6 +262,13 @@ const EditProfile: NextPage = () => {
                                     onClick={ handleSaveUser }
                                 />
                             </div>
+                            {
+                                showUserMessage && (
+                                    <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
+                                        <span style={{ color: '#006f0d' }}>Your information has been updated</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <hr style={{ borderBlockStart: '1px solid rgba(0,0,0,0.1)', marginBlock: 30 }} />
                         <form onSubmit={ handleSubmit(onSaveTypeAccountData) } noValidate>
@@ -393,27 +414,36 @@ const EditProfile: NextPage = () => {
                                 </div>
                                 <div className={ styles['form-group'] }>
                                     <label>Facebook URL</label>
-                                    <input
-                                        type='text'
-                                        className={ `field ${ styles['textfield'] }` }
-                                        { ...register('facebookUrl') }
-                                    />
+                                    <div className={ styles['social-container'] }>
+                                        <label>https://www.facebook.com/</label>
+                                        <input
+                                            type='text'
+                                            className={ `field ${ styles['textfield'] }` }
+                                            { ...register('facebookUrl') }
+                                        />
+                                    </div>
                                 </div>
                                 <div className={ styles['form-group'] }>
                                     <label>Linkedin URL</label>
-                                    <input
-                                        type='text'
-                                        className={ `field ${ styles['textfield'] }` }
-                                        { ...register('linkedinUrl') }
-                                    />
+                                    <div className={ styles['social-container'] }>
+                                        <label>https://www.linkedin.com/in/</label>
+                                        <input
+                                            type='text'
+                                            className={ `field ${ styles['textfield'] }` }
+                                            { ...register('linkedinUrl') }
+                                        />
+                                    </div>
                                 </div>
                                 <div className={ styles['form-group'] }>
                                     <label>Twitter URL</label>
-                                    <input
-                                        type='text'
-                                        className={ `field ${ styles['textfield'] }` }
-                                        { ...register('twitterUrl') }
-                                    />
+                                    <div className={ styles['social-container'] }>
+                                        <label>https://www.twitter.com/</label>
+                                        <input
+                                            type='text'
+                                            className={ `field ${ styles['textfield'] }` }
+                                            { ...register('twitterUrl') }
+                                        />
+                                    </div>
                                 </div>
                                 <div className={ styles['form-group'] }>
                                     <label>Background picture</label>
@@ -450,6 +480,13 @@ const EditProfile: NextPage = () => {
                                 <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
                                     <input type='submit' value='Save entrepreneur information' className={ `button-filled` } style={{ paddingInline: 20 }} />
                                 </div>
+                                {
+                                    showDataMessage && (
+                                        <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
+                                            <span style={{ color: '#006f0d' }}>Your information has been updated</span>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </form>
                     </div>

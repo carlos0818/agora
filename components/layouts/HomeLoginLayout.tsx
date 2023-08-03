@@ -24,6 +24,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
 
     const wrapperRef = useRef<HTMLInputElement>(null)
+    const notificationsRef = useRef<HTMLInputElement>(null)
     const circleDiv = useRef<HTMLDivElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
@@ -80,11 +81,12 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                     <div className={ styles['home-wrapper'] } ref={ wrapperRef }>
                         <MenuDesktop
                             wrapperRef={ wrapperRef }
+                            notificationsRef={ notificationsRef }
                         />
                         <div className={ styles['content-container'] }>
                             { children }
                         </div>
-                        <div className={ styles['notifications'] }>
+                        <div className={ styles['notifications'] } ref={ notificationsRef }>
                             <div className={ styles['notifications-wrapper'] }>
                                 <Image
                                     src={ notificationIcon }

@@ -1,4 +1,4 @@
-import { FC, RefObject, useContext, useEffect } from 'react'
+import { FC, RefObject, useContext, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -14,14 +14,18 @@ import leftArrowIcon from '@/public/images/left-arrow-icon.svg'
 
 interface Props {
     wrapperRef: RefObject<HTMLInputElement>
+    notificationsRef: RefObject<HTMLInputElement>
 }
 
-export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
+export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
     const { user } = useContext(AuthContext)
+    
+    const menuRef = useRef<HTMLInputElement>(null)
 
-    const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef)
+    const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef, notificationsRef, menuRef)
     const router = useRouter()
+
 
     useEffect(() => {
         const darkMode = JSON.parse(localStorage.getItem('DarkMode')!)
@@ -43,8 +47,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef }) => {
             >
                 <Image src={ leftArrowIcon } className={ styles['left-arrow'] } alt='left arrow icon' />
             </div>
-
-            <div className={ styles['menu-container'] }>
+            <div className={ styles['menu-container'] } ref={ menuRef }>
                 <div className={ `${ styles['menu-wrapper'] } ${ hideMenu === 'hide' ? styles['hide'] : hideMenu === 'show' ? styles['show'] : '' }` }>
                     <div className={ `window-glass ${ styles['menu-box'] }` }>
                         <div className='window-glass-content' style={{ paddingInline: 0, paddingBlock: '10px', overflow: 'hidden' }}>

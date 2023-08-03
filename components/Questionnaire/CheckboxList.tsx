@@ -162,11 +162,11 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                                         onChange={ onSelectedOption }
                                         value={ answer.id }
                                         defaultChecked={ answer.checked }
-                                    /> { answer.descr }
+                                    /> { split[0] }
                                     <span className='check-blue'></span>
                                 </label>
                             </div>
-                            { split.length > 1 && <span>{ split[1] }</span> }
+                            { split.length > 1 && <span style={{ marginBlock: 8 }}>{ split[1] }</span> }
                         </>
                     )
                 })

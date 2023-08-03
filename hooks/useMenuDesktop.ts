@@ -3,7 +3,7 @@ import { MenuContext } from '@/context/menu'
 
 type HideMenu = 'original' | 'hide' | 'show'
 
-export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
+export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>, notificationsRef: RefObject<HTMLInputElement>, menuRef: RefObject<HTMLInputElement>) => {
     const [hideMenu, setHideMenu] = useState<HideMenu>('original')
     const menuHideRef = useRef<HTMLInputElement>(null)
     const { toggleSideMenuDesktop } = useContext(MenuContext)
@@ -31,10 +31,14 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
     const validateScreen = () => {
         if (window.screen.width >= 1024) {
             wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
+            notificationsRef.current!.style.display = 'flex'
+            menuRef.current!.style.display = 'flex'
             wrapperRef.current!.style.gap = '36px'
             toggleSideMenuDesktop('original')
         } else {
             wrapperRef.current!.style.gridTemplateColumns = '1fr'
+            notificationsRef.current!.style.display = 'none'
+            menuRef.current!.style.display = 'none'
             wrapperRef.current!.style.gap = '0'
             toggleSideMenuDesktop('show')
         }
@@ -53,6 +57,8 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
             setHideMenu('show')
             setTimeout(() => {
                 wrapperRef.current!.style.gridTemplateColumns = '236px 1fr 70px'
+                notificationsRef.current!.style.display = 'flex'
+                menuRef.current!.style.display = 'flex'
                 wrapperRef.current!.style.gap = '36px'
                 menuHideRef.current!.style.display = 'none'
                 toggleSideMenuDesktop('show')
@@ -63,6 +69,8 @@ export const useMenuDesktop = (wrapperRef: RefObject<HTMLInputElement>) => {
             setHideMenu('hide')
             setTimeout(() => {
                 wrapperRef.current!.style.gridTemplateColumns = '1fr'
+                notificationsRef.current!.style.display = 'none'
+                menuRef.current!.style.display = 'none'
                 wrapperRef.current!.style.gap = '0'
                 menuHideRef.current!.style.display = 'flex'
                 toggleSideMenuDesktop('hide')
