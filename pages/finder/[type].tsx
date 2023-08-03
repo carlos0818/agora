@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { agoraApi } from '@/api'
-import { ICompanyType, IEntrepreneurSearch } from '@/interfaces'
+import { ICompanyType, ISearch } from '@/interfaces'
 
 import { Results } from '@/components/Finder/Results'
 import { Search } from '@/components/Finder/Search'
@@ -10,7 +10,7 @@ import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 const EntrepreneurFinder = () => {
     const [types, setTypes] = useState<ICompanyType[]>([])
     const [loading, setLoading] = useState(false)
-    const [search, setSearch] = useState<IEntrepreneurSearch[]>([])
+    const [search, setSearch] = useState<ISearch[]>([])
     const [loadingSearch, setLoadingSearch] = useState(false)
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const EntrepreneurFinder = () => {
     const getTypes = async() => {
         setLoading(true)
         try {
-            const { data } = await agoraApi.get('/entrepreneur/get-types')
+            const { data } = await agoraApi.get('/entrepreneur/get-company-size')
             setTypes(data)
             setLoading(false)
         } catch (error) {

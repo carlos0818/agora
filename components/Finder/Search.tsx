@@ -1,8 +1,8 @@
-import { ChangeEvent, Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import countriesList from '@/db/countries'
-import { ICompanyType, IEntrepreneurSearch } from '@/interfaces'
+import { ICompanyType, ISearch } from '@/interfaces'
 
 import styles from './search.module.css'
 import { agoraApi } from '@/api'
@@ -10,7 +10,7 @@ import { agoraApi } from '@/api'
 interface Props {
     types: ICompanyType[]
     setLoadingSearch: Dispatch<SetStateAction<boolean>>
-    setSearch: Dispatch<SetStateAction<IEntrepreneurSearch[]>>
+    setSearch: Dispatch<SetStateAction<ISearch[]>>
 }
 
 export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
@@ -30,48 +30,77 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
     let searchTimeout: any
 
     useEffect(() => {
+        if (termRef.current) termRef.current.value = ''
+        if (countryRef.current) countryRef.current.value = ''
+        if (minRef.current) minRef.current.value = ''
+        if (maxRef.current) maxRef.current.value = ''
+        if (typeRef.current) typeRef.current.value = ''
+        if (alphabeticalRef.current) alphabeticalRef.current.value = ''
+        if (fundingRef.current) fundingRef.current.value = ''
+
         handleSearch()
-    }, [])
+    }, [accountType])
 
-    const handleSearch = () => {
+    const handleSearchTextfield = () => {
         clearTimeout(searchTimeout)
-        
+
         searchTimeout = setTimeout(async() => {
-            setLoadingSearch(true)
-            let query = ''
-    
-            if (termRef.current && termRef.current.value !== '') {
-                query += `&term=${ termRef.current.value }`
-            }
+            handleSearch()
+        }, 600)
+    }
 
-            if (countryRef.current && countryRef.current.value !== '') {
-                query += `&country=${ countryRef.current.value }`
-            }
+    const handleSearch = async() => {
+        setLoadingSearch(true)
+        let query = ''
 
-            if (minRef.current && minRef.current.value !== '' && maxRef.current && maxRef.current.value !== '') {
-                query += `&from=${ minRef.current.value }&to=${ maxRef.current.value }`
-            }
+        if (termRef.current && termRef.current.value !== '') {
+            query += `&term=${ termRef.current.value }`
+        }
 
-            if (typeRef.current && typeRef.current.value !== '') {
-                query += `&anbr=${ typeRef.current.value }`
-            }
+        if (countryRef.current && countryRef.current.value !== '') {
+            query += `&country=${ countryRef.current.value }`
+        }
 
-            if (alphabeticalRef.current && alphabeticalRef.current.checked) {
-                query += `&alphabetical=${ alphabeticalRef.current.value }`
-            }
+        if (minRef.current && minRef.current.value !== '' && maxRef.current && maxRef.current.value !== '') {
+            query += `&from=${ minRef.current.value }&to=${ maxRef.current.value }`
+        }
 
-            if (fundingRef.current && fundingRef.current.checked) {
-                query += `&funding=${ fundingRef.current.value }`
+        if (typeRef.current && typeRef.current.value !== '') {
+            query += `&anbr=${ typeRef.current.value }`
+        }
+
+        if (alphabeticalRef.current && alphabeticalRef.current.checked) {
+            query += `&alphabetical=${ alphabeticalRef.current.value }`
+        }
+
+        if (fundingRef.current && fundingRef.current.checked) {
+            query += `&funding=${ fundingRef.current.value }`
+        }
+
+        try {
+            switch (accountType) {
+                case 'entrepreneur':
+                    const { data: entrepreneur } = await agoraApi.get(`/entrepreneur/search?${ query }`)
+                    setSearch(entrepreneur)
+                    setLoadingSearch(false)
+                    break
+                case 'investors':
+                    const { data: investors } = await agoraApi.get(`/investor/search?${ query }`)
+                    setSearch(investors)
+                    setLoadingSearch(false)
+                    break
+                case 'experts':
+                    const { data: experts } = await agoraApi.get(`/expert/search?${ query }`)
+                    console.log(experts)
+                    setSearch(experts)
+                    setLoadingSearch(false)
+                    break
+                default:
+                    break
             }
-    
-            try {
-                const { data } = await agoraApi.get(`/entrepreneur/search?${ query }`)
-                setSearch(data)
-                setLoadingSearch(false)
-            } catch (error) {
-                setLoadingSearch(false)
-            }
-        }, 500)
+        } catch (error) {
+            setLoadingSearch(false)
+        }
     }
 
     return (
@@ -82,12 +111,12 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                 className='field'
                 style={{ paddingBlock: 8 }}
                 placeholder={ `Search your ${ accountType === 'entrepreneur' ? 'entrepreneur...' : accountType === 'investors' ? 'investor...' : 'expert...' }` }
-                onChange={ handleSearch }
+                onChange={ handleSearchTextfield }
             />
             <div className={ styles['search-containers'] }>
                 <div className={ styles['container-one'] }>
                     <div className={ styles['form-row'] }>
-                        <label>Country</label>
+                        <label className={ styles['form-row-label'] }>Country</label>
                         <select ref={ countryRef } className={ `select ${ styles['select'] }` } onChange={ handleSearch }>
                             {
                                 countries.map(country => (
@@ -125,9 +154,9 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                                     </div>
                                 </div>
                                 <div className={ styles['form-row'] }>
-                                    <label className={ styles['form-row-label'] }>Type</label>
+                                    <label className={ styles['form-row-label'] }>Size of company</label>
                                     <select ref={ typeRef } className={ `select ${ styles['select'] }` } onChange={ handleSearch }>
-                                        <option value="">Select a type</option>
+                                        <option value="">Select a size of company</option>
                                         {
                                             types.map(type => (
                                                 <option key={ type.anbr } value={ type.anbr }>{ type.descr }</option>
