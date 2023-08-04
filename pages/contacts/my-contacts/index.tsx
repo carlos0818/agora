@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,15 +10,18 @@ import styles from './my-contacts.module.css'
 import { Modal } from '@/components/Common/Modal'
 import { IContact } from '@/interfaces'
 import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
 
 const ContactsPage: NextPage = () => {
+    const { user } = useContext(AuthContext)
+
     const { windowRef, termRef, contacts, loading, setContacts, handleSearch } = useContacts()
 
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [userDelete, setUserDelete] = useState<IContact | null>(null)
 
     const handleDelete = async(id: string) => {
-        await agoraApi.delete(`/contact/delete-contact/${ id }`)
+        await agoraApi.post(`/contact/delete-contact`, { id, email: user?.email })
 
         const filter = contacts.filter(contact => contact.id !== id)
         setContacts(filter)
