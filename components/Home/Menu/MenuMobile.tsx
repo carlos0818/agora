@@ -312,6 +312,7 @@ export const MenuMobile = () => {
                     >
                         <li
                             className={ `${ styles['option'] }` }
+                            onClick={ () => toggleSideMenu('original') }
                         >
                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                             Edit profile
