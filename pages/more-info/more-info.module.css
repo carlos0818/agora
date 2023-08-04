@@ -59,20 +59,21 @@
     margin-block-start: 4px;
 }
 
+.button-desktop {
+    display: flex;
+    font-weight: 600;
+    justify-content: flex-end;
+    margin: auto;
+    margin-block-start: 40px;
+    margin-block-end: 0;
+    max-inline-size: 260px;
+}
+
 .type-image {
     block-size: auto;
     inline-size: 220px;
     margin: auto;
     margin-block-start: 40px;
-}
-
-.button-mobile {
-    display: block;
-    margin-block-start: 20px;
-}
-
-.button-desktop {
-    display: none;
 }
 
 .type-title {
@@ -189,20 +190,6 @@
     .info-subtitle {
         font-size: 20px;
         line-height: 23px;
-    }
-
-    .button-mobile {
-        display: none;
-    }
-    
-    .button-desktop {
-        display: flex;
-        font-weight: 600;
-        justify-content: flex-end;
-        margin: auto;
-        margin-block-start: 40px;
-        margin-block-end: 0;
-        max-inline-size: 260px;
     }
 
     .type-title {

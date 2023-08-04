@@ -1,0 +1,17 @@
+<svg id="X" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e64949;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle id="Elipse_1" data-name="Elipse 1" class="cls-1" cx="50.047" cy="50.047" r="49.734"/>
+  <path id="Rectángulo_1" data-name="Rectángulo 1" class="cls-2" d="M72.153,23.1L76.4,27.348a6,6,0,0,1,0,8.485L35.333,76.9a6,6,0,0,1-8.485,0L22.6,72.653a6,6,0,0,1,0-8.485L63.667,23.1A6,6,0,0,1,72.153,23.1Z"/>
+  <path id="Rectángulo_1_copia" data-name="Rectángulo 1 copia" class="cls-2" d="M76.25,72l-4.217,4.217a5.964,5.964,0,0,1-8.434,0L22.782,35.4a5.964,5.964,0,0,1,0-8.434L27,22.751a5.964,5.964,0,0,1,8.434,0L76.25,63.567A5.964,5.964,0,0,1,76.25,72Z"/>
+</svg>

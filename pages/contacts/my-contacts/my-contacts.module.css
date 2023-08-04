@@ -1,0 +1,119 @@
+.search-container {
+    background-color: var(--agora-blue-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-block: 16px;
+    padding-inline: 10px;
+}
+
+.contacts-container {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr;
+    row-gap: 26px;
+    margin-block: 40px;
+    margin-inline: 20px;
+    position: relative;
+}
+
+.user-circle {
+    background: green;
+    block-size: 43px;
+    border-radius: 100%;
+    inline-size: 43px;
+    left: -5px;
+    overflow: hidden;
+    position: absolute;
+    top: -8px;
+    z-index: 5;
+}
+
+.title {
+    font-size: 13px;
+}
+
+.title:nth-of-type(3),
+.title:nth-of-type(4) {
+    display: none;
+}
+
+.first-column {
+    border-block: 3px solid var(--agora-blue-dark);
+    position: relative;
+    border-inline-start: 3px solid var(--agora-blue-dark);
+    border-start-start-radius: 50px;
+    border-end-start-radius: 50px;
+}
+
+.middle-column {
+    border-block: 3px solid var(--agora-blue-dark);
+    font-size: 13px;
+    padding-block: 4px;
+}
+
+.middle-column:nth-of-type(3n-1),
+.middle-column:nth-of-type(3n-2) {
+    display: none;
+}
+
+.last-column {
+    border-block: 3px solid var(--agora-blue-dark);
+    border-inline-end: 3px solid var(--agora-blue-dark);
+    border-start-end-radius: 50px;
+    border-end-end-radius: 50px;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding-block: 6px;
+    padding-inline-end: 8px;
+}
+
+.icon {
+    block-size: 17px;
+    cursor: pointer;
+    inline-size: 17px;
+}
+
+/* @media screen and (min-width: 768px) {
+
+} */
+
+/* @media screen and (min-width: 1200px) {
+    .contacts-container {
+        grid-template-columns: 70px 1fr 110px 170px 135px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .user-circle {
+        block-size: 60px;
+        inline-size: 60px;
+        left: -5px;
+        top: -14px;
+    }
+
+    .middle-column {
+        padding-block: 8px;
+    }
+
+    .title:nth-of-type(3),
+    .title:nth-of-type(4) {
+        display: block;
+    }
+
+    .middle-column {
+        font-size: 15px;
+    }
+
+    .middle-column:nth-of-type(3n-1),
+    .middle-column:nth-of-type(3n-2) {
+        display: block;
+    }
+
+    .icon {
+        block-size: 24px;
+        inline-size: 24px;
+    }
+} */

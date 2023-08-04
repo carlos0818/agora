@@ -19,6 +19,7 @@ export const MenuMobile = () => {
     const [openFinder, setOpenFinder] = useState(false)
     const [openMyData, setOpenMyData] = useState(false)
     const [openMoreInfo, setOpenMoreInfo] = useState(false)
+    const [openContacts, setContacts] = useState(false)
 
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
@@ -181,9 +182,60 @@ export const MenuMobile = () => {
                             </div>
                         </details>
                     </li>
-                    <li className={ `${ styles['option'] }` }>
-                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                        Contacts
+                    <li>
+                        <details
+                            open={
+                                router.pathname === '/contacts/my-contacts' ||
+                                router.pathname === '/contacts/contact-requests'
+                            }
+                        >
+                            <summary
+                                className={
+                                    `
+                                    ${ styles['option'] }
+                                    ${
+                                        router.pathname === '/contacts/my-contacts' ||
+                                        router.pathname === '/contacts/contact-requests'
+                                        ? styles['selected'] : ''
+                                    }
+                                ` }
+                            >
+                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                Contacts
+                            </summary>
+                            <div className={ styles['accordion-content'] }>
+                                <ul className={ styles['submenu-container'] }>
+                                    <Link
+                                        href='/contacts/my-contacts'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/contacts/my-contacts' ? styles['selected'] : '' }` }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            My contacts
+                                        </li>
+                                    </Link>
+                                    <Link
+                                        href='/contacts/contact-requests'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/contacts/contact-requests' ? styles['selected'] : '' }` }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Contact requests
+                                        </li>
+                                    </Link>
+                                </ul>
+                            </div>
+                        </details>
                     </li>
                     <li>
                         <details open={ openMyData }>
