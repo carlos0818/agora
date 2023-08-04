@@ -8,6 +8,8 @@ import { FooterDesktop } from '../Footer/FooterDesktop'
 import styles from './homeLoginWithoutMenuLayout.module.css'
 import { MenuContext } from '@/context/menu'
 import { AuthContext } from '@/context/auth'
+import { NavbarMobile } from '../Navbar/NavbarMobile'
+import { MenuMobile } from '../Home/Menu/MenuMobile'
 
 interface Props {
     children: JSX.Element
@@ -65,6 +67,7 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
                     />
                 </nav>
                 <div className={ `${ styles['home-container'] } ${ isDarkMode ? styles['background-dark'] : '' }` }>
+                    <MenuMobile />
                     <div className={ styles['home-wrapper'] }>
                         <div className={ styles['content-container'] }>
                             { children }
@@ -82,6 +85,7 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
                             )
                         }
                     </div>
+                    <NavbarMobile />
                     <FooterDesktop />
                 </div>
             </div>
