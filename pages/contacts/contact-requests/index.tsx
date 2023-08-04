@@ -1,5 +1,6 @@
+import { NextPage } from 'next'
 
-const ContactRequests = () => {
+const ContactRequests: NextPage = () => {
     return (
         <div>ContactRequests</div>
     )
