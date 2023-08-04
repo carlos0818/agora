@@ -171,7 +171,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     legacyBehavior
                                                 >
                                                     <a target='_blank'>
-                                                        <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                        <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
                                                     </a>
                                                 </Link>
                                             )
@@ -185,12 +185,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     legacyBehavior
                                                 >
                                                     <a target='_blank'>
-                                                        <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                        <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
                                                     </a>
                                                 </Link>
                                             )
                                         }
                                     </div>
+                                    <button style={{ marginBlockStart: 12 }} className='button-outline'>Connect</button>
                                 </div>
                                 <div className={ styles['profile-info-container-desktop'] }>
                                     <div className={ styles['profile-info-row1'] }>
@@ -226,7 +227,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             </p>
                                         </div>
                                     </div>
-                                    <div style={{ marginInlineStart: 24, marginBlockStart: 20 }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: 24, marginBlockStart: 20 }}>
                                         <div className={ styles['social-container'] }>
                                             {
                                                 facebook && (
@@ -271,6 +272,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 )
                                             }
                                         </div>
+                                        <button className='button-outline'>Connect</button>
                                     </div>
                                 </div>
                             </div>
