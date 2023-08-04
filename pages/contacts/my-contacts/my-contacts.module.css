@@ -17,8 +17,9 @@
 }
 
 .user-circle {
-    background: green;
+    /* background: green; */
     block-size: 43px;
+    border: 1px solid var(--agora-blue-dark);
     border-radius: 100%;
     inline-size: 43px;
     left: -5px;

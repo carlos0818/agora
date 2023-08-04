@@ -49,6 +49,15 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
         }, 600)
     }
 
+    const handleSearchRange = () => {
+        clearTimeout(searchTimeout)
+
+        searchTimeout = setTimeout(async() => {
+            if (minRef.current!.value !== '' && maxRef.current!.value !== '')
+                handleSearch()
+        }, 600)
+    }
+
     const handleSearch = async() => {
         setLoadingSearch(true)
         let query = ''
@@ -138,7 +147,7 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                                                 type='text'
                                                 className={ `field ${ styles['textfield'] }` }
                                                 style={{ paddingBlock: 8 }}
-                                                onChange={ handleSearch }
+                                                onChange={ handleSearchRange }
                                             />
                                         </div>
                                         <div className={ styles['max-min-wrapper'] }>
@@ -148,7 +157,7 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                                                 type='text'
                                                 className={ `field ${ styles['textfield'] }` }
                                                 style={{ paddingBlock: 8 }}
-                                                onChange={ handleSearch }
+                                                onChange={ handleSearchRange }
                                             />
                                         </div>
                                     </div>
