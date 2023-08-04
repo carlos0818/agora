@@ -27,6 +27,9 @@ export const Results: FC<Props> = ({ search, loadingSearch }) => {
                     : (
                         <div className={ styles['results-wrapper'] }>
                             {
+                                search.length === 0 && <p style={{ margin: 'auto' }}>No results</p>
+                            }
+                            {
                                 search.map((res, idx) => (
                                     <div key={ res.id } className={ styles['card-container'] } tabIndex={ idx }>
                                         <div className={ styles['user-circle'] }>

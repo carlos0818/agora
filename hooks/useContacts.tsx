@@ -163,6 +163,7 @@ export const useContacts = () => {
         termRef,
         contacts,
         loading,
+        setContacts,
         handleSearch,
     }
 }
