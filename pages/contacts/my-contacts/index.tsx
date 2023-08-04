@@ -15,7 +15,7 @@ import { AuthContext } from '@/context/auth'
 const ContactsPage: NextPage = () => {
     const { user } = useContext(AuthContext)
 
-    const { windowRef, termRef, contacts, loading, setContacts, handleSearch } = useContacts()
+    const { windowRef, termRef, contacts, loading, setContacts, handleSearch } = useContacts('C')
 
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [userDelete, setUserDelete] = useState<IContact | null>(null)

@@ -5,7 +5,7 @@ import { AuthContext } from '@/context/auth'
 import { agoraApi } from '@/api'
 import { IContact } from '@/interfaces'
 
-export const useContacts = () => {
+export const useContacts = (page: string) => {
     const { user } = useContext(AuthContext)
     const { isOpenDesktop } = useContext(MenuContext)
 
@@ -50,9 +50,21 @@ export const useContacts = () => {
         }
 
         try {
-            const { data: contacts } = await agoraApi.get<IContact[]>(`/contact/get-contacts-by-email?email=${ user?.email }${ data }`)
-            setContacts(contacts)
-            setLoading(false)
+            switch (page) {
+                case 'C':
+                    const { data: contacts } = await agoraApi.get<IContact[]>(`/contact/get-contacts-by-email?email=${ user?.email }${ data }`)
+                    setContacts(contacts)
+                    setLoading(false)
+                    break
+                case 'CR':
+                    const { data: contactRequests } = await agoraApi.get<IContact[]>(`/contact/get-contact-requests-by-email?email=${ user?.email }${ data }`)
+                    console.log(contactRequests)
+                    setContacts(contactRequests)
+                    setLoading(false)
+                    break
+                default:
+                    break
+            }
         } catch (error) {
             setLoading(false)
         }
