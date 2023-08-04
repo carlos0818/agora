@@ -69,6 +69,7 @@ const ContactsPage: NextPage = () => {
                                                                 contact.profilepic && (
                                                                     <Image
                                                                         src={ contact.profilepic }
+                                                                        className='profile-pic'
                                                                         alt=''
                                                                         width={ 60 }
                                                                         height={ 60 }

@@ -1,25 +1,20 @@
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Image from 'next/image'
 
 import { AuthContext } from '@/context/auth'
 import { MenuContext } from '@/context/menu'
 
 import styles from './menu-mobile.module.css'
 
-import homeIcon from '@/public/images/home-icon.svg'
-
 export const MenuMobile = () => {
     const { isOpen, toggleSideMenu } = useContext(MenuContext)
-    const { user } = useContext(AuthContext)
+    const { user, logout } = useContext(AuthContext)
 
     const router = useRouter()
 
-    const [openFinder, setOpenFinder] = useState(false)
     const [openMyData, setOpenMyData] = useState(false)
     const [openMoreInfo, setOpenMoreInfo] = useState(false)
-    const [openContacts, setContacts] = useState(false)
 
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
@@ -309,6 +304,33 @@ export const MenuMobile = () => {
                             </div>
                         </details>
                     </li>
+                    <Link
+                        href='/edit-profile'
+                        passHref
+                        prefetch={ false }
+                        legacyBehavior
+                    >
+                        <li
+                            className={ `${ styles['option'] }` }
+                        >
+                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                            Edit profile
+                        </li>
+                    </Link>
+                    <Link
+                        href='/'
+                        passHref
+                        prefetch={ false }
+                        legacyBehavior
+                    >
+                        <li
+                            className={ `${ styles['option'] }` }
+                            onClick={ logout }
+                        >
+                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                            Log out
+                        </li>
+                    </Link>
                 </ul>
             </div>
         </div>

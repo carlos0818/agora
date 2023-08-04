@@ -33,12 +33,10 @@ export const useContacts = (page: string) => {
     }, [isOpenDesktop])
 
     useEffect(() => {
-        if (contacts.length > 0) {
-            window.addEventListener('resize', validateScreen)
-        
-            return () => {
-                window.removeEventListener('resize', validateScreen)
-            }
+        window.addEventListener('resize', validateScreen)
+    
+        return () => {
+            window.removeEventListener('resize', validateScreen)
         }
     }, [user])
 
@@ -81,6 +79,7 @@ export const useContacts = (page: string) => {
             const $icon = document.querySelectorAll('.icon') as NodeListOf<HTMLInputElement>
             const $companyName = document.querySelectorAll('.company-name') as NodeListOf<HTMLParagraphElement>
             const $userCircle = document.querySelectorAll('.user-circle') as NodeListOf<HTMLDivElement>
+            const $profilePic = document.querySelectorAll('.profile-pic') as NodeListOf<HTMLDivElement>
             const $manager = document.querySelectorAll('.manager') as NodeListOf<HTMLDivElement>
 
             if (windowRef.current.offsetWidth >= 860) {
@@ -108,7 +107,11 @@ export const useContacts = (page: string) => {
                 for (let i=0; i<$userCircle.length; i++) {
                     $userCircle[i].style.blockSize = '60px'
                     $userCircle[i].style.inlineSize = '60px'
-                    $userCircle[i].style.top = '-12px'
+                    $userCircle[i].style.top = '-13px'
+                }
+                for (let i=0; i<$profilePic.length; i++) {
+                    $profilePic[i].style.blockSize = '60px'
+                    $profilePic[i].style.inlineSize = '60px'
                 }
                 for (let i=0; i<$manager.length; i++) {
                     if ($manager[i].textContent!.length > 25) {
@@ -136,6 +139,10 @@ export const useContacts = (page: string) => {
                 for (let i=0; i<$icon.length; i++) {
                     $icon[i].style.blockSize = '17px'
                     $icon[i].style.inlineSize = '17px'
+                }
+                for (let i=0; i<$profilePic.length; i++) {
+                    $profilePic[i].style.blockSize = '43px'
+                    $profilePic[i].style.inlineSize = '43px'
                 }
                 for (let i=0; i<$userCircle.length; i++) {
                     $userCircle[i].style.blockSize = '43px'
