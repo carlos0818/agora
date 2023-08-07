@@ -154,8 +154,8 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                 answerValue.map(answer => {
                     const split = answer.descr.split('<br>')
                     return (
-                        <>
-                            <div key={ answer.id } style={{ alignItems: 'center', display: 'flex' }}>
+                        <div key={ answer.id }>
+                            <div style={{ alignItems: 'center', display: 'flex' }}>
                                 <label className='checkbox'>
                                     <input
                                         type='checkbox'
@@ -167,7 +167,7 @@ export const CheckboxList: FC<Props> = ({ data }) => {
                                 </label>
                             </div>
                             { split.length > 1 && <span style={{ marginBlock: 8 }}>{ split[1] }</span> }
-                        </>
+                        </div>
                     )
                 })
             }

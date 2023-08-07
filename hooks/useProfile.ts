@@ -6,9 +6,9 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 
 import { agoraApi } from '@/api'
 import countriesList from '@/db/countries'
-import { useQuestionnaire } from './useQuestionnaire'
 
 import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
+import { useLoadQuestions } from './useLoadQuestions'
 
 export const useProfile = (email: string, id: string, type: string) => {
     const { user } = useContext(AuthContext)
@@ -20,15 +20,13 @@ export const useProfile = (email: string, id: string, type: string) => {
     const {
         percentage,
         hide: globalHide,
-        answeredQuestions,
         masterHide,
         updateHide,
-        newMasterHide,
     } = useContext(QuestionnaireContext)
 
     const [loading, setLoading] = useState(false)
     const [loadingPic, setLoadingPic] = useState(false)
-    const [showRocket, setShowRocket] = useState(false)
+    const [hideRocket, setHideRocket] = useState(false)
     const [isMyAccount, setIsMyAccount] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
@@ -56,15 +54,24 @@ export const useProfile = (email: string, id: string, type: string) => {
     const cityRef = useRef<HTMLInputElement>(null)
     const addressRef = useRef<HTMLInputElement>(null)
 
-    const { data } = useQuestionnaire()
+    const aboutUsRef = useRef<HTMLTextAreaElement>(null)
+    const videoDescRef = useRef<HTMLTextAreaElement>(null)
+
+    const { loadQuestions, getUserAnswers } = useLoadQuestions()
+
+    // useEffect(() => {
+        
+    // }, [id])
 
     useEffect(() => {
         if (user) {
             if (user.email === email) {
                 setIsMyAccount(true)
             }
+            loadQuestions()
+            getUserAnswers()
         }
-    }, [user])
+    }, [user, id])
     
     useEffect(() => {
         if (user) {
@@ -77,18 +84,33 @@ export const useProfile = (email: string, id: string, type: string) => {
                 setLoading(false)
             })
         }
-    }, [user])
+    }, [user, id])
 
     useEffect(() => {
         if (entrepreneurData) {
             setTimeout(() => {
-                if (companyNameRef.current && emailContactRef.current && phoneRef.current && countryRef.current && cityRef.current && addressRef.current) {
+                if (
+                    companyNameRef.current &&
+                    emailContactRef.current &&
+                    phoneRef.current &&
+                    countryRef.current &&
+                    cityRef.current &&
+                    addressRef.current
+                ) {
                     companyNameRef.current!.value = entrepreneurData.name
                     emailContactRef.current!.value = entrepreneurData.email_contact
                     phoneRef.current!.value = entrepreneurData.phone
                     countryRef.current!.value = entrepreneurData.country
                     cityRef.current!.value = entrepreneurData.city
                     addressRef.current!.value = entrepreneurData.address
+                }
+
+                if (
+                    aboutUsRef.current &&
+                    videoDescRef.current
+                ) {
+                    aboutUsRef.current!.value = entrepreneurData.aboutus
+                    videoDescRef.current!.value = entrepreneurData.videodesc
                 }
             }, 500)
 
@@ -108,73 +130,7 @@ export const useProfile = (email: string, id: string, type: string) => {
             setLinkedin(entrepreneurData.linkedin)
             setTwitter(entrepreneurData.twitter)
         }
-    }, [entrepreneurData])
-
-    useEffect(() => {
-        if (data.length > 0) {
-            let hideArr: string[] = []
-            for (let i = 0; i<data.length; i++) {
-                const questions = data[i].questions
-                for (let j=0; j<questions.length; j++) {
-                    const question = questions[j]
-                    if (question.answers && question.object === 'L') {
-                        const answers = question.answers
-                        const find = answeredQuestions.find((answered: any) => {
-                            const split = answered.split('-')
-                            if (Number(split[0]) === Number(question.qnbr)) {
-                                return answered
-                            }
-                            return null
-                        })
-                        
-                        if (find) {
-                            const split = find.split('-')
-                            const resp = answers.filter((ans: any) => Number(ans.anbr) === Number(split[1]))
-                            if (resp.length > 0) {
-                                const respShowSplit = resp[0].show?.split(',') || null
-                                const respHideSplit = resp[0].hide?.split(',') || null
-
-                                if (respShowSplit) {
-                                    if (respShowSplit.length > 0) {
-                                        for (let k=0; k<respShowSplit.length; k++) {
-                                            const showSplit = respShowSplit[k]
-                                            for(let l=0; l<hideArr.length; l++) {
-                                                const hide = hideArr[l]
-                                                if (showSplit === hide) {
-                                                    hideArr.splice(l, 1)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-    
-                                if (respHideSplit) {
-                                    if(respHideSplit.length > 0) {
-                                        for (let k=0; k<respHideSplit.length; k++) {
-                                            const hideSplit = respHideSplit[k]
-                                            let flag = false
-                                            for (let l=0; l<hideArr.length; l++) {
-                                                const hide = hideArr[l]
-                                                if (hideSplit === hide) {
-                                                    flag = true
-                                                }
-                                            }
-    
-                                            if (!flag) {
-                                                hideArr.push(hideSplit)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            updateHide(hideArr.length)
-            newMasterHide(hideArr)
-        }
-    }, [data])
+    }, [entrepreneurData, id])
     
     useEffect(() => {
         let removeDuplicates: any = []
@@ -184,7 +140,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                 removeDuplicates.push(masterHide[i])
         }
         updateHide(removeDuplicates.length)
-    }, [masterHide, globalHide])
+    }, [masterHide, globalHide, id])
 
     const loadData = async() => {
         switch (type) {
@@ -208,9 +164,9 @@ export const useProfile = (email: string, id: string, type: string) => {
     const validateCompleteQuestionnaire = async() => {
         try {
             await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
-            setShowRocket(true)
+            setHideRocket(false)
         } catch (error) {
-            setShowRocket(false)
+            setHideRocket(true)
         }
     }
 
@@ -266,7 +222,7 @@ export const useProfile = (email: string, id: string, type: string) => {
             setProfilePic(url)
             setLoadingPic(false)
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             setLoadingPic(false)
         }
     }
@@ -320,7 +276,15 @@ export const useProfile = (email: string, id: string, type: string) => {
                     break
             }
         } catch (error: any) {
-            console.log(error)
+            // console.log(error)
+        }
+    }
+
+    const sendRequest = async() => {
+        try {
+            await agoraApi.post(`/contact/send-request`, { id, email:  user?.email })
+        } catch (error) {
+            
         }
     }
 
@@ -330,7 +294,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         user,
         loading,
         loadingPic,
-        showRocket,
+        hideRocket,
         profilePic,
         companyName,
         emailContact,
@@ -353,9 +317,12 @@ export const useProfile = (email: string, id: string, type: string) => {
         countryRef,
         cityRef,
         addressRef,
+        aboutUsRef,
+        videoDescRef,
         entrepreneurData,
         percentage,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
+        sendRequest,
     }
 }

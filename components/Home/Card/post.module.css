@@ -1,0 +1,104 @@
+.post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-pic {
+    block-size: 50px;
+    border-radius: 50%;
+    inline-size: 50px;
+}
+
+.container-names-pic {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.container-names {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.post-company-name {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima-bold';
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.post-fullname {
+    color: var(--agora-blue-dark);
+    font-family: 'ebrima';
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.post-date {
+    color: rgba(16, 40, 79, 0.7);
+    font-size: 12px;
+}
+
+.post-info {
+    color: var(--agora-blue-dark);
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 0;
+}
+
+.response-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block-start: 20px;
+    margin-inline-start: 40px;
+}
+
+@media screen and (min-width: 1024px) {
+    .profile-pic {
+        block-size: 60px;
+        inline-size: 60px;
+    }
+
+    .container-names-pic {
+        gap: 6px;
+    }
+
+    .container-names {
+        align-items: flex-end;
+        gap: 8px;
+        flex-direction: row;
+    }
+
+    .post-company-name {
+        font-size: 26px;
+        line-height: 30px;
+    }
+
+    .post-fullname {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .post-info {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .buttons-container {
+        margin-block-start: 8px;
+    }
+}

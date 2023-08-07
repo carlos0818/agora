@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -28,7 +28,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         user,
         loading,
         loadingPic,
-        showRocket,
+        hideRocket,
         profilePic,
         companyName,
         emailContact,
@@ -51,14 +51,14 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         countryRef,
         cityRef,
         addressRef,
+        aboutUsRef,
+        videoDescRef,
         entrepreneurData,
         percentage,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
+        sendRequest,
     } = useProfile(email, id, type)
-
-    const aboutRef = useRef<HTMLTextAreaElement>(null)
-    const videoDescRef = useRef<HTMLTextAreaElement>(null)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -272,7 +272,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 )
                                             }
                                         </div>
-                                        <button className='button-outline'>Connect</button>
+                                        <button
+                                            className='button-outline'
+                                            onClick={ sendRequest }
+                                        >
+                                            Connect
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -380,7 +385,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             )
                         }
                         {
-                            showRocket && isMyAccount && (
+                            !hideRocket && isMyAccount && (
                                 <Link
                                     href='/questionnaire'
                                     passHref
@@ -403,7 +408,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             )
                         }
                         {
-                            (!showRocket && (companyName && city && country && address && emailContact && phone && profilePic)) && (
+                            (hideRocket && (companyName && city && country && address && emailContact && phone && profilePic)) && (
                                 <>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>
@@ -411,10 +416,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             {
                                                 isMyAccount ? (
                                                     <textarea
-                                                        ref={ aboutRef }
+                                                        ref={ aboutUsRef }
                                                         className='textfield'
                                                         style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                        defaultValue={ aboutUs }
                                                         onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'aboutus') }
                                                     />
                                                 ) : (
@@ -444,7 +448,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                             ref={ videoDescRef }
                                                             className='textfield'
                                                             style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                            defaultValue={ videoDesc }
                                                             onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
                                                         />
                                                     ) : (
@@ -671,23 +674,23 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-    const { id } = query
+    const { id = '' } = query
 
     const { data: validate } = await agoraApi.get(`/question/validate-complete-questionnaire-by-id?id=${ id }`)
-    const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`)
+    // const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
 
-    if (validate.response === '0' || data.response === '0') {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            }
-        }
-    }
+    // if (validate.response === '0') {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: false,
+    //         }
+    //     }
+    // }
 
-    const email = data.data.email
-    const fullname = data.data.fullname
-    const type = data.data.type
+    const email = validate.data.email
+    const fullname = validate.data.fullname
+    const type = validate.data.type
 
     return {
         props: {
@@ -695,6 +698,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
             email,
             fullname,
             type,
+            // isMyAccountServer: data.response === '1' ? true : false,
         }
     }
 }

@@ -10,9 +10,10 @@ import messageIcon from '@/public/images/message-icon.svg'
 interface Props {
     likes: number
     comments: number
+    response: boolean
 }
 
-export const Actions: FC<Props> = ({ likes, comments }) => {
+export const Actions: FC<Props> = ({ likes, comments, response }) => {
     return (
         <div className={ styles['actions-container'] }>
             <div className={ styles['action-wrapper'] }>
@@ -24,23 +25,29 @@ export const Actions: FC<Props> = ({ likes, comments }) => {
                 />
                 <span className={ styles['number-action'] }>{ likes }</span>
             </div>
-            <div className={ styles['action-wrapper'] }>
-                <Image
-                    src={ commentIcon }
-                    alt='Comment icon'
-                    className={ styles['comment-icon'] }
-                    title='Comments'
-                />
-                <span className={ styles['number-action'] }>{ comments }</span>
-            </div>
-            <div className={ styles['action-wrapper'] }>
-                <Image
-                    src={ messageIcon }
-                    alt='Message icon'
-                    className={ styles['message-icon'] }
-                    title='Message'
-                />
-            </div>
+            {
+                !response && (
+                    <>
+                        <div className={ styles['action-wrapper'] }>
+                            <Image
+                                src={ commentIcon }
+                                alt='Comment icon'
+                                className={ styles['comment-icon'] }
+                                title='Comments'
+                            />
+                            <span className={ styles['number-action'] }>{ comments }</span>
+                        </div>
+                        {/* <div className={ styles['action-wrapper'] }>
+                            <Image
+                                src={ messageIcon }
+                                alt='Message icon'
+                                className={ styles['message-icon'] }
+                                title='Message'
+                            />
+                        </div> */}
+                    </>
+                )
+            }
         </div>
     )
 }

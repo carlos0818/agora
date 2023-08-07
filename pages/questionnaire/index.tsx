@@ -34,7 +34,7 @@ const Questionnaire: NextPage = () => {
         setStart,
         setEnd,
         setSelectBox,
-    } = useQuestionnaire()
+    } = useQuestionnaire(false)
 
     const router = useRouter()
 

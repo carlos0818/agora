@@ -6,14 +6,14 @@ import { AuthContext } from '@/context/auth'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { CardInfo } from '../Card/CardInfo'
+import { Post } from '../Card/Post'
 
-import { IUserPosts, IWall } from '@/interfaces'
+import { IEntrepreneur, IExpert, IInvestor, IUserPosts, IWall } from '@/interfaces'
 
 import styles from './login.module.css'
 
 import userIcon from '@/public/images/user-icon.svg'
 import pencilIcon from '@/public/images/pencil-icon.svg'
-import { convertTimeZone } from '@/utils'
 
 export const LoginHome = () => {
     const { user } = useContext(AuthContext)
@@ -22,9 +22,11 @@ export const LoginHome = () => {
     const [userPosts, setUserPosts] = useState<IUserPosts[]>([])
     const [cardCloseId, setCardCloseId] = useState<number | null>(null)
     const [post, setPost] = useState('')
+    const [data, setData] = useState<IEntrepreneur | null>(null)
 
     useEffect(() => {
-        if(user) {
+        if (user) {
+            loadData()
             loadAgoraMessages()
             loadUserPosts()
         }
@@ -36,13 +38,32 @@ export const LoginHome = () => {
         }
     }, [cardCloseId])
 
+    const loadData = async() => {
+        switch (user?.type) {
+            case 'E':
+                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user.id }`)
+                setData(entrepreneur)
+                break
+            case 'I':
+                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user.id }`)
+                setData(investor)
+                break
+            case 'X':
+                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user.id }`)
+                setData(expert)
+                break
+            default:
+                break
+        }
+    }
+
     const loadAgoraMessages = async() => {
         const { data } = await agoraApi.get<IWall[]>(`/wall/agora-messages?email=${ user?.email }`)
         setAgoraMessages(data)
     }
 
     const loadUserPosts = async() => {
-        const { data } = await agoraApi.get<IUserPosts[]>('/wall/user-posts')
+        const { data } = await agoraApi.get<IUserPosts[]>(`/wall/user-posts?email=${ user?.email }`)
         setUserPosts(data)
     }
 
@@ -66,7 +87,23 @@ export const LoginHome = () => {
             const month = monthNames[date.getMonth()]
             const day = date.getDate()
 
-            setUserPosts([{ index: Number(date), fullname: user!.fullname!, dateposted: `${ day } ${ month } ${ year }`, body: post }, ...userPosts])
+            setUserPosts([
+                {
+                    post: {
+                        index: Number(date),
+                        type: user!.type,
+                        companyName: data!.name,
+                        fullname: user!.fullname!,
+                        profilepic: data!.profilepic,
+                        dateposted: `${ day } ${ month } ${ year }`,
+                        body: post,
+                        likes: 0,
+                        indexparent: null
+                    },
+                    comments: []
+                },
+                ...userPosts
+            ])
             setPost('')
         }
     }
@@ -104,7 +141,6 @@ export const LoginHome = () => {
                             title={ message.title }
                             date={ message.dateposted }
                             info={ message.body }
-                            actions={ false }
                             agoraCard
                             readMore
                             setCardCloseId={ setCardCloseId }
@@ -115,21 +151,16 @@ export const LoginHome = () => {
                 <CardInfo
                     title='Agora recommends you...'
                     info='Information on investment processes with the best security guaranteed.'
-                    actions={ false }
+
                 />
 
                 {
-                    userPosts.map(post => {
-                        const date = convertTimeZone(post.dateposted)
-
-                        return <CardInfo
-                            key={ `${ post.index }-${ post.dateposted }` }
-                            title={ post.fullname }
-                            date={ date }
-                            info={ post.body }
-                            actions
+                    userPosts.map(post => (
+                        <Post
+                            key={ `${ post.post.index }-${ post.post.dateposted }` }
+                            post={ post }
                         />
-                    })
+                    ))
                 }
                 
                 <div className={ styles['circle-write-mobile'] }></div>

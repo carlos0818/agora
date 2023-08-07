@@ -4,19 +4,19 @@ import Link from 'next/link'
 import { Actions } from './Actions'
 
 import styles from './card.module.css'
+import Image from 'next/image'
 
 interface Props {
     index?: number
+    info: string
     title: string
     date?: string
-    info: string
-    actions: boolean
     agoraCard?: boolean
     readMore?: boolean
     setCardCloseId?: Dispatch<SetStateAction<number | null>>
 }
 
-export const CardInfo: FC<Props> = ({ index, title, date, info, actions, agoraCard = false, readMore = false, setCardCloseId }) => {
+export const CardInfo: FC<Props> = ({ index, title, date, info, agoraCard = false, readMore = false, setCardCloseId }) => {
     return (
         <div className={ `window-glass` }>
             <div className='window-glass-content' style={{ paddingBlock: '16px', paddingInline: '20px' }}>
@@ -37,6 +37,9 @@ export const CardInfo: FC<Props> = ({ index, title, date, info, actions, agoraCa
                         )
                     }
                     <p className={ styles['card-info'] }>{ info }</p>
+
+                    
+
                     <div className={ styles['buttons-container'] }>
                         {
                             readMore ? (
@@ -50,14 +53,6 @@ export const CardInfo: FC<Props> = ({ index, title, date, info, actions, agoraCa
                                 </Link>
                             ) : (
                                 <span></span>
-                            )
-                        }
-                        {
-                            actions && (
-                                <Actions
-                                    likes={ 16 }
-                                    comments={ 4 }
-                                />
                             )
                         }
                     </div>
