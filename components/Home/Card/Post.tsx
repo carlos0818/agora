@@ -49,7 +49,7 @@ export const Post: FC<Props> = ({ post }) => {
 
                     {
                         post.comments.map(comment => (
-                            <div className={ styles['response-container'] }>
+                            <div key={ comment.index } className={ styles['response-container'] }>
                                 <div className={ styles['post-header'] }>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                         <Image
