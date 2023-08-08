@@ -194,10 +194,10 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         }
                                     </div>
                                     {
-                                        <span>Your contact request has been sent</span>
+                                        messageRequest && <span style={{ color: '#006f0d', fontFamily: 'ebrima', fontSize: 13 }}>Your contact request has been sent</span>
                                     }
                                     {
-                                        !sendRequest && (
+                                        (!sendRequest && user?.email !== email) && (
                                             <button
                                                 className='button-outline'
                                                 style={{ marginBlockStart: 12 }}
@@ -288,10 +288,10 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             }
                                         </div>
                                         {
-                                            messageRequest && <span style={{ color: '#006f0d' }}>Your contact request has been sent</span>
+                                            messageRequest && <span style={{ color: '#006f0d', fontFamily: 'ebrima' }}>Your contact request has been sent</span>
                                         }
                                         {
-                                            !sendRequest && (
+                                            (!sendRequest && user?.email !== email) && (
                                                 <button
                                                     className='button-outline'
                                                     onClick={ handleSendRequest }

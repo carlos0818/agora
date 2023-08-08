@@ -68,6 +68,7 @@ export const useProfile = (email: string, id: string, type: string) => {
             }
             loadQuestions()
             getUserAnswers()
+            // checkSendRequest()
         }
     }, [user, id])
     
@@ -294,9 +295,10 @@ export const useProfile = (email: string, id: string, type: string) => {
     }
 
     const checkSendRequest = async() => {
+        setSendRequest(false)
         try {
             const { data } = await agoraApi.get(`/contact/check-send-request?id=${ id }&email=${ user?.email }`)
-            if (data.verify === 1)
+            if (data.verify > 0)
                 setSendRequest(true)
         } catch (error) {
             

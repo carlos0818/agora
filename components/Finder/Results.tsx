@@ -1,4 +1,4 @@
-import { FC, Fragment, useContext, useEffect, useState } from 'react'
+import { Dispatch, FC, Fragment, SetStateAction, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -12,29 +12,20 @@ import styles from './results.module.css'
 interface Props {
     search: ISearch[]
     loadingSearch: boolean
+    setSearch: Dispatch<SetStateAction<ISearch[]>>
 }
 
-export const Results: FC<Props> = ({ search, loadingSearch }) => {
+export const Results: FC<Props> = ({ search, loadingSearch, setSearch }) => {
     const { user } = useContext(AuthContext)
 
     const router = useRouter()
-
-    const [messageRequest, setMessageRequest] = useState(false)
 
     const handleSendRequest = async(id: string) => {
         try {
             await agoraApi.post(`/contact/send-request`, { id, email:  user?.email })
 
-            for (let i=0; i<search.length; i++) {
-                if (search[i].id === id) {
-                    search[i].contact = false
-                }
-            }
-
-            // setMessageRequest(true)
-            // setTimeout(() => {
-            //     setMessageRequest(false)
-            // }, 3000)
+            const $connectId = document.getElementById('connect-' + id)
+            $connectId!.style.display = 'none'
         } catch (error) {
             
         }
@@ -204,8 +195,9 @@ export const Results: FC<Props> = ({ search, loadingSearch }) => {
                                                                 }
                                                             </div>
                                                             {
-                                                                res.contact && (
+                                                                !res.contact && (
                                                                     <a
+                                                                        id={ `connect-${ res.id }` }
                                                                         type='button'
                                                                         className={ `button-outline ${ styles['connect-button'] }` }
                                                                         onClick={ () => handleSendRequest(res.id) }
