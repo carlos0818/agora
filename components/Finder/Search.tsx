@@ -1,11 +1,12 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
+import { Dispatch, FC, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import countriesList from '@/db/countries'
 import { ICompanyType, ISearch } from '@/interfaces'
+import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
 
 import styles from './search.module.css'
-import { agoraApi } from '@/api'
 
 interface Props {
     types: ICompanyType[]
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
+    const { user } = useContext(AuthContext)
     const { query } = useRouter()
     const accountType = query.type
 
@@ -89,17 +91,17 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
         try {
             switch (accountType) {
                 case 'entrepreneur':
-                    const { data: entrepreneur } = await agoraApi.get(`/entrepreneur/search?${ query }`)
+                    const { data: entrepreneur } = await agoraApi.get(`/entrepreneur/search?${ query }&email=${ user?.email }`)
                     setSearch(entrepreneur)
                     setLoadingSearch(false)
                     break
                 case 'investors':
-                    const { data: investors } = await agoraApi.get(`/investor/search?${ query }`)
+                    const { data: investors } = await agoraApi.get(`/investor/search?${ query }&email=${ user?.email }`)
                     setSearch(investors)
                     setLoadingSearch(false)
                     break
                 case 'experts':
-                    const { data: experts } = await agoraApi.get(`/expert/search?${ query }`)
+                    const { data: experts } = await agoraApi.get(`/expert/search?${ query }&email=${ user?.email }`)
                     console.log(experts)
                     setSearch(experts)
                     setLoadingSearch(false)

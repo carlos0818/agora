@@ -28,6 +28,8 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [loadingPic, setLoadingPic] = useState(false)
     const [hideRocket, setHideRocket] = useState(false)
     const [isMyAccount, setIsMyAccount] = useState(false)
+    const [sendRequest, setSendRequest] = useState(false)
+    const [messageRequest, setMessageRequest] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -59,10 +61,6 @@ export const useProfile = (email: string, id: string, type: string) => {
 
     const { loadQuestions, getUserAnswers } = useLoadQuestions()
 
-    // useEffect(() => {
-        
-    // }, [id])
-
     useEffect(() => {
         if (user) {
             if (user.email === email) {
@@ -79,7 +77,8 @@ export const useProfile = (email: string, id: string, type: string) => {
             Promise.all([
                 loadData(),
                 validateRequiredData(),
-                validateCompleteQuestionnaire()
+                validateCompleteQuestionnaire(),
+                checkSendRequest()
             ]).then(() => {
                 setLoading(false)
             })
@@ -280,9 +279,25 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
-    const sendRequest = async() => {
+    const handleSendRequest = async() => {
         try {
             await agoraApi.post(`/contact/send-request`, { id, email:  user?.email })
+            setSendRequest(true)
+
+            setMessageRequest(true)
+            setTimeout(() => {
+                setMessageRequest(false)
+            }, 3000)
+        } catch (error) {
+            
+        }
+    }
+
+    const checkSendRequest = async() => {
+        try {
+            const { data } = await agoraApi.get(`/contact/check-send-request?id=${ id }&email=${ user?.email }`)
+            if (data.verify === 1)
+                setSendRequest(true)
         } catch (error) {
             
         }
@@ -321,8 +336,10 @@ export const useProfile = (email: string, id: string, type: string) => {
         videoDescRef,
         entrepreneurData,
         percentage,
+        sendRequest,
+        messageRequest,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
-        sendRequest,
+        handleSendRequest,
     }
 }

@@ -55,9 +55,11 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         videoDescRef,
         entrepreneurData,
         percentage,
+        sendRequest,
+        messageRequest,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
-        sendRequest,
+        handleSendRequest,
     } = useProfile(email, id, type)
 
     const [value1, setValue1] = useState(0)
@@ -191,7 +193,20 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             )
                                         }
                                     </div>
-                                    <button style={{ marginBlockStart: 12 }} className='button-outline'>Connect</button>
+                                    {
+                                        <span>Your contact request has been sent</span>
+                                    }
+                                    {
+                                        !sendRequest && (
+                                            <button
+                                                className='button-outline'
+                                                style={{ marginBlockStart: 12 }}
+                                                onClick={ handleSendRequest }
+                                            >
+                                                Connect
+                                            </button>
+                                        )
+                                    }
                                 </div>
                                 <div className={ styles['profile-info-container-desktop'] }>
                                     <div className={ styles['profile-info-row1'] }>
@@ -272,12 +287,19 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 )
                                             }
                                         </div>
-                                        <button
-                                            className='button-outline'
-                                            onClick={ sendRequest }
-                                        >
-                                            Connect
-                                        </button>
+                                        {
+                                            messageRequest && <span style={{ color: '#006f0d' }}>Your contact request has been sent</span>
+                                        }
+                                        {
+                                            !sendRequest && (
+                                                <button
+                                                    className='button-outline'
+                                                    onClick={ handleSendRequest }
+                                                >
+                                                    Connect
+                                                </button>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
