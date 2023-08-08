@@ -189,7 +189,7 @@ const ContactsPage: NextPage = () => {
                         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 8 }}>
                             <p style={{ color: '#10284F', fontFamily: 'ebrima-bold', fontSize: 26 }}>{ contactInfo?.companyName }</p>
                             <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 18 }}>By { contactInfo?.fullname }</p>
-                            <p style={{ color: 'rgba(16, 40, 79, 0.7)', fontFamily: 'ebrima', fontSize: 12 }}>Member 2 months ago</p>
+                            <p style={{ color: 'rgba(16, 40, 79, 0.7)', fontFamily: 'ebrima', fontSize: 12 }}>Member since { contactInfo?.since }</p>
                             <div style={{ blockSize: 20, inlineSize: 150, textAlign: 'center' }}>
                                 <i className='icon-star' data-star="3.5" style={{ fontSize: 20 }}></i>
                             </div>

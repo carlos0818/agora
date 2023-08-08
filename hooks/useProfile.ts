@@ -47,6 +47,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [facebook, setFacebook] = useState('')
     const [linkedin, setLinkedin] = useState('')
     const [twitter, setTwitter] = useState('')
+    const [since, setSince] = useState('')
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const companyNameRef = useRef<HTMLInputElement>(null)
@@ -129,6 +130,7 @@ export const useProfile = (email: string, id: string, type: string) => {
             setFacebook(entrepreneurData.facebook)
             setLinkedin(entrepreneurData.linkedin)
             setTwitter(entrepreneurData.twitter)
+            setSince(entrepreneurData.since)
         }
     }, [entrepreneurData, id])
     
@@ -327,6 +329,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         facebook,
         linkedin,
         twitter,
+        since,
         companyNameRef,
         emailContactRef,
         fileInputRef,

@@ -44,6 +44,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         facebook,
         linkedin,
         twitter,
+        since,
         companyNameRef,
         emailContactRef,
         fileInputRef,
@@ -140,7 +141,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                 <div className={ styles['profile-info-container-mobile'] }>
                                     <p className={ `${ styles['info-text'] } ${ styles['company-name'] }` }>{ companyName }</p>
                                     <p className={ styles['info-text'] }>by { fullname }</p>
-                                    <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member 2 months ago</p>
+                                    <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member since { since }</p>
                                     <div className={ styles['stars-container'] }>
                                         <i className='icon-star' data-star="3.5" style={{ fontSize: 13 }}></i>
                                     </div>
@@ -224,7 +225,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 by { fullname }
                                             </p>
                                             <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>
-                                                Member 2 months ago
+                                                Member since { since }
                                             </p>
                                             <div className={ styles['stars-container'] }>
                                                 <i className='icon-star' data-star="3.5"></i>

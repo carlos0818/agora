@@ -27,20 +27,6 @@ const ContactRequests: NextPage = () => {
     const [userDelete, setUserDelete] = useState<IContact | null>(null)
     const [contactInfo, setContactInfo] = useState<IContact | null>(null)
 
-    const handleCopy = async(type: string) => {
-        let copyText = document.getElementById("emailText")?.innerHTML
-
-        if (type === 'phone') {
-            copyText = document.getElementById("phoneText")?.innerHTML
-        }
-      
-        try {
-            await navigator.clipboard.writeText(copyText!)
-        } catch (err) {
-
-        }
-    }
-
     const handleDelete = async(id: string) => {
         await agoraApi.post(`/contact/delete-contact`, { id, email: user?.email })
 
@@ -198,7 +184,7 @@ const ContactRequests: NextPage = () => {
                         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 8 }}>
                             <p style={{ color: '#10284F', fontFamily: 'ebrima-bold', fontSize: 26 }}>{ contactInfo?.companyName }</p>
                             <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 18 }}>By { contactInfo?.fullname }</p>
-                            <p style={{ color: 'rgba(16, 40, 79, 0.7)', fontFamily: 'ebrima', fontSize: 12 }}>Member 2 months ago</p>
+                            <p style={{ color: 'rgba(16, 40, 79, 0.7)', fontFamily: 'ebrima', fontSize: 12 }}>Member since { contactInfo?.since }</p>
                             <div style={{ blockSize: 20, inlineSize: 150, textAlign: 'center' }}>
                                 <i className='icon-star' data-star="3.5" style={{ fontSize: 20 }}></i>
                             </div>
@@ -211,30 +197,6 @@ const ContactRequests: NextPage = () => {
                                 }
                             </p>
                             <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>{ contactInfo?.address }</p>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                <p id='emailText' style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>{ contactInfo?.email }</p>
-                                <Image
-                                    src='/images/copy.svg'
-                                    alt=''
-                                    width={ 25 }
-                                    height={ 25 }
-                                    style={{ cursor: 'pointer' }}
-                                    title='Copy to clipboard'
-                                    onClick={ () => handleCopy('email') }
-                                />
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                <p id='phoneText' style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>{ contactInfo?.phone }</p>
-                                <Image
-                                    src='/images/copy.svg'
-                                    alt=''
-                                    width={ 25 }
-                                    height={ 25 }
-                                    style={{ cursor: 'pointer' }}
-                                    title='Copy to clipboard'
-                                    onClick={ () => handleCopy('phone') }
-                                />
-                            </div>
                         </div>
                     </ModalCard>
                 )

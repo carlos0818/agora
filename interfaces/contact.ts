@@ -9,4 +9,5 @@ export interface IContact {
     city: string
     country: string
     address: string
+    since: string
 }

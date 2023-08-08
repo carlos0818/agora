@@ -15,4 +15,5 @@ export interface IInvestor {
     backpic: string
     aboutus: string
     videodesc: string
+    since: string
 }
