@@ -147,8 +147,14 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ `${ styles['info-text'] }` }>{ city }-{ country }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ address }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ entrepreneurData?.web }</p>
-                                    <p className={ `${ styles['info-text'] }` }>{ emailContact }</p>
-                                    <p className={ `${ styles['info-text'] }` }>{ phone }</p>
+                                    {
+                                        sendRequest && (
+                                            <>
+                                                <p className={ `${ styles['info-text'] }` }>{ emailContact }</p>
+                                                <p className={ `${ styles['info-text'] }` }>{ phone }</p>
+                                            </>
+                                        )
+                                    }
                                     <div className={ styles['social-container'] }>
                                         {
                                             facebook && (
@@ -234,12 +240,19 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             <p className={ `${ styles['info-text'] }` }>
                                                 { entrepreneurData?.web }
                                             </p>
-                                            <p className={ `${ styles['info-text'] }` }>
-                                                { emailContact }
-                                            </p>
-                                            <p className={ `${ styles['info-text'] }` }>
-                                                { phone }
-                                            </p>
+                                            {
+                                                sendRequest && (
+                                                    <>
+                                                        <p className={ `${ styles['info-text'] }` }>
+                                                            { emailContact }
+                                                        </p>
+                                                        <p className={ `${ styles['info-text'] }` }>
+                                                            { phone }
+                                                        </p>
+                                                    </>
+                                                )
+                                            }
+                                            
                                         </div>
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: 24, marginBlockStart: 20 }}>

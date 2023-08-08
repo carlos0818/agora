@@ -221,7 +221,7 @@
 }
 
 .video {
-    block-size: 200px;
+    block-size: 100%;
     inline-size: 100%;
     background-color: green;
 }
@@ -554,7 +554,7 @@
     }
 
     .video {
-        block-size: auto;
+        block-size: 100%;
         inline-size: 400px;
     }
 
