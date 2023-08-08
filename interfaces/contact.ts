@@ -4,4 +4,9 @@ export interface IContact {
     companyName: string
     type: string
     profilepic: string
+    email: string
+    phone: string
+    city: string
+    country: string
+    address: string
 }

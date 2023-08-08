@@ -1,24 +1,45 @@
 import { Fragment, useContext, useState } from 'react'
 import { NextPage } from 'next'
-
-import { AuthContext } from '@/context/auth'
-import { IContact } from '@/interfaces'
-import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
-import { useContacts } from '@/hooks/useContacts'
-
-import styles from '../my-contacts/my-contacts.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Modal } from '@/components/Common/Modal'
+
+import { useContacts } from '@/hooks/useContacts'
+import { IContact } from '@/interfaces'
 import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
+
+import countriesList from '@/db/countries'
+import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
+import { ModalCard } from '@/components/Common/ModalCard'
+import { Modal } from '@/components/Common/Modal'
+
+import styles from '../my-contacts/my-contacts.module.css'
 
 const ContactRequests: NextPage = () => {
     const { user } = useContext(AuthContext)
 
+    const { countries } = countriesList
+
     const { windowRef, termRef, contacts, loading, setContacts, handleSearch } = useContacts('CR')
 
     const [confirmDelete, setConfirmDelete] = useState(false)
+    const [showInfo, setShowInfo] = useState(false)
     const [userDelete, setUserDelete] = useState<IContact | null>(null)
+    const [contactInfo, setContactInfo] = useState<IContact | null>(null)
+
+    const handleCopy = async(type: string) => {
+        let copyText = document.getElementById("emailText")?.innerHTML
+
+        if (type === 'phone') {
+            copyText = document.getElementById("phoneText")?.innerHTML
+        }
+      
+        try {
+            await navigator.clipboard.writeText(copyText!)
+        } catch (err) {
+
+        }
+    }
 
     const handleDelete = async(id: string) => {
         await agoraApi.post(`/contact/delete-contact`, { id, email: user?.email })
@@ -97,6 +118,10 @@ const ContactRequests: NextPage = () => {
                                                             height={ 24 }
                                                             className={ `icon ${ styles['icon'] }` }
                                                             title='View details'
+                                                            onClick={ () => {
+                                                                setContactInfo(contact)
+                                                                setShowInfo(true)
+                                                            }}
                                                         />
                                                         <Link
                                                             href={ `/profile/${ contact.id }` }
@@ -165,6 +190,53 @@ const ContactRequests: NextPage = () => {
                             </div>
                         </div>
                     </Modal>
+                )
+            }
+            {
+                showInfo && (
+                    <ModalCard setError={ setShowInfo }>
+                        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                            <p style={{ color: '#10284F', fontFamily: 'ebrima-bold', fontSize: 26 }}>{ contactInfo?.companyName }</p>
+                            <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 18 }}>By { contactInfo?.fullname }</p>
+                            <p style={{ color: 'rgba(16, 40, 79, 0.7)', fontFamily: 'ebrima', fontSize: 12 }}>Member 2 months ago</p>
+                            <div style={{ blockSize: 20, inlineSize: 150, textAlign: 'center' }}>
+                                <i className='icon-star' data-star="3.5" style={{ fontSize: 20 }}></i>
+                            </div>
+                            <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>
+                                {
+                                    `
+                                    ${ contactInfo?.city } - 
+                                    ${ countries.find(c => c.alpha3 === contactInfo?.country && contactInfo?.country !== '')?.name }
+                                    `
+                                }
+                            </p>
+                            <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>{ contactInfo?.address }</p>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                <p id='emailText' style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>{ contactInfo?.email }</p>
+                                <Image
+                                    src='/images/copy.svg'
+                                    alt=''
+                                    width={ 25 }
+                                    height={ 25 }
+                                    style={{ cursor: 'pointer' }}
+                                    title='Copy to clipboard'
+                                    onClick={ () => handleCopy('email') }
+                                />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                <p id='phoneText' style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>{ contactInfo?.phone }</p>
+                                <Image
+                                    src='/images/copy.svg'
+                                    alt=''
+                                    width={ 25 }
+                                    height={ 25 }
+                                    style={{ cursor: 'pointer' }}
+                                    title='Copy to clipboard'
+                                    onClick={ () => handleCopy('phone') }
+                                />
+                            </div>
+                        </div>
+                    </ModalCard>
                 )
             }
         </>

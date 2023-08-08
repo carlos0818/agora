@@ -682,10 +682,18 @@ input:checked + .slider:before {
 }
 
 .window-glass-popup {
-  inline-size: 800px;
-  margin: auto;
+  inline-size: 300px;
+  left: calc(50% - 170px);
+  /* margin: auto; */
   top: 30%;
-  left: calc(50% - 400px);
+  position: absolute;
+}
+
+.window-glass-card {
+  inline-size: 300px;
+  left: calc(50% - 170px);
+  /* margin: auto; */
+  top: 30%;
   position: absolute;
 }
 
@@ -708,6 +716,13 @@ input:checked + .slider:before {
   font-size: 20px;
 }
 /* POPUP */
+
+@media screen and (min-width: 768px) {
+  .window-glass-popup {
+    inline-size: 600px;
+    left: calc(50% - 320px);
+  }
+}
 
 @media screen and (min-width: 1024px) {
   body {
