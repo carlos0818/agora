@@ -149,7 +149,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ `${ styles['info-text'] }` }>{ address }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ entrepreneurData?.web }</p>
                                     {
-                                        sendRequest && (
+                                        (sendRequest || user?.email === email) && (
                                             <>
                                                 <p className={ `${ styles['info-text'] }` }>{ emailContact }</p>
                                                 <p className={ `${ styles['info-text'] }` }>{ phone }</p>
@@ -242,7 +242,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 { entrepreneurData?.web }
                                             </p>
                                             {
-                                                sendRequest && (
+                                                (sendRequest || user?.email === email) && (
                                                     <>
                                                         <p className={ `${ styles['info-text'] }` }>
                                                             { emailContact }
