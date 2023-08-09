@@ -69,7 +69,6 @@ export const useProfile = (email: string, id: string, type: string) => {
             }
             loadQuestions()
             getUserAnswers()
-            // checkSendRequest()
         }
     }, [user, id])
     
@@ -106,12 +105,12 @@ export const useProfile = (email: string, id: string, type: string) => {
                     addressRef.current!.value = entrepreneurData.address
                 }
 
-                if (
-                    aboutUsRef.current &&
-                    videoDescRef.current
-                ) {
-                    aboutUsRef.current!.value = entrepreneurData.aboutus ?? ''
-                    videoDescRef.current!.value = entrepreneurData.videodesc ?? ''
+                if (aboutUsRef.current) {
+                    aboutUsRef.current!.value = entrepreneurData.aboutus ? entrepreneurData.aboutus : ''
+                }
+
+                if (videoDescRef.current) {
+                    videoDescRef.current!.value = entrepreneurData.videodesc ? entrepreneurData.videodesc : ''
                 }
             }, 500)
 

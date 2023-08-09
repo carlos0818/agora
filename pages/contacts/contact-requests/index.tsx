@@ -160,7 +160,7 @@ const ContactRequests: NextPage = () => {
                 confirmDelete && (
                     <Modal setError={ setConfirmDelete }>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <p>Are you sure you want to delete { userDelete?.fullname } from your contacts?</p>
+                            <p>Are you sure you want to delete { userDelete?.companyName } from your contacts?</p>
                             <div style={{ display: 'flex', gap: 16, marginBlockStart: 20, textAlign: 'end' }}>
                                 <button
                                     className='button-filled'

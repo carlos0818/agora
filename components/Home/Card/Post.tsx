@@ -18,7 +18,7 @@ export const Post: FC<Props> = ({ post }) => {
     const { user } = useContext(AuthContext)
 
     const date = convertTimeZone(post.post.dateposted!)
-    const countComments = post.comments.length
+    const [countComments, setCountComments] = useState(0)
 
     const [comments, setComments] = useState<IPost[]>([])
     const [data, setData] = useState<IEntrepreneur | null>(null)
@@ -26,6 +26,7 @@ export const Post: FC<Props> = ({ post }) => {
 
     useEffect(() => {
         setComments(post.comments)
+        setCountComments(post.comments.length)
     }, [])
 
     useEffect(() => {
@@ -68,10 +69,13 @@ export const Post: FC<Props> = ({ post }) => {
                         dateposted: date,
                         companyName: data?.name,
                         likes: 0,
-                        profilepic: data?.profilepic
+                        profilepic: data?.profilepic,
+                        fullname: user?.fullname,
                     }
                 ]
             )
+
+            setCountComments(countComments + 1)
         }
     }
 
@@ -144,7 +148,6 @@ export const Post: FC<Props> = ({ post }) => {
                             className='textfield'
                             placeholder='Write a comment...'
                             style={{ marginBlockStart: 16, inlineSize: 'calc(100% - 80px)', paddingInlineEnd: 60 }}
-                            // onKeyDown={ handleComment }
                             onChange={ (e) => setComment(e.target.value) }
                             value={ comment }
                         />
@@ -153,14 +156,6 @@ export const Post: FC<Props> = ({ post }) => {
                             style={{ fontSize: 40, position: 'absolute', right: 10, top: 16, cursor: 'pointer' }}
                             onClick={ handleComment }
                         ></em>
-                        {/* <Image
-                            src='/images/arrow.svg'
-                            alt=''
-                            title='Send message'
-                            width={ 30 }
-                            height={ 30 }
-                            style={{ position: 'absolute', right: 0 }}
-                        /> */}
                     </div>
                 </div>
             </div>
