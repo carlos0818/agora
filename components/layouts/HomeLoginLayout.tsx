@@ -1,6 +1,10 @@
 import { FC, useRef, useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
+import { useRouter } from 'next/router'
+
+import { MenuContext } from '@/context/menu'
+import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
 
 import { MenuDesktop } from '../Home/Menu/MenuDesktop'
 import { MenuMobile } from '../Home/Menu/MenuMobile'
@@ -10,8 +14,6 @@ import { FooterDesktop } from '../Footer/FooterDesktop'
 
 import styles from './homeLoginLayout.module.css'
 
-import notificationIcon from '@/public/images/notification-icons.svg'
-import { MenuContext } from '@/context/menu'
 
 interface Props {
     children: JSX.Element
@@ -21,13 +23,24 @@ interface Props {
 }
 
 export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
+    const { user } = useContext(AuthContext)
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
+
+    const router = useRouter()
 
     const wrapperRef = useRef<HTMLInputElement>(null)
     const notificationsRef = useRef<HTMLInputElement>(null)
     const circleDiv = useRef<HTMLDivElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
+
+    const [contactRequests, setContactRequests] = useState(0)
+
+    useEffect(() => {
+        if (user) {
+            getNotifications()
+        }
+    }, [user]);
 
     useEffect(() => {
         window.addEventListener('scroll', circleWrite)
@@ -56,6 +69,11 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     const moveTop = () => {
         document.getElementById('txtShare')!.focus()
         window.scrollTo({ top: 0, behavior: 'auto' })
+    }
+
+    const getNotifications = async() => {
+        const { data: contactRequests } = await agoraApi.get(`/contact/get-contact-requests-notification?email=${ user?.email }`)
+        setContactRequests(contactRequests.contactRequests)
     }
 
     return (
@@ -87,11 +105,31 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                             { children }
                         </div>
                         <div className={ styles['notifications'] } ref={ notificationsRef }>
-                            <div className={ styles['notifications-wrapper'] }>
-                                <Image
-                                    src={ notificationIcon }
-                                    alt='notification icon'
-                                />
+                            <div className={ styles['notifications-container'] }>
+                                <div className={ styles['notification-wrapper'] } onClick={ () => router.push('/contacts/contact-requests') }>
+                                    <em className='icon-icon-user' style={{ color: 'white', fontSize: 28 }}></em>
+                                    {
+                                        contactRequests > 0 && (
+                                            <div className={ styles['notification-balloon'] }>
+                                                <span>{ contactRequests }</span>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                                <div className={ styles['notification-wrapper'] }>
+                                    <em className='icon-icon-eye' style={{ color: 'white', fontSize: 28 }}></em>
+                                    <div className={ styles['notification-balloon'] }></div>
+                                    <div className={ styles['notification-balloon'] }>
+                                        <span>99+</span>
+                                    </div>
+                                </div>
+                                <div className={ styles['notification-wrapper'] }>
+                                    <em className='icon-icon-mail' style={{ color: 'white', fontSize: 28 }}></em>
+                                    <div className={ styles['notification-balloon'] }></div>
+                                    <div className={ styles['notification-balloon'] }>
+                                        <span>38</span>
+                                    </div>
+                                </div>
                             </div>
                             {
                                 showWrite && (

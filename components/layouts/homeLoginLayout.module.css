@@ -34,8 +34,46 @@
     display: none;
 }
 
-.notifications-wrapper {
+.notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     position: fixed;
+}
+
+.notification-wrapper {
+    align-items: center;
+    background-color: var(--agora-blue-dark);
+    block-size: 40px;
+    border-radius: 8px;
+    display: flex;
+    cursor: pointer;
+    inline-size: 40px;
+    justify-content: center;
+    position: relative;
+}
+
+.notification-balloon {
+    background-color: #be1d1d;
+    block-size: 30px;
+    border-radius: 80px;
+    display: flex;
+    inline-size: 30px;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+
+.notification-balloon span {
+    align-items: center;
+    color: white;
+    display: flex;
+    font-family: 'ebrima-bold';
+    font-size: 13px;
+    inline-size: 40px;
+    justify-content: center;
+    padding-inline: 5px;
+    text-align: center;
 }
 
 .circle-write-desktop {

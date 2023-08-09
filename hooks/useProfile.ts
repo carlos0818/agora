@@ -110,8 +110,8 @@ export const useProfile = (email: string, id: string, type: string) => {
                     aboutUsRef.current &&
                     videoDescRef.current
                 ) {
-                    aboutUsRef.current!.value = entrepreneurData.aboutus
-                    videoDescRef.current!.value = entrepreneurData.videodesc
+                    aboutUsRef.current!.value = entrepreneurData.aboutus ?? ''
+                    videoDescRef.current!.value = entrepreneurData.videodesc ?? ''
                 }
             }, 500)
 

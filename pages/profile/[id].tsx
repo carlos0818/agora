@@ -143,7 +143,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ styles['info-text'] }>by { fullname }</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member since { since }</p>
                                     <div className={ styles['stars-container'] }>
-                                        <i className='icon-star' data-star="3.5" style={{ fontSize: 13 }}></i>
+                                        <em className='icon-star' data-star="3.5" style={{ fontSize: 13 }}></em>
                                     </div>
                                     <p className={ `${ styles['info-text'] }` }>{ city }-{ country }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ address }</p>
@@ -228,7 +228,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 Member since { since }
                                             </p>
                                             <div className={ styles['stars-container'] }>
-                                                <i className='icon-star' data-star="3.5"></i>
+                                                <em className='icon-star' data-star="3.5"></em>
                                             </div>
                                         </div>
                                         <div className={ styles['profile-info-content-right'] }>
