@@ -15,5 +15,6 @@ export interface IPost {
     dateposted?:  string
     likes?:       number
     indexparent?: number | null
-    like?:         boolean
+    like?:        boolean
+    server?:       boolean | null
 }

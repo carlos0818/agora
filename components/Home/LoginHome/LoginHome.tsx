@@ -3,12 +3,13 @@ import Image from 'next/image'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
+import { IEntrepreneur, IExpert, IInvestor, IUserPosts, IWall } from '@/interfaces'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { CardInfo } from '../Card/CardInfo'
 import { Post } from '../Card/Post'
 
-import { IEntrepreneur, IExpert, IInvestor, IUserPosts, IWall } from '@/interfaces'
+import { getCurrentDateFormat } from '@/utils'
 
 import styles from './login.module.css'
 
@@ -93,24 +94,27 @@ export const LoginHome = () => {
     const savePost = async() => {
         await agoraApi.post('/wall/save-user-post', { email: user?.email, body: post })
 
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        const date = new Date()
-        const year = date.getFullYear()
-        const month = monthNames[date.getMonth()]
-        const day = date.getDate()
+        // const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        // const date = new Date()
+        // const year = date.getFullYear()
+        // const month = monthNames[date.getMonth()]
+        // const day = date.getDate()
+
+        const currentDate = getCurrentDateFormat()
 
         setUserPosts([
             {
                 post: {
-                    index: Number(date),
+                    index: Number(currentDate),
                     type: user!.type,
                     companyName: data!.name,
                     fullname: user!.fullname!,
                     profilepic: data!.profilepic,
-                    dateposted: `${ day } ${ month } ${ year }`,
+                    dateposted: currentDate,
                     body: post,
                     likes: 0,
-                    indexparent: null
+                    indexparent: null,
+                    server: false
                 },
                 comments: [],
                 like: false

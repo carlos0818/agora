@@ -6,7 +6,7 @@ import { AuthContext } from '@/context/auth'
 import { IUserPosts, IPost, IEntrepreneur, IInvestor, IExpert } from '@/interfaces'
 import { Actions } from './Actions'
 
-import { convertTimeZone } from '@/utils'
+import { convertTimeZone, getCurrentDateFormat } from '@/utils'
 
 import styles from './post.module.css'
 import { useRouter } from 'next/router'
@@ -20,7 +20,10 @@ export const Post: FC<Props> = ({ post }) => {
 
     const router = useRouter()
 
-    const date = convertTimeZone(post.post.dateposted!)
+    let date = post.post.dateposted
+    if (post.post.server === undefined) {
+        date = convertTimeZone(post.post.dateposted!)
+    }
     const [countComments, setCountComments] = useState(0)
 
     const [comments, setComments] = useState<IPost[]>([])
@@ -63,17 +66,20 @@ export const Post: FC<Props> = ({ post }) => {
 
             await agoraApi.post('/wall/save-comment-post', { email: user?.email, index: post.post.index.toString(), body: comment })
 
+            const currentDate = getCurrentDateFormat()
+
             setComments(
                 [
                     ...comments,
                     {
-                        index: Number(date),
+                        index: Number(currentDate),
                         body: comment,
-                        dateposted: date,
+                        dateposted: currentDate,
                         companyName: data?.name,
                         likes: 0,
                         profilepic: data?.profilepic,
                         fullname: user?.fullname,
+                        server: false
                     }
                 ]
             )
@@ -127,7 +133,10 @@ export const Post: FC<Props> = ({ post }) => {
 
                     {
                         comments.map(comment => {
-                            const commentDate = convertTimeZone(comment.dateposted!)
+                            let commentDate = comment.dateposted
+                            if (comment.server === undefined) {
+                                commentDate = convertTimeZone(comment.dateposted!)
+                            }
 
                             return (
                                 <div key={ comment.index } className={ styles['response-container'] }>

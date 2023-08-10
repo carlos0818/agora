@@ -15,3 +15,14 @@ export function convertTimeZone(datetime: string) {
 
     return `${ day } ${ month } ${ year } ${ hour }:${ minutes }`
 }
+
+export function getCurrentDateFormat() {
+    const d = new Date()
+    const year = d.getFullYear()
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const month = monthNames[d.getMonth()]
+    const day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+    const hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours()
+    const minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
+    return`${ day } ${ month } ${ year } ${ hour }:${ minutes }`
+}
