@@ -112,7 +112,8 @@ export const LoginHome = () => {
                     likes: 0,
                     indexparent: null
                 },
-                comments: []
+                comments: [],
+                like: false
             },
             ...userPosts
         ])
