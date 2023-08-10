@@ -131,7 +131,7 @@ export const LoginHome = () => {
             <>
                 <div className={ `${ styles['idea-container'] }` }>
                     <Image
-                        src={ user?.profilepic ? user.profilepic : '/images/user-icon.png' }
+                        src={ user?.profilepic ? user.profilepic : '/images/user-icon.svg' }
                         alt='user icon'
                         width={ 80 }
                         height={ 80 }
