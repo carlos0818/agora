@@ -60,8 +60,10 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                         <>
                             <span>{ user?.name }</span>
                             <Image
-                                src={ userIcon }
+                                src={ user.profilepic ? user.profilepic : '/images/user-icon.svg' }
                                 alt=''
+                                width={ 50 }
+                                height={ 50 }
                                 className={ styles['user-icon'] }
                                 onClick={ (ev) => handleClickUserIcon(ev) }
                             />

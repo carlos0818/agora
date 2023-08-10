@@ -31,7 +31,7 @@ type FormData = {
 }
 
 const EditProfile: NextPage = () => {
-    const { user, updateName } = useContext(AuthContext)
+    const { user, updateName, updateProfilePic } = useContext(AuthContext)
 
     const { countries } = countriesList
 
@@ -205,6 +205,16 @@ const EditProfile: NextPage = () => {
                 linkedin: linkedinUrl ? linkedinUrl : '',
                 twitter: twitterUrl ? twitterUrl : '',
             }
+
+            updateProfilePic({
+                id: user?.id!,
+                email: user?.email!,
+                type: user?.type!,
+                token: user?.token!,
+                fullname: user?.fullname!,
+                name: user?.fullname!,
+                profilepic: profileString
+            })
 
             switch (user?.type) {
                 case 'E':

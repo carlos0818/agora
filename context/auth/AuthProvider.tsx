@@ -42,7 +42,18 @@ export const AuthProvider: FC<Props> = ({ children }) => {
                 fullname: user.fullname,
             }
         })
-        dispatch({ type: '[Auth] - Update Full Name', payload: user as IUser })
+        dispatch({ type: '[Auth] - Update User', payload: user as IUser })
+    }
+
+    const updateProfilePic = (user: IUser) => {
+        update({
+            ...data,
+            user: {
+                ...data?.user,
+                profilepic: user.profilepic,
+            }
+        })
+        dispatch({ type: '[Auth] - Update User', payload: user as IUser })
     }
 
     const registerUser = async(fullname: string, email: string, password: string, type: string, captcha: string): Promise<{hasError: boolean; message?: string}> => {
@@ -76,6 +87,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
             ...state,
             registerUser,
             updateName,
+            updateProfilePic,
             logout,
         }}>
             { children }

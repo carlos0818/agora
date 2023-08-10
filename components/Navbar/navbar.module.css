@@ -30,7 +30,6 @@
     color: var(--agora-blue-dark);
     font-size: 10px;
     font-weight: 700;
-    /* margin-inline-end: 16px; */
 }
 
 .button-text-size {
@@ -39,6 +38,7 @@
 
 .user-icon {
     block-size: auto;
+    border-radius: 50%;
     display: none;
     inline-size: 38px;
 }

@@ -13,8 +13,6 @@ import { getCurrentDateFormat } from '@/utils'
 
 import styles from './login.module.css'
 
-import userIcon from '@/public/images/user-icon.svg'
-
 export const LoginHome = () => {
     const { user } = useContext(AuthContext)
 
@@ -133,8 +131,10 @@ export const LoginHome = () => {
             <>
                 <div className={ `${ styles['idea-container'] }` }>
                     <Image
-                        src={ userIcon }
+                        src={ user?.profilepic ? user.profilepic : '/images/user-icon.png' }
                         alt='user icon'
+                        width={ 80 }
+                        height={ 80 }
                         className={ styles['user-icon'] }
                     />
                     <div style={{ position: 'relative', inlineSize: '100%' }}>

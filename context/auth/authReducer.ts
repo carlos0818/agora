@@ -3,7 +3,7 @@ import { IUser } from '../../interfaces'
 
 type AuthActionType =
     | { type: '[Auth] - Login', payload: IUser }
-    | { type: '[Auth] - Update Full Name', payload: IUser }
+    | { type: '[Auth] - Update User', payload: IUser }
     | { type: '[Auth] - Logout' }
 
 export const authReducer = (state: AuthState, action: AuthActionType): AuthState => {
@@ -14,7 +14,7 @@ export const authReducer = (state: AuthState, action: AuthActionType): AuthState
                 isLoggedIn: true,
                 user: action.payload
             }
-        case '[Auth] - Update Full Name':
+        case '[Auth] - Update User':
             return {
                 ...state,
                 user: action.payload

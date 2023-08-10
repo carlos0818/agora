@@ -5,4 +5,5 @@ export interface IUser {
     token: string
     email: string
     type: string
+    profilepic?: string
 }
