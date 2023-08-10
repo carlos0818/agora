@@ -9,6 +9,7 @@ import { Actions } from './Actions'
 import { convertTimeZone } from '@/utils'
 
 import styles from './post.module.css'
+import { useRouter } from 'next/router'
 
 interface Props {
     post: IUserPosts
@@ -16,6 +17,8 @@ interface Props {
 
 export const Post: FC<Props> = ({ post }) => {
     const { user } = useContext(AuthContext)
+
+    const router = useRouter()
 
     const date = convertTimeZone(post.post.dateposted!)
     const [countComments, setCountComments] = useState(0)
@@ -79,6 +82,10 @@ export const Post: FC<Props> = ({ post }) => {
         }
     }
 
+    const handleNavigateProfile = (userId: string) => {
+        router.push(`/profile/${ userId }`)
+    }
+
     return (
         <div className={ `window-glass` }>
             <div className='window-glass-content' style={{ paddingBlock: '16px', paddingInline: '20px' }}>
@@ -91,9 +98,15 @@ export const Post: FC<Props> = ({ post }) => {
                                 width={ 60 }
                                 height={ 60 }
                                 className={ styles['profile-pic'] }
+                                style={{ cursor: 'pointer' }}
+                                onClick={ () => handleNavigateProfile(post.post.userId!) }
                             />
                             <div className={ styles['container-names-pic'] }>
-                                <div className={ styles['container-names'] }>
+                                <div
+                                    className={ styles['container-names'] }
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={ () => handleNavigateProfile(post.post.userId!) }
+                                >
                                     <h4 className={ styles['post-company-name'] }>{ post.post.companyName }</h4>
                                     <p className={ styles['post-fullname'] }>by { post.post.fullname }</p>
                                 </div>
@@ -104,43 +117,57 @@ export const Post: FC<Props> = ({ post }) => {
                     <p className={ styles['post-info'] }>{ post.post.body }</p>
                     <div className={ styles['buttons-container'] }>
                         <Actions
+                            index={ post.post.index }
                             likes={ post.post.likes! }
+                            like={ post.like }
                             comments={ countComments }
                             response={ false }
                         />
                     </div>
 
                     {
-                        comments.map(comment => (
-                            <div key={ comment.index } className={ styles['response-container'] }>
-                                <div className={ styles['post-header'] }>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                        <Image
-                                            src={ comment.profilepic! }
-                                            alt=''
-                                            width={ 60 }
-                                            height={ 60 }
-                                            className={ styles['profile-pic'] }
-                                        />
-                                        <div className={ styles['container-names-pic'] }>
-                                            <div className={ styles['container-names'] }>
-                                                <h4 className={ styles['post-company-name'] }>{ comment.companyName }</h4>
-                                                <p className={ styles['post-fullname'] }>by { comment.fullname }</p>
+                        comments.map(comment => {
+                            const commentDate = convertTimeZone(comment.dateposted!)
+
+                            return (
+                                <div key={ comment.index } className={ styles['response-container'] }>
+                                    <div className={ styles['post-header'] }>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                            <Image
+                                                src={ comment.profilepic! }
+                                                alt=''
+                                                width={ 60 }
+                                                height={ 60 }
+                                                className={ styles['profile-pic'] }
+                                                style={{ cursor: 'pointer' }}
+                                                onClick={ () => handleNavigateProfile(comment.userId!) }
+                                            />
+                                            <div className={ styles['container-names-pic'] }>
+                                                <div
+                                                    className={ styles['container-names'] }
+                                                    style={{ cursor: 'pointer' }}
+                                                    onClick={ () => handleNavigateProfile(comment.userId!) }
+                                                >
+                                                    <h4 className={ styles['post-company-name'] }>{ comment.companyName }</h4>
+                                                    <p className={ styles['post-fullname'] }>by { comment.fullname }</p>
+                                                </div>
+                                                <span className={ styles['post-date'] }>{ commentDate }</span>
                                             </div>
-                                            <span className={ styles['post-date'] }>{ date }</span>
                                         </div>
                                     </div>
+                                    <p className={ styles['post-info'] }>{ comment.body }</p>
+                                    <div className={ styles['buttons-container'] }>
+                                        <Actions
+                                            index={ comment.index }
+                                            likes={ comment.likes! }
+                                            like={ comment.like! }
+                                            comments={ countComments }
+                                            response={ true }
+                                        />
+                                    </div>
                                 </div>
-                                <p className={ styles['post-info'] }>{ comment.body }</p>
-                                <div className={ styles['buttons-container'] }>
-                                    <Actions
-                                        likes={ comment.likes! }
-                                        comments={ countComments }
-                                        response={ true }
-                                    />
-                                </div>
-                            </div>
-                        ))
+                            )
+                        })
                     }
                     <div style={{ position: 'relative', inlineSize: '100%' }}>
                         <input

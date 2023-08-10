@@ -7,19 +7,19 @@
 .action-wrapper {
     align-items: center;
     display: flex;
-    gap: 4px;
+    gap: 8px;
 }
 
 .like-icon {
-    block-size: 12px;
+    block-size: 25px;
     cursor: pointer;
-    inline-size: 13px;
+    inline-size: 25px;
 }
 
 .comment-icon {
-    block-size: 12px;
+    block-size: 35px;
     cursor: pointer;
-    inline-size: 13px;
+    inline-size: 25px;
 }
 
 .message-icon {
@@ -34,18 +34,14 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .action-wrapper {
-        gap: 8px;
-    }
-
     .like-icon {
-        block-size: 17px;
-        inline-size: 18px;
+        block-size: 25px;
+        inline-size: 25px;
     }
 
     .comment-icon {
-        block-size: 21px;
-        inline-size: 23px;
+        block-size: 30px;
+        inline-size: 25px;
     }
 
     .message-icon {

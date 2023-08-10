@@ -13,7 +13,6 @@ import { IEntrepreneur, IExpert, IInvestor, IUserPosts, IWall } from '@/interfac
 import styles from './login.module.css'
 
 import userIcon from '@/public/images/user-icon.svg'
-import pencilIcon from '@/public/images/pencil-icon.svg'
 
 export const LoginHome = () => {
     const { user } = useContext(AuthContext)
@@ -77,35 +76,47 @@ export const LoginHome = () => {
         }
     }
 
+    const handleSavePostClick = () => {
+        if (post.length === 0) return
+
+        savePost()
+    }
+
     const handleSavePost = async(event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter' && post.length > 0) {
-            await agoraApi.post('/wall/save-user-post', { email: user?.email, body: post })
+        if (post.length === 0) return
 
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-            const date = new Date()
-            const year = date.getFullYear()
-            const month = monthNames[date.getMonth()]
-            const day = date.getDate()
-
-            setUserPosts([
-                {
-                    post: {
-                        index: Number(date),
-                        type: user!.type,
-                        companyName: data!.name,
-                        fullname: user!.fullname!,
-                        profilepic: data!.profilepic,
-                        dateposted: `${ day } ${ month } ${ year }`,
-                        body: post,
-                        likes: 0,
-                        indexparent: null
-                    },
-                    comments: []
-                },
-                ...userPosts
-            ])
-            setPost('')
+        if (event.key === 'Enter') {
+            savePost()
         }
+    }
+
+    const savePost = async() => {
+        await agoraApi.post('/wall/save-user-post', { email: user?.email, body: post })
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        const date = new Date()
+        const year = date.getFullYear()
+        const month = monthNames[date.getMonth()]
+        const day = date.getDate()
+
+        setUserPosts([
+            {
+                post: {
+                    index: Number(date),
+                    type: user!.type,
+                    companyName: data!.name,
+                    fullname: user!.fullname!,
+                    profilepic: data!.profilepic,
+                    dateposted: `${ day } ${ month } ${ year }`,
+                    body: post,
+                    likes: 0,
+                    indexparent: null
+                },
+                comments: []
+            },
+            ...userPosts
+        ])
+        setPost('')
     }
 
     return (
@@ -121,16 +132,21 @@ export const LoginHome = () => {
                         alt='user icon'
                         className={ styles['user-icon'] }
                     />
-                    <input
-                        type='text'
-                        id='txtShare'
-                        className={ styles['textfield-idea'] }
-                        placeholder='Share your idea with your contacts...'
-                        onKeyDown={ handleSavePost }
-                        onChange={ (e) => setPost(e.target.value) }
-                        value={ post }
-                    />
-                    <Image src={ pencilIcon } alt='pencil icon' className={ styles['pencil-icon'] } />
+                    <div style={{ position: 'relative', inlineSize: '100%' }}>
+                        <input
+                            type='text'
+                            id='txtShare'
+                            className={ styles['textfield-idea'] }
+                            placeholder='Share your idea with your contacts...'
+                            onKeyDown={ handleSavePost }
+                            onChange={ (e) => setPost(e.target.value) }
+                            value={ post }
+                        />
+                        <em
+                            className={ `icon-icon-arrow ${ styles['arrow-icon'] }` }
+                            onClick={ handleSavePostClick }
+                        ></em>
+                    </div>
                 </div>
 
                 {

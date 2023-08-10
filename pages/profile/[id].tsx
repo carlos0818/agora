@@ -465,36 +465,40 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             }
                                         </div>
                                     </div>
-                                    <div className={ `window-glass` }>
-                                        <div className={ `window-glass-content ${ styles['video-container'] }` }>
-                                            {
-                                                videoUrl ? (
-                                                    <video controls className={ styles['video'] }>
-                                                        <source src={ videoUrl } />
-                                                    </video>
-                                                ) : (
-                                                    <div className={ styles['video'] }></div>
-                                                )
-                                            }
-                                            <div className={ styles['video-text-container'] }>
-                                                <p className={ styles['card-title'] }>Video</p>
-                                                {
-                                                    isMyAccount ? (
-                                                        <textarea
-                                                            ref={ videoDescRef }
-                                                            className='textfield'
-                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                            onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
-                                                        />
-                                                    ) : (
-                                                        <p className={ styles['video-description'] }>
-                                                            { videoDesc }
-                                                        </p>
-                                                    )
-                                                }
+                                    {
+                                        (isMyAccount || (!isMyAccount && videoDesc && videoUrl)) && (
+                                            <div className={ `window-glass` }>
+                                                <div className={ `window-glass-content ${ styles['video-container'] }` }>
+                                                    {
+                                                        videoUrl ? (
+                                                            <video controls className={ styles['video'] }>
+                                                                <source src={ videoUrl } />
+                                                            </video>
+                                                        ) : (
+                                                            <div className={ styles['video'] }></div>
+                                                        )
+                                                    }
+                                                    <div className={ styles['video-text-container'] }>
+                                                        <p className={ styles['card-title'] }>Video</p>
+                                                        {
+                                                            isMyAccount ? (
+                                                                <textarea
+                                                                    ref={ videoDescRef }
+                                                                    className='textfield'
+                                                                    style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                    onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
+                                                                />
+                                                            ) : (
+                                                                <p className={ styles['video-description'] }>
+                                                                    { videoDesc }
+                                                                </p>
+                                                            )
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        )
+                                    }
                                     {
                                         user?.type === 'E' && (
                                             <div className={ `window-glass` }>

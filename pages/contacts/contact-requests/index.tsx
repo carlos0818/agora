@@ -7,6 +7,7 @@ import { useContacts } from '@/hooks/useContacts'
 import { IContact } from '@/interfaces'
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
+import { NotificationContext } from '@/context/notification'
 
 import countriesList from '@/db/countries'
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
@@ -17,6 +18,7 @@ import styles from '../my-contacts/my-contacts.module.css'
 
 const ContactRequests: NextPage = () => {
     const { user } = useContext(AuthContext)
+    const { contactRequests, updateContactRequests } = useContext(NotificationContext)
 
     const { countries } = countriesList
 
@@ -34,6 +36,7 @@ const ContactRequests: NextPage = () => {
         setContacts(filter)
 
         setConfirmDelete(false)
+        updateContactRequests(contactRequests - 1)
     }
 
     const handleAccept = async(id: string) => {
@@ -43,6 +46,7 @@ const ContactRequests: NextPage = () => {
         setContacts(filter)
 
         setConfirmDelete(false)
+        updateContactRequests(contactRequests - 1)
     }
 
     return (

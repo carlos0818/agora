@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #10284f;
+        stroke-width: 2px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Talk_9_1" data-name="Talk 9 1" class="cls-1" d="M81.954,33.011H18.045c-8.3,0-15.037,6.067-15.037,13.551v21c0,7.484,6.732,13.551,15.037,13.551H69.462l-3.3,12.873L77.593,81.117h4.361c8.3,0,15.038-6.067,15.038-13.551v-21C96.991,39.078,90.259,33.011,81.954,33.011Z"/>
+</svg>

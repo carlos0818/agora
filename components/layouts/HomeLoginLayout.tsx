@@ -13,7 +13,7 @@ import { NavbarMobile } from '@/components/Navbar/NavbarMobile'
 import { FooterDesktop } from '../Footer/FooterDesktop'
 
 import styles from './homeLoginLayout.module.css'
-
+import { NotificationContext } from '@/context/notification'
 
 interface Props {
     children: JSX.Element
@@ -25,6 +25,7 @@ interface Props {
 export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
     const { user } = useContext(AuthContext)
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
+    const { contactRequests, updateContactRequests } = useContext(NotificationContext)
 
     const router = useRouter()
 
@@ -33,8 +34,6 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     const circleDiv = useRef<HTMLDivElement>(null)
 
     const [submenu, setSubmenu] = useState(false)
-
-    const [contactRequests, setContactRequests] = useState(0)
 
     useEffect(() => {
         if (user) {
@@ -73,7 +72,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
 
     const getNotifications = async() => {
         const { data: contactRequests } = await agoraApi.get(`/contact/get-contact-requests-notification?email=${ user?.email }`)
-        setContactRequests(contactRequests.contactRequests)
+        updateContactRequests(contactRequests.contactRequests)
     }
 
     return (

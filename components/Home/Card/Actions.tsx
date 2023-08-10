@@ -1,37 +1,63 @@
-import { FC } from 'react'
+import { FC, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import styles from './actions.module.css'
 
-import likeIcon from '@/public/images/like-icon.svg'
-import commentIcon from '@/public/images/comment-icon.svg'
-import messageIcon from '@/public/images/message-icon.svg'
+import { AuthContext } from '@/context/auth'
+import { agoraApi } from '@/api'
 
 interface Props {
+    index: number
     likes: number
     comments: number
     response: boolean
+    like: boolean
 }
 
-export const Actions: FC<Props> = ({ likes, comments, response }) => {
+export const Actions: FC<Props> = ({ index, likes, like, comments, response }) => {
+    const { user } = useContext(AuthContext)
+
+    const [likeState, setLikeState] = useState(false)
+    const [likesState, setLikesState] = useState(0)
+
+    useEffect(() => {
+        setLikeState(like)
+        setLikesState(likes)
+    }, [])
+
+    const handleSavePost = async() => {
+        await agoraApi.post('/wall/save-like-post', { index: index.toString(), email: user?.email })
+        if (likeState) {
+            setLikesState(likesState - 1)
+        } else {
+            setLikesState(likesState + 1)
+        }
+        setLikeState(!likeState)
+    }
+
     return (
         <div className={ styles['actions-container'] }>
             <div className={ styles['action-wrapper'] }>
                 <Image
-                    src={ likeIcon }
+                    src={ likeState ? '/images/handblue.svg' : '/images/handwhite.svg' }
                     alt='Like icon'
+                    width={ 25 }
+                    height={ 25 }
                     className={ styles['like-icon'] }
                     title='Likes'
+                    onClick={ handleSavePost }
                 />
-                <span className={ styles['number-action'] }>{ likes }</span>
+                <span className={ styles['number-action'] }>{ likesState }</span>
             </div>
             {
                 !response && (
                     <>
                         <div className={ styles['action-wrapper'] }>
                             <Image
-                                src={ commentIcon }
+                                src='/images/comment.svg'
                                 alt='Comment icon'
+                                width={ 25 }
+                                height={ 25 }
                                 className={ styles['comment-icon'] }
                                 title='Comments'
                             />
