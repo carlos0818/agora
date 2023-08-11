@@ -62,11 +62,15 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         comments,
         comment,
         validateFriend,
+        averageVote,
+        verifyVote,
         setComment,
+        setVerifyVote,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
         handleComment,
+        getAverageVotes,
     } = useProfile(email, id, type)
 
     const [showVote, setShowVote] = useState(false)
@@ -111,9 +115,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     }
 
     const handleSaveVote = async() => {
-        await agoraApi.post('/contact/contact-vote', { email: user?.email, id, vote: stars.toString() })
+        await agoraApi.post('/vote/user-vote', { email: user?.email, id, vote: stars.toString() })
         setShowVote(false)
+        getAverageVotes()
+        setVerifyVote(true)
     }
+
+    console.log(isMyAccount)
 
     return (
         <HomeLoginLayout
@@ -161,13 +169,17 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ styles['info-text'] }>by { fullname }</p>
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member since { since }</p>
                                     <div className={ styles['stars-container'] }>
-                                        <em className='icon-star' data-star="3.5" style={{ fontSize: 13 }}></em>
-                                        <p
-                                            className={ `${ styles['info-text'] } ${ styles['vote'] }` }
-                                            onClick={ () => setShowVote(true) }
-                                        >
-                                            Vote
-                                        </p>
+                                        <em className='icon-star' data-star={ averageVote } style={{ fontSize: 13 }}></em>
+                                        {
+                                            (!verifyVote && !isMyAccount) && (
+                                                <p
+                                                    className={ `${ styles['info-text'] } ${ styles['vote'] }` }
+                                                    onClick={ () => setShowVote(true) }
+                                                >
+                                                    Vote
+                                                </p>
+                                            )
+                                        }
                                     </div>
                                     <p className={ `${ styles['info-text'] }` }>{ city }-{ country }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ address }</p>
@@ -252,13 +264,17 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 Member since { since }
                                             </p>
                                             <div className={ styles['stars-container'] }>
-                                                <em className='icon-star' data-star="3.5"></em>
-                                                <p
-                                                    className={ `${ styles['info-text'] } ${ styles['vote'] }` }
-                                                    onClick={ () => setShowVote(true) }
-                                                >
-                                                    Vote
-                                                </p>
+                                                <em className='icon-star' data-star={ averageVote }></em>
+                                                {
+                                                    (!verifyVote && !isMyAccount) && (
+                                                        <p
+                                                            className={ `${ styles['info-text'] } ${ styles['vote'] }` }
+                                                            onClick={ () => setShowVote(true) }
+                                                        >
+                                                            Vote
+                                                        </p>
+                                                    )
+                                                }
                                             </div>
                                         </div>
                                         <div className={ styles['profile-info-content-right'] }>

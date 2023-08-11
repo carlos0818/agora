@@ -34,6 +34,8 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [comments, setComments] = useState<IComment[]>([])
     const [comment, setComment] = useState('')
     const [validateFriend, setValidateFriend] = useState(false)
+    const [averageVote, setAverageVote] = useState(0)
+    const [verifyVote, setVerifyVote] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -88,6 +90,8 @@ export const useProfile = (email: string, id: string, type: string) => {
                 checkSendRequest(),
                 getUserComments(),
                 getValidateFriend(),
+                getAverageVotes(),
+                getVerifyVote(),
             ]).then(() => {
                 setLoading(false)
             })
@@ -314,6 +318,19 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
+    const getAverageVotes = async() => {
+        const { data } = await agoraApi.get(`/vote/get-average-votes?id=${ id }`)
+        setAverageVote(data.average)
+    }
+
+    const getVerifyVote = async() => {
+        const { data } = await agoraApi.get(`/vote/verify-vote?email=${ user?.email }&id=${ id }`)
+        if (data.resp === 1)
+            setVerifyVote(true)
+        else
+            setVerifyVote(false)
+    }
+
     const getUserComments = async() => {
         const { data } = await agoraApi.get<IComment[]>(`/user-comment/get-user-comments?id=${ id }`)
         setComments(data)
@@ -391,10 +408,14 @@ export const useProfile = (email: string, id: string, type: string) => {
         comments,
         comment,
         validateFriend,
+        averageVote,
+        verifyVote,
         setComment,
+        setVerifyVote,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
         handleComment,
+        getAverageVotes,
     }
 }
