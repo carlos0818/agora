@@ -58,9 +58,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         percentage,
         sendRequest,
         messageRequest,
+        comments,
+        comment,
+        setComment,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
+        handleComment,
     } = useProfile(email, id, type)
 
     const [value1, setValue1] = useState(0)
@@ -683,23 +687,30 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     </div> */}
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>
-                                            <p className={ styles['card-title'] }>Comments</p>
+                                            <p className={ styles['card-title'] }>Community Testimonials</p>
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBlockStart: 24 }}>
-                                                <Comment
-                                                    name='Nidia Sanchez'
-                                                    date='Monday 22th Jun'
-                                                    comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
+                                                {
+                                                    comments.map(comment => (
+                                                        <Comment
+                                                            key={ comment.index }
+                                                            comment={ comment }
+                                                        />
+                                                    ))
+                                                }
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', marginBlockStart: 30, position: 'relative' }}>
+                                                <input
+                                                    type='text'
+                                                    className='textfield'
+                                                    placeholder='Write a comment...'
+                                                    value={ comment }
+                                                    onChange={ (e) => setComment(e.target.value) }
                                                 />
-                                                <Comment
-                                                    name='Raul Rodriguez'
-                                                    date='Tuesday 13th May'
-                                                    comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
-                                                />
-                                                <Comment
-                                                    name='Martha Camacho'
-                                                    date='Friday 08th Apr'
-                                                    comment='Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Los Lorem Ipsum ha sido el texto de relleno estándar de las industrias...'
-                                                />
+                                                <em
+                                                    className='icon-icon-arrow'
+                                                    style={{ fontSize: 40, position: 'absolute', right: 5, top: 0, cursor: 'pointer' }}
+                                                    onClick={ handleComment }
+                                                ></em>
                                             </div>
                                         </div>
                                     </div>

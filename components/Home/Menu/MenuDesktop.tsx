@@ -9,7 +9,6 @@ import { MenuContext } from '@/context/menu'
 
 import styles from './menu-desktop.module.css'
 
-import homeIcon from '@/public/images/home-icon.svg'
 import leftArrowIcon from '@/public/images/left-arrow-icon.svg'
 
 interface Props {

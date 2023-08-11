@@ -7,8 +7,9 @@ import { QuestionnaireContext } from '@/context/questionnaire'
 import { agoraApi } from '@/api'
 import countriesList from '@/db/countries'
 
-import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
+import { IComment, IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
 import { useLoadQuestions } from './useLoadQuestions'
+import { getCurrentDateFormat } from '@/utils'
 
 export const useProfile = (email: string, id: string, type: string) => {
     const { user } = useContext(AuthContext)
@@ -30,6 +31,8 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [isMyAccount, setIsMyAccount] = useState(false)
     const [sendRequest, setSendRequest] = useState(false)
     const [messageRequest, setMessageRequest] = useState(false)
+    const [comments, setComments] = useState<IComment[]>([])
+    const [comment, setComment] = useState('')
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -79,7 +82,8 @@ export const useProfile = (email: string, id: string, type: string) => {
                 loadData(),
                 validateRequiredData(),
                 validateCompleteQuestionnaire(),
-                checkSendRequest()
+                checkSendRequest(),
+                getUserComments(),
             ]).then(() => {
                 setLoading(false)
             })
@@ -306,6 +310,37 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
+    const getUserComments = async() => {
+        const { data } = await agoraApi.get<IComment[]>(`/user-comment/get-user-comments?id=${ id }`)
+        setComments(data)
+    }
+
+    const handleComment = async() => {
+        if (comment.length > 0) {
+            setComment('')
+
+            await agoraApi.post('/user-comment/save-user-comment', { email: user?.email, userId: id.toString(), body: comment })
+
+            const currentDate = getCurrentDateFormat()
+
+            setComments(
+                [
+                    ...comments,
+                    {
+                        index: Number(currentDate),
+                        type: user?.type!,
+                        companyName: entrepreneurData?.name!,
+                        fullname: user?.fullname!,
+                        body: comment,
+                        dateAdded: currentDate,
+                        profilepic: user?.profilepic!,
+                        server: false,
+                    }
+                ]
+            )
+        }
+    }
+
     return {
         isMyAccount,
         countries,
@@ -342,8 +377,12 @@ export const useProfile = (email: string, id: string, type: string) => {
         percentage,
         sendRequest,
         messageRequest,
+        comments,
+        comment,
+        setComment,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
+        handleComment,
     }
 }
