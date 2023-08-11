@@ -8,6 +8,7 @@
 .user-image {
     block-size: 86px;
     border-radius: 15px;
+    cursor: pointer;
     inline-size: 86px;
     overflow: hidden;
 }
@@ -20,6 +21,7 @@
 
 .user-name {
     color: var(--agora-blue-dark);
+    cursor: pointer;
     font-family: 'ebrima-bold';
     font-size: 18px;
 }
