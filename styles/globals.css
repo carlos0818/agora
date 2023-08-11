@@ -305,7 +305,7 @@ details > summary::-webkit-details-marker {
   visibility: hidden;
 }
 
-/* VOTING STARS */
+/* SCORE STARS */
 [data-star] {
   text-align: left;
   font-style: normal;
@@ -384,12 +384,86 @@ details > summary::-webkit-details-marker {
 [data-star^="4.9"]::after{width:98%}
 [data-star^="5"]::after{width:100%}
 
+/* SCORE STARS */
+
+/* VOTING STARS */
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.radio-input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-label {
+  cursor: pointer;
+  font-size: 0;
+  color: rgba(0,0,0,0.2);
+  transition: color 0.1s ease-in-out;
+}
+
+.radio-label:before {
+  content: "\e938";
+  display: inline-block;
+  font-size: 32px;
+}
+
+.radio-input:checked ~ .radio-label {
+  color: #ffc700;
+  color: darkgoldenrod;
+}
+
+.radio-label:hover,
+.radio-label:hover ~ .radio-label {
+  color: darkgoldenrod;
+}
+
+.radio-input:checked + .radio-label:hover,
+.radio-input:checked + .radio-label:hover ~ .radio-label,
+.radio-input:checked ~ .radio-label:hover,
+.radio-input:checked ~ .radio-label:hover ~ .radio-label,
+.radio-label:hover ~ .radio-input:checked ~ .radio-label {
+  color: darkgoldenrod;
+}
+
+
+.average-rating {
+  position: relative;
+  appearance: none;
+  color: transparent;
+  width: auto;
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 25px;
+}
+
+.average-rating::before {
+  --percent: calc(4.3/5*100%);
+  content: '\e938 \e938 \e938 \e938 \e938';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0,0,0,0.2);
+  background: linear-gradient(90deg, gold var(--percent), rgba(0,0,0,0.2) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* VOTING STARS */
+
 @keyframes spinner-c7wet2 {
   100% {
      transform: rotate(1turn);
   }
 }
-/* VOTING STARS */
+
+/* SPINNER */
 
 .spinner {
   width: 72px;
@@ -412,6 +486,8 @@ details > summary::-webkit-details-marker {
           conic-gradient(#0000 30%,#10284f);
   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
 }
+
+/* SPINNER */
 
 .checkbox {
   cursor: pointer;

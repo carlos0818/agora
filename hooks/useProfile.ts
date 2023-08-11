@@ -33,6 +33,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [messageRequest, setMessageRequest] = useState(false)
     const [comments, setComments] = useState<IComment[]>([])
     const [comment, setComment] = useState('')
+    const [validateFriend, setValidateFriend] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -69,6 +70,8 @@ export const useProfile = (email: string, id: string, type: string) => {
         if (user) {
             if (user.email === email) {
                 setIsMyAccount(true)
+            } else {
+                setIsMyAccount(false)
             }
             loadQuestions()
             getUserAnswers()
@@ -84,6 +87,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                 validateCompleteQuestionnaire(),
                 checkSendRequest(),
                 getUserComments(),
+                getValidateFriend(),
             ]).then(() => {
                 setLoading(false)
             })
@@ -315,6 +319,13 @@ export const useProfile = (email: string, id: string, type: string) => {
         setComments(data)
     }
 
+    const getValidateFriend = async() => {
+        const { data } = await agoraApi.get(`/contact/validate-friend?email=${ user?.email }&id=${ id }`)
+        if (data.isFriend === 1) {
+            setValidateFriend(true)
+        }
+    }
+
     const handleComment = async() => {
         if (comment.length > 0) {
             setComment('')
@@ -379,6 +390,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         messageRequest,
         comments,
         comment,
+        validateFriend,
         setComment,
         onFileSelected,
         handleUpdateEntrepreneurInfo,

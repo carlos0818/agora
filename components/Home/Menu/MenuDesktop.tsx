@@ -25,7 +25,6 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef, notificationsRef, menuRef)
     const router = useRouter()
 
-
     useEffect(() => {
         const darkMode = JSON.parse(localStorage.getItem('DarkMode')!)
         toggleDarkMode(darkMode)
@@ -289,6 +288,10 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                 <li className={ styles['submenu-option'] }>
                                                     {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                     Notifications
+                                                </li>
+                                                <li className={ styles['submenu-option'] }>
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Pitch Deck
                                                 </li>
                                             </ul>
                                         </div>

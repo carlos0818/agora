@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { Activity } from '@/components/Profile/Activity'
 import { Comment } from '@/components/Profile/Comment'
+import { ModalCard } from '@/components/Common/ModalCard'
 
 import { agoraApi } from '@/api'
 import { useProfile } from '@/hooks/useProfile'
@@ -60,12 +61,16 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         messageRequest,
         comments,
         comment,
+        validateFriend,
         setComment,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
         handleComment,
     } = useProfile(email, id, type)
+
+    const [showVote, setShowVote] = useState(false)
+    const [stars, setStars] = useState(0)
 
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(0)
@@ -99,6 +104,15 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
             setValue13(39)
             setValue14(44)
         }, 100)
+    }
+
+    const onChangeValue = (event: any) => {
+        setStars(event.target.value);
+    }
+
+    const handleSaveVote = async() => {
+        await agoraApi.post('/contact/contact-vote', { email: user?.email, id, vote: stars.toString() })
+        setShowVote(false)
     }
 
     return (
@@ -148,6 +162,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <p className={ `${ styles['info-text'] } ${ styles['member-text'] }` }>Member since { since }</p>
                                     <div className={ styles['stars-container'] }>
                                         <em className='icon-star' data-star="3.5" style={{ fontSize: 13 }}></em>
+                                        <p
+                                            className={ `${ styles['info-text'] } ${ styles['vote'] }` }
+                                            onClick={ () => setShowVote(true) }
+                                        >
+                                            Vote
+                                        </p>
                                     </div>
                                     <p className={ `${ styles['info-text'] }` }>{ city }-{ country }</p>
                                     <p className={ `${ styles['info-text'] }` }>{ address }</p>
@@ -233,6 +253,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             </p>
                                             <div className={ styles['stars-container'] }>
                                                 <em className='icon-star' data-star="3.5"></em>
+                                                <p
+                                                    className={ `${ styles['info-text'] } ${ styles['vote'] }` }
+                                                    onClick={ () => setShowVote(true) }
+                                                >
+                                                    Vote
+                                                </p>
                                             </div>
                                         </div>
                                         <div className={ styles['profile-info-content-right'] }>
@@ -698,23 +724,54 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     ))
                                                 }
                                             </div>
-                                            <div style={{ display: 'flex', flexDirection: 'column', marginBlockStart: 30, position: 'relative' }}>
-                                                <input
-                                                    type='text'
-                                                    className='textfield'
-                                                    placeholder='Write a comment...'
-                                                    value={ comment }
-                                                    onChange={ (e) => setComment(e.target.value) }
-                                                />
-                                                <em
-                                                    className='icon-icon-arrow'
-                                                    style={{ fontSize: 40, position: 'absolute', right: 5, top: 0, cursor: 'pointer' }}
-                                                    onClick={ handleComment }
-                                                ></em>
-                                            </div>
+                                            {
+                                                validateFriend && (
+                                                    <div style={{ display: 'flex', flexDirection: 'column', marginBlockStart: 30, position: 'relative' }}>
+                                                        <input
+                                                            type='text'
+                                                            className='textfield'
+                                                            placeholder='Write a comment...'
+                                                            value={ comment }
+                                                            onChange={ (e) => setComment(e.target.value) }
+                                                        />
+                                                        <em
+                                                            className='icon-icon-arrow'
+                                                            style={{ fontSize: 40, position: 'absolute', right: 5, top: 0, cursor: 'pointer' }}
+                                                            onClick={ handleComment }
+                                                        ></em>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </>
+                            )
+                        }
+                        {
+                            showVote && (
+                                <ModalCard setError={ setShowVote }>
+                                    <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                        <div style={{ blockSize: 20, textAlign: 'center', marginBlockEnd: 30 }}>
+                                            <div className="star-rating" onChange={ (event) => onChangeValue(event) }>
+                                                <input className="radio-input" type="radio" id="star5" name="star-input" value="5" />
+                                                <label className="radio-label icon-star" htmlFor="star5" title="5 stars">5 stars</label>
+
+                                                <input className="radio-input" type="radio" id="star4" name="star-input" value="4" />
+                                                <label className="radio-label icon-star" htmlFor="star4" title="4 stars">4 stars</label>
+
+                                                <input className="radio-input" type="radio" id="star3" name="star-input" value="3" />
+                                                <label className="radio-label icon-star" htmlFor="star3" title="3 stars">3 stars</label>
+
+                                                <input className="radio-input" type="radio" id="star2" name="star-input" value="2" />
+                                                <label className="radio-label icon-star" htmlFor="star2" title="2 stars">2 stars</label>
+
+                                                <input className="radio-input" type="radio" id="star1" name="star-input" value="1" />
+                                                <label className="radio-label icon-star" htmlFor="star1" title="1 star">1 star</label>
+                                            </div>
+                                        </div>
+                                        <button className='button-filled' onClick={ handleSaveVote }>Vote</button>
+                                    </div>
+                                </ModalCard>
                             )
                         }
                     </>

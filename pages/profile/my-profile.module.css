@@ -72,9 +72,18 @@
     color: rgba(16, 40, 79, 0.7);
 }
 
+.vote {
+    cursor: pointer;
+    font-size: 12px;
+}
+
 .stars-container {
+    align-items: center;
     block-size: 20px;
+    display: flex;
+    gap: 8px;
     inline-size: 150px;
+    justify-content: center;
     margin-block-start: 0;
     text-align: center;
 }
@@ -516,8 +525,13 @@
     }
 
     .stars-container {
+        justify-content: flex-start;
         margin-block-start: 4px;
         text-align: left;
+    }
+
+    .vote {
+        font-size: 15px;
     }
 
     .required-description {
