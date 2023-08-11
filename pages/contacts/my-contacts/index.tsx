@@ -26,6 +26,12 @@ const ContactsPage: NextPage = () => {
     const [showInfo, setShowInfo] = useState(false)
     const [userDelete, setUserDelete] = useState<IContact | null>(null)
     const [contactInfo, setContactInfo] = useState<IContact | null>(null)
+    const [averageVote, setAverageVote] = useState<IContact | null>(null)
+
+    const getAverageVotes = async(id: string) => {
+        const { data } = await agoraApi.get(`/vote/get-average-votes?id=${ id }`)
+        setAverageVote(data.average)
+    }
 
     const handleCopy = async(type: string) => {
         let copyText = document.getElementById("emailText")?.innerHTML
@@ -113,6 +119,7 @@ const ContactsPage: NextPage = () => {
                                                             onClick={ () => {
                                                                 setContactInfo(contact)
                                                                 setShowInfo(true)
+                                                                getAverageVotes(contact.id)
                                                             }}
                                                         />
                                                         <Image
@@ -191,7 +198,7 @@ const ContactsPage: NextPage = () => {
                             <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 18 }}>By { contactInfo?.fullname }</p>
                             <p style={{ color: 'rgba(16, 40, 79, 0.7)', fontFamily: 'ebrima', fontSize: 12 }}>Member since { contactInfo?.since }</p>
                             <div style={{ blockSize: 20, inlineSize: 150, textAlign: 'center' }}>
-                                <em className='icon-star' data-star="3.5" style={{ fontSize: 20 }}></em>
+                                <em className='icon-star' data-star={ averageVote } style={{ fontSize: 20 }}></em>
                             </div>
                             <p style={{ color: '#10284F', fontFamily: 'ebrima', fontSize: 16 }}>
                                 {

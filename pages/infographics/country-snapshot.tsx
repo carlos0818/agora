@@ -120,7 +120,7 @@ const CountrySnapshot = () => {
                     }
                 </div>
                 <div className={ `${ styles["data-grid"] } ${ isOpenDesktop === 'hide' ? styles['four'] : '' }` }>
-                    <div>
+                    <div className='window-glass-content' style={{ padding: 0 }}>
                         <div className={ `${ styles["statistics-container"] } ${ styles["geography-container"] }` }>
                             <div className={ `${ styles["title-container"] }` }>
                                 <div className={ `${ styles["title-icon-border"] }` }>
@@ -214,7 +214,7 @@ const CountrySnapshot = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className='window-glass-content' style={{ padding: 0 }}>
                         <div className={ `${ styles["column-container"] }` }>
                             <div className={ `${ styles["statistics-container"] } ${ styles["gdp-container"] }` }>
                                 <div className={ `${ styles["title-container"] }` }>
@@ -358,7 +358,7 @@ const CountrySnapshot = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className='window-glass-content' style={{ paddingInlineStart: 16, paddingInlineEnd: 8 }}>
                         <div className={ `${ styles["statistics-container"] } ${ styles["trade-container"] }` }>
                             <div className={ `${ styles["title-container"] }` }>
                                 <div className={ `${ styles["title-icon-border"] }` }>
@@ -537,7 +537,7 @@ const CountrySnapshot = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className='window-glass-content' style={{ padding: 0 }}>
                         <div className={ `${ styles["column-container"] }` }>
                             <div className={ `${ styles["statistics-container"] } ${ styles["economic-container"] }` }>
                                 <div className={ `${ styles["title-container"] }` }>

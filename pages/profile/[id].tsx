@@ -63,9 +63,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         comment,
         validateFriend,
         averageVote,
-        verifyVote,
         setComment,
-        setVerifyVote,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
@@ -118,7 +116,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         await agoraApi.post('/vote/user-vote', { email: user?.email, id, vote: stars.toString() })
         setShowVote(false)
         getAverageVotes()
-        setVerifyVote(true)
     }
 
     return (
@@ -169,7 +166,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     <div className={ styles['stars-container'] }>
                                         <em className='icon-star' data-star={ averageVote } style={{ fontSize: 13 }}></em>
                                         {
-                                            (!verifyVote && !isMyAccount) && (
+                                            (!isMyAccount && validateFriend) && (
                                                 <p
                                                     className={ `${ styles['info-text'] } ${ styles['vote'] }` }
                                                     onClick={ () => setShowVote(true) }
@@ -264,7 +261,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             <div className={ styles['stars-container'] }>
                                                 <em className='icon-star' data-star={ averageVote }></em>
                                                 {
-                                                    (!verifyVote && !isMyAccount) && (
+                                                    (!isMyAccount && validateFriend) && (
                                                         <p
                                                             className={ `${ styles['info-text'] } ${ styles['vote'] }` }
                                                             onClick={ () => setShowVote(true) }

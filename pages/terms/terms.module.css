@@ -1,0 +1,8 @@
+.terms-container {
+    margin: auto;
+    /* max-inline-size: 810px; */
+    min-block-size: calc(100vh - 360px);
+    padding-block-start: 100px;
+    padding-block-end: 40px;
+    padding-inline: 20px;
+}

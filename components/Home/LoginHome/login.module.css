@@ -47,10 +47,13 @@
 }
 
 .circle-write-mobile {
+    align-items: center;
     background-color: var(--agora-blue-dark);
     block-size: 40px;
     border-radius: 50%;
+    display: flex;
     inline-size: 40px;
+    justify-content: center;
     position: fixed;
     bottom: 90px;
     right: 20px;

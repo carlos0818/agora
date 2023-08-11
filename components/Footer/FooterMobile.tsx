@@ -8,7 +8,14 @@ import agoralogo from '@/public/images/agoralogo.png'
 export const FooterMobile = () => {
     return (
         <footer className={ style['footer-mobile'] }>
-            <a>Terms and conditions</a>
+            <Link
+                href='/terms'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <a>Terms and conditions</a>
+            </Link>
             <a>FAQ</a>
             <a>Hub</a>
             <Link

@@ -111,12 +111,14 @@
     }
 
     .circle-write-desktop {
+        align-items: center;
         background-color: var(--agora-blue-dark);
         block-size: 60px;
         border-radius: 50%;
         bottom: 70px;
-        display: inline-block;
+        display: flex;
         inline-size: 60px;
+        justify-content: center;
         position: fixed;
     }
 }

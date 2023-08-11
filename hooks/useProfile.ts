@@ -35,7 +35,6 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [comment, setComment] = useState('')
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
-    const [verifyVote, setVerifyVote] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -91,7 +90,6 @@ export const useProfile = (email: string, id: string, type: string) => {
                 getUserComments(),
                 getValidateFriend(),
                 getAverageVotes(),
-                getVerifyVote(),
             ]).then(() => {
                 setLoading(false)
             })
@@ -323,14 +321,6 @@ export const useProfile = (email: string, id: string, type: string) => {
         setAverageVote(data.average)
     }
 
-    const getVerifyVote = async() => {
-        const { data } = await agoraApi.get(`/vote/verify-vote?email=${ user?.email }&id=${ id }`)
-        if (data.resp === 1)
-            setVerifyVote(true)
-        else
-            setVerifyVote(false)
-    }
-
     const getUserComments = async() => {
         const { data } = await agoraApi.get<IComment[]>(`/user-comment/get-user-comments?id=${ id }`)
         setComments(data)
@@ -409,9 +399,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         comment,
         validateFriend,
         averageVote,
-        verifyVote,
         setComment,
-        setVerifyVote,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
         handleSendRequest,

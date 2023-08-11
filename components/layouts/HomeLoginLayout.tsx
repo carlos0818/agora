@@ -135,7 +135,10 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                                     <div
                                         className={ styles['circle-write-desktop'] }
                                         ref={ circleDiv }
-                                        onClick={ moveTop }></div>
+                                        onClick={ moveTop }
+                                    >
+                                        <em className='icon-icon-up' style={{ color: 'white', fontSize: 30 }}></em>
+                                    </div>
                                 )
                             }
                         </div>

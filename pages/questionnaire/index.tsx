@@ -359,6 +359,14 @@ const Questionnaire: NextPage = () => {
                                                             </div>
                                                         )
                                                     }
+                                                    <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                                                        <input
+                                                            type='button'
+                                                            className='button-outline'
+                                                            value='Return to my profile'
+                                                            onClick={ () => router.push(`/profile/${ user?.id }`) }
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         )

@@ -73,16 +73,16 @@ export const HomeLoginWithoutMenuLayout: FC<Props> = ({ children, title, pageDes
                             { children }
                         </div>
                         {
-                            showBack && (
-                                <Link
-                                    href={ `/profile/${ user?.id }` }
-                                    passHref
-                                    prefetch={ false }
-                                    legacyBehavior
-                                >
-                                    <div className={ styles['circle-back'] } ref={ circleDiv }></div>
-                                </Link>
-                            )
+                            // showBack && (
+                            //     <Link
+                            //         href={ `/profile/${ user?.id }` }
+                            //         passHref
+                            //         prefetch={ false }
+                            //         legacyBehavior
+                            //     >
+                            //         <div className={ styles['circle-back'] } ref={ circleDiv }></div>
+                            //     </Link>
+                            // )
                         }
                     </div>
                     <NavbarMobile />

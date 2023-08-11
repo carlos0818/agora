@@ -184,7 +184,9 @@ export const LoginHome = () => {
                     ))
                 }
                 
-                <div className={ styles['circle-write-mobile'] }></div>
+                {/* <div className={ styles['circle-write-mobile'] }>
+                    <em className='icon-icon-up' style={{ color: 'white', fontSize: 22 }}></em>
+                </div> */}
             </>
         </HomeLoginLayout>
     )

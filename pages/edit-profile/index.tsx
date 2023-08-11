@@ -13,6 +13,7 @@ import { agoraApi } from '@/api'
 import { IUser, IEntrepreneur, IInvestor, IExpert } from '@/interfaces'
 
 import styles from './edit-profile.module.css'
+import { useRouter } from 'next/router'
 
 type FormData = {
     name: string
@@ -32,6 +33,8 @@ type FormData = {
 
 const EditProfile: NextPage = () => {
     const { user, updateName, updateProfilePic } = useContext(AuthContext)
+
+    const router = useRouter()
 
     const { countries } = countriesList
 
@@ -353,7 +356,6 @@ const EditProfile: NextPage = () => {
                                     <select
                                         className={ `field select ${ styles['select'] }` }
                                         style={{ borderRadius: 100 }}
-                                        // defaultValue={ country }
                                         { ...register('country', {
                                             required: true,
                                         })}
@@ -489,6 +491,15 @@ const EditProfile: NextPage = () => {
                                 </div>
                                 <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
                                     <input type='submit' value='Save entrepreneur information' className={ `button-filled` } style={{ paddingInline: 20 }} />
+                                </div>
+                                <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 30 }}>
+                                    <input
+                                        type='button'
+                                        value='Return to my profile'
+                                        className={ `button-outline` }
+                                        style={{ paddingInline: 20 }}
+                                        onClick={ () => router.push(`/profile/${ user?.id }`) }
+                                    />
                                 </div>
                                 {
                                     showDataMessage && (
