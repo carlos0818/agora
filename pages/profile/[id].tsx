@@ -121,8 +121,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         setVerifyVote(true)
     }
 
-    console.log(isMyAccount)
-
     return (
         <HomeLoginLayout
             title=''
