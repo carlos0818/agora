@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #10284f;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Arrow_19_1_copia" data-name="Arrow 19 1 copia" class="cls-1" d="M49.058,54.388S34.1,35.919,8.966,29.87C34.1,23.82,49.058,5.351,49.058,5.351L44.652,21.363C129.118,27.961,72.11,89.8,43.284,91c15.973-6.626,46.727-48.68,1.367-52.625l4.406,16.014v0Z"/>
+</svg>

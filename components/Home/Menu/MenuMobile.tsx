@@ -250,10 +250,20 @@ export const MenuMobile = () => {
                                             Dashboard
                                         </li>
                                     </Link> */}
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Inbox
-                                    </li>
+                                    <Link
+                                        href='/inbox'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Inbox
+                                        </li>
+                                    </Link>
                                     <li className={ styles['submenu-option'] }>
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                         Notifications

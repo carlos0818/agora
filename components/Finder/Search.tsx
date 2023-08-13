@@ -184,7 +184,6 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                         <input
                             ref={ alphabeticalRef }
                             type='checkbox'
-                            id='checkbox'
                             onChange={ handleSearch }
                             value='A'
                         /> Alphabetical
@@ -197,7 +196,6 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                                     <input
                                         ref={ fundingRef }
                                         type='checkbox'
-                                        id='checkbox'
                                         onChange={ handleSearch }
                                         value='F'
                                     /> Funding

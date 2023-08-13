@@ -1,0 +1,76 @@
+.messages-container {
+    padding: 8px;
+}
+
+.message-container {
+    align-items: center;
+    display: flex;
+    padding: 6px;
+    position: relative;
+}
+
+.info-container {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+}
+
+.contact-image {
+    block-size: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    inline-size: 40px;
+}
+
+.message-info-container {
+    color: var(--agora-blue-dark);
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.company-date-container {
+    color: var(--agora-blue-dark);
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.actions-container {
+    align-self: flex-start;
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+.action-icon {
+    block-size: 22px;
+    inline-size: 22px;
+}
+
+@media screen and (min-width: 1024px) {
+    .messages-container {
+        padding: 12px;
+    }
+
+    .contact-image {
+        block-size: 50px;
+        inline-size: 50px;
+    }
+
+    .message-info-container {
+        font-size: 15px;
+    }
+
+    .company-date-container {
+        font-size: 15px;
+    }
+
+    .action-icon {
+        block-size: 24px;
+        inline-size: 24px;
+    }
+}

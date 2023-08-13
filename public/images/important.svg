@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: red;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Exclamation_Point_1" data-name="Exclamation Point 1" class="cls-1" d="M61.68,91.005H38.928V74.228H61.68V91.005ZM60.267,67.327H39.72L35,27.346V5.57H64.99V27.346Z"/>
+</svg>
