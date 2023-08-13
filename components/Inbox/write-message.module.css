@@ -8,20 +8,47 @@
 }
 
 .search-contact-container {
-    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 40px;
     gap: 12px;
+}
+
+.image-name-container {
+    align-items: center;
+    background-color: white;
+    block-size: 32px;
+    border-radius: 50px;
+    color: var(--agora-blue-dark);
+    display: flex;
+    gap: 16px;
+    position: relative;
+}
+
+.image-name-container span {
+    display: none;
+    margin-block-start: -3px;
+    margin-inline-start: 50px;
 }
 
 .contact-pic {
     block-size: 40px;
     border-radius: 50%;
     inline-size: 40px;
+    position: absolute;
+}
+
+.subject-checkboxes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .checkboxes-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-inline-start: 8px;
 }
 
 .checkboxes-container label {
@@ -43,16 +70,59 @@
     margin-inline-start: 8px;
 }
 
-@media screen and (min-width: 1024px) {
+.search-input-container {
+    display: flex;
+    position: relative;
+}
+
+.autocomplete {
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    inline-size: 100%;
+    left: 5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+    top: 45px;
+    z-index: 1000;
+}
+
+.autocomplete li {
+    cursor: pointer;
+    padding-block: 8px;
+    padding-inline: 16px;
+}
+
+.autocomplete li:hover {
+    background-color: aqua;
+}
+
+@media screen and (min-width: 768px) {
+    .search-contact-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .image-name-container span {
+        display: inline-block;
+    }
+
     .contact-pic {
-        block-size: 45px;
-        inline-size: 45px;
+        block-size: 40px;
+        inline-size: 40px;
+    }
+
+    .subject-checkboxes-container {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     .checkboxes-container {
         flex-direction: row;
-        justify-content: flex-end;
-        margin-inline-end: 12px;
     }
 
     .send-button {

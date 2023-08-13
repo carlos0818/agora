@@ -4,6 +4,7 @@
 
 .message-container {
     align-items: center;
+    cursor: pointer;
     display: flex;
     padding: 6px;
     position: relative;
@@ -19,7 +20,6 @@
 .contact-image {
     block-size: 40px;
     border-radius: 50%;
-    cursor: pointer;
     inline-size: 40px;
 }
 
@@ -51,6 +51,30 @@
     inline-size: 22px;
 }
 
+.message-input {
+    display: none;
+}
+
+.message-content {
+    display: none;
+    padding: 10px;
+    /* background-color: #fff; */
+}
+
+/* Mostrar contenido de la sección seleccionada */
+.message-input:checked + .message-container + .message-content {
+    /* border: 5px solid red; */
+    display: block;
+}
+
+/* .message-input:checked + .message-container:checked + .message-content {
+    display: none;
+} */
+
+.message-input:not(:checked) + .message-container + .message-content {
+    display: none;
+}
+
 @media screen and (min-width: 1024px) {
     .messages-container {
         padding: 12px;
@@ -66,6 +90,8 @@
     }
 
     .company-date-container {
+        flex-direction: row;
+        gap: 16px;
         font-size: 15px;
     }
 

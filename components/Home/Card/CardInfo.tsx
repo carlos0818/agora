@@ -1,10 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import Link from 'next/link'
 
-import { Actions } from './Actions'
-
 import styles from './card.module.css'
-import Image from 'next/image'
 
 interface Props {
     index?: number
