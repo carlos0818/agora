@@ -18,7 +18,7 @@ import styles from '../my-contacts/my-contacts.module.css'
 
 const ContactRequests: NextPage = () => {
     const { user } = useContext(AuthContext)
-    const { contactRequests, updateContactRequests } = useContext(NotificationContext)
+    const { notifications, updateNotifications } = useContext(NotificationContext)
 
     const { countries } = countriesList
 
@@ -42,7 +42,7 @@ const ContactRequests: NextPage = () => {
         setContacts(filter)
 
         setConfirmDelete(false)
-        updateContactRequests(contactRequests - 1)
+        updateNotifications({ ...notifications, contactRequests: notifications.contactRequests - 1 })
     }
 
     const handleAccept = async(id: string) => {
@@ -52,7 +52,7 @@ const ContactRequests: NextPage = () => {
         setContacts(filter)
 
         setConfirmDelete(false)
-        updateContactRequests(contactRequests - 1)
+        updateNotifications({ ...notifications, contactRequests: notifications.contactRequests - 1 })
     }
 
     return (

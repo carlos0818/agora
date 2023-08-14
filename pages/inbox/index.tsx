@@ -34,6 +34,7 @@ const InboxPage: NextPage = () => {
 
     const handleDelete = async(index: string) => {
         await agoraApi.post('/message/delete-message', { index })
+        
         setConfirmDelete(false)
         setMessageId(null)
         const filter = messages.filter(message => message.index !== index)
@@ -54,6 +55,8 @@ const InboxPage: NextPage = () => {
                                 <Messages
                                     key={ message.index }
                                     message={ message }
+                                    messages={ messages }
+                                    setMessages={ setMessages }
                                     setMessageId={ setMessageId }
                                     setConfirmDelete={ setConfirmDelete }
                                 />

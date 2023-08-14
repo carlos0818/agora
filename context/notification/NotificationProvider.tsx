@@ -2,17 +2,17 @@ import React, { FC, useReducer } from 'react'
 
 import { NotificationContext, notificationReducer } from '.'
 
-import { agoraApi } from '@/api'
-import axios from 'axios'
-
-import { IUser } from '../../interfaces'
+import { INotification } from '../../interfaces'
 
 export interface NotificationState {
-    contactRequests: number
+    notifications: INotification
 }
 
 const NOTIFICATION_INITIAL_STATE: NotificationState = {
-    contactRequests: 0
+    notifications: {
+        contactRequests: 0,
+        messages: 0
+    }
 }
 
 interface Props {
@@ -23,14 +23,14 @@ export const NotificationProvider: FC<Props> = ({ children }) => {
 
     const [state, dispatch] = useReducer(notificationReducer, NOTIFICATION_INITIAL_STATE)
 
-    const updateContactRequests = (requests: number) => {
-        dispatch({ type: '[Notification] - Update', payload: requests })
+    const updateNotifications = (notifications: INotification) => {
+        dispatch({ type: '[Notification] - Update Notification', payload: notifications })
     }
 
     return (
         <NotificationContext.Provider value={{
             ...state,
-            updateContactRequests
+            updateNotifications
         }}>
             { children }
         </NotificationContext.Provider>

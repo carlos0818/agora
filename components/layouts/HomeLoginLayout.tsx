@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import { MenuContext } from '@/context/menu'
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
+import { NotificationContext } from '@/context/notification'
+import { INotification } from '@/interfaces'
 
 import { MenuDesktop } from '../Home/Menu/MenuDesktop'
 import { MenuMobile } from '../Home/Menu/MenuMobile'
@@ -13,7 +15,6 @@ import { NavbarMobile } from '@/components/Navbar/NavbarMobile'
 import { FooterDesktop } from '../Footer/FooterDesktop'
 
 import styles from './homeLoginLayout.module.css'
-import { NotificationContext } from '@/context/notification'
 
 interface Props {
     children: JSX.Element
@@ -25,7 +26,7 @@ interface Props {
 export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, showWrite = false }) => {
     const { user } = useContext(AuthContext)
     const { isDarkMode, toggleDarkMode } = useContext(MenuContext)
-    const { contactRequests, updateContactRequests } = useContext(NotificationContext)
+    const { notifications, updateNotifications } = useContext(NotificationContext)
 
     const router = useRouter()
 
@@ -71,8 +72,12 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     }
 
     const getNotifications = async() => {
-        const { data: contactRequests } = await agoraApi.get(`/contact/get-contact-requests-notification?email=${ user?.email }`)
-        updateContactRequests(contactRequests.contactRequests)
+        const { data: contactRequests } = await agoraApi.get<INotification>(`/contact/get-contact-requests-notification?email=${ user?.email }`)
+        const { data: messages } = await agoraApi.get<INotification>(`/message/get-messages-notification?email=${ user?.email }`)
+        updateNotifications({
+            contactRequests: contactRequests.contactRequests,
+            messages: messages.messages,
+        })
     }
 
     return (
@@ -108,23 +113,25 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                                 <div className={ styles['notification-wrapper'] } onClick={ () => router.push('/contacts/contact-requests') }>
                                     <em className='icon-icon-user' style={{ color: 'white', fontSize: 28 }}></em>
                                     {
-                                        contactRequests > 0 && (
+                                        notifications.contactRequests > 0 && (
                                             <div className={ styles['notification-balloon'] }>
-                                                <span>{ contactRequests }</span>
+                                                <span>{ notifications.contactRequests }</span>
                                             </div>
                                         )
                                     }
                                 </div>
                                 <div className={ styles['notification-wrapper'] }>
                                     <em className='icon-icon-eye' style={{ color: 'white', fontSize: 28 }}></em>
-                                    <div className={ styles['notification-balloon'] }></div>
-                                    <div className={ styles['notification-balloon'] }>
-                                        <span>99+</span>
-                                    </div>
+                                    {
+                                        notifications.messages > 0 && (
+                                            <div className={ styles['notification-balloon'] }>
+                                                <span>{ notifications.messages }</span>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                                 <div className={ styles['notification-wrapper'] }>
                                     <em className='icon-icon-mail' style={{ color: 'white', fontSize: 28 }}></em>
-                                    <div className={ styles['notification-balloon'] }></div>
                                     <div className={ styles['notification-balloon'] }>
                                         <span>38</span>
                                     </div>
