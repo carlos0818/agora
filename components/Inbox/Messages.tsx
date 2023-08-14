@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import Image from 'next/image'
 
 import { IMessage } from '@/interfaces/message'
@@ -9,10 +9,17 @@ import styles from './messages.module.css'
 
 interface Props {
     message: IMessage
+    setMessageId: Dispatch<SetStateAction<string | null>>
+    setConfirmDelete: Dispatch<SetStateAction<boolean>>
 }
 
-export const Messages: FC<Props> = ({ message }) => {
+export const Messages: FC<Props> = ({ message, setMessageId, setConfirmDelete }) => {
     let date = convertTimeZone(message.dateAdded)
+
+    const handleOpenModal = (index: string) => {
+        setMessageId(index)
+        setConfirmDelete(true)
+    }
 
     return (
         <div className={ styles['messages-container'] }>
@@ -51,6 +58,7 @@ export const Messages: FC<Props> = ({ message }) => {
                         className={ styles['action-icon'] }
                         style={{ cursor: 'pointer' }}
                         title='Delete message'
+                        onClick={ () => handleOpenModal(message.index!, ) }
                     />
                 </div>
             </label>

@@ -1,68 +1,163 @@
+import { useContext, useRef, useState } from 'react'
 import Image from 'next/image'
+
+import { agoraApi } from '@/api'
+import { IContact } from '@/interfaces'
+import { AuthContext } from '@/context/auth'
 
 import styles from './write-message.module.css'
 
 export const WriteMessage = () => {
+    const { user } = useContext(AuthContext)
+
+    const searchRef = useRef<HTMLInputElement>(null)
+    const subjectRef = useRef<HTMLInputElement>(null)
+    const importantRef = useRef<HTMLInputElement>(null)
+    const attachRef = useRef<HTMLInputElement>(null)
+    const bodyRef = useRef<HTMLTextAreaElement>(null)
+
+    const [autocomplete, setAutocomplete] = useState(false)
+    const [contacts, setContacts] = useState<IContact[]>([])
+    const [selectedContact, setSelectedContact] = useState<IContact | null>(null)
+    const [loading, setLoading] = useState(false)
+
+    let searchTimeout: any
+
+    const handleAutocomplete = () => {
+        clearTimeout(searchTimeout)
+
+        searchTimeout = setTimeout(async() => {
+            if (searchRef.current!.value) {
+                const { data } = await agoraApi.get<IContact[]>(`/contact/search-contacts?email=${ user?.email }&search=${ searchRef.current!.value }`)
+                setContacts(data)
+                setAutocomplete(true)
+            } else {
+                setContacts([])
+                setAutocomplete(false)
+                setSelectedContact(null)
+            }
+        }, 600)
+    }
+
+    const handleSelectContact = (contact: IContact) => {
+        setSelectedContact(contact)
+        setAutocomplete(false)
+        searchRef.current!.value = contact.companyName
+    }
+
+    const handleSendMessage = async() => {
+        setLoading(true)
+
+        const data = {
+            email: selectedContact?.email,
+            emailcontact: user?.email,
+            status: 'S',
+            subject: subjectRef.current!.value,
+            body: bodyRef.current!.value,
+            important: importantRef.current!.checked ? '1' : '0',
+            pitch: attachRef.current!.checked ? '1' : '0',
+        }
+
+        try {
+            await agoraApi.post('/message/send-message', data)
+
+            searchRef.current!.value = ''
+            subjectRef.current!.value = ''
+            importantRef.current!.value = ''
+            attachRef.current!.value = ''
+            bodyRef.current!.value = ''
+
+            setContacts([])
+            setAutocomplete(false)
+            setSelectedContact(null)
+        } catch (error) {
+            
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
         <div className={ styles['write-container'] }>
             <div className={ styles['search-contact-container'] }>
                 <div className={ styles['search-input-container'] }>
                     <input
-                        // ref={ termRef }
+                        ref={ searchRef }
                         type='text'
                         className='field'
                         style={{ paddingBlock: 8, inlineSize: '100%' }}
                         placeholder='Contact name'
-                        // onChange={ handleSearch }
+                        onChange={ handleAutocomplete }
                     />
-                    <ul className={ styles['autocomplete'] }>
-                        <li>Ricardo Leuridan</li>
-                        <li>Carlos Benavides</li>
-                    </ul>
+                    {
+                        autocomplete && (
+                            <ul className={ styles['autocomplete'] }>
+                                {
+                                    contacts.map(contact => (
+                                        <li
+                                            key={ contact.email }
+                                            onClick={ () => handleSelectContact(contact) }
+                                        >
+                                            { contact.companyName }
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        )
+                    }
                 </div>
-                <div className={ styles['image-name-container'] }>
-                    <Image
-                        src='/images/user-photo.jpeg'
-                        alt=''
-                        width={ 80 }
-                        height={ 80 }
-                        className={ styles['contact-pic'] }
-                    />
-                    <span>Carlos Benavides</span>
+                <div className={ styles['image-name-container'] } style={{ display: selectedContact?.profilepic ? 'flex' : 'none' }}>
+                    {
+                        selectedContact?.profilepic && (
+                            <>
+                                <Image
+                                    src={ selectedContact.profilepic }
+                                    alt=''
+                                    width={ 80 }
+                                    height={ 80 }
+                                    className={ styles['contact-pic'] }
+                                />
+                                <span>{ selectedContact?.fullname }</span>
+                            </>
+                        )
+                    }
                 </div>
             </div>
             <div className={ styles['subject-checkboxes-container'] }>
                 <input
-                    // ref={ termRef }
+                    ref={ subjectRef }
                     type='text'
                     className='field'
                     style={{ paddingBlock: 8 }}
                     placeholder='Subject'
-                    // onChange={ handleSearch }
                 />
                 <div className={ styles['checkboxes-container'] }>
                     <label className='checkbox'>
                         <input
-                            // ref={ alphabeticalRef }
+                            ref={ importantRef }
                             type='checkbox'
-                            // onChange={ handleSearch }
-                            value='I'
+                            value='1'
                         /> Important
                         <span className='check-white'></span>
                     </label>
                     <label className='checkbox'>
                         <input
-                            // ref={ alphabeticalRef }
+                            ref={ attachRef }
                             type='checkbox'
-                            // onChange={ handleSearch }
-                            value='A'
+                            value='1'
                         /> Attach my Pitch Deck
                         <span className='check-white'></span>
                     </label>
                 </div>
             </div>
-            <textarea className={ `field ${ styles['text-message'] } ` } />
-            <a className={ styles['send-button'] }>SEND MESSAGE</a>
+            <textarea ref={ bodyRef } className={ `field ${ styles['text-message'] } ` } />
+            {
+                loading ? (
+                    <em className='spinner white' style={{ alignSelf: 'flex-end', blockSize: 36, inlineSize: 36, marginInlineEnd: 10 }} />
+                ) : (
+                    <a className={ styles['send-button'] } onClick={ handleSendMessage }>SEND MESSAGE</a>
+                )
+            }
         </div>
     )
 }
