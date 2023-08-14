@@ -9,4 +9,5 @@ export interface IMessage {
     status: string
     dateAdded: string
     emailcontact: string
+    fullname: string
 }

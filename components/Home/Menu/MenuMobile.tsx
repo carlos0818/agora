@@ -268,10 +268,14 @@ export const MenuMobile = () => {
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                         Notifications
                                     </li>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Pitch Deck
-                                    </li>
+                                    {
+                                        user?.type === 'E' && (
+                                            <li className={ styles['submenu-option'] }>
+                                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                Pitch Deck
+                                            </li>
+                                        )
+                                    }
                                 </ul>
                             </div>
                         </details>

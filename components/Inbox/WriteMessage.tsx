@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 import { agoraApi } from '@/api'
@@ -7,7 +7,13 @@ import { AuthContext } from '@/context/auth'
 
 import styles from './write-message.module.css'
 
-export const WriteMessage = () => {
+interface Props {
+    selectedContact: IContact | null
+    sendMessage?: any
+    setSelectedContact: Dispatch<SetStateAction<IContact | null>>
+}
+
+export const WriteMessage: FC<Props> = ({ sendMessage, selectedContact, setSelectedContact }) => {
     const { user } = useContext(AuthContext)
 
     const searchRef = useRef<HTMLInputElement>(null)
@@ -18,10 +24,19 @@ export const WriteMessage = () => {
 
     const [autocomplete, setAutocomplete] = useState(false)
     const [contacts, setContacts] = useState<IContact[]>([])
-    const [selectedContact, setSelectedContact] = useState<IContact | null>(null)
     const [loading, setLoading] = useState(false)
 
     let searchTimeout: any
+
+    useEffect(() => {
+        if (sendMessage) {
+            searchRef.current!.value = selectedContact?.companyName! ? selectedContact?.companyName! : ''
+            subjectRef.current!.value = sendMessage.subject
+            bodyRef.current!.value = sendMessage.body
+            importantRef.current!.checked = sendMessage.important === 1 ? true : false
+            attachRef.current!.checked = sendMessage.pitch === 1 ? true : false
+        }
+    }, [sendMessage])
 
     const handleAutocomplete = () => {
         clearTimeout(searchTimeout)
@@ -46,6 +61,10 @@ export const WriteMessage = () => {
     }
 
     const handleSendMessage = async() => {
+        if (!selectedContact || subjectRef.current!.value === '' || bodyRef.current!.value === '') {
+            return
+        }
+
         setLoading(true)
 
         const data = {
@@ -63,8 +82,8 @@ export const WriteMessage = () => {
 
             searchRef.current!.value = ''
             subjectRef.current!.value = ''
-            importantRef.current!.value = ''
-            attachRef.current!.value = ''
+            importantRef.current!.checked = false
+            attachRef.current!.checked = false
             bodyRef.current!.value = ''
 
             setContacts([])
@@ -150,7 +169,11 @@ export const WriteMessage = () => {
                     </label>
                 </div>
             </div>
-            <textarea ref={ bodyRef } className={ `field ${ styles['text-message'] } ` } />
+            <textarea
+                ref={ bodyRef }
+                className={ `field ${ styles['text-message'] } ` }
+                placeholder='Write a message...'
+            />
             {
                 loading ? (
                     <em className='spinner white' style={{ alignSelf: 'flex-end', blockSize: 36, inlineSize: 36, marginInlineEnd: 10 }} />

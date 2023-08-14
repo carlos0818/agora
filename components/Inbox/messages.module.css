@@ -40,7 +40,7 @@
 .actions-container {
     align-self: flex-start;
     display: flex;
-    gap: 5px;
+    gap: 8px;
     position: absolute;
     top: 8px;
     right: 10px;

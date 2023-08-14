@@ -20,6 +20,8 @@ const InboxPage: NextPage = () => {
     const [messages, setMessages] = useState<IMessage[]>([])
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [messageId, setMessageId] = useState<string | null>(null)
+    const [selectedContact, setSelectedContact] = useState<any>(null)
+    const [sendMessage, setSendMessage] = useState<any>(null)
 
     useEffect(() => {
         if (user) {
@@ -49,18 +51,30 @@ const InboxPage: NextPage = () => {
             >
                 <div className={ `window-glass` } ref={ windowRef }>
                     <div className={ `window-glass-content` } style={{ padding: 0, overflow: 'hidden' }}>
-                        <WriteMessage />
+                        <WriteMessage
+                            selectedContact={ selectedContact }
+                            sendMessage={ sendMessage }
+                            setSelectedContact={ setSelectedContact }
+                        />
                         {
-                            messages.map(message => (
-                                <Messages
-                                    key={ message.index }
-                                    message={ message }
-                                    messages={ messages }
-                                    setMessages={ setMessages }
-                                    setMessageId={ setMessageId }
-                                    setConfirmDelete={ setConfirmDelete }
-                                />
-                            ))
+                            messages.length > 0 ? (
+                                messages.map(message => (
+                                    <Messages
+                                        key={ message.index }
+                                        message={ message }
+                                        messages={ messages }
+                                        setMessages={ setMessages }
+                                        setMessageId={ setMessageId }
+                                        setConfirmDelete={ setConfirmDelete }
+                                        setSelectedContact={ setSelectedContact }
+                                        setSendMessage={ setSendMessage }
+                                    />
+                                ))
+                            ) : (
+                                <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'center', paddingBlock: 20 }}>
+                                    <em className='spinner blue-agora' style={{ blockSize: 40, inlineSize: 40 }} />
+                                </div>
+                            )
                         }
                     </div>
                 </div>

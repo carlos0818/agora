@@ -2,7 +2,7 @@ import { Dispatch, FC, SetStateAction, useContext } from 'react'
 import Image from 'next/image'
 
 import { agoraApi } from '@/api'
-import { IMessage } from '@/interfaces/message'
+import { IMessage, IContact } from '@/interfaces'
 import { NotificationContext } from '@/context/notification'
 
 import { convertTimeZone } from '@/utils'
@@ -15,9 +15,11 @@ interface Props {
     setMessages: Dispatch<SetStateAction<IMessage[]>>
     setMessageId: Dispatch<SetStateAction<string | null>>
     setConfirmDelete: Dispatch<SetStateAction<boolean>>
+    setSelectedContact: Dispatch<SetStateAction<any>>
+    setSendMessage: Dispatch<any>
 }
 
-export const Messages: FC<Props> = ({ message, messages, setMessages, setMessageId, setConfirmDelete }) => {
+export const Messages: FC<Props> = ({ message, messages, setMessages, setMessageId, setConfirmDelete, setSelectedContact, setSendMessage }) => {
     const { notifications, updateNotifications } = useContext(NotificationContext)
 
     let date = convertTimeZone(message.dateAdded)
@@ -40,6 +42,39 @@ export const Messages: FC<Props> = ({ message, messages, setMessages, setMessage
             setMessages(newMessages)
             updateNotifications({ ...notifications, messages: notifications.messages - 1 })
         }
+    }
+
+    const handleForward = (message:IMessage) => {
+        setSelectedContact(null)
+
+        setSendMessage({
+            subject: `Fwd: ${ message.subject }`,
+            body: `
+
+----------------------
+${ message.body }`,
+            important: message.important,
+            pitch: message.pitch
+        })
+    }
+
+    const handleReply = (message:IMessage) => {
+        setSelectedContact({
+            companyName: message.companyName,
+            email: message.emailcontact,
+            fullname: message.fullname,
+            profilepic: message.profilepic,
+        })
+
+        setSendMessage({
+            subject: `Re: ${ message.subject }`,
+            body: `
+
+----------------------
+${ message.body }`,
+            important: message.important,
+            pitch: message.pitch
+        })
     }
 
     return (
@@ -79,6 +114,26 @@ export const Messages: FC<Props> = ({ message, messages, setMessages, setMessage
                             />
                         )
                     }
+                    <Image
+                        src='/images/reply.svg'
+                        alt=''
+                        width={ 40 }
+                        height={ 40 }
+                        className={ styles['action-icon'] }
+                        style={{ cursor: 'pointer' }}
+                        title='Reply'
+                        onClick={ () => handleReply(message) }
+                    />
+                    <Image
+                        src='/images/forward.svg'
+                        alt=''
+                        width={ 40 }
+                        height={ 40 }
+                        className={ styles['action-icon'] }
+                        style={{ cursor: 'pointer' }}
+                        title='Forward'
+                        onClick={ () => handleForward(message) }
+                    />
                     <Image
                         src='/images/trash.svg'
                         alt=''
