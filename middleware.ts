@@ -23,5 +23,6 @@ export const config = {
         '/infographics/:path*',
         '/questionnaire',
         '/profile/:path*',
+        '/inbox',
     ],
 }

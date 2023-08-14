@@ -96,6 +96,7 @@ export const Messages: FC<Props> = ({ message, messages, setMessages, setMessage
                     className='textfield'
                     style={{ blockSize: 200, inlineSize: 'calc(100% - 26px)', marginBlockStart: 8 }}
                     defaultValue={ message.body }
+                    readOnly
                 />
             </div>
         </div>

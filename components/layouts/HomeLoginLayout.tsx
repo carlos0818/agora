@@ -122,6 +122,12 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                                 </div>
                                 <div className={ styles['notification-wrapper'] }>
                                     <em className='icon-icon-eye' style={{ color: 'white', fontSize: 28 }}></em>
+                                    <div className={ styles['notification-balloon'] }>
+                                        <span>38</span>
+                                    </div>
+                                </div>
+                                <div className={ styles['notification-wrapper'] } onClick={ () => router.push('/inbox') }>
+                                    <em className='icon-icon-mail' style={{ color: 'white', fontSize: 28 }}></em>
                                     {
                                         notifications.messages > 0 && (
                                             <div className={ styles['notification-balloon'] }>
@@ -129,12 +135,6 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                                             </div>
                                         )
                                     }
-                                </div>
-                                <div className={ styles['notification-wrapper'] }>
-                                    <em className='icon-icon-mail' style={{ color: 'white', fontSize: 28 }}></em>
-                                    <div className={ styles['notification-balloon'] }>
-                                        <span>38</span>
-                                    </div>
                                 </div>
                             </div>
                             {
