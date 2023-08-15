@@ -20,7 +20,11 @@ type FormData = {
     password: string
 }
 
-const LoginPage: NextPage = () => {
+interface Props {
+
+}
+
+const LoginPage: NextPage = ({  }) => {
     const router = useRouter()
     const { executeRecaptcha } = useReCaptcha()
 
@@ -60,10 +64,14 @@ const LoginPage: NextPage = () => {
     }, [])
 
     const onLogin = async({ email, password }: FormData) => {
-        setLoading(true)
-        const captcha = await executeRecaptcha("form_login")
-        await signIn('credentials', { email, password, captcha, loginToken: 'N', token: '' })
-        setLoading(false)
+        try {
+            setLoading(true)
+            const captcha = await executeRecaptcha("form_login")
+            await signIn('credentials', { email, password, captcha, loginToken: 'N', token: '' })
+            setLoading(false)
+        } catch (error: any) {
+            console.log(error.response)
+        }
     }
     
     return (
@@ -104,12 +112,20 @@ const LoginPage: NextPage = () => {
                                     </div>
                                 )
                             }
-                            <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center', marginBlockStart: 40, marginBlockEnd: 30 }}>
+                            <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center', marginBlockStart: 20 }}>
                                 {
                                     loading
                                     ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
                                     : <input type='submit' value='Login' className={ `button-filled ${ style['button-style'] }` } />
                                 }
+                            </div>
+                            <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center', marginBlockStart: 0, marginBlockEnd: 30 }}>
+                                <a
+                                    className={ style['forgot'] }
+                                    onClick={ () => router.push('/forgot-password') }
+                                >
+                                    Forgot password?
+                                </a>
                             </div>
                         </form>
                         <div className={ style['or-container'] }>

@@ -47,8 +47,8 @@ const NextAuth2 = (req: NextApiRequest, res: NextApiResponse) => {
               const { data } = await agoraApi.post('/user/login', sendData)
               return data
             }
-          } catch (error) {
-            console.log(error)
+          } catch (error: any) {
+            console.log(error.response.data)
           }
         },
       }),

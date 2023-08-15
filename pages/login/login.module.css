@@ -84,7 +84,7 @@
 }
 
 .button-style {
-    font-size: 20px;
+    font-size: 16px;
     margin: auto;
 }
 
@@ -165,6 +165,13 @@
     inline-size: 20px;
 }
 
+.forgot {
+    color: var(--agora-blue-dark);
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 1024px) {
     .login-container {
         background-size: cover;
@@ -175,11 +182,19 @@
         padding-inline: 140px;
     }
 
+    .button-style {
+        font-size: 20px;
+    }
+
     .g-recaptcha {
         transform:scale(1);
     }
 
     .or-container {
         margin-block-start: 26px;
+    }
+
+    .forgot {
+        font-size: 15px;
     }
 }
