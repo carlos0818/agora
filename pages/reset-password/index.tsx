@@ -65,7 +65,6 @@ const ResetPasswordPage: NextPage = () => {
 
             setOk(true)
             setTimeout(() => {
-                setOk(false)
                 router.replace('/login')
             }, 3000)
         } catch (error) {

@@ -42,6 +42,11 @@
     border: 3px solid #CE0915;
 }
 
+.message-error {
+    color: #CE0915;
+    font-size: 12px;
+}
+
 .social-container {
     justify-content: center;
     display: flex;

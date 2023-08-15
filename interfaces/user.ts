@@ -6,4 +6,5 @@ export interface IUser {
     email: string
     type: string
     profilepic?: string
+    source: string
 }
