@@ -8,12 +8,14 @@ import { AuthContext } from '@/context/auth'
 import styles from './write-message.module.css'
 
 interface Props {
+    contacts: IContact[]
+    contactId?: string
     selectedContact: IContact | null
     sendMessage?: any
     setSelectedContact: Dispatch<SetStateAction<IContact | null>>
 }
 
-export const WriteMessage: FC<Props> = ({ sendMessage, selectedContact, setSelectedContact }) => {
+export const WriteMessage: FC<Props> = ({ contacts, contactId = '', sendMessage, selectedContact, setSelectedContact }) => {
     const { user } = useContext(AuthContext)
 
     const searchRef = useRef<HTMLInputElement>(null)
@@ -23,10 +25,20 @@ export const WriteMessage: FC<Props> = ({ sendMessage, selectedContact, setSelec
     const bodyRef = useRef<HTMLTextAreaElement>(null)
 
     const [autocomplete, setAutocomplete] = useState(false)
-    const [contacts, setContacts] = useState<IContact[]>([])
+    const [contactsFilter, setContactsFilter] = useState<IContact[]>([])
     const [loading, setLoading] = useState(false)
 
-    let searchTimeout: any
+    useEffect(() => {
+        if (contacts.length > 0) {
+            if (contactId !== '') {
+                const find = contacts.find(contact => contact.id === contactId)
+                if (find) {
+                    setSelectedContact(find)
+                    searchRef.current!.value = find.companyName
+                }
+            }
+        }
+    }, [contacts])
 
     useEffect(() => {
         if (sendMessage) {
@@ -39,19 +51,14 @@ export const WriteMessage: FC<Props> = ({ sendMessage, selectedContact, setSelec
     }, [sendMessage])
 
     const handleAutocomplete = () => {
-        clearTimeout(searchTimeout)
-
-        searchTimeout = setTimeout(async() => {
-            if (searchRef.current!.value) {
-                const { data } = await agoraApi.get<IContact[]>(`/contact/search-contacts?email=${ user?.email }&search=${ searchRef.current!.value }`)
-                setContacts(data)
-                setAutocomplete(true)
-            } else {
-                setContacts([])
-                setAutocomplete(false)
-                setSelectedContact(null)
-            }
-        }, 600)
+        const filter = contacts.filter(contact => contact.companyName.toLowerCase().includes(searchRef.current!.value.toLowerCase()) && searchRef.current!.value.length > 0)
+        if (filter.length > 0) {
+            setContactsFilter(filter)
+            setAutocomplete(true)
+        } else {
+            setContactsFilter([])
+            setAutocomplete(false)
+        }
     }
 
     const handleSelectContact = (contact: IContact) => {
@@ -86,7 +93,6 @@ export const WriteMessage: FC<Props> = ({ sendMessage, selectedContact, setSelec
             attachRef.current!.checked = false
             bodyRef.current!.value = ''
 
-            setContacts([])
             setAutocomplete(false)
             setSelectedContact(null)
         } catch (error) {
@@ -112,7 +118,7 @@ export const WriteMessage: FC<Props> = ({ sendMessage, selectedContact, setSelec
                         autocomplete && (
                             <ul className={ styles['autocomplete'] }>
                                 {
-                                    contacts.map(contact => (
+                                    contactsFilter.map(contact => (
                                         <li
                                             key={ contact.email }
                                             onClick={ () => handleSelectContact(contact) }

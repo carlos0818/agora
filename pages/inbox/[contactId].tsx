@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
@@ -10,9 +10,11 @@ import { WriteMessage } from '@/components/Inbox/WriteMessage'
 import { Messages } from '@/components/Inbox/Messages'
 import { Modal } from '@/components/Common/Modal'
 
-// import styles from './inbox.module.css'
+interface Props {
+    contactId: string
+}
 
-const InboxPage: NextPage = () => {
+const InboxWithContactPage: NextPage<Props> = ({ contactId }) => {
     const { user } = useContext(AuthContext)
 
     const windowRef = useRef<HTMLDivElement>(null)
@@ -68,6 +70,7 @@ const InboxPage: NextPage = () => {
                     <div className={ `window-glass-content` } style={{ padding: 0, overflow: 'hidden' }}>
                         <WriteMessage
                             contacts={ contacts }
+                            contactId={ contactId }
                             selectedContact={ selectedContact }
                             sendMessage={ sendMessage }
                             setSelectedContact={ setSelectedContact }
@@ -128,4 +131,14 @@ const InboxPage: NextPage = () => {
     )
 }
 
-export default InboxPage
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+    const { contactId = '' } = query
+
+    return {
+        props: {
+            contactId: contactId
+        }
+    }
+}
+
+export default InboxWithContactPage

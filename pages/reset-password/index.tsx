@@ -109,7 +109,6 @@ const ResetPasswordPage: NextPage = () => {
                                                                 required: 'This field is required',
                                                                 validate: {
                                                                     strong: (v) => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{10,}$/.test(v) || 'The password must have at least 10 characters, Uppercase and lowercase letter, a number, and special character',
-                                                                    dontMatch: value => value === getValues('repeatPassword') || 'Passwords don\'t match'
                                                                 }
                                                             })}
                                                         />

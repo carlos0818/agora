@@ -796,16 +796,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const { id = '' } = query
 
     const { data: validate } = await agoraApi.get(`/question/validate-complete-questionnaire-by-id?id=${ id }`)
-    // const { data } = await agoraApi.get(`/user/is-my-account?id=${ id }`, { headers: { 'Authorization': `Bearer ${ user?.token }` } })
-
-    // if (validate.response === '0') {
-    //     return {
-    //         redirect: {
-    //             destination: '/',
-    //             permanent: false,
-    //         }
-    //     }
-    // }
 
     const email = validate.data.email
     const fullname = validate.data.fullname
@@ -817,7 +807,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
             email,
             fullname,
             type,
-            // isMyAccountServer: data.response === '1' ? true : false,
         }
     }
 }

@@ -1,5 +1,6 @@
 import { Fragment, useContext, useState } from 'react'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -17,6 +18,8 @@ import styles from './my-contacts.module.css'
 
 const ContactsPage: NextPage = () => {
     const { user } = useContext(AuthContext)
+
+    const router = useRouter()
 
     const { countries } = countriesList
 
@@ -129,6 +132,7 @@ const ContactsPage: NextPage = () => {
                                                             height={ 24 }
                                                             className={ `icon ${ styles['icon'] }` }
                                                             title='Send message'
+                                                            onClick={ () => router.push(`/inbox/${ contact.id }`) }
                                                         />
                                                         <Link
                                                             href={ `/profile/${ contact.id }` }
