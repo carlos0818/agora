@@ -1,32 +1,43 @@
-import { FormEvent, useCallback } from 'react'
-
+import { useState } from 'react'
 import { useReCaptcha } from 'next-recaptcha-v3'
+import { useForm } from 'react-hook-form'
 
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './comments.module.css'
+import { agoraApi } from '@/api'
+
+type FormData = {
+    fullname: string
+    email: string
+    subject: string
+    comment: string
+}
 
 const CommentsPage = () => {
     const { executeRecaptcha } = useReCaptcha()
 
-    const handleSubmit = useCallback(
-        async (e: FormEvent<HTMLFormElement>) => {
-            e.preventDefault()
-      
-            // Generate ReCaptcha token
-            const token = await executeRecaptcha("form_submit")
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>()
 
-            console.log(token)
-      
-            // Attach generated token to your API requests and validate it on the server
-            // fetch("/api/form-submit", {
-            //   method: "POST",
-            //   body: {
-            //     data: { name },
-            //     token,
-            //   },
-            // });
-        }, [executeRecaptcha])
+    const [loading, setLoading] = useState(false)
+
+    const onSubmit = async({ fullname, email, subject, comment }: FormData) => {
+        setLoading(true)
+
+        try {
+            const captcha = await executeRecaptcha("form_register")
+            await agoraApi.post('/comment-info/send-email', { fullname, email, subject, comment, captcha })
+
+            setValue('fullname', '')
+            setValue('email', '')
+            setValue('subject', '')
+            setValue('comment', '')
+        } catch (error) {
+            
+        } finally {
+            setLoading(false)
+        }
+    }
 
     return (
         <AgoraLayout title='Agora' pageDescription=''>
@@ -34,27 +45,68 @@ const CommentsPage = () => {
                 <div className='window-glass' style={{ maxInlineSize: 810, margin: 'auto' }}>
                     <div className='window-glass-content'>
                         <p className={ style['login-title'] }>SEND US YOUR COMMENT</p>
-                        <form onSubmit={ e => handleSubmit(e) }>
+                        <form onSubmit={ handleSubmit(onSubmit) }>
                             <div className={ style['form-container'] }>
                                 <div className={ style['form-row'] }>
                                     <label>Full name</label>
-                                    <input type='text' className={ style['textfield'] } />
+                                    <input
+                                        type='text'
+                                        className={ `field ${ errors.fullname && 'field-error' }` }
+                                        { ...register('fullname', {
+                                            required: 'Fullname is required',
+                                            maxLength: 60
+                                        })}
+                                    />
+                                    { errors.fullname && <span className={ style['message-error'] }>{ errors.fullname.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
                                     <label>Your e-mail</label>
-                                    <input type='email' className={ style['textfield'] } />
+                                    <input
+                                        type='email'
+                                        className={ `field ${ errors.email && 'field-error' }` }
+                                        { ...register('email', {
+                                            required: 'Email is required',
+                                            maxLength: 60
+                                        })}
+                                    />
+                                    { errors.email && <span className={ style['message-error'] }>{ errors.email.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
                                     <label>Subject</label>
-                                    <input type='text' className={ style['textfield'] } />
+                                    <input
+                                        type='text'
+                                        className={ `field ${ errors.subject && 'field-error' }` }
+                                        { ...register('subject', {
+                                            required: 'Subject is required',
+                                            maxLength: 60
+                                        })}
+                                    />
+                                    { errors.subject && <span className={ style['message-error'] }>{ errors.subject.message }</span> }
                                 </div>
                                 <div className={ style['form-row'] }>
                                     <label>Your comment</label>
-                                    <textarea className={ style['textarea'] } />
+                                    <textarea
+                                        className={ `${ style['textarea'] } ${ errors.comment && 'field-error' }` }
+                                        { ...register('comment', {
+                                            required: 'Comment is required',
+                                            maxLength: 60
+                                        })}
+                                    />
+                                    { errors.comment && <span className={ style['message-error'] }>{ errors.comment.message }</span> }
                                 </div>
                             </div>
-                            <div style={{ display: 'flex' }}>
-                                <input type='submit' value='Send' className={ `button-filled ${ style['button-style'] }` } />
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                {
+                                    loading
+                                    ? <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36, marginBlockStart: 20 }} />
+                                    : (
+                                        <input
+                                            type='submit'
+                                            value='Send'
+                                            className={ `button-filled ${ style['button-style'] }` }
+                                        />
+                                    )
+                                }
                             </div>
                         </form>
                         <p className={ style['terms'] }>

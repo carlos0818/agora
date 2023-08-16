@@ -567,8 +567,8 @@ details > summary::-webkit-details-marker {
   color: black;
 }
 
-.field.field-error {
-  border-color: #CE0915;
+.field-error {
+  border-color: #CE0915 !important;
 }
 
 .select {

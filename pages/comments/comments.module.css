@@ -123,6 +123,15 @@
     margin-inline: 22px;
 }
 
+.field-error {
+    border: 3px solid #CE0915;
+}
+
+.message-error {
+    color: #CE0915;
+    font-size: 12px;
+}
+
 @media screen and (min-width: 1024px) {
     .login-container {
         padding-block-start: 150px;
