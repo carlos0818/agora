@@ -11,7 +11,8 @@ export interface NotificationState {
 const NOTIFICATION_INITIAL_STATE: NotificationState = {
     notifications: {
         contactRequests: 0,
-        messages: 0
+        messages: 0,
+        views: 0,
     }
 }
 

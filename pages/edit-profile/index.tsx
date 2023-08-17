@@ -70,7 +70,7 @@ const EditProfile: NextPage = () => {
                             {
                                 showUserMessage && (
                                     <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
-                                        <span style={{ color: '#006f0d' }}>Your information has been updated</span>
+                                        <span className={ styles['text-transition'] } style={{ color: '#006f0d' }}>Your information has been updated</span>
                                     </div>
                                 )
                             }
@@ -138,7 +138,7 @@ const EditProfile: NextPage = () => {
                                             {
                                                 showPasswordMessage && (
                                                     <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
-                                                        <span style={{ color: '#006f0d' }}>Your password has been updated</span>
+                                                        <span className={ styles['text-transition'] } style={{ color: '#006f0d' }}>Your password has been updated</span>
                                                     </div>
                                                 )
                                             }
@@ -368,7 +368,7 @@ const EditProfile: NextPage = () => {
                                 {
                                     showDataMessage && (
                                         <div style={{ display: 'inline-block', inlineSize: '100%', textAlign: 'center', marginBlockStart: 16 }}>
-                                            <span style={{ color: '#006f0d' }}>Your information has been updated</span>
+                                            <span className={ styles['text-transition'] } style={{ color: '#006f0d' }}>Your information has been updated</span>
                                         </div>
                                     )
                                 }

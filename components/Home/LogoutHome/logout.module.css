@@ -96,6 +96,14 @@
     position: absolute;
 }
 
+.image-transition {
+    animation: ShowImage 0.5s ease-in-out forwards;
+}
+
+.efecto:hover {
+    animation: ZoomPicIn 1s ease forwards;
+}
+
 .arrow {
     block-size: 48px;
     inline-size: 24px;
@@ -234,6 +242,26 @@
 
 .logos-row img {
     vertical-align: top;
+}
+
+@keyframes ShowImage {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ZoomPicIn {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 @media screen and (min-width: 768px) {

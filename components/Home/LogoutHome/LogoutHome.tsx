@@ -22,13 +22,41 @@ import buaLogo from '@/public/images/bua.png'
 import iccLogo from '@/public/images/icc.png'
 import aldeliaLogo from '@/public/images/aldelia.png'
 
+import investorImage1 from '@/public/images/investor-image1.png'
+import entrepreneurImage1 from '@/public/images/entrepreneur-image1.png'
+import expertImage1 from '@/public/images/expert-image1.png'
+
+import investorImage2 from '@/public/images/investor-image2.png'
+import entrepreneurImage2 from '@/public/images/entrepreneur-image2.png'
+import expertImage2 from '@/public/images/expert-image2.png'
+import investorImage3 from '@/public/images/investor-image3.png'
+import entrepreneurImage3 from '@/public/images/entrepreneur-image3.png'
+import expertImage3 from '@/public/images/expert-image3.png'
+
 export const LogoutHome = () => {
     const [language, setLanguage] = useState('')
+    const [setvalueEn, seturlEn] = useState(1)
+    const [setvalueEx, seturlEx] = useState(1)
+    const [setvalueIn, seturlIn] = useState(1)
+
     const videoRef = useRef<HTMLVideoElement>(null)
 
     useEffect(() => {
         getLanguage()
+        const IntervalID = setInterval(ImgEffect,5000);
+        return () => { clearInterval(IntervalID) }
     }, [])
+
+    const ImgEffect = () => {
+        const getrandom = () => Math.floor(Math.random() * 3);
+        let newIndexIn = getrandom() + 1;
+        let newIndexEx = getrandom() + 1;
+        let newIndexEn = getrandom() + 1;
+        
+        seturlEn(newIndexEx)
+        seturlEx(newIndexEn)
+        seturlIn(newIndexIn)
+    }
 
     const getLanguage = async() => {
         const userLang = await navigator.language.substring(0, 2)
@@ -73,11 +101,14 @@ export const LogoutHome = () => {
                                         Invest in impact and drive positive change for a better future
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Investor</h3>
-                                    <Image
+                                    {/* <Image
                                         src={ investorImage }
                                         alt='Investor image'
                                         className={ home['type-image'] }
-                                    />
+                                    /> */}
+                                    { setvalueIn === 1 && ( <Image src={ investorImage1 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
+                                    { setvalueIn === 2 && ( <Image src={ investorImage2 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
+                                    { setvalueIn === 3 && ( <Image src={ investorImage3 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                 </div>
                             </div>
                         </Link>
@@ -93,11 +124,14 @@ export const LogoutHome = () => {
                                         Turn your vision into reality with strategic action and bold entrepreneurship
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
-                                    <Image
+                                    {/* <Image
                                         src={ entrepreneurImage }
                                         alt='Entrepreneur image'
                                         className={ home['type-image'] }
-                                    />
+                                    /> */}
+                                    { setvalueEn === 1 && ( <Image src={ entrepreneurImage1 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
+                                    { setvalueEn === 2 && ( <Image src={ entrepreneurImage2 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
+                                    { setvalueEn === 3 && ( <Image src={ entrepreneurImage3 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                 </div>
                             </div>
                         </Link>
@@ -113,11 +147,14 @@ export const LogoutHome = () => {
                                         Drive innovation and create positive change by sharing your expertise with the world
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Expert</h3>
-                                    <Image
+                                    {/* <Image
                                         src={ expertImage }
                                         alt='Expert image'
                                         className={ home['type-image'] }
-                                    />
+                                    /> */}
+                                    { setvalueEx === 1 && ( <Image src={ expertImage1 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
+                                    { setvalueEx === 2 && ( <Image src={ expertImage2 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
+                                    { setvalueEx === 3 && ( <Image src={ expertImage3 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                 </div>
                             </div>
                         </Link>

@@ -73,6 +73,10 @@ export const useProfile = (email: string, id: string, type: string) => {
                 setIsMyAccount(true)
             } else {
                 setIsMyAccount(false)
+
+                setTimeout(() => {
+                    agoraApi.post('/user/view-profile', { id, email: user.email })
+                }, 30000)
             }
             loadQuestions()
             getUserAnswers()

@@ -81,6 +81,34 @@
     display: none;
 }
 
+.icons-shake {
+    animation: shake 0.3s infinite alternate ease-in-out;
+}
+
+.icons-up:hover {
+    animation: iconup 0.3s infinite alternate ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+       transform: translateX(-1px) translateY(-1px);
+    }
+
+    100% {
+        transform: translateX(1px) translateY(1px);;
+    }
+}
+
+@keyframes iconup {
+    0% {
+       transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
 @media screen and (min-width: 768px) {
     .home-container {
         padding-block-start: 110px;

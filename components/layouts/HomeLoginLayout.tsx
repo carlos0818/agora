@@ -74,9 +74,11 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
     const getNotifications = async() => {
         const { data: contactRequests } = await agoraApi.get<INotification>(`/contact/get-contact-requests-notification?email=${ user?.email }`)
         const { data: messages } = await agoraApi.get<INotification>(`/message/get-messages-notification?email=${ user?.email }`)
+        const { data: views } = await agoraApi.get<INotification>(`/user/get-view-profile-notification?email=${ user?.email }`)
         updateNotifications({
             contactRequests: contactRequests.contactRequests,
             messages: messages.messages,
+            views: views.views,
         })
     }
 
@@ -114,24 +116,34 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                                     <em className='icon-icon-user' style={{ color: 'white', fontSize: 28 }}></em>
                                     {
                                         notifications.contactRequests > 0 && (
-                                            <div className={ styles['notification-balloon'] }>
-                                                <span>{ notifications.contactRequests }</span>
+                                            <div className={ `${ styles['notification-balloon'] } ${ styles['icons-shake'] }` }>
+                                                <span>
+                                                    { notifications.contactRequests > 99 ? '99+' : notifications.contactRequests }
+                                                </span>
                                             </div>
                                         )
                                     }
                                 </div>
                                 <div className={ styles['notification-wrapper'] }>
                                     <em className='icon-icon-eye' style={{ color: 'white', fontSize: 28 }}></em>
-                                    <div className={ styles['notification-balloon'] }>
-                                        <span>38</span>
-                                    </div>
+                                    {
+                                        notifications.views > 0 && (
+                                            <div className={ `${ styles['notification-balloon'] } ${ styles['icons-shake'] }` }>
+                                                <span>
+                                                    { notifications.views > 99 ? '99+' : notifications.views }
+                                                </span>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                                 <div className={ styles['notification-wrapper'] } onClick={ () => router.push('/inbox') }>
                                     <em className='icon-icon-mail' style={{ color: 'white', fontSize: 28 }}></em>
                                     {
                                         notifications.messages > 0 && (
-                                            <div className={ styles['notification-balloon'] }>
-                                                <span>{ notifications.messages }</span>
+                                            <div className={ `${ styles['notification-balloon'] } ${ styles['icons-shake'] }` }>
+                                                <span>
+                                                    { notifications.messages > 99 ? '99+' : notifications.messages }
+                                                </span>
                                             </div>
                                         )
                                     }
@@ -140,7 +152,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                             {
                                 showWrite && (
                                     <div
-                                        className={ styles['circle-write-desktop'] }
+                                        className={ `${ styles['circle-write-desktop'] } ${ styles['icons-up'] }` }
                                         ref={ circleDiv }
                                         onClick={ moveTop }
                                     >

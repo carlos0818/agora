@@ -54,6 +54,25 @@
     gap: 8px;
 }
 
+.text-transition {
+    color: #006f0d;
+    animation: Texttrans 3s ease-in-out forwards;   
+}
+
+@keyframes Texttrans {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .form-group {
         display: grid;

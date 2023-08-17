@@ -77,10 +77,11 @@
 
 .autocomplete {
     background-color: white;
+    border: 3px solid #bae7ff;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    inline-size: 100%;
+    inline-size: 90%;
     left: 3px;
     list-style: none;
     margin: 0;
