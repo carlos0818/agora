@@ -55,6 +55,7 @@
     font-weight: 700;
     gap: 8px;
     padding-inline: 16px;
+    animation: menuLeft 0.5s ease-in-out forwards;
 }
 
 .option.selected {
@@ -62,11 +63,11 @@
 }
 
 .option:hover {
-    animation: sizemenu 0.5s ease-in-out forwards;
+    animation: menuRight 0.3s ease-in-out forwards;
 }
 
 .submenu-option:hover {
-    animation: sizemenu 0.5s ease-in-out forwards;
+    animation: menuRight 0.3s ease-in-out forwards;
 }
 
 .submenu-container {
@@ -153,13 +154,23 @@
         }
     }
 
-    @keyframes sizemenu {
-        0%, 100% {
+    @keyframes menuRight {
+        0% {
             transform: translateX(0);
         }
     
-        15% {
-            transform: translateX(5px);
+        100% {
+            transform: translateX(2px);
+        }
+    }
+
+    @keyframes menuLeft {
+        0% {
+            transform: translateX(2px);
+        }
+    
+        100% {
+            transform: translateX(0);
         }
     }
 }

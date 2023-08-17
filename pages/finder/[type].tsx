@@ -49,7 +49,6 @@ const EntrepreneurFinder = () => {
                                 <Results
                                     search={ search }
                                     loadingSearch={ loadingSearch }
-                                    setSearch={ setSearch }
                                 />
                             </div>
                         </div>
