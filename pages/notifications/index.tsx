@@ -57,6 +57,7 @@ const Notifications: NextPage = () => {
                                 {
                                     entrepreneursProfile.map((profile, idx) => (
                                         <ProfileCard
+                                            key={ profile.id }
                                             result={ profile }
                                             index={ idx }
                                         />
@@ -81,6 +82,7 @@ const Notifications: NextPage = () => {
                                 {
                                     investorsProfile.map((profile, idx) => (
                                         <ProfileCard
+                                            key={ profile.id }
                                             result={ profile }
                                             index={ idx }
                                         />
@@ -105,6 +107,7 @@ const Notifications: NextPage = () => {
                                 {
                                     expertsProfile.map((profile, idx) => (
                                         <ProfileCard
+                                            key={ profile.id }
                                             result={ profile }
                                             index={ idx }
                                         />
