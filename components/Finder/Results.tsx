@@ -29,6 +29,7 @@ export const Results: FC<Props> = ({ search, loadingSearch }) => {
                             {
                                 search.map((result, idx) => (
                                     <ProfileCard
+                                        key={ result.id }
                                         result={ result }
                                         index={ idx }
                                     />

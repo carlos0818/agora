@@ -31,7 +31,7 @@ export const ProfileCard: FC<Props> = ({ result, index }) => {
     }
 
     return (
-        <Fragment key={ result.id }>
+        <Fragment>
             {
                 result.email !== user?.email && (
                     <div className={ styles['card-container'] } tabIndex={ index }>
