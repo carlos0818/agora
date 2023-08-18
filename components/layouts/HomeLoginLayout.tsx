@@ -124,7 +124,7 @@ export const HomeLoginLayout: FC<Props> = ({ children, title, pageDescription, s
                                         )
                                     }
                                 </div>
-                                <div className={ styles['notification-wrapper'] }>
+                                <div className={ styles['notification-wrapper'] } onClick={ () => router.push('/notifications') }>
                                     <em className='icon-icon-eye' style={{ color: 'white', fontSize: 28 }}></em>
                                     {
                                         notifications.views > 0 && (
