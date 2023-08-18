@@ -55,8 +55,8 @@ const Notifications: NextPage = () => {
         if (!$entrepreneurs.open) {
             await agoraApi.post('/entrepreneur/update-show-notifications', { email: user?.email })
         }
+        updateNotifications({ ...notifications, views: notifications.views - entrepreneursCount })
         setEntrepreneursCount(0)
-        updateNotifications({ ...notifications, views: notifications.views - 1 })
     }
 
     const handleUpdateShowInvestors = async() => {
@@ -64,8 +64,8 @@ const Notifications: NextPage = () => {
         if (!$investors.open) {
             await agoraApi.post('/investor/update-show-notifications', { email: user?.email })
         }
+        updateNotifications({ ...notifications, views: notifications.views - investorsCount })
         setInvestorsCount(0)
-        updateNotifications({ ...notifications, views: notifications.views - 1 })
     }
 
     const handleUpdateShowExperts = async() => {
@@ -73,8 +73,8 @@ const Notifications: NextPage = () => {
         if (!$experts.open) {
             await agoraApi.post('/expert/update-show-notifications', { email: user?.email })
         }
+        updateNotifications({ ...notifications, views: notifications.views - expertsCount })
         setExpertsCount(0)
-        updateNotifications({ ...notifications, views: notifications.views - 1 })
     }
 
     return (
