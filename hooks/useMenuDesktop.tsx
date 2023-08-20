@@ -1,4 +1,4 @@
-import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { RefObject, useContext, useEffect, useRef, useState } from 'react'
 import { MenuContext } from '@/context/menu'
 
 type HideMenu = 'original' | 'hide' | 'show'

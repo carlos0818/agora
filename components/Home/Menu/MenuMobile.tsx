@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -6,6 +6,8 @@ import { AuthContext } from '@/context/auth'
 import { MenuContext } from '@/context/menu'
 
 import styles from './menu-mobile.module.css'
+import { agoraApi } from '@/api'
+import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
 
 export const MenuMobile = () => {
     const { isOpen, toggleSideMenu } = useContext(MenuContext)
@@ -16,24 +18,75 @@ export const MenuMobile = () => {
     const [openMyData, setOpenMyData] = useState(false)
     const [openMoreInfo, setOpenMoreInfo] = useState(false)
 
+    const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
+    const [hideRocket, setHideRocket] = useState(true)
+
+    useEffect(() => {
+        if (user) {
+            Promise.all([
+                loadData(),
+                validateCompleteQuestionnaire(),
+            ])
+        }
+    }, [user])
+
+    const loadData = async() => {
+        switch (user?.type) {
+            case 'E':
+                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user.id }`)
+                setEntrepreneurData(entrepreneur)
+                break
+            case 'I':
+                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user.id }`)
+                setEntrepreneurData(investor)
+                break
+            case 'X':
+                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user.id }`)
+                setEntrepreneurData(expert)
+                break
+            default:
+                break
+        }
+    }
+
+    const validateCompleteQuestionnaire = async() => {
+        try {
+            await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
+            setHideRocket(false)
+        } catch (error) {
+            setHideRocket(true)
+        }
+    }
+
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
             <div className={ `window-glass-content ${ styles['menu-content'] }` } style={{ paddingBlock: '10px', paddingInline: 0, overflow: 'hidden' }}>
                 <ul className={ styles['options-container'] }>
-                    <Link
-                        href='/'
-                        passHref
-                        prefetch={ false }
-                        legacyBehavior
-                    >
-                        <li
-                            className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
-                            onClick={ () => toggleSideMenu('original') }
-                        >
-                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                            Home
-                        </li>
-                    </Link>
+                    {
+                        ((entrepreneurData?.name &&
+                            entrepreneurData?.city &&
+                            entrepreneurData?.country &&
+                            entrepreneurData?.address &&
+                            entrepreneurData?.email_contact &&
+                            entrepreneurData?.phone &&
+                            entrepreneurData?.profilepic) &&
+                            hideRocket) && (
+                                <Link
+                                    href='/'
+                                    passHref
+                                    prefetch={ false }
+                                    legacyBehavior
+                                >
+                                    <li
+                                        className={ `${ styles['option'] } ${ router.pathname === '/' ? styles['selected'] : '' }` }
+                                        onClick={ () => toggleSideMenu('original') }
+                                    >
+                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                        Home
+                                    </li>
+                                </Link>
+                            )
+                    }
                     <Link
                         href={ `/profile/${ user?.id }` }
                         passHref
@@ -48,248 +101,277 @@ export const MenuMobile = () => {
                             My profile
                         </li>
                     </Link>
-                    <li>
-                        <details
-                            open={
-                                router.query.type === 'entrepreneur' ||
-                                router.query.type === 'investors' ||
-                                router.query.type === 'experts'
-                            }
-                        >
-                            <summary
-                                className={
-                                    `
-                                    ${ styles['option'] }
-                                    ${
-                                        router.query.type === 'entrepreneur' ||
-                                        router.query.type === 'investors' ||
-                                        router.query.type === 'experts'
-                                        ? styles['selected'] : ''
-                                    }
-                                ` }
-                            >
-                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                Finder
-                            </summary>
-                            <div className={ styles['accordion-content'] }>
-                                <ul className={ styles['submenu-container'] }>
-                                    {/* <Link
-                                        href='/finder/country-snapshot'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
+                    {
+                        ((entrepreneurData?.name &&
+                            entrepreneurData?.city &&
+                            entrepreneurData?.country &&
+                            entrepreneurData?.address &&
+                            entrepreneurData?.email_contact &&
+                            entrepreneurData?.phone &&
+                            entrepreneurData?.profilepic) &&
+                            hideRocket) && (
+                                <li>
+                                    <details
+                                        open={
+                                            router.query.type === 'entrepreneur' ||
+                                            router.query.type === 'investors' ||
+                                            router.query.type === 'experts'
+                                        }
                                     >
-                                        <li
-                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/country-snapshot' ? styles['selected'] : '' }` }
-                                            onClick={ () => toggleSideMenu('original') }
-                                        >
-                                            <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Countries
-                                        </li>
-                                    </Link>
-                                    <li className={ styles['submenu-option'] }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Sector
-                                    </li>
-                                    <li className={ styles['submenu-option'] }>
-                                        <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
-                                    </li> */}
-                                    <Link
-                                        href={ `/finder/entrepreneur` }
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li
-                                            className={ styles['submenu-option'] }
-                                            onClick={ () => toggleSideMenu('original') }
+                                        <summary
+                                            className={
+                                                `
+                                                ${ styles['option'] }
+                                                ${
+                                                    router.query.type === 'entrepreneur' ||
+                                                    router.query.type === 'investors' ||
+                                                    router.query.type === 'experts'
+                                                    ? styles['selected'] : ''
+                                                }
+                                            ` }
                                         >
                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Entrepreneur
-                                        </li>
-                                    </Link>
-                                    <Link
-                                        href={ `/finder/investors` }
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
+                                            Finder
+                                        </summary>
+                                        <div className={ styles['accordion-content'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                {/*<li className={ styles['submenu-option'] }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Sector
+                                                </li>
+                                                <li className={ styles['submenu-option'] }>
+                                                    <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> Portfolio
+                                                </li> */}
+                                                <Link
+                                                    href={ `/finder/entrepreneur` }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ styles['submenu-option'] }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Entrepreneur
+                                                    </li>
+                                                </Link>
+                                                <Link
+                                                    href={ `/finder/investors` }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ styles['submenu-option'] }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Investors
+                                                    </li>
+                                                </Link>
+                                                <Link
+                                                    href={ `/finder/experts` }
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ styles['submenu-option'] }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Experts
+                                                    </li>
+                                                </Link>
+                                            </ul>
+                                        </div>
+                                    </details>
+                                </li>
+                            )
+                    }
+                    {
+                        ((entrepreneurData?.name &&
+                            entrepreneurData?.city &&
+                            entrepreneurData?.country &&
+                            entrepreneurData?.address &&
+                            entrepreneurData?.email_contact &&
+                            entrepreneurData?.phone &&
+                            entrepreneurData?.profilepic) &&
+                            hideRocket) && (
+                                <li>
+                                    <details
+                                        open={
+                                            router.pathname === '/infographics/country-snapshot'
+                                        }
                                     >
-                                        <li
-                                            className={ styles['submenu-option'] }
-                                            onClick={ () => toggleSideMenu('original') }
+                                        <summary
+                                            className={
+                                                `
+                                                ${ styles['option'] }
+                                                ${
+                                                    router.pathname === '/infographics/country-snapshot'
+                                                    ? styles['selected'] : ''
+                                                }
+                                            ` }
                                         >
                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Investors
-                                        </li>
-                                    </Link>
-                                    <Link
-                                        href={ `/finder/experts` }
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
+                                            Infographics
+                                        </summary>
+                                        <div className={ styles['accordion-content'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                <Link
+                                                    href='/infographics/country-snapshot'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ `${ styles['submenu-option'] } ${ router.pathname === '/infographics/country-snapshot' ? styles['selected'] : '' }` }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Countries
+                                                    </li>
+                                                </Link>
+                                            </ul>
+                                        </div>
+                                    </details>
+                                </li>
+                            )
+                    }
+                    {
+                        ((entrepreneurData?.name &&
+                            entrepreneurData?.city &&
+                            entrepreneurData?.country &&
+                            entrepreneurData?.address &&
+                            entrepreneurData?.email_contact &&
+                            entrepreneurData?.phone &&
+                            entrepreneurData?.profilepic) &&
+                            hideRocket) && (
+                                <li>
+                                    <details
+                                        open={
+                                            router.pathname === '/contacts/my-contacts' ||
+                                            router.pathname === '/contacts/contact-requests'
+                                        }
                                     >
-                                        <li
-                                            className={ styles['submenu-option'] }
-                                            onClick={ () => toggleSideMenu('original') }
+                                        <summary
+                                            className={
+                                                `
+                                                ${ styles['option'] }
+                                                ${
+                                                    router.pathname === '/contacts/my-contacts' ||
+                                                    router.pathname === '/contacts/contact-requests'
+                                                    ? styles['selected'] : ''
+                                                }
+                                            ` }
                                         >
                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Experts
-                                        </li>
-                                    </Link>
-                                </ul>
-                            </div>
-                        </details>
-                    </li>
-                    <li>
-                        <details
-                            open={
-                                router.pathname === '/infographics/country-snapshot'
-                            }
-                        >
-                            <summary
-                                className={
-                                    `
-                                    ${ styles['option'] }
-                                    ${
-                                        router.pathname === '/infographics/country-snapshot'
-                                        ? styles['selected'] : ''
-                                    }
-                                ` }
-                            >
-                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                Infographics
-                            </summary>
-                            <div className={ styles['accordion-content'] }>
-                                <ul className={ styles['submenu-container'] }>
-                                    <Link
-                                        href='/infographics/country-snapshot'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li
-                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/infographics/country-snapshot' ? styles['selected'] : '' }` }
-                                            onClick={ () => toggleSideMenu('original') }
-                                        >
+                                            Contacts
+                                        </summary>
+                                        <div className={ styles['accordion-content'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                <Link
+                                                    href='/contacts/my-contacts'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ `${ styles['submenu-option'] } ${ router.pathname === '/contacts/my-contacts' ? styles['selected'] : '' }` }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        My contacts
+                                                    </li>
+                                                </Link>
+                                                <Link
+                                                    href='/contacts/contact-requests'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ `${ styles['submenu-option'] } ${ router.pathname === '/contacts/contact-requests' ? styles['selected'] : '' }` }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Contact requests
+                                                    </li>
+                                                </Link>
+                                            </ul>
+                                        </div>
+                                    </details>
+                                </li>
+                            )
+                    }
+                    {
+                        ((entrepreneurData?.name &&
+                            entrepreneurData?.city &&
+                            entrepreneurData?.country &&
+                            entrepreneurData?.address &&
+                            entrepreneurData?.email_contact &&
+                            entrepreneurData?.phone &&
+                            entrepreneurData?.profilepic) &&
+                            hideRocket) && (
+                                <li>
+                                    <details open={ openMyData }>
+                                        <summary className={ styles['option'] }>
                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Countries
-                                        </li>
-                                    </Link>
-                                </ul>
-                            </div>
-                        </details>
-                    </li>
-                    <li>
-                        <details
-                            open={
-                                router.pathname === '/contacts/my-contacts' ||
-                                router.pathname === '/contacts/contact-requests'
-                            }
-                        >
-                            <summary
-                                className={
-                                    `
-                                    ${ styles['option'] }
-                                    ${
-                                        router.pathname === '/contacts/my-contacts' ||
-                                        router.pathname === '/contacts/contact-requests'
-                                        ? styles['selected'] : ''
-                                    }
-                                ` }
-                            >
-                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                Contacts
-                            </summary>
-                            <div className={ styles['accordion-content'] }>
-                                <ul className={ styles['submenu-container'] }>
-                                    <Link
-                                        href='/contacts/my-contacts'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li
-                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/contacts/my-contacts' ? styles['selected'] : '' }` }
-                                            onClick={ () => toggleSideMenu('original') }
-                                        >
-                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            My contacts
-                                        </li>
-                                    </Link>
-                                    <Link
-                                        href='/contacts/contact-requests'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li
-                                            className={ `${ styles['submenu-option'] } ${ router.pathname === '/contacts/contact-requests' ? styles['selected'] : '' }` }
-                                            onClick={ () => toggleSideMenu('original') }
-                                        >
-                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Contact requests
-                                        </li>
-                                    </Link>
-                                </ul>
-                            </div>
-                        </details>
-                    </li>
-                    <li>
-                        <details open={ openMyData }>
-                            <summary className={ styles['option'] }>
-                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                My data
-                            </summary>
-                            <div className={ styles['accordion-content'] }>
-                                <ul className={ styles['submenu-container'] }>
-                                    {/* <Link
-                                        href='/finder/country-snapshot'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li className={ styles['submenu-option'] }>
-                                            Dashboard
-                                        </li>
-                                    </Link> */}
-                                    <Link
-                                        href='/inbox'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li
-                                            className={ styles['submenu-option'] }
-                                            onClick={ () => toggleSideMenu('original') }
-                                        >
-                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Inbox
-                                        </li>
-                                    </Link>
-                                    <Link
-                                        href='/inbox'
-                                        passHref
-                                        prefetch={ false }
-                                        legacyBehavior
-                                    >
-                                        <li
-                                            className={ styles['submenu-option'] }
-                                            onClick={ () => toggleSideMenu('original') }
-                                        >
-                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                            Notifications
-                                        </li>
-                                    </Link>
-                                    {
-                                        user?.type === 'E' && (
-                                            <li className={ styles['submenu-option'] }>
-                                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                Pitch Deck
-                                            </li>
-                                        )
-                                    }
-                                </ul>
-                            </div>
-                        </details>
-                    </li>
+                                            My data
+                                        </summary>
+                                        <div className={ styles['accordion-content'] }>
+                                            <ul className={ styles['submenu-container'] }>
+                                                <Link
+                                                    href='/inbox'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ styles['submenu-option'] }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Inbox
+                                                    </li>
+                                                </Link>
+                                                <li className={ styles['submenu-option'] }>
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Dashboard
+                                                </li>
+                                                <li className={ styles['submenu-option'] }>
+                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                    Sector Analisys
+                                                </li>
+                                                <Link
+                                                    href='/inbox'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ styles['submenu-option'] }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Notifications
+                                                    </li>
+                                                </Link>
+                                                {
+                                                    user?.type === 'E' && (
+                                                        <li className={ styles['submenu-option'] }>
+                                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                            Pitch Deck
+                                                        </li>
+                                                    )
+                                                }
+                                            </ul>
+                                        </div>
+                                    </details>
+                                </li>
+                            )
+                    }
                     <li>
                         <details open={ openMoreInfo }>
                             <summary className={ styles['option'] }>

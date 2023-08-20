@@ -276,15 +276,12 @@ export const useProfile = (email: string, id: string, type: string) => {
         try {
             switch (user?.type) {
                 case 'E':
-                    console.log('E')
                     await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
                     break
                 case 'I':
-                    console.log('I')
                     await agoraApi.post('/investor/update-investor-info', data)
                     break
                 case 'X':
-                    console.log('X')
                     await agoraApi.post('/expert/update-expert-info', data)
                     break
                 default:

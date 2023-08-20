@@ -1,4 +1,5 @@
 import { KeyboardEvent, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import { agoraApi } from '@/api'
@@ -16,17 +17,24 @@ import styles from './login.module.css'
 export const LoginHome = () => {
     const { user } = useContext(AuthContext)
 
+    const router = useRouter()
+
     const [agoraMessages, setAgoraMessages] = useState<IWall[]>([])
     const [userPosts, setUserPosts] = useState<IUserPosts[]>([])
     const [cardCloseId, setCardCloseId] = useState<number | null>(null)
     const [post, setPost] = useState('')
     const [data, setData] = useState<IEntrepreneur | null>(null)
+    const [hideRocket, setHideRocket] = useState(true)
 
     useEffect(() => {
         if (user) {
-            loadData()
-            loadAgoraMessages()
-            loadUserPosts()
+            Promise.all([
+                loadData(),
+                validateCompleteQuestionnaire(),
+            ]).then(() => {
+                loadAgoraMessages()
+                loadUserPosts()
+            })
         }
     }, [user])
 
@@ -36,22 +44,48 @@ export const LoginHome = () => {
         }
     }, [cardCloseId])
 
+    useEffect(() => {
+        if (data && user) {
+            if (
+                !(data.name &&
+                data.city &&
+                data.country &&
+                data.address &&
+                data.email_contact &&
+                data.phone &&
+                data.profilepic &&
+                hideRocket)
+            ) {
+                router.replace(`/profile/${ user.id }`)
+            }
+        }
+    }, [data, hideRocket, user])
+
     const loadData = async() => {
         switch (user?.type) {
             case 'E':
-                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user.id }`)
+                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user?.id }`)
                 setData(entrepreneur)
                 break
             case 'I':
-                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user.id }`)
+                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user?.id }`)
                 setData(investor)
                 break
             case 'X':
-                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user.id }`)
+                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user?.id }`)
                 setData(expert)
                 break
             default:
                 break
+        }
+    }
+
+    const validateCompleteQuestionnaire = async() => {
+        try {
+            await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
+            setHideRocket(false)
+        } catch (error) {
+            setHideRocket(true)
         }
     }
 

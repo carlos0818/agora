@@ -22,7 +22,6 @@ const ForgotPasswordPage: NextPage = () => {
         const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
 
         if (!pattern.test(emailRef.current!.value)) {
-            console.log('Email')
             setError('Incorrect email')
             return
         }

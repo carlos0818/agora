@@ -21,6 +21,7 @@ import { agoraApi } from '@/api'
 import styles from './questionnaire.module.css'
 
 import { Modal } from '@/components/Common/Modal'
+import Image from 'next/image'
 
 const Questionnaire: NextPage = () => {
     const {
@@ -145,21 +146,14 @@ const Questionnaire: NextPage = () => {
                                                                                                 <div
                                                                                                     className={ styles['video-container'] }
                                                                                                 >
-                                                                                                    <div
-                                                                                                        id={ `play-${ question.qnbr }` }
-                                                                                                        style={{
-                                                                                                            inlineSize: 60,
-                                                                                                            blockSize: 60,
-                                                                                                            borderRadius: 200,
-                                                                                                            backgroundColor: 'green',
-                                                                                                            position: 'absolute',
-                                                                                                            zIndex: 1,
-                                                                                                            top: 'calc(50% - 30px)',
-                                                                                                            left: 'calc(50% - 30px)',
-                                                                                                            cursor: 'pointer',
-                                                                                                        }}
+                                                                                                    <Image
+                                                                                                        src='/images/play.png'
+                                                                                                        alt=''
+                                                                                                        width={ 60 }
+                                                                                                        height={ 60 }
+                                                                                                        style={{ position: 'absolute', top: 'calc(50% - 30px)', left: 'calc(50% - 30px)', zIndex: 1 }}
                                                                                                         onClick={ () => handlePlay(question.qnbr, question.video) }
-                                                                                                    ></div>
+                                                                                                    />
                                                                                                     <video
                                                                                                         id={ `video-${ question.qnbr }` }
                                                                                                         className={ styles['video'] }

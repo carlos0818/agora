@@ -98,10 +98,10 @@ const AboutPage = () => {
                         <div className={ style['section-five-container'] }>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>ACCESIBILITY</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Accesibility Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora is committed to making its services and resources accessible to entrepreneurs from frontier and emerging economies,
                                     regardless of their location or background.
@@ -109,10 +109,10 @@ const AboutPage = () => {
                             </div>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>INCLUSIVENESS</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Inclusiveness Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora is designed to be inclusive, fostering an environment where all entrepreneurs, regardless of their size or stage of
                                     development, can connect with potential partners and investors and receive the support they need.
@@ -120,10 +120,10 @@ const AboutPage = () => {
                             </div>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>FAIRNESS</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Fairness Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora operates on a principle of fairness, ensuring that all enterprises are assessed and qualified based on the same
                                     criteria, regardless of their size, location, or sector.
@@ -131,10 +131,10 @@ const AboutPage = () => {
                             </div>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>CO-CREATION</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Co-creation Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora is built on the principles of co-creation, working with a wide range of partners to help entrepreneurs access the
                                     resources and support they need in a participatory and inclusive manner.
@@ -142,10 +142,10 @@ const AboutPage = () => {
                             </div>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>TRANSPARENCY</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Transparency Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora is committed to transparency in all its operations, providing users with clear and accurate information about the
                                     enterprises they are interested in and the partners they are connecting with.
@@ -153,10 +153,10 @@ const AboutPage = () => {
                             </div>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>INNOVATION</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Innovation Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora is dedicated to continuous innovation and improvement, developing new technologies and services supporting the
                                     growth and development of enterprises in frontier and emerging economies.
@@ -164,10 +164,10 @@ const AboutPage = () => {
                             </div>
                             <div className={ style['specs-container'] }>
                                 <h3 className={ style['specs-title'] }>OWNERSHIP</h3>
-                                <Image
+                                {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Ownership Icon'
-                                />
+                                /> */}
                                 <p className={ style['specs-description'] }>
                                     Agora places a strong emphasis on ownership, ensuring that the countries partnering with it are driving the deployment
                                     of the platform and own the process.

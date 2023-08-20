@@ -5,9 +5,6 @@ import Image from 'next/image'
 import home from './logout.module.css'
 
 import agoralogoShadow from '@/public/images/agoralogo_shadow.png'
-import investorImage from '@/public/images/investor-image.png'
-import entrepreneurImage from '@/public/images/entrepreneur-image.png'
-import expertImage from '@/public/images/expert-image.png'
 import backArrow from '@/public/images/back-arrow.png'
 import nextArrow from '@/public/images/next-arrow.png'
 import psfuLogo from '@/public/images/psfu.png'
@@ -162,6 +159,30 @@ export const LogoutHome = () => {
                     <Image src={ nextArrow } alt='Next Arrow' className={ home['arrow'] } />
                 </div>
             </section>
+            <section className={ home['meet-container'] }>
+                <h3 className={ home['meet-title'] }>Meet the Portfolio</h3>
+                <p className={ home['meet-description'] }>
+                    Discover a selection of enterprises featured in Agora&lsquo;s portfolio, offering a glimpse into the diverse array of businesses driving innovation
+                    and impact within our collaborative ecosystem
+                </p>
+                <div className={ home['portfolio-container'] }>
+                    <div className={ home['portfolio-wrapper'] }>
+                        <div className={ home['portfolio-image'] }></div>
+                        <h4 className={ home['portfolio-title'] }>Upside Foods</h4>
+                        <p className={ home['portfolio-description'] }>Making your favorite food a force for good.</p>
+                    </div>
+                    <div className={ home['portfolio-wrapper'] }>
+                        <div className={ home['portfolio-image'] }></div>
+                        <h4 className={ home['portfolio-title'] }>Upside Foods</h4>
+                        <p className={ home['portfolio-description'] }>Making your favorite food a force for good.</p>
+                    </div>
+                    <div className={ home['portfolio-wrapper'] }>
+                        <div className={ home['portfolio-image'] }></div>
+                        <h4 className={ home['portfolio-title'] }>Upside Foods</h4>
+                        <p className={ home['portfolio-description'] }>Making your favorite food a force for good.</p>
+                    </div>
+                </div>
+            </section>
             <section className={ home['what-container'] }>
                 <div className={ home['what-wrapper'] }>
                     <div className={ home['what-text-container'] }>
@@ -202,6 +223,55 @@ export const LogoutHome = () => {
                                 )
                             }
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section className={ home['community-container'] }>
+                <h3 className={ home['community-title'] }>Hear from the community</h3>
+                <div className={ home['community-wrapper'] }>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
+                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
+                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
+                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
+                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
+                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                    </div>
+                </div>
+            </section>
+            <section className={ home['cocreate-container'] }>
+                <div className={ home['cocreate-wrapper'] }>
+                    {/* <img className={ home['cocreate-image'] } alt="" /> */}
+                    <div className={ home['cocreate-image'] }>
+                        <h3 className={ home['cocreate-title'] }>Lets co-create Together</h3>
+                        <p className={ home['cocreate-description'] }>
+                            Discover a vibrant ecosystem of innovation at Agora! Connect with us and let&lsquo;s co-create a world of endless posibilities!
+                        </p>
+                        <button className={ home['cocreate-button'] }>
+                            CONTACT US
+                        </button>
                     </div>
                 </div>
             </section>

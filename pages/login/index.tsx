@@ -172,13 +172,11 @@ const LoginPage: NextPage = ({  }) => {
                             }
                         </div>
                         <p className={ style['terms'] }>
-                            Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
-                            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
-                            a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos
-                            especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos,
-                            quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas Letraset, las
-                            cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus
-                            PageMaker, el cual incluye versiones de Lorem Ipsum.
+                            We make all reasonable efforts to ensure the accuracy and security of the entered data. However, the security of your login
+                            credentials is of utmost importance. We strongly recommend that you use secure passwords and keep your login information confidential.
+                            We are not responsible for any unauthorized disclosure of your login data.
+                            We advise you to periodically check this section to stay informed about any changes. By using this login section, you accept the terms
+                            and conditions set forth in this disclaimer. If you do not agree with these terms, we recommend that you do not use this section.
                         </p>
                     </div>
                 </div>

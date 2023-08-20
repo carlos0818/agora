@@ -48,7 +48,7 @@ const NextAuth2 = (req: NextApiRequest, res: NextApiResponse) => {
               return data
             }
           } catch (error: any) {
-            console.log(error.response.data)
+            // console.log(error.response.data)
           }
         },
       }),

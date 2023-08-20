@@ -56,7 +56,6 @@ export const useContacts = (page: string) => {
                     break
                 case 'CR':
                     const { data: contactRequests } = await agoraApi.get<IContact[]>(`/contact/get-contact-requests-by-email?email=${ user?.email }${ data }`)
-                    console.log(contactRequests)
                     setContacts(contactRequests)
                     setLoading(false)
                     break

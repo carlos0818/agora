@@ -102,7 +102,6 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                     break
                 case 'experts':
                     const { data: experts } = await agoraApi.get(`/expert/search?${ query }&email=${ user?.email }`)
-                    console.log(experts)
                     setSearch(experts)
                     setLoadingSearch(false)
                     break

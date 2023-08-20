@@ -187,50 +187,54 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             </>
                                         )
                                     }
-                                    <div className={ styles['social-container'] }>
-                                        {
-                                            facebook && (
-                                                <Link
-                                                    href={ `https://www.facebook.com/${ facebook }` }
-                                                    passHref
-                                                    prefetch={ false }
-                                                    legacyBehavior
-                                                >
-                                                    <a target='_blank'>
-                                                        <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
-                                                    </a>
-                                                </Link>
-                                            )
-                                        }
-                                        {
-                                            linkedin && (
-                                                <Link
-                                                    href={ `https://www.linkedin.com/in/${ linkedin }` }
-                                                    passHref
-                                                    prefetch={ false }
-                                                    legacyBehavior
-                                                >
-                                                    <a target='_blank'>
-                                                        <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
-                                                    </a>
-                                                </Link>
-                                            )
-                                        }
-                                        {
-                                            twitter && (
-                                                <Link
-                                                    href={ `https://www.twitter.com/${ twitter }` }
-                                                    passHref
-                                                    prefetch={ false }
-                                                    legacyBehavior
-                                                >
-                                                    <a target='_blank'>
-                                                        <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
-                                                    </a>
-                                                </Link>
-                                            )
-                                        }
-                                    </div>
+                                    {
+                                        (!isMyAccount && validateFriend) && (
+                                            <div className={ styles['social-container'] }>
+                                                {
+                                                    facebook && (
+                                                        <Link
+                                                            href={ `https://www.facebook.com/${ facebook }` }
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        >
+                                                            <a target='_blank'>
+                                                                <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
+                                                            </a>
+                                                        </Link>
+                                                    )
+                                                }
+                                                {
+                                                    linkedin && (
+                                                        <Link
+                                                            href={ `https://www.linkedin.com/in/${ linkedin }` }
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        >
+                                                            <a target='_blank'>
+                                                                <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
+                                                            </a>
+                                                        </Link>
+                                                    )
+                                                }
+                                                {
+                                                    twitter && (
+                                                        <Link
+                                                            href={ `https://www.twitter.com/${ twitter }` }
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        >
+                                                            <a target='_blank'>
+                                                                <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 20 } height={ 20 } />
+                                                            </a>
+                                                        </Link>
+                                                    )
+                                                }
+                                            </div>
+                                        )
+                                    }
                                     {
                                         messageRequest && <span style={{ color: '#006f0d', fontFamily: 'ebrima', fontSize: 13 }}>Your contact request has been sent</span>
                                     }
@@ -297,65 +301,69 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             
                                         </div>
                                     </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: 24, marginBlockStart: 20 }}>
-                                        <div className={ styles['social-container'] }>
-                                            {
-                                                facebook && (
-                                                    <Link
-                                                        href={ `https://www.facebook.com/${ facebook }` }
-                                                        passHref
-                                                        prefetch={ false }
-                                                        legacyBehavior
-                                                    >
-                                                        <a target='_blank'>
-                                                            <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
-                                                        </a>
-                                                    </Link>
-                                                )
-                                            }
-                                            {
-                                                linkedin && (
-                                                    <Link
-                                                        href={ `https://www.linkedin.com/in/${ linkedin }` }
-                                                        passHref
-                                                        prefetch={ false }
-                                                        legacyBehavior
-                                                    >
-                                                        <a target='_blank'>
-                                                            <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
-                                                        </a>
-                                                    </Link>
-                                                )
-                                            }
-                                            {
-                                                twitter && (
-                                                    <Link
-                                                        href={ `https://www.twitter.com/${ twitter }` }
-                                                        passHref
-                                                        prefetch={ false }
-                                                        legacyBehavior
-                                                    >
-                                                        <a target='_blank'>
-                                                            <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
-                                                        </a>
-                                                    </Link>
-                                                )
-                                            }
-                                        </div>
-                                        {
-                                            messageRequest && <span style={{ color: '#006f0d', fontFamily: 'ebrima' }}>Your contact request has been sent</span>
-                                        }
-                                        {
-                                            (!sendRequest && user?.email !== email) && (
-                                                <button
-                                                    className='button-outline'
-                                                    onClick={ handleSendRequest }
-                                                >
-                                                    Connect
-                                                </button>
-                                            )
-                                        }
-                                    </div>
+                                    {
+                                        (!isMyAccount && validateFriend) && (
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: 24, marginBlockStart: 20 }}>
+                                                <div className={ styles['social-container'] }>
+                                                    {
+                                                        facebook && (
+                                                            <Link
+                                                                href={ `https://www.facebook.com/${ facebook }` }
+                                                                passHref
+                                                                prefetch={ false }
+                                                                legacyBehavior
+                                                            >
+                                                                <a target='_blank'>
+                                                                    <Image src='/images/fb_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                                </a>
+                                                            </Link>
+                                                        )
+                                                    }
+                                                    {
+                                                        linkedin && (
+                                                            <Link
+                                                                href={ `https://www.linkedin.com/in/${ linkedin }` }
+                                                                passHref
+                                                                prefetch={ false }
+                                                                legacyBehavior
+                                                            >
+                                                                <a target='_blank'>
+                                                                    <Image src='/images/linkedin_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                                </a>
+                                                            </Link>
+                                                        )
+                                                    }
+                                                    {
+                                                        twitter && (
+                                                            <Link
+                                                                href={ `https://www.twitter.com/${ twitter }` }
+                                                                passHref
+                                                                prefetch={ false }
+                                                                legacyBehavior
+                                                            >
+                                                                <a target='_blank'>
+                                                                    <Image src='/images/twitter_logo.png' alt='Facebook Logo' width={ 30 } height={ 30 } />
+                                                                </a>
+                                                            </Link>
+                                                        )
+                                                    }
+                                                </div>
+                                                {
+                                                    messageRequest && <span style={{ color: '#006f0d', fontFamily: 'ebrima' }}>Your contact request has been sent</span>
+                                                }
+                                                {
+                                                    (!sendRequest && user?.email !== email) && (
+                                                        <button
+                                                            className='button-outline'
+                                                            onClick={ handleSendRequest }
+                                                        >
+                                                            Connect
+                                                        </button>
+                                                    )
+                                                }
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -477,7 +485,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             <div className={ styles['progress-image'] }>
 
                                             </div>
-                                            <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p>
+                                            {/* <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p> */}
                                             <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
                                         </div>
                                     </div>
@@ -511,7 +519,10 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             <div className={ `window-glass` }>
                                                 <div className={ `window-glass-content ${ styles['video-container'] }` }>
                                                     {
-                                                        videoUrl ? (
+                                                        (isMyAccount && !videoUrl) ? (
+                                                            <div style={{ inlineSize: 400 }}>Video tutorial</div>
+                                                        )
+                                                        : videoUrl ? (
                                                             <video controls className={ styles['video'] }>
                                                                 <source src={ videoUrl } />
                                                             </video>
@@ -522,7 +533,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     <div className={ styles['video-text-container'] }>
                                                         <p className={ styles['card-title'] }>Video</p>
                                                         {
-                                                            isMyAccount ? (
+                                                            (isMyAccount && !videoUrl) ?
+                                                                <div>Default video description</div>
+                                                            : isMyAccount ? (
                                                                 <textarea
                                                                     ref={ videoDescRef }
                                                                     className='textfield'
