@@ -41,12 +41,14 @@ export async function middleware(req: NextRequest) {
         let questionnaire
         try {
             questionnaire = await (await fetch(`${ process.env.NEXT_PUBLIC_AGORA_API }/question/validate-complete-questionnaire-by-email?email=${ user.email }`)).json()
+            console.log(questionnaire)
             url.pathname = `/profile/${ user.id }`
-            return NextResponse.redirect(url)
+            if (questionnaire.statusCode !== 400)
+                return NextResponse.redirect(url)
         } catch (error) {
-            
+            console.log('catch')
         }
-        
+
         let data
         switch (user.type) {
             case 'E':
