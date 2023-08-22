@@ -35,7 +35,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [comment, setComment] = useState('')
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
-    const [refresh, setRefresh] = useState(false)
+    const [refresh, setRefresh] = useState(true)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -68,12 +68,12 @@ export const useProfile = (email: string, id: string, type: string) => {
 
     const { loadQuestions, getUserAnswers } = useLoadQuestions()
 
-    useEffect(() => {
-        setRefresh(true)
-    }, [])
+    // useEffect(() => {
+    //     setRefresh(true)
+    // }, [user])
 
     useEffect(() => {
-        if (user && refresh) {
+        if (user) {
             if (user.email === email) {
                 setIsMyAccount(true)
             } else {
@@ -89,7 +89,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     }, [user, id])
     
     useEffect(() => {
-        if (user && refresh) {
+        if (user) {
             setLoading(true)
             Promise.all([
                 loadData(),
@@ -248,8 +248,6 @@ export const useProfile = (email: string, id: string, type: string) => {
     }
 
     const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>, type: string) => {
-        setRefresh(false)
-
         const value = event.target.value
         let data = {
             [type]: value,

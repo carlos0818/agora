@@ -31,7 +31,7 @@ type FormData2 = {
 }
 
 export const useEditProfile = () => {
-    const { user, updateName, updateProfilePic } = useContext(AuthContext)
+    const { user, updateName, updateProfilePic, updateRequiredInformation } = useContext(AuthContext)
 
     const { countries } = countriesList
 
@@ -238,6 +238,13 @@ export const useEditProfile = () => {
                 required: user?.required!,
                 qversion: user?.qversion!,
             })
+
+            if (name !== '' && profilePicture && emailContact !== '' && phone !== '' && country !== '' && city !== '' && address !== '') {
+                updateRequiredInformation({
+                    ...user!,
+                    required: 1
+                })
+            }
 
             switch (user?.type) {
                 case 'E':

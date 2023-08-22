@@ -118,6 +118,8 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         getAverageVotes()
     }
 
+    console.log(user?.required)
+
     return (
         <HomeLoginLayout
             title=''
@@ -368,7 +370,8 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             </div>
                         </div>
                         {
-                            !(companyName && city && country && address && emailContact && phone && profilePic) && isMyAccount && (
+                            // !(companyName && city && country && address && emailContact && phone && profilePic) && isMyAccount && (
+                            (user?.required === 0 && isMyAccount) && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
@@ -493,7 +496,8 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             )
                         }
                         {
-                            (hideRocket && (companyName && city && country && address && emailContact && phone && profilePic)) && (
+                            // (hideRocket && (companyName && city && country && address && emailContact && phone && profilePic)) && (
+                            (hideRocket && user?.required === 1) && (
                                 <>
                                     <div className={ `window-glass` }>
                                         <div className={ `window-glass-content` } style={{ padding: 16 }}>
