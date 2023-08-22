@@ -104,6 +104,9 @@ const CoCreation: NextPage = () => {
                                         placeholder='Provide your name and email address so that we can contact you if we have any questions or follow-up.'
                                     />
                                 </div>
+                                <div className={ style['form-group'] }>
+                                    <button className='button-filled' style={{ inlineSize: 120, margin: 'auto' }}>Send</button>
+                                </div>
                             </form>
                             <p>
                                 We encourage you to be creative and think outside the box when submitting your ideas. We value all suggestions, big or small,
