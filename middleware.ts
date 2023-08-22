@@ -18,16 +18,16 @@ export async function middleware(req: NextRequest) {
     
     const user: any = session.user
 
-    if (req.nextUrl.pathname.substring(0, 14) === '/questionnaire') {
-        let questionnaire
-        try {
-            questionnaire = await (await fetch(`${ process.env.NEXT_PUBLIC_AGORA_API }/question/validate-complete-questionnaire-by-email?email=${ user.email }`)).json()
-            url.pathname = `/profile/${ user.id }`
-            return NextResponse.redirect(url)
-        } catch (error) {
+    // if (req.nextUrl.pathname.substring(0, 14) === '/questionnaire') {
+    //     let questionnaire
+    //     try {
+    //         questionnaire = await (await fetch(`${ process.env.NEXT_PUBLIC_AGORA_API }/question/validate-complete-questionnaire-by-email?email=${ user.email }`)).json()
+    //         url.pathname = `/profile/${ user.id }`
+    //         return NextResponse.redirect(url)
+    //     } catch (error) {
             
-        }
-    }
+    //     }
+    // }
 
     if (
         req.nextUrl.pathname.substring(0, 7) === '/finder' ||
@@ -38,6 +38,15 @@ export async function middleware(req: NextRequest) {
         req.nextUrl.pathname.substring(0, 13) === '/edit-profile' ||
         req.nextUrl.pathname === '/'
     ) {
+        let questionnaire
+        try {
+            questionnaire = await (await fetch(`${ process.env.NEXT_PUBLIC_AGORA_API }/question/validate-complete-questionnaire-by-email?email=${ user.email }`)).json()
+            url.pathname = `/profile/${ user.id }`
+            return NextResponse.redirect(url)
+        } catch (error) {
+            
+        }
+        
         let data
         switch (user.type) {
             case 'E':
