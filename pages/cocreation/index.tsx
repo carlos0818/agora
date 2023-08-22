@@ -17,7 +17,7 @@ const CoCreation: NextPage = () => {
                             <div className={ style['discover-wrapper'] }>
                                 <div className={ style['left'] }>
                                     <p>
-                                        Welcome to Agora's Co-Creation page, where your ideas and feedback can help shape the future of our platform!
+                                        Welcome to Agora&apos;s Co-Creation page, where your ideas and feedback can help shape the future of our platform!
                                         As a global public good, Agora benefits from the collective creativity of its users, partners, and UNCDF staff.
                                         We believe that by working together, we can create a more inclusive and impactful ecosystem for entrepreneurs and
                                         investors in developing economies.
@@ -44,7 +44,7 @@ const CoCreation: NextPage = () => {
                             </div>
                         </div>
                         <div className={ style['section-discover-container'] }>
-                            <h3 className={ style['approach-title'] }>Discover Agora's participatory approach</h3>
+                            <h3 className={ style['approach-title'] }>Discover Agora&apos;s participatory approach</h3>
                             <p>
                                 At Agora, co-creation is all about working together to build a platform that is future-proof, inclusive, and responsive
                                 to the needs of our users. We believe that by tapping into the collective creativity of our community, we can develop a public
@@ -52,12 +52,12 @@ const CoCreation: NextPage = () => {
                             </p>
                             <p>
                                 Our platform is designed to connect you with other co-creators who share your passion for social innovation and community-driven
-                                initiatives. Whether you're looking for a co-working space, a demo lab, or simply a place to connect with like-minded individuals,
+                                initiatives. Whether you&apos;re looking for a co-working space, a demo lab, or simply a place to connect with like-minded individuals,
                                 Agora has everything you need to start co-creating.
                             </p>
                             <p>
                                 We are open, inclusive, and committed to building a platform that reflects the diverse perspectives and experiences of our users.
-                                So, join us today and let's co-create a public good that benefits everyone!
+                                So, join us today and let&apos;s co-create a public good that benefits everyone!
                             </p>
                         </div>
                         <div className={ style['section-form-container'] }>
@@ -107,10 +107,10 @@ const CoCreation: NextPage = () => {
                             </form>
                             <p>
                                 We encourage you to be creative and think outside the box when submitting your ideas. We value all suggestions, big or small,
-                                as they help us to continue improving Agora's platform for our users.
+                                as they help us to continue improving Agora&apos;s platform for our users.
                             </p>
                             <p>
-                                Thank you for your participation in Agora's Co-Creation Page. We look forward to hearing your ideas and working together to
+                                Thank you for your participation in Agora&apos;s Co-Creation Page. We look forward to hearing your ideas and working together to
                                 build a better platform.
                             </p>
                         </div>
