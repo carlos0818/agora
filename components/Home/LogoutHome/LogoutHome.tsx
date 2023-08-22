@@ -98,11 +98,6 @@ export const LogoutHome = () => {
                                         Invest in impact and drive positive change for a better future
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Investor</h3>
-                                    {/* <Image
-                                        src={ investorImage }
-                                        alt='Investor image'
-                                        className={ home['type-image'] }
-                                    /> */}
                                     { setvalueIn === 1 && ( <Image src={ investorImage1 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                     { setvalueIn === 2 && ( <Image src={ investorImage2 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                     { setvalueIn === 3 && ( <Image src={ investorImage3 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
@@ -121,11 +116,6 @@ export const LogoutHome = () => {
                                         Turn your vision into reality with strategic action and bold entrepreneurship
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Entrepreneur</h3>
-                                    {/* <Image
-                                        src={ entrepreneurImage }
-                                        alt='Entrepreneur image'
-                                        className={ home['type-image'] }
-                                    /> */}
                                     { setvalueEn === 1 && ( <Image src={ entrepreneurImage1 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                     { setvalueEn === 2 && ( <Image src={ entrepreneurImage2 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                     { setvalueEn === 3 && ( <Image src={ entrepreneurImage3 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
@@ -144,11 +134,6 @@ export const LogoutHome = () => {
                                         Drive innovation and create positive change by sharing your expertise with the world
                                     </p>
                                     <h3 className={ home['account-type-title'] }>Expert</h3>
-                                    {/* <Image
-                                        src={ expertImage }
-                                        alt='Expert image'
-                                        className={ home['type-image'] }
-                                    /> */}
                                     { setvalueEx === 1 && ( <Image src={ expertImage1 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                     { setvalueEx === 2 && ( <Image src={ expertImage2 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
                                     { setvalueEx === 3 && ( <Image src={ expertImage3 } alt='Investor image' className={ `${home['type-image']} ${home['image-transition']} ${home['efecto']}` } /> )  }
@@ -223,6 +208,25 @@ export const LogoutHome = () => {
                                 )
                             }
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section className={ home['mission-container'] }>
+                <div className={ home['mission-wrapper'] }>
+                    <div className={ home['mission-text-wrapper'] }>
+                        <p className={ home['mission-title'] }>Mission</p>
+                        <p className={ home['mission-description'] }>
+                            Connect entrepreneurs from emerging and frontier economies with investors and experts, fostering a dynamic ecosystem that accelerates
+                            economic growth and sustainable development.
+                        </p>
+                    </div>
+                    <div className={ home['mission-text-wrapper'] }>
+                        <p className={ home['mission-title'] }>Vision</p>
+                        <p className={ home['mission-description'] }>
+                            Agora envisions a world where entrepreneurship, expertise and capital seamlessly connect, creating a thriving ecosystem of impactful
+                            ventures in emerging and frontier economies. Through its digital platform, Agora strives to unlock the full potential of these economies,
+                            driving sustainable growth, and empowering entrepreneurs to make a positive and lasting impact on their communities.
+                        </p>
                     </div>
                 </div>
             </section>

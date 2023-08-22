@@ -259,6 +259,32 @@
     /* right: 50px; */
 }
 
+.mission-container {
+    background-color: #1F1F1F;
+    padding-block: 40px;
+}
+
+.mission-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin: auto;
+    max-inline-size: 1150px;
+}
+
+.mission-title {
+    color: white;
+    font-family: 'ebrima-bold';
+    font-size: 24px;
+    text-align: justify;
+}
+
+.mission-description {
+    color: white;
+    font-size: 16px;
+    text-align: justify;
+}
+
 .community-container {
     align-items: center;
     display: flex;

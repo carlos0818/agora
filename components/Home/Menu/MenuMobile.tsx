@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -6,8 +6,6 @@ import { AuthContext } from '@/context/auth'
 import { MenuContext } from '@/context/menu'
 
 import styles from './menu-mobile.module.css'
-import { agoraApi } from '@/api'
-import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
 
 export const MenuMobile = () => {
     const { isOpen, toggleSideMenu } = useContext(MenuContext)
@@ -18,59 +16,12 @@ export const MenuMobile = () => {
     const [openMyData, setOpenMyData] = useState(false)
     const [openMoreInfo, setOpenMoreInfo] = useState(false)
 
-    const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
-    const [hideRocket, setHideRocket] = useState(true)
-
-    useEffect(() => {
-        if (user) {
-            Promise.all([
-                loadData(),
-                validateCompleteQuestionnaire(),
-            ])
-        }
-    }, [user])
-
-    const loadData = async() => {
-        switch (user?.type) {
-            case 'E':
-                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user.id }`)
-                setEntrepreneurData(entrepreneur)
-                break
-            case 'I':
-                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user.id }`)
-                setEntrepreneurData(investor)
-                break
-            case 'X':
-                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user.id }`)
-                setEntrepreneurData(expert)
-                break
-            default:
-                break
-        }
-    }
-
-    const validateCompleteQuestionnaire = async() => {
-        try {
-            await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
-            setHideRocket(false)
-        } catch (error) {
-            setHideRocket(true)
-        }
-    }
-
     return (
         <div className={ `window-glass ${ styles['menu-container'] } ${ isOpen === 'show' ? styles['show'] : isOpen === 'hide' ? styles['hide'] : '' }` }>
             <div className={ `window-glass-content ${ styles['menu-content'] }` } style={{ paddingBlock: '10px', paddingInline: 0, overflow: 'hidden' }}>
                 <ul className={ styles['options-container'] }>
                     {
-                        ((entrepreneurData?.name &&
-                            entrepreneurData?.city &&
-                            entrepreneurData?.country &&
-                            entrepreneurData?.address &&
-                            entrepreneurData?.email_contact &&
-                            entrepreneurData?.phone &&
-                            entrepreneurData?.profilepic) &&
-                            hideRocket) && (
+                        (user?.required === 1 && user.qversion === 1) && (
                                 <Link
                                     href='/'
                                     passHref
@@ -102,14 +53,7 @@ export const MenuMobile = () => {
                         </li>
                     </Link>
                     {
-                        ((entrepreneurData?.name &&
-                            entrepreneurData?.city &&
-                            entrepreneurData?.country &&
-                            entrepreneurData?.address &&
-                            entrepreneurData?.email_contact &&
-                            entrepreneurData?.phone &&
-                            entrepreneurData?.profilepic) &&
-                            hideRocket) && (
+                        (user?.required === 1 && user.qversion === 1) && (
                                 <li>
                                     <details
                                         open={
@@ -190,14 +134,7 @@ export const MenuMobile = () => {
                             )
                     }
                     {
-                        ((entrepreneurData?.name &&
-                            entrepreneurData?.city &&
-                            entrepreneurData?.country &&
-                            entrepreneurData?.address &&
-                            entrepreneurData?.email_contact &&
-                            entrepreneurData?.phone &&
-                            entrepreneurData?.profilepic) &&
-                            hideRocket) && (
+                        (user?.required === 1 && user.qversion === 1) && (
                                 <li>
                                     <details
                                         open={
@@ -240,14 +177,7 @@ export const MenuMobile = () => {
                             )
                     }
                     {
-                        ((entrepreneurData?.name &&
-                            entrepreneurData?.city &&
-                            entrepreneurData?.country &&
-                            entrepreneurData?.address &&
-                            entrepreneurData?.email_contact &&
-                            entrepreneurData?.phone &&
-                            entrepreneurData?.profilepic) &&
-                            hideRocket) && (
+                        (user?.required === 1 && user.qversion === 1) && (
                                 <li>
                                     <details
                                         open={
@@ -306,14 +236,7 @@ export const MenuMobile = () => {
                             )
                     }
                     {
-                        ((entrepreneurData?.name &&
-                            entrepreneurData?.city &&
-                            entrepreneurData?.country &&
-                            entrepreneurData?.address &&
-                            entrepreneurData?.email_contact &&
-                            entrepreneurData?.phone &&
-                            entrepreneurData?.profilepic) &&
-                            hideRocket) && (
+                        (user?.required === 1 && user.qversion === 1) && (
                                 <li>
                                     <details open={ openMyData }>
                                         <summary className={ styles['option'] }>

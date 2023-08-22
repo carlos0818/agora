@@ -12,7 +12,7 @@ import { useLoadQuestions } from './useLoadQuestions'
 import { getCurrentDateFormat } from '@/utils'
 
 export const useProfile = (email: string, id: string, type: string) => {
-    const { user } = useContext(AuthContext)
+    const { user, updateRequiredInformation } = useContext(AuthContext)
 
     const router = useRouter()
 
@@ -35,6 +35,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [comment, setComment] = useState('')
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
+    const [refresh, setRefresh] = useState(false)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -68,7 +69,11 @@ export const useProfile = (email: string, id: string, type: string) => {
     const { loadQuestions, getUserAnswers } = useLoadQuestions()
 
     useEffect(() => {
-        if (user) {
+        setRefresh(true)
+    }, [])
+
+    useEffect(() => {
+        if (user && refresh) {
             if (user.email === email) {
                 setIsMyAccount(true)
             } else {
@@ -84,7 +89,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     }, [user, id])
     
     useEffect(() => {
-        if (user) {
+        if (user && refresh) {
             setLoading(true)
             Promise.all([
                 loadData(),
@@ -243,6 +248,8 @@ export const useProfile = (email: string, id: string, type: string) => {
     }
 
     const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>, type: string) => {
+        setRefresh(false)
+
         const value = event.target.value
         let data = {
             [type]: value,
@@ -276,12 +283,54 @@ export const useProfile = (email: string, id: string, type: string) => {
         try {
             switch (user?.type) {
                 case 'E':
+                    if (
+                        companyNameRef.current!.value !== '' &&
+                        entrepreneurData?.profilepic &&
+                        emailContactRef.current!.value !== '' &&
+                        phoneRef.current!.value !== '' &&
+                        countryRef.current!.value !== '' &&
+                        cityRef.current!.value !== '' &&
+                        addressRef.current!.value !== ''
+                    ) {
+                        updateRequiredInformation({
+                            ...user,
+                            required: 1
+                        })
+                    }
                     await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
                     break
                 case 'I':
+                    if (
+                        companyNameRef.current!.value !== '' &&
+                        entrepreneurData?.profilepic &&
+                        emailContactRef.current!.value !== '' &&
+                        phoneRef.current!.value !== '' &&
+                        countryRef.current!.value !== '' &&
+                        cityRef.current!.value !== '' &&
+                        addressRef.current!.value !== ''
+                    ) {
+                        updateRequiredInformation({
+                            ...user,
+                            required: 1
+                        })
+                    }
                     await agoraApi.post('/investor/update-investor-info', data)
                     break
                 case 'X':
+                    if (
+                        companyNameRef.current!.value !== '' &&
+                        entrepreneurData?.profilepic &&
+                        emailContactRef.current!.value !== '' &&
+                        phoneRef.current!.value !== '' &&
+                        countryRef.current!.value !== '' &&
+                        cityRef.current!.value !== '' &&
+                        addressRef.current!.value !== ''
+                    ) {
+                        updateRequiredInformation({
+                            ...user,
+                            required: 1
+                        })
+                    }
                     await agoraApi.post('/expert/update-expert-info', data)
                     break
                 default:
@@ -289,6 +338,10 @@ export const useProfile = (email: string, id: string, type: string) => {
             }
         } catch (error: any) {
             // console.log(error)
+            updateRequiredInformation({
+                ...user!,
+                required: 0
+            })
         }
     }
 

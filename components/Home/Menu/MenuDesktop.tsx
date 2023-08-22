@@ -1,10 +1,9 @@
-import { FC, RefObject, useContext, useEffect, useRef, useState } from 'react'
+import { FC, RefObject, useContext, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { AuthContext } from '@/context/auth'
-import { IEntrepreneur, IExpert, IInvestor } from '@/interfaces'
 
 import { useMenuDesktop } from '@/hooks/useMenuDesktop'
 import { MenuContext } from '@/context/menu'
@@ -12,7 +11,6 @@ import { MenuContext } from '@/context/menu'
 import styles from './menu-desktop.module.css'
 
 import leftArrowIcon from '@/public/images/left-arrow-icon.svg'
-import { agoraApi } from '@/api'
 
 interface Props {
     wrapperRef: RefObject<HTMLInputElement>
@@ -28,18 +26,6 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
     const { hideMenu, menuHideRef, handleToggleMenu } = useMenuDesktop(wrapperRef, notificationsRef, menuRef)
     const router = useRouter()
 
-    const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
-    const [hideRocket, setHideRocket] = useState(true)
-
-    useEffect(() => {
-        if (user) {
-            Promise.all([
-                loadData(),
-                validateCompleteQuestionnaire(),
-            ])
-        }
-    }, [user])
-
     useEffect(() => {
         const darkMode = JSON.parse(localStorage.getItem('DarkMode')!)
         toggleDarkMode(darkMode)
@@ -49,34 +35,6 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
         const darkMode = !JSON.parse(localStorage.getItem('DarkMode')!)
         localStorage.setItem('DarkMode', JSON.stringify(darkMode))
         toggleDarkMode(darkMode)
-    }
-
-    const loadData = async() => {
-        switch (user?.type) {
-            case 'E':
-                const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user.id }`)
-                setEntrepreneurData(entrepreneur)
-                break
-            case 'I':
-                const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user.id }`)
-                setEntrepreneurData(investor)
-                break
-            case 'X':
-                const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user.id }`)
-                setEntrepreneurData(expert)
-                break
-            default:
-                break
-        }
-    }
-
-    const validateCompleteQuestionnaire = async() => {
-        try {
-            await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
-            setHideRocket(false)
-        } catch (error) {
-            setHideRocket(true)
-        }
     }
 
     return (
@@ -94,14 +52,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                         <div className='window-glass-content' style={{ paddingInline: 0, paddingBlock: '10px', overflow: 'hidden' }}>
                             <ul className={ styles['options-container'] }>
                                 {
-                                    ((entrepreneurData?.name &&
-                                        entrepreneurData?.city &&
-                                        entrepreneurData?.country &&
-                                        entrepreneurData?.address &&
-                                        entrepreneurData?.email_contact &&
-                                        entrepreneurData?.phone &&
-                                        entrepreneurData?.profilepic) &&
-                                        hideRocket) && (
+                                    (user?.required === 1 && user.qversion === 1) && (
                                         <Link
                                             href='/'
                                             passHref
@@ -133,14 +84,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                     </li>
                                 </Link>
                                 {
-                                    ((entrepreneurData?.name &&
-                                        entrepreneurData?.city &&
-                                        entrepreneurData?.country &&
-                                        entrepreneurData?.address &&
-                                        entrepreneurData?.email_contact &&
-                                        entrepreneurData?.phone &&
-                                        entrepreneurData?.profilepic) &&
-                                        hideRocket) && (
+                                    (user?.required === 1 && user.qversion === 1) && (
                                         <li>
                                             <details
                                                 open={
@@ -212,14 +156,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                     )
                                 }
                                 {
-                                    ((entrepreneurData?.name &&
-                                        entrepreneurData?.city &&
-                                        entrepreneurData?.country &&
-                                        entrepreneurData?.address &&
-                                        entrepreneurData?.email_contact &&
-                                        entrepreneurData?.phone &&
-                                        entrepreneurData?.profilepic) &&
-                                        hideRocket) && (
+                                    (user?.required === 1 && user.qversion === 1) && (
                                         <li>
                                             <details
                                                 open={
@@ -262,14 +199,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                     )
                                 }
                                 {
-                                    ((entrepreneurData?.name &&
-                                        entrepreneurData?.city &&
-                                        entrepreneurData?.country &&
-                                        entrepreneurData?.address &&
-                                        entrepreneurData?.email_contact &&
-                                        entrepreneurData?.phone &&
-                                        entrepreneurData?.profilepic) &&
-                                        hideRocket) && (
+                                    (user?.required === 1 && user.qversion === 1) && (
                                         <li>
                                             <details
                                                 open={
@@ -328,14 +258,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                     )
                                 }
                                 {
-                                    ((entrepreneurData?.name &&
-                                        entrepreneurData?.city &&
-                                        entrepreneurData?.country &&
-                                        entrepreneurData?.address &&
-                                        entrepreneurData?.email_contact &&
-                                        entrepreneurData?.phone &&
-                                        entrepreneurData?.profilepic) &&
-                                        hideRocket) && (
+                                    (user?.required === 1 && user.qversion === 1) && (
                                         <li>
                                             <details
                                                 open={

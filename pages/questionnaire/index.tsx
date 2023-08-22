@@ -39,7 +39,7 @@ const Questionnaire: NextPage = () => {
 
     const router = useRouter()
 
-    const { user } = useContext(AuthContext)
+    const { user, updateQuestionnaire } = useContext(AuthContext)
     const { percentage } = useContext(QuestionnaireContext)
 
     const [errorMessage, setErrorMessage] = useState(null)
@@ -55,16 +55,28 @@ const Questionnaire: NextPage = () => {
                 case 'E':
                     await agoraApi.post('/question/submit-questionnaire-entrepreneur', { email: user?.email })
                     setSubmitLoading(false)
+                    updateQuestionnaire({
+                        ...user,
+                        qversion: 1
+                    })
                     router.replace(`/profile/${ user?.id }`)
                     break
                 case 'I':
                     await agoraApi.post('/question/submit-questionnaire-investor', { email: user?.email })
                     setSubmitLoading(false)
+                    updateQuestionnaire({
+                        ...user,
+                        qversion: 1
+                    })
                     router.replace(`/profile/${ user?.id }`)
                     break
                 case 'X':
                     await agoraApi.post('/question/submit-questionnaire-expert', { email: user?.email })
                     setSubmitLoading(false)
+                    updateQuestionnaire({
+                        ...user,
+                        qversion: 1
+                    })
                     router.replace(`/profile/${ user?.id }`)
                     break
                 default:

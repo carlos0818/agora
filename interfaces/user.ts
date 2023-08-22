@@ -7,4 +7,6 @@ export interface IUser {
     type: string
     profilepic?: string
     source: string
+    qversion: number
+    required: number
 }

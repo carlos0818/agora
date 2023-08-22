@@ -56,6 +56,28 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         dispatch({ type: '[Auth] - Update User', payload: user as IUser })
     }
 
+    const updateRequiredInformation = (user: IUser) => {
+        update({
+            ...data,
+            user: {
+                ...data?.user,
+                required: user.required,
+            }
+        })
+        dispatch({ type: '[Auth] - Update User', payload: user as IUser })
+    }
+
+    const updateQuestionnaire = (user: IUser) => {
+        update({
+            ...data,
+            user: {
+                ...data?.user,
+                qversion: user.qversion,
+            }
+        })
+        dispatch({ type: '[Auth] - Update User', payload: user as IUser })
+    }
+
     const registerUser = async(fullname: string, email: string, password: string, type: string, captcha: string): Promise<{hasError: boolean; message?: string}> => {
         try {
             await agoraApi.post('/user/register', { email, password, fullname, type, captcha })
@@ -88,6 +110,8 @@ export const AuthProvider: FC<Props> = ({ children }) => {
             registerUser,
             updateName,
             updateProfilePic,
+            updateRequiredInformation,
+            updateQuestionnaire,
             logout,
         }}>
             { children }

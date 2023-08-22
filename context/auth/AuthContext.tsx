@@ -8,6 +8,8 @@ interface ContextProps {
     registerUser: (fullname: string, email: string, password: string, type: string, captcha: string) => Promise<{hasError: boolean; message?: string;}>
     updateName: (user: IUser) => void
     updateProfilePic: (user: IUser) => void
+    updateRequiredInformation: (user: IUser) => void
+    updateQuestionnaire: (user: IUser) => void
     logout: () => void
 }
 

@@ -149,6 +149,8 @@ export const useEditProfile = () => {
             fullname: fullnameRef.current?.value!,
             name: fullnameRef.current?.value!,
             source: user?.source!,
+            required: user?.required!,
+            qversion: user?.qversion!,
         })
 
         await agoraApi.post('/user/update-user-info', { email: user?.email, fullname: fullnameRef.current?.value })
@@ -233,6 +235,8 @@ export const useEditProfile = () => {
                 name: user?.fullname!,
                 profilepic: profileString,
                 source: user?.source!,
+                required: user?.required!,
+                qversion: user?.qversion!,
             })
 
             switch (user?.type) {
