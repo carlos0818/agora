@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -31,6 +32,8 @@ import entrepreneurImage3 from '@/public/images/entrepreneur-image3.png'
 import expertImage3 from '@/public/images/expert-image3.png'
 
 export const LogoutHome = () => {
+    const router = useRouter()
+
     const [language, setLanguage] = useState('')
     const [setvalueEn, seturlEn] = useState(1)
     const [setvalueEx, seturlEx] = useState(1)
@@ -273,7 +276,10 @@ export const LogoutHome = () => {
                         <p className={ home['cocreate-description'] }>
                             Discover a vibrant ecosystem of innovation at Agora! Connect with us and let&lsquo;s co-create a world of endless posibilities!
                         </p>
-                        <button className={ home['cocreate-button'] }>
+                        <button
+                            className={ home['cocreate-button'] }
+                            onClick={ () => router.push('/cocreation') }
+                        >
                             CONTACT US
                         </button>
                     </div>
