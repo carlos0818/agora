@@ -35,7 +35,6 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [comment, setComment] = useState('')
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
-    const [refresh, setRefresh] = useState(true)
 
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
@@ -67,10 +66,6 @@ export const useProfile = (email: string, id: string, type: string) => {
     const videoDescRef = useRef<HTMLTextAreaElement>(null)
 
     const { loadQuestions, getUserAnswers } = useLoadQuestions()
-
-    // useEffect(() => {
-    //     setRefresh(true)
-    // }, [user])
 
     useEffect(() => {
         if (user) {
