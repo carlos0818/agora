@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import { agoraApi } from '@/api'
 import { AuthContext } from '@/context/auth'
-import { IEntrepreneur, IExpert, IInvestor, IUserPosts, IWall } from '@/interfaces'
+import { IEntrepreneur, IUserPosts, IWall } from '@/interfaces'
 
 import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 import { CardInfo } from '../Card/CardInfo'
@@ -29,8 +29,6 @@ export const LoginHome = () => {
     useEffect(() => {
         if (user) {
             Promise.all([
-                // loadData(),
-                // validateCompleteQuestionnaire(),
                 loadAgoraMessages(),
                 loadUserPosts(),
             ]).then(() => {
@@ -43,51 +41,6 @@ export const LoginHome = () => {
             closeAgoraCard(cardCloseId)
         }
     }, [cardCloseId])
-
-    // useEffect(() => {
-    //     if (data && user) {
-    //         if (
-    //             !(data.name &&
-    //             data.city &&
-    //             data.country &&
-    //             data.address &&
-    //             data.email_contact &&
-    //             data.phone &&
-    //             data.profilepic &&
-    //             hideRocket)
-    //         ) {
-    //             router.replace(`/profile/${ user.id }`)
-    //         }
-    //     }
-    // }, [data, hideRocket, user])
-
-    // const loadData = async() => {
-    //     switch (user?.type) {
-    //         case 'E':
-    //             const { data: entrepreneur } = await agoraApi.get<IEntrepreneur>(`/entrepreneur/get-data-by-id?id=${ user?.id }`)
-    //             setData(entrepreneur)
-    //             break
-    //         case 'I':
-    //             const { data: investor } = await agoraApi.get<IInvestor>(`/investor/get-data-by-id?id=${ user?.id }`)
-    //             setData(investor)
-    //             break
-    //         case 'X':
-    //             const { data: expert } = await agoraApi.get<IExpert>(`/expert/get-data-by-id?id=${ user?.id }`)
-    //             setData(expert)
-    //             break
-    //         default:
-    //             break
-    //     }
-    // }
-
-    // const validateCompleteQuestionnaire = async() => {
-    //     try {
-    //         await agoraApi.get(`/question/validate-complete-questionnaire-by-email?email=${ user?.email }`)
-    //         setHideRocket(false)
-    //     } catch (error) {
-    //         setHideRocket(true)
-    //     }
-    // }
 
     const loadAgoraMessages = async() => {
         const { data } = await agoraApi.get<IWall[]>(`/wall/agora-messages?email=${ user?.email }`)

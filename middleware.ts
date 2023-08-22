@@ -28,11 +28,19 @@ export async function middleware(req: NextRequest) {
         req.nextUrl.pathname.substring(0, 14) === '/questionnaire' ||
         req.nextUrl.pathname === '/'
     ) {
+        let questionnaire
+        try {
+            questionnaire = await (await fetch(`${ process.env.NEXT_PUBLIC_AGORA_API }/question/validate-complete-questionnaire-by-email?email=${ user.email }`)).json()
+            url.pathname = `/profile/${ user.id }`
+            return NextResponse.redirect(url)
+        } catch (error) {
+            console.log(error)
+        }
+
         let data
         switch (user.type) {
             case 'E':
                 data = await (await fetch(`${ process.env.NEXT_PUBLIC_AGORA_API }/entrepreneur/get-data-by-id?id=${ user.id }`)).json()
-
                 if (!data.name || !data.email_contact || !data.phone || !data.country || !data.city || !data.profilepic || !data.address) {
                     url.pathname = `/profile/${ user.id }`
                     return NextResponse.redirect(url)
