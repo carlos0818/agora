@@ -105,7 +105,6 @@ export const useLoadQuestions = () => {
 
     const getLanguage = async() => {
         const userLang = await navigator.language.substring(0, 2)
-        console.log(userLang)
 
         if (userLang === 'fr')
             setLanguage('fr')
