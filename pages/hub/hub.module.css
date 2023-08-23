@@ -10,7 +10,7 @@
 .title {
     color: var(--agora-blue-dark);
     font-family: 'ebrima-bold';
-    font-size: 24px;
+    font-size: 20px;
     margin: auto;
     margin-block-end: 20px;
 }
@@ -51,13 +51,20 @@
     block-size: 300px;
     border: none;
     color: #10284F;
-    inline-size: 100%;
+    inline-size: calc(100% - 32px);
     font-family: 'ebrima';
     outline: none;
+    padding: 16px;
 }
 
 @media screen and (min-width: 1024px) {
+    .title {
+        font-size: 24px;
+    }
+
     .textarea {
         block-size: 450px;
+        inline-size: calc(100% - 16px);
+        padding: 8px;
     }
 }

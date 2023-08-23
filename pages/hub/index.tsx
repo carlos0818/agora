@@ -76,7 +76,7 @@ const HubPage: NextPage = () => {
                                                                                                 height={ 24 }
                                                                                             />
                                                                                         </summary>
-                                                                                        <div className={ styles['accordion-content'] } style={{ marginBlockStart: 20, marginInlineStart: 20 }}>
+                                                                                        <div className={ styles['accordion-content'] } style={{ marginBlockStart: 20 }}>
                                                                                             <textarea
                                                                                                 className={ styles['textarea'] }
                                                                                                 readOnly
