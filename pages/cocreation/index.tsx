@@ -1,11 +1,59 @@
+import { useState } from 'react'
 import { NextPage } from 'next'
 import Image from 'next/image'
 
+import { useForm } from 'react-hook-form'
+
+import { agoraApi } from '@/api'
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './cocreation.module.css'
+import { useReCaptcha } from 'next-recaptcha-v3'
+
+type FormData = {
+    title: string
+    description: string
+    category: string
+    impact: string
+    implementation: string
+    contactInfo: string
+}
 
 const CoCreation: NextPage = () => {
+    const { executeRecaptcha } = useReCaptcha()
+
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>()
+
+    const [loading, setLoading] = useState(false)
+
+    const onSubmit = async({
+        title,
+        description,
+        category,
+        impact,
+        implementation,
+        contactInfo
+    }: FormData) => {
+        setLoading(true)
+
+        const captcha = await executeRecaptcha("form_cocreation")
+
+        try {
+            await agoraApi.post('/comment-info/send-cocreation', { title, description, category, impact, implementation, contactInfo, captcha })
+            setValue('title', '')
+            setValue('description', '')
+            setValue('category', '')
+            setValue('impact', '')
+            setValue('implementation', '')
+            setValue('contactInfo', '')
+        } catch (error) {
+            
+        } finally {
+            setLoading(false)
+        }
+
+    }
+
     return (
         <AgoraLayout title='Agora' pageDescription=''>
             <div className={ style['discover-content'] }>
@@ -63,16 +111,31 @@ const CoCreation: NextPage = () => {
                         <div className={ style['section-form-container'] }>
                             <h3 className={ style['form-title'] }>Share your creative ideas and help enhance our platform</h3>
                             <h4 className={ style['form-subtitle'] }>To submit your ideas, simply fill out the form below with the following information:</h4>
-                            <form className={ style['form'] }>
+                            <form onSubmit={ handleSubmit(onSubmit) } className={ style['form'] }>
                                 <div className={ style['form-group'] }>
                                     <label>Title</label>
-                                    <input type="text" className='textfield' placeholder='Provide a clear and concise title for your idea.' />
+                                    <input
+                                        type="text"
+                                        className='textfield'
+                                        style={{ border: `${ errors.title ? '2px solid #CE0915' : '' }` }}
+                                        placeholder='Provide a clear and concise title for your idea.'
+                                        { ...register('title', {
+                                            required: 'Title is required',
+                                            maxLength: 60
+                                        })}
+                                    />
+                                    { errors.title && <span className={ style['message-error'] }>{ errors.title.message }</span> }
                                 </div>
                                 <div className={ style['form-group'] }>
                                     <label>Description</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        style={{ border: `${ errors.description ? '2px solid #CE0915' : '' }` }}
                                         placeholder='Describe your idea in detail, including how it would work and what benefits it would bring to Agora users.'
+                                        { ...register('description', {
+                                            required: 'Description is required',
+                                            maxLength: 60
+                                        })}
                                     />
                                 </div>
                                 <div className={ style['form-group'] }>
@@ -80,32 +143,60 @@ const CoCreation: NextPage = () => {
                                     <input
                                         type="text"
                                         className='textfield'
+                                        style={{ border: `${ errors.category ? '2px solid #CE0915' : '' }` }}
                                         placeholder='Select the category that best fits your idea, such as "User Experience," "Functionality," or "Design."'
+                                        { ...register('category', {
+                                            required: 'Category is required',
+                                            maxLength: 60
+                                        })}
                                     />
                                 </div>
                                 <div className={ style['form-group'] }>
                                     <label>Impact</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        style={{ border: `${ errors.impact ? '2px solid #CE0915' : '' }` }}
                                         placeholder='Explain the potential impact of your idea, including any metrics or data to support your proposal.'
+                                        { ...register('impact', {
+                                            required: 'Impact is required',
+                                            maxLength: 60
+                                        })}
                                     />
                                 </div>
                                 <div className={ style['form-group'] }>
                                     <label>Implementation</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        style={{ border: `${ errors.implementation ? '2px solid #CE0915' : '' }` }}
                                         placeholder='Share any insights or recommendations for how your idea could be implemented on Agora&apos;s platform.'
+                                        { ...register('implementation', {
+                                            required: 'Implementation is required',
+                                            maxLength: 60
+                                        })}
                                     />
                                 </div>
                                 <div className={ style['form-group'] }>
                                     <label>Contact information</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        style={{ border: `${ errors.contactInfo ? '2px solid #CE0915' : '' }` }}
                                         placeholder='Provide your name and email address so that we can contact you if we have any questions or follow-up.'
+                                        { ...register('contactInfo', {
+                                            required: 'Contact information is required',
+                                            maxLength: 60
+                                        })}
                                     />
                                 </div>
                                 <div className={ style['form-group'] }>
-                                    <button className='button-filled' style={{ inlineSize: 120, margin: 'auto' }}>Send</button>
+                                    {
+                                        loading
+                                        ? (
+                                            <div style={{ alignItems: 'center', blockSize: 40, display: 'flex', justifyContent: 'center' }}>
+                                                <em className='spinner blue-agora' style={{ blockSize: 36, inlineSize: 36 }} />
+                                            </div>
+                                        )
+                                        : <button className='button-filled' style={{ inlineSize: 120, margin: 'auto' }}>Send</button>
+                                    }
                                 </div>
                             </form>
                             <p>

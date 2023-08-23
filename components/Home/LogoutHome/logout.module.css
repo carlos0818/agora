@@ -357,7 +357,7 @@
     color: white;
     font-family: 'ebrima-bold';
     font-size: 30px;
-    inline-size: 200px;
+    /* inline-size: 200px; */
     left: 20px;
     position: absolute;
     top: 20px;

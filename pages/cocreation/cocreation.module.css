@@ -143,6 +143,11 @@
     padding-inline: 12px;
 }
 
+.message-error {
+    color: #CE0915;
+    font-size: 12px;
+}
+
 @media screen and (min-width: 1024px) {
     .discover-content {
         padding-block-start: 150px;

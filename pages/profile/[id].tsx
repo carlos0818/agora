@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -74,39 +74,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     const [showVote, setShowVote] = useState(false)
     const [stars, setStars] = useState(0)
 
-    const [value1, setValue1] = useState(0)
-    const [value2, setValue2] = useState(0)
-    const [value3, setValue3] = useState(0)
-    const [value4, setValue4] = useState(0)
-    const [value5, setValue5] = useState(0)
-    const [value6, setValue6] = useState(0)
-    const [value7, setValue7] = useState(0)
-    const [value8, setValue8] = useState(0)
-    const [value9, setValue9] = useState(0)
-    const [value10, setValue10] = useState(0)
-    const [value11, setValue11] = useState(0)
-    const [value12, setValue12] = useState(0)
-    const [value13, setValue13] = useState(0)
-    const [value14, setValue14] = useState(0)
-    
-    const handleValues = () => {
-        setTimeout(() => {
-            setValue1(70)
-            setValue2(50)
-            setValue3(80)
-            setValue4(84)
-            setValue5(67)
-            setValue6(85)
-            setValue7(54)
-            setValue8(22)
-            setValue9(48)
-            setValue10(61)
-            setValue11(77)
-            setValue12(100)
-            setValue13(39)
-            setValue14(44)
-        }, 100)
-    }
+    const [data, setData] = useState<any>([])
+
+    useEffect(() => {
+        if (user)
+            getScore()
+    }, [user])
 
     const onChangeValue = (event: any) => {
         setStars(event.target.value);
@@ -118,7 +91,28 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         getAverageVotes()
     }
 
-    console.log(user?.required)
+    const getScore = async() => {
+        const { data } = await agoraApi.get(`/entrepreneur/get-score?email=${ user?.email }`)
+        setData(data)
+    }
+
+    const handleProgressValues = () => {
+        setTimeout(() => {
+            const progressBars = document.getElementsByClassName('progress-score') as HTMLCollectionOf<HTMLProgressElement>
+            const titles = []
+    
+            for (let i=0; i<data.length; i++) {
+                console.log(data[i])
+                for (let j=0; j<data[i].titles.length; j++) {
+                    titles.push(data[i].titles[j].score)
+                }
+            }
+    
+            for (let i=0; i<progressBars.length; i++) {
+                progressBars[i].value = titles[i]
+            }
+        }, 10)
+    }
 
     return (
         <HomeLoginLayout
@@ -370,7 +364,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             </div>
                         </div>
                         {
-                            // !(companyName && city && country && address && emailContact && phone && profilePic) && isMyAccount && (
                             (user?.required === 0 && isMyAccount) && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
@@ -496,7 +489,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             )
                         }
                         {
-                            // (hideRocket && (companyName && city && country && address && emailContact && phone && profilePic)) && (
                             (hideRocket && user?.required === 1) && (
                                 <>
                                     <div className={ `window-glass` }>
@@ -587,7 +579,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 <div className={ `window-glass-content ${ styles['window-content'] }` }>
                                                     <div style={{ position: 'relative' }}>
                                                         <details className={ styles['title-container'] }>
-                                                            <summary className={ styles['accordion-title'] } onClick={ handleValues }>
+                                                            <summary className={ styles['accordion-title'] } onClick={ handleProgressValues }>
                                                                 Qualification
                                                                 <Image
                                                                     src={ arrowDownIcon }
@@ -596,87 +588,29 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                 />
                                                             </summary>
                                                             <div className={ styles['accordion-content'] }>
-                                                                <div className={ styles['qualification-section-container'] }>
-                                                                    <hr className={ styles['center-line'] } />
+                                                                {
+                                                                    data.map((score: any) => (
+                                                                        <div key={ score.maintitle } className={ styles['qualification-section-container'] }>
+                                                                            <hr className={ styles['center-line'] } />
 
-                                                                    <p className={ styles['texts'] }>Future prospect and Innovation projects</p>
-
-                                                                    <span></span>
-                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value1 } max="100" />
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Outlook</p>
-
-                                                                    <span></span>
-                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value2 } max="100" />
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Innovations Projects</p>
-                                                                </div>
-                                                                <div className={ styles['qualification-section-container'] }>
-                                                                    <hr className={ styles['center-line'] } />
-
-                                                                    <p className={ styles['texts'] }>Governance and enterprise risk management (ERM)</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value3 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Governance</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value4 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Enterprise Risk Management</p>
-                                                                </div>
-                                                                <div className={ styles['qualification-section-container'] }>
-                                                                    <hr className={ styles['center-line'] } />
-
-                                                                    <p className={ `${ styles['texts'] } ${ styles['group-risk'] }` }>Risk assessment</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value5 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Credit risk</p>
-
-                                                                    <span></span>
-                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value6 } max="100" />
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market risk</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value7 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Country risk</p>
-
-                                                                    <span></span>
-                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value8 } max="100" />
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Operational risk</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value9 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business and strategic risk</p>
-
-                                                                    <span></span>
-                                                                    <progress className={ styles['progress-bar-qualification'] } value={ value10 } max="100" />
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Social and environment risk</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value11 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Funding liquidity and Solvency risk</p>
-                                                                </div>
-                                                                <div className={ styles['qualification-section-container'] }>
-                                                                    <hr className={ styles['center-line'] } />
-
-                                                                    <p className={ `${ styles['texts'] } ${ styles['group-sdg'] }` }>Type of SME and Sustainable Development Goals (SDG)</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value12 } max="100" />
-                                                                    <p></p>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>SDGs and impact</p>
-                                                                </div>
-                                                                <div className={ styles['qualification-section-container'] }>
-                                                                    <hr className={ styles['center-line'] } />
-
-                                                                    <p className={ styles['texts'] }>Business strategy market conditions</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value13 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Market conditions</p>
-
-                                                                    <progress className={ `${ styles['progress-bar-qualification'] } ${ styles['right'] }` } value={ value14 } max="100" />
-                                                                    <span></span>
-                                                                    <p className={ `${ styles['texts'] } ${ styles['texts-right'] }` }>Business lines strategy</p>
-                                                                </div>
+                                                                            <p className={ `${ styles['texts'] } ${ styles[`group-${ score.countTitles }`] }` }>
+                                                                                { score.maintitle }
+                                                                            </p>
+                                                                            {
+                                                                                score.titles.map((title: any) => (
+                                                                                    <Fragment key={ title.title }>
+                                                                                        <p className={ styles['texts'] }>{ title.title }</p>
+                                                                                        <progress
+                                                                                            className={ `${ styles['progress-bar-qualification'] } progress-score` }
+                                                                                            // value={ score.score }
+                                                                                            max="100"
+                                                                                        />
+                                                                                    </Fragment>
+                                                                                ))
+                                                                            }
+                                                                        </div>
+                                                                    ))
+                                                                }
                                                             </div>
                                                         </details>
                                                     </div>

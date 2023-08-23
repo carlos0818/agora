@@ -272,7 +272,7 @@ export const LogoutHome = () => {
                 <div className={ home['cocreate-wrapper'] }>
                     {/* <img className={ home['cocreate-image'] } alt="" /> */}
                     <div className={ home['cocreate-image'] }>
-                        <h3 className={ home['cocreate-title'] }>Lets co-create Together</h3>
+                        <h3 className={ home['cocreate-title'] }>Let&apos;s co-create</h3>
                         <p className={ home['cocreate-description'] }>
                             Discover a vibrant ecosystem of innovation at Agora! Connect with us and let&lsquo;s co-create a world of endless posibilities!
                         </p>
