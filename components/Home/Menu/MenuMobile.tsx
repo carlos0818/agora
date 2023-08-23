@@ -331,10 +331,20 @@ export const MenuMobile = () => {
                                             FAQ
                                         </li>
                                     </Link>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Hub
-                                    </li>
+                                    <Link
+                                        href='/hub'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Hub
+                                        </li>
+                                    </Link>
                                     <Link
                                         href='/about'
                                         passHref

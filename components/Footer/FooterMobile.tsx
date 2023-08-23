@@ -24,7 +24,14 @@ export const FooterMobile = () => {
             >
                 <a>FAQ</a>
             </Link>
-            <a>Hub</a>
+            <Link
+                href='/hub'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <a>Hub</a>
+            </Link>
             <Link
                 href='/about'
                 passHref
