@@ -20,6 +20,11 @@ export const useLoadQuestions = () => {
 
     const [data, setData] = useState<any>([])
     const [validJSON, setValidJSON] = useState(false)
+    const [language, setLanguage] = useState('en')
+
+    useEffect(() => {
+        getLanguage()
+    }, [])
 
     useEffect(() => {
         if (data.length > 0) {
@@ -98,25 +103,37 @@ export const useLoadQuestions = () => {
         }
     }, [globalHide, answeredQuestions, totalQuestions])
 
+    const getLanguage = async() => {
+        const userLang = await navigator.language.substring(0, 2)
+        console.log(userLang)
+
+        if (userLang === 'fr')
+            setLanguage('fr')
+        else if (userLang === 'es')
+            setLanguage('es')
+        else
+            setLanguage('en')
+    }
+
     const loadQuestions = async() => {
         try {
             switch (user?.type) {
                 case 'E':
-                    const { data: dataQuestionEnt } = await agoraApi.get<IQuestion[]>('/question/entrepreneur')
+                    const { data: dataQuestionEnt } = await agoraApi.get<IQuestion[]>(`/question/entrepreneur?lang=${ language }`)
                     const { data: dataAnswerEnt } = await agoraApi.get<IAnswer[]>('/question/answer-entrepreneur')
                     loadData(dataQuestionEnt, dataAnswerEnt)
                     const filterEnt = dataQuestionEnt.filter(question => question.type !== 'T' && question.type !== 'S')
                     updateTotalQuestions(filterEnt.length)
                     break
                 case 'I':
-                    const { data: dataQuestionInv } = await agoraApi.get<IQuestion[]>('/question/investor')
+                    const { data: dataQuestionInv } = await agoraApi.get<IQuestion[]>(`/question/investor?lang=${ language }`)
                     const { data: dataAnswerInv } = await agoraApi.get<IAnswer[]>('/question/answer-investor')
                     loadData(dataQuestionInv, dataAnswerInv)
                     const filterInv = dataQuestionInv.filter(question => question.type !== 'T' && question.type !== 'S')
                     updateTotalQuestions(filterInv.length)
                     break
                 case 'X':
-                    const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>('/question/expert')
+                    const { data: dataQuestionExp } = await agoraApi.get<IQuestion[]>(`/question/expert?lang=${ language }`)
                     const { data: dataAnswerExp } = await agoraApi.get<IAnswer[]>('/question/answer-expert')
                     loadData(dataQuestionExp, dataAnswerExp)
                     const filterExp = dataQuestionExp.filter(question => question.type !== 'T' && question.type !== 'S')

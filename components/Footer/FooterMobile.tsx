@@ -16,7 +16,14 @@ export const FooterMobile = () => {
             >
                 <a>Terms and conditions</a>
             </Link>
-            <a>FAQ</a>
+            <Link
+                href='/faq'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <a>FAQ</a>
+            </Link>
             <a>Hub</a>
             <Link
                 href='/about'

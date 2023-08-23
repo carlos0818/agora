@@ -304,7 +304,7 @@ export const MenuMobile = () => {
                             <div className={ styles['last-submenu'] }>
                                 <ul className={ styles['submenu-container'] }>
                                     <Link
-                                        href='/finder/country-snapshot'
+                                        href='/terms'
                                         passHref
                                         prefetch={ false }
                                         legacyBehavior
@@ -317,22 +317,52 @@ export const MenuMobile = () => {
                                             T&C
                                         </li>
                                     </Link>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        FAQ
-                                    </li>
+                                    <Link
+                                        href='/faq'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            FAQ
+                                        </li>
+                                    </Link>
                                     <li className={ styles['submenu-option'] }>
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                         Hub
                                     </li>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        About
-                                    </li>
-                                    <li className={ styles['submenu-option'] }>
-                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                        Comments
-                                    </li>
+                                    <Link
+                                        href='/about'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            About
+                                        </li>
+                                    </Link>
+                                    <Link
+                                        href='/comments'
+                                        passHref
+                                        prefetch={ false }
+                                        legacyBehavior
+                                    >
+                                        <li
+                                            className={ styles['submenu-option'] }
+                                            onClick={ () => toggleSideMenu('original') }
+                                        >
+                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                            Comments
+                                        </li>
+                                    </Link>
                                 </ul>
                             </div>
                         </details>

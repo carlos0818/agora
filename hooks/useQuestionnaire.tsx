@@ -37,9 +37,6 @@ export const useQuestionnaire = (isMyAccountServer: boolean) => {
 
     useEffect(() => {
         loadQuestions()
-    }, [])
-
-    useEffect(() => {
         loadYears()
     }, [])
 
