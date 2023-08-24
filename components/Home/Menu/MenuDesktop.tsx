@@ -160,49 +160,6 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                         <li>
                                             <details
                                                 open={
-                                                    router.pathname === '/infographics/country-snapshot'
-                                                }
-                                            >
-                                                <summary
-                                                    className={
-                                                        `
-                                                        ${ styles['option'] }
-                                                        ${
-                                                            router.pathname === '/infographics/country-snapshot'
-                                                            ? styles['selected'] : ''
-                                                        }
-                                                    ` }
-                                                >
-                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                    Infographics
-                                                </summary>
-                                                <div className={ styles['accordion-content'] }>
-                                                    <ul className={ styles['submenu-container'] }>
-                                                        <Link
-                                                            href='/infographics/country-snapshot'
-                                                            passHref
-                                                            prefetch={ false }
-                                                            legacyBehavior
-                                                        >
-                                                            <li
-                                                                className={ `${ styles['submenu-option'] } ${ router.pathname === '/infographics/country-snapshot' ? styles['selected'] : '' }` }
-                                                                // onClick={ () => toggleSideMenuDesktop('original') }
-                                                            >
-                                                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                                Countries
-                                                            </li>
-                                                        </Link>
-                                                    </ul>
-                                                </div>
-                                            </details>
-                                        </li>
-                                    )
-                                }
-                                {
-                                    (user?.required === 1 && user.qversion === 1) && (
-                                        <li>
-                                            <details
-                                                open={
                                                     router.pathname === '/contacts/my-contacts' ||
                                                     router.pathname === '/contacts/contact-requests'
                                                 }
@@ -262,9 +219,10 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                         <li>
                                             <details
                                                 open={
-                                                    router.pathname === '/dashboard' ||
                                                     router.pathname === '/inbox' ||
-                                                    router.pathname === '/notifications'
+                                                    router.pathname === '/dashboard' ||
+                                                    router.pathname === '/notifications' ||
+                                                    router.pathname === '/country-snapshot'
                                                 }
                                             >
                                                 <summary
@@ -274,7 +232,8 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                         ${
                                                             router.pathname === '/dashboard' ||
                                                             router.pathname === '/inbox' ||
-                                                            router.pathname === '/notifications'
+                                                            router.pathname === '/notifications' ||
+                                                            router.pathname === '/country-snapshot'
                                                             ? styles['selected'] : ''
                                                         }
                                                     ` }
@@ -299,6 +258,17 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                             Dashboard
                                                         </li>
+                                                        <Link
+                                                            href='/infographics/country-snapshot'
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        >
+                                                            <li className={ styles['submenu-option'] }>
+                                                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                                Country snapshot
+                                                            </li>
+                                                        </Link>
                                                         <li className={ styles['submenu-option'] }>
                                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                             Sector Analisys

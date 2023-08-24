@@ -53,7 +53,7 @@
     font-size: 20px;
     inline-size: 100%;
     line-height: 20px;
-    margin-block-start: 20px;
+    margin-block-start: 60px;
     text-align: center;
 }
 
@@ -77,9 +77,14 @@
     line-height: 17px;
 }
 
+.main-image {
+    display: none;
+}
+
 .discover-image {
-    block-size: 236px;
-    inline-size: 240px;
+    block-size: 353px;
+    border-radius: 20px;
+    inline-size: 250px;
     margin-block-start: 24px;
     vertical-align: top;
 }
@@ -179,9 +184,11 @@
         text-align: left;
     }
 
+    .main-image {
+        display: inline-block;
+    }
+
     .discover-image {
-        block-size: 340px;
-        inline-size: 346px;
         margin-block-start: -40px;
     }
 
