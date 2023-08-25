@@ -250,6 +250,7 @@
 }
 
 .video {
+    background-color: transparent;
     /* bottom: 0px; */
     block-size: 100%;
     inline-size: 100%;

@@ -110,13 +110,18 @@ const CommentsPage = () => {
                             </div>
                         </form>
                         <p className={ style['terms'] }>
-                            Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
-                            texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
-                            a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos
-                            especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos,
-                            quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas Letraset, las
-                            cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus
-                            PageMaker, el cual incluye versiones de Lorem Ipsum.
+                            Important Notice: Guidelines for Sending Comments Dear User, We kindly remind you that when sending comments, it is essential to adhere to
+                            specific guidelines to maintain an atmosphere of respect and collaboration. Please take into consideration the following: 1. Mutual Respect:
+                            Ensure that your comments are respectful and constructive. Avoid offensive, discriminatory, or harmful language towards any individual, group,
+                            or entity. 2. Accuracy: Share accurate and truthful information. Refrain from spreading false news, baseless rumors, or misleading data.
+                            3. Good Intent: Your aim should be to contribute positively. Avoid comments with ill intentions, provocations, or any form of hostility.
+                            4. Relevance to the Topic: Keep your comments related to the subject of discussion. Avoid straying from the main issue.
+                            5. Appropriate Length: Be concise and relevant in your comments. Avoid overly long messages that might hinder understanding.
+                            6. Valuable Contributions: Strive to provide ideas, viewpoints, and arguments that enrich the conversation. Avoid empty or insubstantial comments.
+                            7. Respect for Guidelines: Adhere to the policies and regulations established by this platform for comment exchange.
+                            Your contributions are valuable, and we want to ensure that interaction here is constructive and friendly for all users. Any violation of these
+                            guidelines could result in the removal of your comments or further actions as necessary. Thank you for your understanding and cooperation in
+                            creating a harmonious environment for communication! Sincerely, Agora Team.
                         </p>
                     </div>
                 </div>

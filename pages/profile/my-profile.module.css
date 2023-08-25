@@ -233,7 +233,7 @@
     align-self: center;
     block-size: 100%;
     inline-size: 100%;
-    background-color: green;
+    background-color: transparent;
 }
 
 .video-text-container {

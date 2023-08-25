@@ -95,8 +95,8 @@
 }
 
 .about-image {
-    block-size: 236px;
-    inline-size: 240px;
+    block-size: auto;
+    inline-size: 100%;
     margin-block-start: 24px;
     vertical-align: top;
 }
@@ -210,9 +210,8 @@
     }
 
     .about-image {
-        block-size: 340px;
-        inline-size: 346px;
-        margin-block-start: -40px;
+        block-size: 270px;
+        inline-size: 550px;
     }
 
     .logos-title {

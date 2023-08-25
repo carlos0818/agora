@@ -36,6 +36,20 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
 
+    const [language, setLanguage] = useState('en')
+    const [video1, setVideo1] = useState('')
+    const [video2, setVideo2] = useState('')
+    const [video3, setVideo3] = useState('')
+    const [video4, setVideo4] = useState('')
+    const [video5, setVideo5] = useState('')
+    const [video6, setVideo6] = useState('')
+    const [video7, setVideo7] = useState('')
+    const [video8, setVideo8] = useState('')
+    const [video9, setVideo9] = useState('')
+    const [video10, setVideo10] = useState('')
+    const [video11, setVideo11] = useState('')
+    const [video12, setVideo12] = useState('')
+
     const [entrepreneurData, setEntrepreneurData] = useState<IEntrepreneur | null>(null)
     const [companyName, setCompanyName] = useState('')
     const [profilePic, setProfilePic] = useState('')
@@ -66,6 +80,25 @@ export const useProfile = (email: string, id: string, type: string) => {
     const videoDescRef = useRef<HTMLTextAreaElement>(null)
 
     const { loadQuestions, getUserAnswers } = useLoadQuestions()
+
+    useEffect(() => {
+        getLanguage()
+    }, [])
+
+    useEffect(() => {
+        setVideo1(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975670/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/1_Cracking_the_investor_pitch.webm`)
+        setVideo2(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975672/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/2_Cracking_the_investor_pitch_introduction.webm`)
+        setVideo3(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975672/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/3_Cracking_the_investor_pitch_Problem_statement.webm`)
+        setVideo4(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975679/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/4_Cracking_the_investor_pitch_Solution_showcase.webm`)
+        setVideo5(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975681/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/5_Cracking_the_investor_pitch_Unique_value_proposition.webm`)
+        setVideo6(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975669/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/6_Cracking_the_investor_pitch_Market_opportunity.webm`)
+        setVideo7(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975671/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/7_Cracking_the_investor_pitch_Business_model.webm`)
+        setVideo8(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975677/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/8_Cracking_the_investor_pitch_traction_and_milestones.webm`)
+        setVideo9(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975680/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/9_Cracking_the_investor_pitch_team_introduction.webm`)
+        setVideo10(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975680/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/10_Cracking_the_investor_pitch_go-to-market_strategy.webm`)
+        setVideo11(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975672/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/11_Cracking_the_investor_pitch_financial_projections.webm`)
+        setVideo12(`https://res.cloudinary.com/dp779tmk6/video/upload/v1692975687/SYSVIDEOS/PITCHVIDEO/Entrepreneur/${ language }/12_Cracking_the_investor_pitch_call_to_action.webm`)
+    }, [language])
 
     useEffect(() => {
         if (user) {
@@ -156,6 +189,17 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
         updateHide(removeDuplicates.length)
     }, [masterHide, globalHide, id])
+
+    const getLanguage = async() => {
+        const userLang = await navigator.language.substring(0, 2)
+
+        if (userLang === 'fr')
+            setLanguage('fr')
+        else if (userLang === 'es')
+            setLanguage('es')
+        else
+            setLanguage('en')
+    }
 
     const loadData = async() => {
         switch (type) {
@@ -426,6 +470,19 @@ export const useProfile = (email: string, id: string, type: string) => {
     }
 
     return {
+        language,
+        video1,
+        video2,
+        video3,
+        video4,
+        video5,
+        video6,
+        video7,
+        video8,
+        video9,
+        video10,
+        video11,
+        video12,
         isMyAccount,
         countries,
         user,
