@@ -192,21 +192,27 @@ export const LogoutHome = () => {
                                 language === 'fr' ? (
                                     <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
                                         <source
-                                            src='./videos/welcome_fr.mp4'
-                                            type='video/mp4'
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1693061656/SYSVIDEOS/Main/Welcome_to_website_FR_w5r2ao.webm'
+                                            type='video/webm'
                                         />
                                     </video>
-                                ) : (
-                                    language === 'en' && (
-                                        <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
-                                            <source
-                                                src='/videos/welcome_en.webm'
-                                                type='video/mp4'
-                                            />
-                                            <source src="./videos/welcome_en.mov" type='video/mp4; codecs="hvc1"' />
-                                            <source src="./videos/welcome_en.webm" type="video/webm" />
-                                        </video>
-                                    )
+                                )
+                                : language === 'es' ?
+                                (
+                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                        <source
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1693061656/SYSVIDEOS/Main/Welcome_to_website_ESP_wq6bfd.webm'
+                                            type='video/webm'
+                                        />
+                                    </video>
+                                )
+                                : (
+                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                        <source
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1693061656/SYSVIDEOS/Main/Welcome_to_website_r8wevo.webm'
+                                            type='video/webm'
+                                        />
+                                    </video>
                                 )
                             }
                         </div>
