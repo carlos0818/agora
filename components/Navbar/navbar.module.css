@@ -32,6 +32,23 @@
     font-weight: 700;
 }
 
+.goog-te-gadget-simple {
+    border: none;
+}
+
+.google-translate {
+    display: none;
+    background-color: transparent;
+}
+
+.translate img {
+    display: none;
+}
+
+.translate span {
+    font-family: 'ebrima' !important;
+}
+
 .button-text-size {
     font-size: 15px;
 }
@@ -102,5 +119,9 @@
 
     .button-text-size {
         font-size: 24px;
+    }
+
+    .google-translate {
+        display: inline-block;
     }
 }

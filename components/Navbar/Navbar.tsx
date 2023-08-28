@@ -1,4 +1,4 @@
-import { Dispatch, FC, MouseEvent, SetStateAction, useContext } from 'react'
+import { Dispatch, FC, MouseEvent, SetStateAction, useContext, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -17,6 +17,20 @@ interface Props {
 
 export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
     const { user, logout } = useContext(AuthContext)
+
+    useEffect(() => {
+        let addScript = document.createElement('script')
+        addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit')
+        document.body.appendChild(addScript)
+        window.googleTranslateElementInit = googleTranslateElementInit
+    }, [])
+
+    const googleTranslateElementInit = () => {
+        return new window.google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element')
+    }
     
     const handleClickUserIcon = (ev: MouseEvent) => {
         setSubmenu(!submenu)
@@ -34,6 +48,9 @@ export const Navbar: FC<Props> = ({ submenu, setSubmenu }) => {
                 <Image src={ agoralogo } alt='' className={ styles['logo'] } />
             </Link>
             <div className={ styles['buttons-container'] }>
+                <div className={ styles['google-translate'] }>
+                    <div id='google_translate_element' className={ styles['translate'] }></div>
+                </div>
                 {
                     !user
                     ? (

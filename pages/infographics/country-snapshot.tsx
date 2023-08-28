@@ -2,18 +2,19 @@ import { useContext, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 
-import { HomeLoginLayout } from '@/components/layouts/HomeLoginLayout'
 const MapWithNoSSR = dynamic(() => import('../../components/Map'), { ssr: false })
 
-import countriesList from '../../db/countries'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { snapshot } from '@/redux/slices/country'
-import { agoraApi } from '@/api'
-
-import styles from './country-snapshot.module.css'
+import countriesList from '../../db/countries'
 import { ICountry } from '@/interfaces'
 import { useAnimateIndicators } from '@/hooks'
 import { MenuContext } from '@/context/menu'
+
+import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { agoraApi } from '@/api'
+
+import styles from './country-snapshot.module.css'
 
 const CountrySnapshot = () => {
     const { isOpenDesktop } = useContext(MenuContext)
@@ -98,7 +99,7 @@ const CountrySnapshot = () => {
     }
 
     return (
-        <HomeLoginLayout
+        <HomeLoginWithoutMenuLayout
             title=''
             pageDescription=''
         >
@@ -119,7 +120,7 @@ const CountrySnapshot = () => {
                         flag && (<Image className={ styles["flag"] } src={ flag } alt='' width={ 20 } height={ 20 } />)
                     }
                 </div>
-                <div className={ `${ styles["data-grid"] } ${ isOpenDesktop === 'hide' ? styles['four'] : '' }` }>
+                <div className={ `${ styles["data-grid"] }` }>
                     <div className='window-glass-content' style={{ padding: 0 }}>
                         <div className={ `${ styles["statistics-container"] } ${ styles["geography-container"] }` }>
                             <div className={ `${ styles["title-container"] }` }>
@@ -710,7 +711,7 @@ const CountrySnapshot = () => {
                     </div>
                 </div>
             </>
-        </HomeLoginLayout>
+        </HomeLoginWithoutMenuLayout>
     )
 }
 

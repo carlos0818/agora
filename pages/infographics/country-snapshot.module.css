@@ -26,8 +26,8 @@
 
 .data-grid {
     display: grid;
-    grid-template-columns: 336px 283px;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 336px 283px 288px 291px;
+    /* grid-template-rows: 1fr; */
     max-width: 1280px;
     padding-block: 20px;
     margin: auto;
