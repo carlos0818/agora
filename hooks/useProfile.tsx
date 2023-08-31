@@ -35,6 +35,7 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [comment, setComment] = useState('')
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
+    const [pitchDeck, setPitchDeck] = useState(false)
 
     const [language, setLanguage] = useState('en')
     const [video1, setVideo1] = useState('')
@@ -127,6 +128,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                 getUserComments(),
                 getValidateFriend(),
                 getAverageVotes(),
+                verifyPitchDeck(),
             ]).then(() => {
                 setLoading(false)
             })
@@ -443,6 +445,13 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
+    const verifyPitchDeck = async() => {
+        const { data } = await agoraApi.get(`/entrepreneur/verify-pitch-deck?id=${ id }`)
+        if (data.response === 1) {
+            setPitchDeck(true)
+        }
+    }
+
     const handleComment = async() => {
         if (comment.length > 0) {
             setComment('')
@@ -522,6 +531,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         comment,
         validateFriend,
         averageVote,
+        pitchDeck,
         setComment,
         onFileSelected,
         handleUpdateEntrepreneurInfo,

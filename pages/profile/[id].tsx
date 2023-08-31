@@ -76,6 +76,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         comment,
         validateFriend,
         averageVote,
+        pitchDeck,
         setComment,
         onFileSelected,
         handleUpdateEntrepreneurInfo,
@@ -684,9 +685,27 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                     style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
                                                                 />
                                                             </summary>
-                                                            <p className={ styles['accordion-content'] }>
-                                                                Pitch Deck content
-                                                            </p>
+                                                            <div className={ styles['accordion-content'] }>
+                                                                {
+                                                                    !pitchDeck && (
+                                                                        <>
+                                                                            <p>
+                                                                                A successful entrepreneur needs to be able to effectively communicate the essence of their
+                                                                                business in a very limited period of time and capture the interest of investors, potential
+                                                                                partners, and other key stakeholders. This is where the "Pitch Deck" comes into play. A Pitch
+                                                                                Deck is a presentation that succinctly and attractively summarizes the most important aspects
+                                                                                of a business.
+                                                                            </p>
+                                                                            <button
+                                                                                className='button-filled'
+                                                                                style={{ marginBlockStart: 20 }}
+                                                                            >
+                                                                                Generate Pitch Deck with AI
+                                                                            </button>
+                                                                        </>
+                                                                    )
+                                                                }
+                                                            </div>
                                                         </details>
                                                         
                                                     </div>
