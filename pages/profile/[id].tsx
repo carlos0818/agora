@@ -116,7 +116,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
             const titles = []
     
             for (let i=0; i<data.length; i++) {
-                console.log(data[i])
                 for (let j=0; j<data[i].titles.length; j++) {
                     titles.push(data[i].titles[j].score)
                 }

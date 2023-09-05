@@ -92,9 +92,6 @@ const Questionnaire: NextPage = () => {
     const handlePlay = (qnbr: string, url: string) => {
         const $video = document.getElementById(`video-${ qnbr }`) as HTMLVideoElement
         const $play = document.getElementById(`play-${ qnbr }`) as HTMLVideoElement
-        
-        console.log($video)
-        console.log($play)
 
         $play.style.display = 'none'
         $video.src = url

@@ -70,7 +70,7 @@ const LoginPage: NextPage = ({  }) => {
             await signIn('credentials', { email, password, captcha, loginToken: 'N', token: '' })
             setLoading(false)
         } catch (error: any) {
-            console.log(error.response)
+            // console.log(error.response)
         }
     }
     

@@ -289,7 +289,6 @@ export const useProfile = (email: string, id: string, type: string) => {
     }
 
     const handleUpdateEntrepreneurInfo = async(event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>, type: string) => {
-        console.log(event.target.value)
         const value = event.target.value
         let data = {
             [type]: value,
@@ -395,7 +394,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                     break
             }
         } catch (error: any) {
-            console.log(error)
+            // console.log(error)
             // updateRequiredInformation({
             //     ...user!,
             //     required: 0

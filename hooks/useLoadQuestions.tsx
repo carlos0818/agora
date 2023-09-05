@@ -142,7 +142,7 @@ export const useLoadQuestions = () => {
                     break
             }
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 

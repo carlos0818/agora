@@ -45,7 +45,7 @@ export const MenuMobile = () => {
                         legacyBehavior
                     >
                         <li
-                            className={ `${ styles['option'] } ${ router.query.id ? styles['selected'] : '' }` }
+                            className={ `${ styles['option'] } ${ router.pathname === '/profile/[id]' ? styles['selected'] : '' }` }
                             onClick={ () => toggleSideMenu('original') }
                         >
                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
@@ -195,8 +195,32 @@ export const MenuMobile = () => {
                     {
                         (user?.required === 1 && user.qversion === 1) && (
                                 <li>
-                                    <details open={ openMyData }>
-                                        <summary className={ styles['option'] }>
+                                    <details
+                                        open={
+                                            router.pathname === '/inbox' ||
+                                            router.pathname === '/dashboard' ||
+                                            router.pathname === '/notifications' ||
+                                            router.pathname === '/country-snapshot' ||
+                                            router.pathname === '/pitch-deck/[id]'
+                                        }
+                                    >
+                                        <summary
+                                            className={
+                                                `
+                                                    ${ styles['option'] }
+                                                    ${
+                                                        router.pathname === '/dashboard' ||
+                                                        router.pathname === '/inbox' ||
+                                                        router.pathname === '/notifications' ||
+                                                        router.pathname === '/country-snapshot' ||
+                                                        router.pathname === '/country-snapshot' ||
+                                                        router.pathname === '/pitch-deck/[id]'
+                                                        ? styles['selected'] : ''
+                                                    }
+                                                
+                                                `
+                                            }
+                                        >
                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                             My data
                                         </summary>
@@ -254,10 +278,20 @@ export const MenuMobile = () => {
                                                 </Link>
                                                 {
                                                     user?.type === 'E' && (
-                                                        <li className={ styles['submenu-option'] }>
-                                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                            Pitch Deck
-                                                        </li>
+                                                        <Link
+                                                            href={ `/pitch-deck/${ user?.id }` }
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        >
+                                                            <li
+                                                                className={ styles['submenu-option'] }
+                                                                onClick={ () => toggleSideMenu('original') }
+                                                            >
+                                                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                                Pitch Deck
+                                                            </li>
+                                                        </Link>
                                                     )
                                                 }
                                             </ul>

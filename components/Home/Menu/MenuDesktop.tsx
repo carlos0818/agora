@@ -76,7 +76,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                     legacyBehavior
                                 >
                                     <li
-                                        className={ `${ styles['option'] } ${ router.query.id ? styles['selected'] : '' }` }
+                                        className={ `${ styles['option'] } ${ router.pathname === '/profile/[id]' ? styles['selected'] : '' }` }
                                         // onClick={ () => toggleSideMenuDesktop('original') }
                                     >
                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
@@ -222,7 +222,8 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                     router.pathname === '/inbox' ||
                                                     router.pathname === '/dashboard' ||
                                                     router.pathname === '/notifications' ||
-                                                    router.pathname === '/country-snapshot'
+                                                    router.pathname === '/country-snapshot' ||
+                                                    router.pathname === '/pitch-deck/[id]'
                                                 }
                                             >
                                                 <summary
@@ -233,7 +234,9 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             router.pathname === '/dashboard' ||
                                                             router.pathname === '/inbox' ||
                                                             router.pathname === '/notifications' ||
-                                                            router.pathname === '/country-snapshot'
+                                                            router.pathname === '/country-snapshot' ||
+                                                            router.pathname === '/country-snapshot' ||
+                                                            router.pathname === '/pitch-deck/[id]'
                                                             ? styles['selected'] : ''
                                                         }
                                                     ` }
@@ -286,10 +289,17 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                         </Link>
                                                         {
                                                             user?.type === 'E' && (
-                                                                <li className={ styles['submenu-option'] }>
-                                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                                    Pitch Deck
-                                                                </li>
+                                                                <Link
+                                                                    href={ `/pitch-deck/${ user?.id }` }
+                                                                    passHref
+                                                                    prefetch={ false }
+                                                                    legacyBehavior
+                                                                >
+                                                                    <li className={ styles['submenu-option'] }>
+                                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                                        Pitch Deck
+                                                                    </li>
+                                                                </Link>
                                                             )
                                                         }
                                                     </ul>
