@@ -383,7 +383,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                             </div>
                         </div>
                         {
-                            (user?.required === 0 && isMyAccount) && (
+                            ((user?.required === 0 || !user?.required) && isMyAccount) && (
                                 <div className={ `window-glass` }>
                                     <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                         <p className={ styles['card-title'] }>Required information</p>
