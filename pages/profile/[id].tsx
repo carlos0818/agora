@@ -136,11 +136,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         $videotutorial.src = $video.getAttribute('data-url')!
     }
 
-    console.log('sendRequest:', sendRequest)
-    console.log('userEmail:', user?.email)
-    console.log('email:', email)
-    console.log('validation:', !sendRequest && user?.email !== email)
-
     return (
         <HomeLoginLayout
             title=''
