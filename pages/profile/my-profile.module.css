@@ -280,6 +280,10 @@
     margin-block-start: 16px;
 }
 
+.message-pitch-deck {
+    font-family: 'ebrima-bold';
+}
+
 .qualification-section-container {
     align-items: center;
     border-block-end: 2px solid rgba(16, 40, 79, 0.6);

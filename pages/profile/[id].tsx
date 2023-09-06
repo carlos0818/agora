@@ -24,7 +24,6 @@ interface Props {
 
 const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     const {
-        language,
         video1,
         video2,
         video3,
@@ -42,8 +41,11 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         user,
         loading,
         loadingPic,
+        loadingPitchDeck,
         hideRocket,
         profilePic,
+        messagePitchDeck,
+        summaryPitchDeck,
         companyName,
         emailContact,
         city,
@@ -82,6 +84,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
         handleComment,
+        handlePitchDeck,
         getAverageVotes,
     } = useProfile(email, id, type)
 
@@ -684,9 +687,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                     style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
                                                                 />
                                                             </summary>
-                                                            <div className={ styles['accordion-content'] }>
+                                                            <div className={ styles['accordion-content'] } style={{ display: 'flex', flexDirection: 'column' }}>
                                                                 {
-                                                                    !pitchDeck && (
+                                                                    !pitchDeck ? (
                                                                         <>
                                                                             <p>
                                                                                 A successful entrepreneur needs to be able to effectively communicate the essence of their
@@ -695,13 +698,32 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                 Deck is a presentation that succinctly and attractively summarizes the most important aspects
                                                                                 of a business.
                                                                             </p>
-                                                                            <button
-                                                                                className='button-filled'
-                                                                                style={{ marginBlockStart: 20 }}
-                                                                            >
-                                                                                Generate Pitch Deck with AI
-                                                                            </button>
+                                                                            {
+                                                                                loadingPitchDeck
+                                                                                ? (
+                                                                                    <div style={{ display: 'flex', marginBlock: 20, justifyContent: 'center' }}>
+                                                                                        <p className={ styles['message-pitch-deck'] }>{ messagePitchDeck }</p>
+                                                                                    </div>
+                                                                                )
+                                                                                : (
+                                                                                    <button
+                                                                                        className='button-filled'
+                                                                                        style={{ margin: 'auto', marginBlockStart: 20, width: 'fit-content', alignSelf: 'center' }}
+                                                                                        onClick={ handlePitchDeck }
+                                                                                    >
+                                                                                        Generate Pitch Deck with AI
+                                                                                    </button>
+                                                                                )
+                                                                            }
+                                                                            
                                                                         </>
+                                                                    ) : (
+                                                                        <textarea
+                                                                            className='textfield'
+                                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                            defaultValue={ summaryPitchDeck }
+                                                                            // onBlur={  }
+                                                                        />
                                                                     )
                                                                 }
                                                             </div>

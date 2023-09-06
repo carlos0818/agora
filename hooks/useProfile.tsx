@@ -27,6 +27,7 @@ export const useProfile = (email: string, id: string, type: string) => {
 
     const [loading, setLoading] = useState(false)
     const [loadingPic, setLoadingPic] = useState(false)
+    const [loadingPitchDeck, setLoadingPitchDeck] = useState(false)
     const [hideRocket, setHideRocket] = useState(false)
     const [isMyAccount, setIsMyAccount] = useState(false)
     const [sendRequest, setSendRequest] = useState(false)
@@ -36,6 +37,8 @@ export const useProfile = (email: string, id: string, type: string) => {
     const [validateFriend, setValidateFriend] = useState(false)
     const [averageVote, setAverageVote] = useState(0)
     const [pitchDeck, setPitchDeck] = useState(false)
+    const [messagePitchDeck, setMessagePitchDeck] = useState('')
+    const [summaryPitchDeck, setSummaryPitchDeck] = useState('')
 
     const [language, setLanguage] = useState('en')
     const [video1, setVideo1] = useState('')
@@ -129,6 +132,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                 getValidateFriend(),
                 getAverageVotes(),
                 verifyPitchDeck(),
+                getSummaryPitchDeck(),
             ]).then(() => {
                 setLoading(false)
             })
@@ -451,6 +455,12 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
+    const getSummaryPitchDeck = async() => {
+        const { data } = await agoraApi.get(`/pitch-deck/get-summary?id=${ id }`)
+        if (data.text)
+            setSummaryPitchDeck(data.text)
+    }
+
     const handleComment = async() => {
         if (comment.length > 0) {
             setComment('')
@@ -477,8 +487,50 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
+    const handlePitchDeck = async() => {
+        setLoadingPitchDeck(true)
+
+        try {
+            setMessagePitchDeck('Processing Country Context...');
+            await agoraApi.post('/pitch-deck/step-1', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Company/Firm Profile...');
+            await agoraApi.post('/pitch-deck/step-2', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Business Activities...');
+            await agoraApi.post('/pitch-deck/step-3', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Market Analysis and Business Strategy...');
+            await agoraApi.post('/pitch-deck/step-4', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Business Related Risk...');
+            await agoraApi.post('/pitch-deck/step-5', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Past Financial Performance...');
+            await agoraApi.post('/pitch-deck/step-6', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Project Information...');
+            await agoraApi.post('/pitch-deck/step-7', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Future Proyections...');
+            await agoraApi.post('/pitch-deck/step-8', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Funding Request...');
+            await agoraApi.post('/pitch-deck/step-9', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Pitch Deck Document...');
+            await agoraApi.post('/pitch-deck/step-10', { email: user?.email, id: user?.id })
+            setMessagePitchDeck('Processing Summary Pitch Deck...');
+            await agoraApi.post('/pitch-deck/step-11', { email: user?.email, id: user?.id })
+
+            const { data: verify } = await agoraApi.get(`/entrepreneur/verify-pitch-deck?id=${ id }`)
+            if (verify.response === 1) {
+                setPitchDeck(true)
+            }
+
+            const { data } = await agoraApi.get(`/pitch-deck/get-summary?id=${ id }`)
+            if (data.text)
+                setSummaryPitchDeck(data.text)
+
+        } catch (error) {
+            
+        } finally {
+            setLoadingPitchDeck(false)
+        }
+    }
+
     return {
-        language,
         video1,
         video2,
         video3,
@@ -496,8 +548,11 @@ export const useProfile = (email: string, id: string, type: string) => {
         user,
         loading,
         loadingPic,
+        loadingPitchDeck,
         hideRocket,
         profilePic,
+        messagePitchDeck,
+        summaryPitchDeck,
         companyName,
         emailContact,
         city,
@@ -536,6 +591,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         handleUpdateEntrepreneurInfo,
         handleSendRequest,
         handleComment,
+        handlePitchDeck,
         getAverageVotes,
     }
 }
