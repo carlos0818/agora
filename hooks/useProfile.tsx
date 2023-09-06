@@ -530,6 +530,10 @@ export const useProfile = (email: string, id: string, type: string) => {
         }
     }
 
+    const handleSaveSummaryPitchDeck = async(event: ChangeEvent<HTMLTextAreaElement>) => {
+        await agoraApi.post('/pitch-deck/save-summary', { text: event.target.value, email: user?.email, id: user?.id })
+    }
+
     return {
         video1,
         video2,
@@ -592,6 +596,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         handleSendRequest,
         handleComment,
         handlePitchDeck,
+        handleSaveSummaryPitchDeck,
         getAverageVotes,
     }
 }

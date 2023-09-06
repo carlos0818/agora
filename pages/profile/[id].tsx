@@ -85,6 +85,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         handleSendRequest,
         handleComment,
         handlePitchDeck,
+        handleSaveSummaryPitchDeck,
         getAverageVotes,
     } = useProfile(email, id, type)
 
@@ -722,7 +723,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                 className='textfield'
                                                                                 style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
                                                                                 defaultValue={ summaryPitchDeck }
-                                                                                // onBlur={  }
+                                                                                onBlur={ handleSaveSummaryPitchDeck }
                                                                             />
                                                                         ) : (
                                                                             <p>{ summaryPitchDeck }</p>
