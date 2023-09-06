@@ -122,7 +122,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             prefetch={ false }
                                                             legacyBehavior
                                                         >
-                                                            <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/entrepreneur' ? styles['selected'] : '' }` }>
+                                                            <li className={ `${ styles['submenu-option'] } ${ router.query.type === 'entrepreneur' ? styles['selected'] : '' }` }>
                                                                 {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                                 Entrepreneur
                                                             </li>
@@ -133,7 +133,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             prefetch={ false }
                                                             legacyBehavior
                                                         >
-                                                            <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/investors' ? styles['selected'] : '' }` }>
+                                                            <li className={ `${ styles['submenu-option'] } ${ router.query.type === 'investors' ? styles['selected'] : '' }` }>
                                                                 {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                                 Investors
                                                             </li>
@@ -144,7 +144,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             prefetch={ false }
                                                             legacyBehavior
                                                         >
-                                                            <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/finder/experts' ? styles['selected'] : '' }` }>
+                                                            <li className={ `${ styles['submenu-option'] } ${ router.query.type === 'experts' ? styles['selected'] : '' }` }>
                                                                 {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                                 Experts
                                                             </li>
@@ -220,6 +220,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                             <details
                                                 open={
                                                     router.pathname === '/inbox' ||
+                                                    router.pathname === '/inbox/[contactId]' ||
                                                     router.pathname === '/dashboard' ||
                                                     router.pathname === '/notifications' ||
                                                     router.pathname === '/country-snapshot' ||
@@ -233,8 +234,8 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                         ${
                                                             router.pathname === '/dashboard' ||
                                                             router.pathname === '/inbox' ||
+                                                            router.pathname === '/inbox/[contactId]' ||
                                                             router.pathname === '/notifications' ||
-                                                            router.pathname === '/country-snapshot' ||
                                                             router.pathname === '/country-snapshot' ||
                                                             router.pathname === '/pitch-deck/[id]'
                                                             ? styles['selected'] : ''
@@ -252,12 +253,12 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             prefetch={ false }
                                                             legacyBehavior
                                                         >
-                                                            <li className={ styles['submenu-option'] }>
+                                                            <li className={ `${ styles['submenu-option'] } ${ (router.pathname === '/inbox' || router.pathname === '/inbox/[contactId]') ? styles['selected'] : '' }` }>
                                                                 {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                                 Inbox
                                                             </li>
                                                         </Link>
-                                                        <li className={ styles['submenu-option'] }>
+                                                        <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/dashboard' ? styles['selected'] : '' }` }>
                                                             {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                             Dashboard
                                                         </li>
@@ -282,7 +283,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             prefetch={ false }
                                                             legacyBehavior
                                                         >
-                                                            <li className={ styles['submenu-option'] }>
+                                                            <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/notifications' ? styles['selected'] : '' }` }>
                                                                 {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                                 Notifications
                                                             </li>
@@ -295,7 +296,7 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                                     prefetch={ false }
                                                                     legacyBehavior
                                                                 >
-                                                                    <li className={ styles['submenu-option'] }>
+                                                                    <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/pitch-deck/[id]' ? styles['selected'] : '' }` }>
                                                                         {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
                                                                         Pitch Deck
                                                                     </li>

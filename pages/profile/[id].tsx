@@ -555,7 +555,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     <div className={ styles['video-text-container'] }>
                                                         <p className={ styles['card-title'] }>Video</p>
                                                         {
-                                                            (isMyAccount && !videoUrl) ?
+                                                            (isMyAccount && !videoUrl && user.type === 'E') ?
                                                                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, inlineSize: '100%', marginBlockStart: 8 }}>
                                                                     <a
                                                                         id='videotutorial1'

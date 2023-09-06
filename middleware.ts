@@ -25,6 +25,7 @@ export async function middleware(req: NextRequest) {
         req.nextUrl.pathname.substring(0, 6) === '/inbox' ||
         req.nextUrl.pathname.substring(0, 14) === '/notifications' ||
         req.nextUrl.pathname.substring(0, 13) === '/edit-profile' ||
+        req.nextUrl.pathname.substring(0, 11) === '/pitch-deck' ||
         req.nextUrl.pathname === '/'
     ) {
         let questionnaire
@@ -80,6 +81,7 @@ export const config = {
         '/inbox/:path*',
         '/notifications',
         '/edit-profile',
+        '/pitch-deck/:path*',
         '/questionnaire',
     ],
 }
