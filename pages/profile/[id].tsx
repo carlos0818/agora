@@ -136,6 +136,11 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         $videotutorial.src = $video.getAttribute('data-url')!
     }
 
+    console.log('sendRequest:', sendRequest)
+    console.log('userEmail:', user?.email)
+    console.log('email:', email)
+    console.log('validation:', !sendRequest && user?.email !== email)
+
     return (
         <HomeLoginLayout
             title=''
@@ -305,7 +310,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                 { entrepreneurData?.web }
                                             </p>
                                             {
-                                                (sendRequest || user?.email === email) && (
+                                                (validateFriend || user?.email === email) && (
                                                     <>
                                                         <p className={ `${ styles['info-text'] }` }>
                                                             { emailContact }
@@ -316,15 +321,14 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     </>
                                                 )
                                             }
-                                            
                                         </div>
                                     </div>
                                     {
-                                        (!isMyAccount && validateFriend) && (
+                                        (!isMyAccount) && (
                                             <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: 24, marginBlockStart: 20 }}>
                                                 <div className={ styles['social-container'] }>
                                                     {
-                                                        facebook && (
+                                                        (facebook && validateFriend) && (
                                                             <Link
                                                                 href={ `https://www.facebook.com/${ facebook }` }
                                                                 passHref
@@ -338,7 +342,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                         )
                                                     }
                                                     {
-                                                        linkedin && (
+                                                        (linkedin && validateFriend) && (
                                                             <Link
                                                                 href={ `https://www.linkedin.com/in/${ linkedin }` }
                                                                 passHref
@@ -352,7 +356,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                         )
                                                     }
                                                     {
-                                                        twitter && (
+                                                        (twitter && validateFriend) && (
                                                             <Link
                                                                 href={ `https://www.twitter.com/${ twitter }` }
                                                                 passHref
@@ -674,7 +678,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         )
                                     }
                                     {
-                                        user?.type === 'E' && (
+                                        type === 'E' && (
                                             <div className={ `window-glass` }>
                                                 <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                                     <div style={{ position: 'relative' }}>
@@ -718,12 +722,16 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             
                                                                         </>
                                                                     ) : (
-                                                                        <textarea
-                                                                            className='textfield'
-                                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                                            defaultValue={ summaryPitchDeck }
-                                                                            // onBlur={  }
-                                                                        />
+                                                                        isMyAccount ? (
+                                                                            <textarea
+                                                                                className='textfield'
+                                                                                style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                                defaultValue={ summaryPitchDeck }
+                                                                                // onBlur={  }
+                                                                            />
+                                                                        ) : (
+                                                                            <p>{ summaryPitchDeck }</p>
+                                                                        )
                                                                     )
                                                                 }
                                                             </div>
@@ -735,7 +743,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         )
                                     }
                                     {
-                                        user?.type === 'E' && (
+                                        type === 'E' && (
                                             <div className={ `window-glass` }>
                                                 <div className={ `window-glass-content ${ styles['window-content'] }` }>
                                                     <div style={{ position: 'relative' }}>

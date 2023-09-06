@@ -491,27 +491,27 @@ export const useProfile = (email: string, id: string, type: string) => {
         setLoadingPitchDeck(true)
 
         try {
-            setMessagePitchDeck('Processing Country Context...');
+            setMessagePitchDeck('1/11 Processing Country Context...');
             await agoraApi.post('/pitch-deck/step-1', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Company/Firm Profile...');
+            setMessagePitchDeck('2/11 Processing Company/Firm Profile...');
             await agoraApi.post('/pitch-deck/step-2', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Business Activities...');
+            setMessagePitchDeck('3/11 Processing Business Activities...');
             await agoraApi.post('/pitch-deck/step-3', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Market Analysis and Business Strategy...');
+            setMessagePitchDeck('4/11 Processing Market Analysis and Business Strategy...');
             await agoraApi.post('/pitch-deck/step-4', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Business Related Risk...');
+            setMessagePitchDeck('5/11 Processing Business Related Risk...');
             await agoraApi.post('/pitch-deck/step-5', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Past Financial Performance...');
+            setMessagePitchDeck('6/11 Processing Past Financial Performance...');
             await agoraApi.post('/pitch-deck/step-6', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Project Information...');
+            setMessagePitchDeck('7/11 Processing Project Information...');
             await agoraApi.post('/pitch-deck/step-7', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Future Proyections...');
+            setMessagePitchDeck('8/11 Processing Future Proyections...');
             await agoraApi.post('/pitch-deck/step-8', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Funding Request...');
+            setMessagePitchDeck('9/11 Processing Funding Request...');
             await agoraApi.post('/pitch-deck/step-9', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Pitch Deck Document...');
+            setMessagePitchDeck('10/11 Processing Pitch Deck Document...');
             await agoraApi.post('/pitch-deck/step-10', { email: user?.email, id: user?.id })
-            setMessagePitchDeck('Processing Summary Pitch Deck...');
+            setMessagePitchDeck('11/11 Processing Summary Pitch Deck...');
             await agoraApi.post('/pitch-deck/step-11', { email: user?.email, id: user?.id })
 
             const { data: verify } = await agoraApi.get(`/entrepreneur/verify-pitch-deck?id=${ id }`)
