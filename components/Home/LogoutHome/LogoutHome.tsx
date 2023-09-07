@@ -246,30 +246,43 @@ export const LogoutHome = () => {
                             and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
+                        <p className={ home['testimonial-name'] }>Aminata Diop</p>
+                        <p className={ home['testimonial-position'] }>Founder & CEO, SenTech Solutions, Senegal</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;As an investor, Agora has been a game-changer for me. The ease of discovering promising ventures, coupled with the platform's
+                            data-driven insights, has allowed me to make informed investment decisions that align with my values and goals.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                        <p className={ home['testimonial-name'] }>David Reynolds</p>
+                        <p className={ home['testimonial-position'] }>Angel Investor, USA</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging economies.
+                            It's a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. I'm proud to see
+                            Agora making a tangible impact and pushing the boundaries of what's possible.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                        <p className={ home['testimonial-name'] }>Xavier Michon</p>
+                        <p className={ home['testimonial-position'] }>Deputy Executive Secretary, UNCDF, USA</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Agora has emerged as a valuable bridge that links our institution to a diverse array of entrepreneurs and experts in emerging
+                            economies. This platform not only facilitates access to innovative projects and impactful ventures but also enriches our understanding
+                            of local contexts. Agora is an invaluable resource that broadens our horizons and enhances our ability to drive positive change across
+                            the region.&quot;
+                        </p>
+                        <div className={ home['testimonial-image'] }></div>
+                        <p className={ home['testimonial-name'] }>Sarah Patel</p>
+                        <p className={ home['testimonial-position'] }>Manager, Asian Development Bank, Philippines</p>
                     </div>
                     <div className={ home['testimonial-container'] }>
                         <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
                             and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
-                    </div>
-                    <div className={ home['testimonial-container'] }>
-                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
-                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
-                        </p>
-                        <div className={ home['testimonial-image'] }></div>
-                    </div>
-                    <div className={ home['testimonial-container'] }>
-                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
-                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
-                        </p>
-                        <div className={ home['testimonial-image'] }></div>
-                    </div>
-                    <div className={ home['testimonial-container'] }>
-                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
-                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
-                        </p>
-                        <div className={ home['testimonial-image'] }></div>
+                        <p className={ home['testimonial-name'] }>Dr. Li Wei</p>
+                        <p className={ home['testimonial-position'] }>Technology Consultant, China</p>
                     </div>
                 </div>
             </section>
