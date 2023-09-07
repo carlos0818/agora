@@ -86,9 +86,9 @@ export const LoginHome = () => {
                 post: {
                     index: Number(currentDate),
                     type: user!.type,
-                    companyName: data!.name,
+                    companyName: user!.name,
                     fullname: user!.fullname!,
-                    profilepic: data!.profilepic,
+                    profilepic: user!.profilepic,
                     dateposted: currentDate,
                     body: post,
                     likes: 0,

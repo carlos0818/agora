@@ -260,7 +260,7 @@ export const MenuMobile = () => {
                                                 </Link>
                                                 <li className={ styles['submenu-option'] }>
                                                     {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                    Sector Analisys
+                                                    Sector Analysis
                                                 </li>
                                                 <Link
                                                     href='/inbox'

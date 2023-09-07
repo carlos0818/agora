@@ -308,7 +308,7 @@
     row-gap: 30px;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     inline-size: 90%;
-    margin-block-start: 16px;
+    margin-block-start: 32px;
 }
 
 .testimonial-container {
@@ -318,7 +318,7 @@
     display: flex;
     flex-direction: column;
     justify-self: center;
-    inline-size: 260px;
+    inline-size: 300px;
     padding: 16px;
     position: relative;
 }
@@ -331,7 +331,7 @@
 .testimonial-image {
     background-color: green;
     border-radius: 50%;
-    bottom: 50px;
+    bottom: 60px;
     block-size: 50px;
     inline-size: 50px;
     margin-block-start: 16px;
@@ -339,13 +339,13 @@
 }
 
 .testimonial-name {
-    bottom: 30px;
+    bottom: 40px;
     font-size: 13px !important;
     position: absolute;
 }
 
 .testimonial-position {
-    bottom: 12px;
+    bottom: 20px;
     font-size: 13px !important;
     position: absolute;
 }
