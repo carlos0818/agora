@@ -250,7 +250,7 @@ export const LogoutHome = () => {
                         <p className={ home['testimonial-position'] }>Founder & CEO, SenTech Solutions, Senegal</p>
                     </div>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;As an investor, Agora has been a game-changer for me. The ease of discovering promising ventures, coupled with the platform's
+                        <p>&quot;As an investor, Agora has been a game-changer for me. The ease of discovering promising ventures, coupled with the platform&lsquo;s
                             data-driven insights, has allowed me to make informed investment decisions that align with my values and goals.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
@@ -259,8 +259,8 @@ export const LogoutHome = () => {
                     </div>
                     <div className={ home['testimonial-container'] }>
                         <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging economies.
-                            It's a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. I'm proud to see
-                            Agora making a tangible impact and pushing the boundaries of what's possible.&quot;
+                            It&lsquo;s a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. I&lsquo;m proud to see
+                            Agora making a tangible impact and pushing the boundaries of what&lsquo;s possible.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
                         <p className={ home['testimonial-name'] }>Xavier Michon</p>
@@ -277,8 +277,8 @@ export const LogoutHome = () => {
                         <p className={ home['testimonial-position'] }>Manager, Asian Development Bank, Philippines</p>
                     </div>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
-                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        <p>&quot;Agora has provided me with a unique opportunity to share my expertise and insights with entrepreneurs from diverse backgrounds.
+                            The platform&lsquo;s interactive features and vibrant community enable meaningful engagements that drive mutual learning and growth.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
                         <p className={ home['testimonial-name'] }>Dr. Li Wei</p>
