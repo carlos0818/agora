@@ -305,7 +305,14 @@ export const LogoutHome = () => {
             </section>
             <section className={ home['supported-container-mobile'] }>
                 <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
-                <h4 className={ home['partners-title'] }>National</h4>
+                <Image
+                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694453179/SYSPICS/logosp.jpg'
+                    alt=''
+                    width={ 1200 }
+                    height={ 698 }
+                    style={{ marginBlockStart: 50, inlineSize: '100%', maxInlineSize: 1200, blockSize: 'auto' }}
+                />
+                {/* <h4 className={ home['partners-title'] }>National</h4>
                 <div className={ home['logos-container'] }>
                     <div className={ home['logos-row'] } style={{ marginBlockStart: 18 }}>
                         <Image src={ psfuLogo } alt='' style={{ width: 140, height: 140 }} />
@@ -333,11 +340,18 @@ export const LogoutHome = () => {
                         <Image src={ iccLogo } alt='' style={{ width: 135, height: 135 }} />
                         <Image src={ aldeliaLogo } alt='' style={{ width: 135, height: 135 }} />
                     </div>
-                </div>
+                </div> */}
             </section>
             <section className={ home['supported-container-desktop'] }>
                 <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
-                <div className={ home['supported-wrapper-desktop'] }>
+                <Image
+                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694453179/SYSPICS/logosp.jpg'
+                    alt=''
+                    width={ 1200 }
+                    height={ 698 }
+                    style={{ marginBlockStart: 50, inlineSize: '100%', maxInlineSize: 1200, blockSize: 'auto' }}
+                />
+                {/* <div className={ home['supported-wrapper-desktop'] }>
                     <div>
                         <h4 className={ home['partners-title'] }>National</h4>
                         <div className={ home['logos-container'] }>
@@ -367,7 +381,7 @@ export const LogoutHome = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
         </>
     )

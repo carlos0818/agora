@@ -71,7 +71,14 @@ const AboutPage = () => {
                             </ul>
                         </div>
                         <div className={ style['section-three-container'] }>
-                            <div className={ style['logos-container'] }>
+                            <Image
+                                src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694453179/SYSPICS/logosp.jpg'
+                                alt=''
+                                width={ 1200 }
+                                height={ 698 }
+                                style={{ marginBlockStart: 50, inlineSize: '100%', maxInlineSize: 1200, blockSize: 'auto' }}
+                            />
+                            {/* <div className={ style['logos-container'] }>
                                 <h3 className={ style['logos-title'] }>NATIONAL</h3>
                                 <Image
                                     src={ cciasImage }
@@ -86,7 +93,7 @@ const AboutPage = () => {
                                     alt='UNCDF Image'
                                     className={ style['logo-image'] }
                                 />
-                            </div>
+                            </div> */}
                         </div>
                         <div className={ style['section-four-container'] }>
                             <h3 className={ style['collaborate-title'] }>COLLABORATE WITH A PURPOSE</h3>

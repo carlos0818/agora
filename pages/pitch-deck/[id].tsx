@@ -34,11 +34,8 @@ const PitchDeckPage: NextPage<Props> = ({ id }) => {
     
     const getPitchDeck = async() => {
         const { data } = await agoraApi.get(`/pitch-deck/get-pitch-deck-document?id=${ id }`)
-        console.log(data)
         setPitchDeck(data.text)
     }
-
-    console.log(isMyAccount)
 
     const handleSave = async(event: ChangeEvent<HTMLTextAreaElement>) => {
         const text = event.target.value
