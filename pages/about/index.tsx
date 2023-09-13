@@ -4,9 +4,9 @@ import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import style from './about.module.css'
 
-import aboutImage from '@/public/images/about-image.png'
-import cciasImage from '@/public/images/ccias.png'
-import uncdfImage from '@/public/images/uncdf.png'
+// import aboutImage from '@/public/images/about-image.png'
+// import cciasImage from '@/public/images/ccias.png'
+// import uncdfImage from '@/public/images/uncdf.png'
 
 const AboutPage = () => {
     return (

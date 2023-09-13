@@ -9,7 +9,7 @@ interface Props {
 export const Section3: FC<Props> = ({ subtitle }) => {
     return (
         <div className={ style['section-three-container'] }>
-            <h3 className={ style['benefits-title'] }>BENEFITS</h3>
+            <h3 className={ style['benefits-title'] }>Benefits</h3>
             <p className={ style['benefits-subtitle'] }>{ subtitle }</p>
         </div>
     )

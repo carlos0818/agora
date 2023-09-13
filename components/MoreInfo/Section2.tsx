@@ -20,7 +20,7 @@ export const Section2: FC<Props> = ({ type, paragraph1, paragraph2, paragraph3, 
     return (
         <div className={ style['section-two-container'] }>
             <div>
-                <h3 className={ style['type-title'] }>{ type?.toUpperCase() }</h3>
+                <h3 className={ style['type-title'] }>{ type === 'investor' ? 'Investor' : type === 'entrepreneur' ? 'Entrepreneur' : 'Expert' }</h3>
                 <p className={ style['type-subtitle'] }>
                     {
                         type === 'investor' || type === 'entrepreneur'

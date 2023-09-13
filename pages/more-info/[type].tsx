@@ -20,10 +20,10 @@ const MoreInfoPage: NextPage = () => {
                         <Section1
                             title={
                                 query.type === 'investor'
-                                ? 'HARNESSING THE POWER OF UNTAPPED MARKETS'
+                                ? 'Harnessing the power of untapped markets'
                                 : query.type === 'entrepreneur'
-                                ? 'PARTNERING WITH INVESTORS FOR UNSTOPPABLE BUSINESS SUCCESS'
-                                : 'SHAPING THE FUTURE THROUGH SKILLS AND EXPERTISE'
+                                ? 'Partnering with investors for unstoppable business success'
+                                : 'Shaping the future through skills and expertise'
                             }
                             subtitle={
                                 query.type === 'investor'

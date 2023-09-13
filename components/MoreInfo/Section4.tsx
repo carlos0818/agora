@@ -14,27 +14,27 @@ const data = [
         type: 'investor',
         info: [
             {
-                title: 'ACCESS TO NEW INVESTMENT OPPORTUNITIES',
+                title: 'Access to new investment opportunities',
                 description: 'Agora provides a platform for investors to learn about new investment opportunities in frontier, emerging and developing economies that they may have otherwise overlooked.',
             },
             {
-                title: 'TRUSTED SOURCE',
+                title: 'Trusted source',
                 description: 'Agora is a trusted source for information on investment opportunities, providing credibility to the enterprises and investment opportunities presented on the platform.'
             },
             {
-                title: 'IMPROVED MARKET KNOWLEDGE',
+                title: 'Improved market knowledge',
                 description: 'By accessing Agora, investors can increase their understanding of local markets, reducing the risk perceptions and lack of market knowledge that are critical barriers to investment.'
             },
             {
-                title: 'DIVERSIFICATION OF PORTFOLIO',
+                title: 'Diversification of portfolio',
                 description: 'Investors can diversify their portfolios by investing in new opportunities and markets that they may have otherwise overlooked.'
             },
             {
-                title: 'IMPROVED SCREENING',
+                title: 'Improved screening',
                 description: 'Agora provides a platform for enterprises to showcase their potential, making the screening diligence process for investors easier and more efficient.'
             },
             {
-                title: 'INCREASED RETURNS',
+                title: 'Increased returns',
                 description: 'By accessing new investment opportunities, investors have the potential to increase their returns and achieve their investment goals.'
             }
         ]
@@ -43,27 +43,27 @@ const data = [
         type: 'entrepreneur',
         info: [
             {
-                title: 'INCREASED VISIBILITY',
+                title: 'Increased visibility',
                 description: 'Agora provides a platform for enterprises to showcase their potential to investors and capital markets, increasing their visibility and exposure.'
             },
             {
-                title: 'ACCESS TO CAPITAL',
+                title: 'Access to capital',
                 description: 'The platform enables enterprises to connect with potential investors, increasing their chances of securing the capital they need to grow their business.'
             },
             {
-                title: 'IMPROVED BUSINESS PROCESSES',
+                title: 'Improved business processes',
                 description: 'Even if not all enterprises secure financing, Agora incentivizes them to strengthen their business processes, making them more attractive to investors in the future.'
             },
             {
-                title: 'TRUSTED SOURCE',
+                title: 'Trusted source',
                 description: 'Agora is a trusted source for capital market actors to learn about investment opportunities in frontier, emerging, and developing economies, providing credibility to enterprises.'
             },
             {
-                title: 'EASY MATCHING PROCESS',
+                title: 'Easy matching process',
                 description: 'The matching process on Agora is easy, allowing enterprises to quickly connect with potential investors.'
             },
             {
-                title: 'OPPORTUNITY FOR GROWTH AND SUCESS',
+                title: 'Opportunity for growth and sucess',
                 description: 'By registering on Agora, enterprises have the opportunity to grow their business, secure capital, and reach new heights.'
             },
         ]
@@ -72,27 +72,27 @@ const data = [
         type: 'expert',
         info: [
             {
-                title: 'ACCESS TO NEW OPPORTUNITIES',
+                title: 'Access to new opportunities',
                 description: 'Agora provides a platform for pro bono advisors to learn about new opportunities to provide their services in frontier, emerging, and developing economies.'
             },
             {
-                title: 'SUPPORT FOR ENTERPRISES',
+                title: 'Support for enterprises',
                 description: 'By accessing Agora, pro bono advisors can support entrepreneurs and their businesses, helping them to grow and succeed.'
             },
             {
-                title: 'BUILDING A NETWORK',
+                title: 'Building a network',
                 description: 'Agora provides an opportunity for pro bono advisors to connect with other advisors and investors, building their professional network.'
             },
             {
-                title: 'INCREASED IMPACT',
+                title: 'Increased impact',
                 description: 'By accessing new opportunities, pro bono advisors can increase their impact, helping to promote economic growth and development in frontier, emerging, and developing economies.'
             },
             {
-                title: 'IMPROVED SKILLS',
+                title: 'Improved skills',
                 description: 'By working with a variety of entrepreneurs and businesses, pro bono advisors can improve their skills and gain new experience, enhancing their professional development.'
             },
             {
-                title: 'CONTRIBUTION TO GLOBAL PUBLIC GOOD',
+                title: 'Contribution to global public good',
                 description: 'By accessing Agora, pro bono advisors can contribute to the global public good, helping to scale up the sourcing of new investment lead opportunities in frontier, emerging, and developing economies.'
             },
         ]

@@ -96,7 +96,6 @@
     font-size: 13px;
     line-height: 17px;
     margin-block-end: 8px;
-    text-align: justify;
 }
 
 .info-image {
@@ -149,7 +148,6 @@
     color: var(--agora-blue-dark);
     font-size: 13px;
     line-height: 17px;
-    text-align: justify;
 }
 
 @media screen and (min-width: 1024px) {

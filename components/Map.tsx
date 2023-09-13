@@ -8,6 +8,7 @@ import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
 import { overpassApi } from '@/api'
 
 import countriesList from '@/db/countries'
+import geojson from '../db/custom.geo.json'
 
 export function ChangeView({ coords }: any) {
     const map = useMap()
@@ -21,6 +22,8 @@ interface Props {
 }
 
 const Map: FC<Props> = ({ country = '', setFlag }) => {
+    console.log(geojson)
+
     const [geoData, setGeoData] = useState({ lat: 10, lng: 10 })
     const [zoom, setZoom] = useState(1)
     const center = [geoData.lat, geoData.lng]
@@ -40,30 +43,50 @@ const Map: FC<Props> = ({ country = '', setFlag }) => {
                 // console.log(respFlag.elements[0].tags.flag) // IMAGEN BANDERA
                 setFlag(respFlag.elements[0].tags.flag)
 
-                fetch('https://www.7catsartstudio.com/archivos_envio/Agora/Map/custom.geo.json')
-                .then(response => response.json())
-                .then(data => {
-                    let noshift = 0
-                    let Border = data
-                    for (let i = 0; i < data.features.length; i++) {
-                        if (data.features[i].properties.adm0_iso !== country) {
-                            delete Border.features[i]
-                        } else {
-                            noshift = i
-                        }
+                const data = geojson
+
+                let noshift = 0
+                let Border = data
+                for (let i = 0; i < data.features.length; i++) {
+                    if (data.features[i].properties.adm0_iso !== country) {
+                        delete Border.features[i]
+                    } else {
+                        noshift = i
                     }
-                    Border.features.splice(0, 0, Border.features.splice(noshift, 1)[0])
-                    Border.features.length = 1
-                    if(Border.features[0] !== undefined) {
-                        const latLng = countries.filter(latlng => latlng.alpha3 === country)
-                        setGeoData({ lat: latLng[0].latitude, lng: latLng[0].longitude })
-                        setPolygon(Border)
-                        setZoom(latLng[0].zoom)
-                    }
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+                }
+                Border.features.splice(0, 0, Border.features.splice(noshift, 1)[0])
+                Border.features.length = 1
+                if(Border.features[0] !== undefined) {
+                    const latLng = countries.filter(latlng => latlng.alpha3 === country)
+                    setGeoData({ lat: latLng[0].latitude, lng: latLng[0].longitude })
+                    setPolygon(Border)
+                    setZoom(latLng[0].zoom)
+                }
+
+                // fetch('https://www.7catsartstudio.com/archivos_envio/Agora/Map/custom.geo.json')
+                // .then(response => response.json())
+                // .then(data => {
+                //     let noshift = 0
+                //     let Border = data
+                //     for (let i = 0; i < data.features.length; i++) {
+                //         if (data.features[i].properties.adm0_iso !== country) {
+                //             delete Border.features[i]
+                //         } else {
+                //             noshift = i
+                //         }
+                //     }
+                //     Border.features.splice(0, 0, Border.features.splice(noshift, 1)[0])
+                //     Border.features.length = 1
+                //     if(Border.features[0] !== undefined) {
+                //         const latLng = countries.filter(latlng => latlng.alpha3 === country)
+                //         setGeoData({ lat: latLng[0].latitude, lng: latLng[0].longitude })
+                //         setPolygon(Border)
+                //         setZoom(latLng[0].zoom)
+                //     }
+                // })
+                // .catch(err => {
+                //     console.log(err)
+                // })
             }
         } catch (error) {
             console.log('ERROR:', error)

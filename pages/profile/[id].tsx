@@ -708,7 +708,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                 {
                                                                     !pitchDeck ? (
                                                                         <>
-                                                                            <p>
+                                                                            <p style={{ color: '#10284F' }}>
                                                                                 A successful entrepreneur needs to be able to effectively communicate the essence of their
                                                                                 business in a very limited period of time and capture the interest of investors, potential
                                                                                 partners, and other key stakeholders. This is where the &quot;Pitch Deck&quot; comes into play. A Pitch

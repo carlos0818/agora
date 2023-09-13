@@ -448,6 +448,44 @@
     vertical-align: top;
 }
 
+.slider {
+    position: relative;
+    /* width: 400px; */
+    margin: auto;
+    margin-block-start: 50px;
+    max-inline-size: 900px;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* img {
+    width: 100%;
+    height: auto;
+} */
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
 @keyframes ShowImage {
     0% {
         opacity: 0;

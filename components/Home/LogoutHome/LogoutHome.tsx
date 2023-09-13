@@ -8,17 +8,17 @@ import home from './logout.module.css'
 import agoralogoShadow from '@/public/images/agoralogo_shadow.png'
 import backArrow from '@/public/images/back-arrow.png'
 import nextArrow from '@/public/images/next-arrow.png'
-import psfuLogo from '@/public/images/psfu.png'
-import cciasLogo from '@/public/images/ccias.png'
-import fsmeLogo from '@/public/images/fsme.png'
-import ministeryLogo from '@/public/images/ministery.png'
-import adepmeLogo from '@/public/images/adepme.png'
-import wfpLogo from '@/public/images/wfp.png'
-import uncdfLogo from '@/public/images/uncdf.png'
-import amrefLogo from '@/public/images/amref.png'
-import buaLogo from '@/public/images/bua.png'
-import iccLogo from '@/public/images/icc.png'
-import aldeliaLogo from '@/public/images/aldelia.png'
+// import psfuLogo from '@/public/images/psfu.png'
+// import cciasLogo from '@/public/images/ccias.png'
+// import fsmeLogo from '@/public/images/fsme.png'
+// import ministeryLogo from '@/public/images/ministery.png'
+// import adepmeLogo from '@/public/images/adepme.png'
+// import wfpLogo from '@/public/images/wfp.png'
+// import uncdfLogo from '@/public/images/uncdf.png'
+// import amrefLogo from '@/public/images/amref.png'
+// import buaLogo from '@/public/images/bua.png'
+// import iccLogo from '@/public/images/icc.png'
+// import aldeliaLogo from '@/public/images/aldelia.png'
 
 import investorImage1 from '@/public/images/investor-image1.png'
 import entrepreneurImage1 from '@/public/images/entrepreneur-image1.png'
@@ -238,20 +238,78 @@ export const LogoutHome = () => {
                     </div>
                 </div>
             </section>
-            <section className={ home['community-container'] }>
-                <h3 className={ home['community-title'] }>Hear from the community</h3>
+            <section className={ home['community-container'] } style={{ position: 'relative' }}>
+                {/* <h3 className={ home['community-title'] }>Hear from the community</h3>
+                <div className={ home['slider'] }>
+                    <div className={ home['slides'] }>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Through Agora, we have discovered innovative ways to connect with investors, experts, and a diverse array of potential partners.
+                                Its valuable connections and resources have been instrumental in accessing new opportunities. With Agora&lsquo;s support, we are confident
+                                that our company can continue to explore avenues for steady growth.&quot;
+                            </p>
+                            <div className={ home['testimonial-image'] }></div>
+                            <p className={ home['testimonial-name'] }>Simon Schwall</p>
+                            <p className={ home['testimonial-position'] }>CEO, OKO Finance</p>
+                        </div>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Utilizing Agora has positively impacted our investment approach. Its intuitive interface and data-driven insights allows us to
+                                discover promising ventures and make informed investment choices that align with our values and goals. As a Managing Director at the CIF,
+                                my mission is to foster economic growth in the region. Agora's innovative approach to connecting investors and entrepreneurs in emerging
+                                and frontier markets aligns perfectly with our goals, broadening the horizons of investment possibilities for the economic development of
+                                West Africa.&quot;
+                            </p>
+                            <div className={ home['testimonial-image'] }></div>
+                            <p className={ home['testimonial-name'] }>David Reynolds</p>
+                            <p className={ home['testimonial-position'] }>Angel Investor, USA</p>
+                        </div>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging economies.
+                                It&lsquo;s a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. I&lsquo;m proud to see
+                                Agora making a tangible impact and pushing the boundaries of what&lsquo;s possible.&quot;
+                            </p>
+                            <div className={ home['testimonial-image'] }></div>
+                            <p className={ home['testimonial-name'] }>Xavier Michon</p>
+                            <p className={ home['testimonial-position'] }>Deputy Executive Secretary, UNCDF, USA</p>
+                        </div>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Agora has emerged as a valuable bridge that links our institution to a diverse array of entrepreneurs and experts in emerging
+                                economies. This platform not only facilitates access to innovative projects and impactful ventures but also enriches our understanding
+                                of local contexts. Agora is an invaluable resource that broadens our horizons and enhances our ability to drive positive change across
+                                the region.&quot;
+                            </p>
+                            <div className={ home['testimonial-image'] }></div>
+                            <p className={ home['testimonial-name'] }>Sarah Patel</p>
+                            <p className={ home['testimonial-position'] }>Manager, Asian Development Bank, Philippines</p>
+                        </div>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Agora has provided me with a unique opportunity to share my expertise and insights with entrepreneurs from diverse backgrounds.
+                                The platform&lsquo;s interactive features and vibrant community enable meaningful engagements that drive mutual learning and growth.&quot;
+                            </p>
+                            <div className={ home['testimonial-image'] }></div>
+                            <p className={ home['testimonial-name'] }>Dr. Li Wei</p>
+                            <p className={ home['testimonial-position'] }>Technology Consultant, China</p>
+                        </div>
+                    </div>
+                </div>
+                <button className={ `${ home['slider-button'] } ${ home['prev'] }` }>Anterior</button>
+                <button className={ `${ home['slider-button'] } ${ home['next'] }` }>Siguiente</button> */}
+
                 <div className={ home['community-wrapper'] }>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
-                            and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
+                        <p>&quot;Through Agora, we have discovered innovative ways to connect with investors, experts, and a diverse array of potential partners.
+                            Its valuable connections and resources have been instrumental in accessing new opportunities. With Agora&lsquo;s support, we are confident
+                            that our company can continue to explore avenues for steady growth.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
-                        <p className={ home['testimonial-name'] }>Aminata Diop</p>
-                        <p className={ home['testimonial-position'] }>Founder & CEO, SenTech Solutions, Senegal</p>
+                        <p className={ home['testimonial-name'] }>Simon Schwall</p>
+                        <p className={ home['testimonial-position'] }>CEO, OKO Finance</p>
                     </div>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;As an investor, Agora has been a game-changer for me. The ease of discovering promising ventures, coupled with the platform&lsquo;s
-                            data-driven insights, has allowed me to make informed investment decisions that align with my values and goals.&quot;
+                        <p>&quot;Utilizing Agora has positively impacted our investment approach. Its intuitive interface and data-driven insights allows us to
+                            discover promising ventures and make informed investment choices that align with our values and goals. As a Managing Director at the CIF,
+                            my mission is to foster economic growth in the region. Agora's innovative approach to connecting investors and entrepreneurs in emerging
+                            and frontier markets aligns perfectly with our goals, broadening the horizons of investment possibilities for the economic development of
+                            West Africa.&quot;
                         </p>
                         <div className={ home['testimonial-image'] }></div>
                         <p className={ home['testimonial-name'] }>David Reynolds</p>

@@ -240,10 +240,20 @@ export const MenuMobile = () => {
                                                         Inbox
                                                     </li>
                                                 </Link>
-                                                <li className={ styles['submenu-option'] }>
-                                                    {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                    Dashboard
-                                                </li>
+                                                <Link
+                                                    href='/dashboard'
+                                                    passHref
+                                                    prefetch={ false }
+                                                    legacyBehavior
+                                                >
+                                                    <li
+                                                        className={ styles['submenu-option'] }
+                                                        onClick={ () => toggleSideMenu('original') }
+                                                    >
+                                                        {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        Dashboard
+                                                    </li>
+                                                </Link>
                                                 <Link
                                                     href='/infographics/country-snapshot'
                                                     passHref

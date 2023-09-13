@@ -56,6 +56,7 @@ const PitchDeckPage: NextPage<Props> = ({ id }) => {
                                 style={{ inlineSize: 'calc(100% - 30px)', blockSize: 700 }}
                                 defaultValue={ pitchDeck! }
                                 onBlur={ handleSave }
+                                spellCheck={ false }
                             />
                         ) : (
                             <textarea
@@ -63,6 +64,7 @@ const PitchDeckPage: NextPage<Props> = ({ id }) => {
                                 style={{ inlineSize: 'calc(100% - 30px)', blockSize: 700 }}
                                 defaultValue={ pitchDeck! }
                                 disabled
+                                spellCheck={ false }
                             />
                         )
                     }

@@ -258,10 +258,17 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                                 Inbox
                                                             </li>
                                                         </Link>
-                                                        <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/dashboard' ? styles['selected'] : '' }` }>
-                                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
-                                                            Dashboard
-                                                        </li>
+                                                        <Link
+                                                            href='/dashboard'
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        >
+                                                            <li className={ `${ styles['submenu-option'] } ${ router.pathname === '/dashboard' ? styles['selected'] : '' }` }>
+                                                                {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                                Dashboard
+                                                            </li>
+                                                        </Link>
                                                         <Link
                                                             href='/infographics/country-snapshot'
                                                             passHref
