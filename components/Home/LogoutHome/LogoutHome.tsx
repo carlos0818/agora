@@ -304,7 +304,7 @@ export const LogoutHome = () => {
                         <p className={ home['testimonial-name'] }>Simon Schwall</p>
                         <p className={ home['testimonial-position'] }>CEO, OKO Finance</p>
                     </div>
-                    <div className={ home['testimonial-container'] }>
+                    {/* <div className={ home['testimonial-container'] }>
                         <p>&quot;Utilizing Agora has positively impacted our investment approach. Its intuitive interface and data-driven insights allows us to
                             discover promising ventures and make informed investment choices that align with our values and goals. As a Managing Director at the CIF,
                             my mission is to foster economic growth in the region. Agora's innovative approach to connecting investors and entrepreneurs in emerging
@@ -314,7 +314,7 @@ export const LogoutHome = () => {
                         <div className={ home['testimonial-image'] }></div>
                         <p className={ home['testimonial-name'] }>David Reynolds</p>
                         <p className={ home['testimonial-position'] }>Angel Investor, USA</p>
-                    </div>
+                    </div> */}
                     <div className={ home['testimonial-container'] }>
                         <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging economies.
                             It&lsquo;s a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. I&lsquo;m proud to see
