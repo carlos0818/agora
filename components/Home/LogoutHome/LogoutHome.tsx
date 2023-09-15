@@ -88,7 +88,7 @@ export const LogoutHome = () => {
         const totalPages = document.getElementsByClassName('community-page')
         const url = window.location.href
         const anchor = url.substring(url.indexOf("#")+1)
-        const page = anchor.split('-')[2] ? Number(anchor.split('-')[2]) : 1
+        const page = anchor.split('-')[2] ? Number(anchor.split('-')[1]) : 1
 
         console.log('anchor', anchor)
         console.log('anchor split', anchor.split('-')[1])
