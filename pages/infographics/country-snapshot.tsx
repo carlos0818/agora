@@ -1,9 +1,11 @@
 import { useContext, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 const MapWithNoSSR = dynamic(() => import('../../components/Map'), { ssr: false })
 
+import { AuthContext } from '@/context/auth'
 import { snapshot } from '@/redux/slices/country'
 import countriesList from '../../db/countries'
 import { ICountry } from '@/interfaces'
@@ -17,7 +19,9 @@ import { agoraApi } from '@/api'
 import styles from './country-snapshot.module.css'
 
 const CountrySnapshot = () => {
+    const { user } = useContext(AuthContext)
     const { isOpenDesktop } = useContext(MenuContext)
+    const router = useRouter()
 
     const { countries } = countriesList
 
@@ -104,6 +108,14 @@ const CountrySnapshot = () => {
             pageDescription=''
         >
             <>
+                <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <input
+                        type='button'
+                        className='button-filled'
+                        value='Return to my profile'
+                        onClick={ () => router.push(`/profile/${ user?.id }`) }
+                    />
+                </div>
                 <div className={ styles["country-container"] }>
                     <select
                         className={ styles["select"] }
@@ -377,7 +389,13 @@ const CountrySnapshot = () => {
                                         indicators.map(ind => ind.indicatorId === 22 ? `(${ ind.indicatorYear })` : null)
                                     }
                                 </p>
-                                <em className={ `${ styles["indicator-icon"] } icon-trade-exp ${ styles["trade-icon-balance"] }` }></em>
+                                {
+                                    (tradeBalanceLeft > tradeBalanceRight)
+                                    ? <em className={ `${ styles["indicator-icon"] } icon-Trade-InvExp ${ styles["trade-icon-balance-left"] }` }></em>
+                                    : (tradeBalanceLeft < tradeBalanceRight)
+                                    ? <em className={ `${ styles["indicator-icon"] } icon-trade-exp ${ styles["trade-icon-balance-right"] }` }></em>
+                                    : <em className={ `${ styles["indicator-icon"] } icon-Trade-InvCent ${ styles["trade-icon-balance-center"] }` }></em>
+                                }
                                 <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance"] }` }>{ tradeBalance }</p>
                                 <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-trade-balance"] }` }>
                                     {
@@ -385,8 +403,18 @@ const CountrySnapshot = () => {
                                         indicators.map(ind => ind.indicatorId === 239 ? `(${ ind.indicatorYear })` : null)
                                     }
                                 </p>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-left"] }` }>{ tradeBalanceLeft }</p>
-                                <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-right"] }` }>{ tradeBalanceRight }</p>
+                                <p
+                                    className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-left"] }` }
+                                    style={{
+                                        top: tradeBalanceLeft > tradeBalanceRight ? 88 : tradeBalanceLeft < tradeBalanceRight ? 48 : 68
+                                    }}
+                                >{ tradeBalanceLeft }</p>
+                                <p
+                                    className={ `${ styles["indicator-result"] } ${ styles["indicator-result-trade-balance-right"] }` }
+                                    style={{
+                                        top: tradeBalanceLeft > tradeBalanceRight ? 48 : tradeBalanceLeft < tradeBalanceRight ? 85 : 68
+                                    }}
+                                >{ tradeBalanceRight }</p>
                             </div>
                         </div>
                         <div className={ `${ styles["government-inflation-container"] }` }>
@@ -525,7 +553,11 @@ const CountrySnapshot = () => {
                                     </div>
                                     <div className={ `${ styles["household-row"] }` }>
                                         <p className={ `${ styles["indicator-title"] } ${ styles["indicator-title-household-happiness"] }` }>Happiness index</p>
-                                        <em className={ `${ styles["indicator-icon"] } icon-house-hap ${ styles["household-icon-household-happiness"] }` }></em>
+                                        {
+                                            Number(happiness) >= 6
+                                            ? <em className={ `${ styles["indicator-icon"] } icon-house-hap ${ styles["household-icon-household-happiness"] }` }></em>
+                                            : <em className={ `${ styles["indicator-icon"] } icon-sad2 ${ styles["household-icon-household-happiness-sad"] }` }></em>
+                                        }
                                         <p className={ `${ styles["indicator-result"] } ${ styles["indicator-result-household-happiness"] }` }>{ happiness }</p>
                                         <p className={ `${ styles["indicator-year"] } ${ styles["indicator-year-household-happiness"] }` }>
                                             {

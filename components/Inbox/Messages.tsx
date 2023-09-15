@@ -152,6 +152,7 @@ ${ message.body }`,
                     style={{ blockSize: 200, inlineSize: 'calc(100% - 26px)', marginBlockStart: 8 }}
                     defaultValue={ message.body }
                     readOnly
+                    spellCheck={ false }
                 />
             </div>
         </div>

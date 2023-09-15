@@ -86,6 +86,7 @@ const CommentsPage = () => {
                                 <div className={ style['form-row'] }>
                                     <label>Your comment</label>
                                     <textarea
+                                        spellCheck={ false }
                                         className={ `${ style['textarea'] } ${ errors.comment && 'field-error' }` }
                                         { ...register('comment', {
                                             required: 'Comment is required',

@@ -139,6 +139,7 @@ const CoCreation: NextPage = () => {
                                     <label>Description</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        spellCheck={ false }
                                         style={{ border: `${ errors.description ? '2px solid #CE0915' : null }` }}
                                         placeholder='Describe your idea in detail, including how it would work and what benefits it would bring to Agora users.'
                                         { ...register('description', {
@@ -166,6 +167,7 @@ const CoCreation: NextPage = () => {
                                     <label>Impact</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        spellCheck={ false }
                                         style={{ border: `${ errors.impact ? '2px solid #CE0915' : null }` }}
                                         placeholder='Explain the potential impact of your idea, including any metrics or data to support your proposal.'
                                         { ...register('impact', {
@@ -179,6 +181,7 @@ const CoCreation: NextPage = () => {
                                     <label>Implementation</label>
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
+                                        spellCheck={ false }
                                         style={{ border: `${ errors.implementation ? '2px solid #CE0915' : null }` }}
                                         placeholder='Share any insights or recommendations for how your idea could be implemented on Agora&apos;s platform.'
                                         { ...register('implementation', {

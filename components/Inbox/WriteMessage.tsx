@@ -179,6 +179,7 @@ export const WriteMessage: FC<Props> = ({ contacts, contactId = '', sendMessage,
                 ref={ bodyRef }
                 className={ `field ${ styles['text-message'] } ` }
                 placeholder='Write a message...'
+                spellCheck={ false }
             />
             {
                 loading ? (

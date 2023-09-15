@@ -10,11 +10,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('/fonts/icomoon.eot?1ltrry');
-  src:  url('/fonts/icomoon.eot?1ltrry#iefix') format('embedded-opentype'),
-    url('/fonts/icomoon.ttf?1ltrry') format('truetype'),
-    url('/fonts/icomoon.woff?1ltrry') format('woff'),
-    url('/fonts/icomoon.svg?1ltrry#icomoon') format('svg');
+  src:  url('/fonts/icomoon.eot?apf684');
+  src:  url('/fonts/icomoon.eot?apf684#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.ttf?apf684') format('truetype'),
+    url('/fonts/icomoon.woff?apf684') format('woff'),
+    url('/fonts/icomoon.svg?apf684#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -71,6 +71,15 @@ details > summary::-webkit-details-marker {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-sad2:before {
+  content: "\e93a";
+}
+.icon-Trade-InvCent:before {
+  content: "\e93b";
+}
+.icon-Trade-InvExp:before {
+  content: "\e940";
+}
 .icon-icon-arrow:before {
   content: "\e93c";
 }

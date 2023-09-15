@@ -500,9 +500,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                             <div className={ styles['progress-container'] }>
                                                 <progress className={ styles['progress-bar'] } value={ percentage > 100 ? 100 : percentage } max="100" />
                                             </div>
-                                            <div className={ styles['progress-image'] }>
-
-                                            </div>
+                                            <Image
+                                                src='/images/questionnaire-image.jpg'
+                                                className={ styles['progress-image'] }
+                                                alt=''
+                                                width={ 2991 }
+                                                height={ 896 }
+                                            />
                                             {/* <p className={ styles['progress-title'] }>CONGRATULATIONS!!!</p> */}
                                             <p className={ styles['progress-description'] }>Click here to continue with your profile</p>
                                         </div>
@@ -521,6 +525,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     <textarea
                                                         ref={ aboutUsRef }
                                                         className={ `textfield ${ styles['textarea'] }` }
+                                                        spellCheck={ false }
                                                         style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
                                                         onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'aboutus') }
                                                     />
@@ -528,6 +533,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     <textarea
                                                         className={ `textfield ${ styles['textarea'] }` }
                                                         disabled
+                                                        spellCheck={ false }
                                                         defaultValue={ aboutUs }
                                                         style={{ blockSize: 300, inlineSize: 'calc(100% - 25px)' }}
                                                     />
@@ -662,6 +668,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                     <p className={ styles['card-title'] }>Video</p>
                                                                     <textarea
                                                                         ref={ videoDescRef }
+                                                                        spellCheck={ false }
                                                                         className={ `textfield ${ styles['textarea'] }` }
                                                                         style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
                                                                         onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
@@ -678,6 +685,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                     <p className={ styles['card-title'] }>Video</p>
                                                                     <textarea
                                                                         disabled
+                                                                        spellCheck={ false }
                                                                         className={ `textfield ${ styles['textarea'] }` }
                                                                         style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
                                                                         defaultValue={ videoDesc }
@@ -738,6 +746,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                         isMyAccount ? (
                                                                             <textarea
                                                                                 className={ `textfield ${ styles['textarea'] }` }
+                                                                                spellCheck={ false }
                                                                                 style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
                                                                                 defaultValue={ summaryPitchDeck }
                                                                                 onBlur={ handleSaveSummaryPitchDeck }
@@ -746,6 +755,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <textarea
                                                                                 className={ `textfield ${ styles['textarea'] }` }
                                                                                 disabled
+                                                                                spellCheck={ false }
                                                                                 style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
                                                                                 defaultValue={ summaryPitchDeck }
                                                                             />

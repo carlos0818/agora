@@ -192,7 +192,7 @@ export const LogoutHome = () => {
                                 language === 'fr' ? (
                                     <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
                                         <source
-                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1693061656/SYSVIDEOS/Main/Welcome_to_website_FR_w5r2ao.webm'
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707811/SYSVIDEOS/Main/Welcome_to_website_FR.webm'
                                             type='video/webm'
                                         />
                                     </video>
@@ -201,7 +201,7 @@ export const LogoutHome = () => {
                                 (
                                     <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
                                         <source
-                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1693061656/SYSVIDEOS/Main/Welcome_to_website_ESP_wq6bfd.webm'
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707813/SYSVIDEOS/Main/Welcome_to_website_ES.webm'
                                             type='video/webm'
                                         />
                                     </video>
@@ -209,7 +209,7 @@ export const LogoutHome = () => {
                                 : (
                                     <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
                                         <source
-                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1693061656/SYSVIDEOS/Main/Welcome_to_website_r8wevo.webm'
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707813/SYSVIDEOS/Main/Welcome_to_website_EN.webm'
                                             type='video/webm'
                                         />
                                     </video>
@@ -300,47 +300,139 @@ export const LogoutHome = () => {
                             Its valuable connections and resources have been instrumental in accessing new opportunities. With Agora&lsquo;s support, we are confident
                             that our company can continue to explore avenues for steady growth.&quot;
                         </p>
-                        <div className={ home['testimonial-image'] }></div>
+                        <Image
+                            src='/images/Simon.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
                         <p className={ home['testimonial-name'] }>Simon Schwall</p>
                         <p className={ home['testimonial-position'] }>CEO, OKO Finance</p>
                     </div>
-                    {/* <div className={ home['testimonial-container'] }>
-                        <p>&quot;Utilizing Agora has positively impacted our investment approach. Its intuitive interface and data-driven insights allows us to
-                            discover promising ventures and make informed investment choices that align with our values and goals. As a Managing Director at the CIF,
-                            my mission is to foster economic growth in the region. Agora's innovative approach to connecting investors and entrepreneurs in emerging
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Utilizing Agora positively impacted our investment approach. Its intuitive interface and data-driven insights allow us to discover
+                            promising ventures and make informed investment choices. Agora&lsquo;s innovative approach to connecting investors and entrepreneurs in emerging
                             and frontier markets aligns perfectly with our goals, broadening the horizons of investment possibilities for the economic development of
                             West Africa.&quot;
                         </p>
-                        <div className={ home['testimonial-image'] }></div>
-                        <p className={ home['testimonial-name'] }>David Reynolds</p>
-                        <p className={ home['testimonial-position'] }>Angel Investor, USA</p>
-                    </div> */}
+                        <Image
+                            src='/images/Mathieu.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Mathieu Soglonou</p>
+                        <p className={ home['testimonial-position'] }>Managing Director, Confederation of Financial Institutions of West Africa (CIF)</p>
+                    </div>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging economies.
-                            It&lsquo;s a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. I&lsquo;m proud to see
-                            Agora making a tangible impact and pushing the boundaries of what&lsquo;s possible.&quot;
+                        <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging and frontier
+                            economies. It is a dynamic intersection where ideas meet investment, innovation sparks transformation, and communities thrive. At UNCDF,
+                            we are proud to see Agora making a tangible impact and pushing the boundaries of what is possible.&quot;
                         </p>
-                        <div className={ home['testimonial-image'] }></div>
+                        <Image
+                            src='/images/Michon.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
                         <p className={ home['testimonial-name'] }>Xavier Michon</p>
-                        <p className={ home['testimonial-position'] }>Deputy Executive Secretary, UNCDF, USA</p>
+                        <p className={ home['testimonial-position'] }>Deputy Executive Secretary, United Nations Capital Development Fund (UNCDF)</p>
                     </div>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;Agora has emerged as a valuable bridge that links our institution to a diverse array of entrepreneurs and experts in emerging
-                            economies. This platform not only facilitates access to innovative projects and impactful ventures but also enriches our understanding
-                            of local contexts. Agora is an invaluable resource that broadens our horizons and enhances our ability to drive positive change across
-                            the region.&quot;
+                        <p>&quot;We have been following the development of Agora closely, and we firmly believe it has the potential to emerge as a valuable bridge
+                            that links institutions like ours to a diverse array of entrepreneurs and experts in emerging economies. Agora is a great resource that
+                            broadens our horizons while enhancing our ability to achieve sustainable development by finding SDG-positive projects and companies.&quot;
                         </p>
-                        <div className={ home['testimonial-image'] }></div>
-                        <p className={ home['testimonial-name'] }>Sarah Patel</p>
-                        <p className={ home['testimonial-position'] }>Manager, Asian Development Bank, Philippines</p>
+                        <Image
+                            src='/images/Lissette.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Lisette Cipriano</p>
+                        <p className={ home['testimonial-position'] }>Senior Digital Technology Specialist, Asian Development Bank (ADB)</p>
                     </div>
                     <div className={ home['testimonial-container'] }>
-                        <p>&quot;Agora has provided me with a unique opportunity to share my expertise and insights with entrepreneurs from diverse backgrounds.
-                            The platform&lsquo;s interactive features and vibrant community enable meaningful engagements that drive mutual learning and growth.&quot;
+                        <p>&quot;SMEs around the world, but particularly in emerging and frontier markets, are at a disadvantage when it comes to accessing finance
+                            and other assistance. Agora can level the playing field by providing a high-profile tool that will help focus on SMEs that are largely
+                            overlooked in the capital markets. Agora can inspire a wave of tools that will help these SMEs better compete for capital with larger
+                            enterprises.&quot;
                         </p>
-                        <div className={ home['testimonial-image'] }></div>
-                        <p className={ home['testimonial-name'] }>Dr. Li Wei</p>
-                        <p className={ home['testimonial-position'] }>Technology Consultant, China</p>
+                        <Image
+                            src='/images/Gabriel.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Gabriel Petrus</p>
+                        <p className={ home['testimonial-position'] }>Head of Global Relations, International Chamber of Commerce (ICC)</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Agora offers a distinctive platform for the provision of customized knowledge to businesses on a pro bono basis. Through its
+                            interactive features and dynamic community, the platform fosters meaningful engagements to support shared learning and foster collective
+                            growth among entrepreneurs from various backgrounds.&quot;
+                        </p>
+                        <Image
+                            src='/images/Nyagaka.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Nyagaka Ongeri</p>
+                        <p className={ home['testimonial-position'] }>CEO, Ubora Advisors</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Agora has been a helpful addition to our toolkit, complementing what ADEPME already has in place to support SME development. The platform
+                            facilitates connections with investors and experts globally, enriching our local support ecosystem for entrepreneurs. It is a valuable resource
+                            in our mission to empower SMEs and foster economic growth in Senegal.&quot;
+                        </p>
+                        <Image
+                            src='/images/Idrissa.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Idrissa Diabira</p>
+                        <p className={ home['testimonial-position'] }>CEO, Development Agency and Supervision of Small and Medium Enterprises (ADEPME)</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Business Africa sees great potential in Agora to connect African entrepreneurs with the capital and expertise they need to thrive.
+                            Agora provides a unique opportunity for our members to access global networks and resources, opening doors to previously untapped growth
+                            possibilities. We believe that Agora will play a pivotal role in advancing the African business landscape and promoting economic development
+                            across the continent.&quot;
+                        </p>
+                        <Image
+                            src='/images/Jackeline.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Jacqueline Mugo</p>
+                        <p className={ home['testimonial-position'] }>Secretary-General, Business Africa</p>
+                    </div>
+                    <div className={ home['testimonial-container'] }>
+                        <p>&quot;Agora offers a distinct bridge between legal expertise and businesses in emerging and frontier markets. This platform opens up new avenues
+                            for law firms like ours to connect with enterprises seeking legal guidance, fostering collaborative relationships that can drive growth and
+                            sustainable development. Agora&lsquo;s interactive features and global reach make it an attractive resource for legal professionals and businesses
+                            alike.&quot;
+                        </p>
+                        <Image
+                            src='/images/Benedetta.jpg'
+                            alt=''
+                            width={ 50 }
+                            height={ 50 }
+                            className={ home['testimonial-image'] }
+                        />
+                        <p className={ home['testimonial-name'] }>Benedetta Audia</p>
+                        <p className={ home['testimonial-position'] }>Partner and Chair International Development Practice, DLA Piper</p>
                     </div>
                 </div>
             </section>
@@ -364,7 +456,7 @@ export const LogoutHome = () => {
             <section className={ home['supported-container-mobile'] }>
                 <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
                 <Image
-                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694453179/SYSPICS/logosp.jpg'
+                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694531765/SYSPICS/logosp.jpg'
                     alt=''
                     width={ 1200 }
                     height={ 698 }
@@ -402,8 +494,12 @@ export const LogoutHome = () => {
             </section>
             <section className={ home['supported-container-desktop'] }>
                 <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
+                <h5 className={ home['supported-subtitle'] }>
+                    Meet partners, united by shared values, who amplify Agora's impact by championing the mission to connect entrepreneurs from
+                    emerging and frontier economies with the needed capital and expertise.
+                </h5>
                 <Image
-                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694453179/SYSPICS/logosp.jpg'
+                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694531765/SYSPICS/logosp.jpg'
                     alt=''
                     width={ 1200 }
                     height={ 698 }

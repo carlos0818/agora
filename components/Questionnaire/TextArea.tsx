@@ -73,6 +73,7 @@ export const TextArea: FC<Props> = ({ data }) => {
                 onChange={ handleChange }
                 onBlur={ handleSave }
                 defaultValue={ answer }
+                spellCheck={ false }
             />
         </div>
     )

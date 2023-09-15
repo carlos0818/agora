@@ -184,7 +184,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 2px solid var(--dark-blue); */
+    border: 2px solid var(--dark-blue);
     inline-size: 90px;
     block-size: 55px;
     border-radius: 8px;
@@ -717,7 +717,8 @@
 }
 
 .man-icon-rate.painted {
-    color:#1F2C4F;
+    /* color:#1F2C4F; */
+    color:#006f0d;
 }
 
 .geography-icon-area {
@@ -858,10 +859,22 @@
     left: 25px;
 }
 
-.trade-icon-balance {
+.trade-icon-balance-right {
     font-size: 110px;
     top: -12px;
     left: 115px;
+}
+
+.trade-icon-balance-left {
+    font-size: 176px;
+    top: -41px;
+    left: 134px;
+}
+
+.trade-icon-balance-center {
+    font-size: 176px;
+    top: -41px;
+    left: 134px;
 }
 
 .gov-icon-bal {
@@ -916,6 +929,12 @@
     font-size: 64px;
     top: 20px;
     left: -8px;
+}
+
+.household-icon-household-happiness-sad {
+    font-size: 64px;
+    top: 20px;
+    left: 17px;
 }
 
 .forecast-icon-forecast-growth {
@@ -1141,8 +1160,8 @@
 .indicator-result-trade-balance-right {
     font-size: 8px;
     top: 85px;
-    left: 217px;
-    width: 50px;
+    left: 223px;
+    width: 45px;
     text-align: center;
 }
 

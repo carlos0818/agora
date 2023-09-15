@@ -80,6 +80,7 @@ const HubPage: NextPage = () => {
                                                                                             <textarea
                                                                                                 className={ styles['textarea'] }
                                                                                                 readOnly
+                                                                                                spellCheck={ false }
                                                                                                 defaultValue={ level2.body }
                                                                                             />
                                                                                         </div>

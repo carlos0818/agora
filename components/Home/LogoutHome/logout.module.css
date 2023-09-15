@@ -345,9 +345,12 @@
 }
 
 .testimonial-position {
-    bottom: 20px;
+    top: 292px;
     font-size: 13px !important;
+    line-height: 15px !important;
+    max-inline-size: 280px;
     position: absolute;
+    text-align: center;
 }
 
 .cocreate-container {
@@ -422,6 +425,16 @@
     font-weight: 700;
     line-height: 40px;
     text-align: center;
+}
+
+.supported-subtitle {
+    color: var(--agora-blue-dark);
+    font-size: 16px;
+    /* font-weight: 700; */
+    /* line-height: 40px; */
+    text-align: center;
+    margin-block-start: 12px;
+    max-inline-size: 1000px;
 }
 
 .partners-title {
