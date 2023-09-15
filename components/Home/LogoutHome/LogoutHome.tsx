@@ -91,6 +91,7 @@ export const LogoutHome = () => {
         const page = anchor.split('-')[1] ? Number(anchor.split('-')[1]) : 1
 
         console.log(window.location.href)
+        console.log(anchor.split('-')[1])
 
         if(page > 1 && type === 'prev') {
             window.location.href = '#page-' + (page - 1)
