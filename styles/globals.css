@@ -30,6 +30,7 @@ html {
   font-family: 'ebrima';
   overflow-x: hidden;
   scroll-behavior: smooth;
+  scroll-padding-block-start: 180px;
 }
 
 body {

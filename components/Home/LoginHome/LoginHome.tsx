@@ -63,13 +63,13 @@ export const LoginHome = () => {
     }
 
     const handleSavePostClick = () => {
-        if (post.length === 0) return
+        if (post.trim().length === 0) return
 
         savePost()
     }
 
     const handleSavePost = async(event: KeyboardEvent<HTMLInputElement>) => {
-        if (post.length === 0) return
+        if (post.trim().length === 0) return
 
         if (event.key === 'Enter') {
             savePost()

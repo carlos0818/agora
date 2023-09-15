@@ -61,7 +61,7 @@ export const Post: FC<Props> = ({ post }) => {
     }
 
     const handleComment = async() => {
-        if (comment.length > 0) {
+        if (comment.trim().length > 0) {
             setComment('')
 
             await agoraApi.post('/wall/save-comment-post', { email: user?.email, index: post.post.index.toString(), body: comment })
