@@ -88,17 +88,14 @@ export const LogoutHome = () => {
         const totalPages = document.getElementsByClassName('community-page')
         const url = window.location.href
         const anchor = url.substring(url.indexOf("#")+1)
-        const page = anchor.split('-')[2] ? Number(anchor.split('-')[1]) : 1
-
-        console.log('anchor', anchor)
-        console.log('anchor split', anchor.split('-')[1])
+        const page = anchor.split('_')[1] ? Number(anchor.split('_')[1]) : 1
 
         if(page > 1 && type === 'prev') {
-            window.location.href = '#page-' + (page - 1)
+            window.location.href = '#page_' + (page - 1)
         }
 
         if (page < totalPages.length && type === 'next') {
-            window.location.href = '#page-' + (page + 1)
+            window.location.href = '#page_' + (page + 1)
         }
     }
 
@@ -273,7 +270,7 @@ export const LogoutHome = () => {
                         {
                             screenWidth < 1200 && (
                                 <>
-                                    <div id='page-1' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_1' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Through Agora, we have discovered innovative ways to connect with investors, experts, and a diverse array of potential partners.
@@ -292,7 +289,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-2' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_2' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Utilizing Agora positively impacted our investment approach. Its intuitive interface and data-driven insights allow us to discover
@@ -312,7 +309,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-3' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_3' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Agora represents a new frontier in connecting global expertise and capital with the untapped potential of emerging and frontier
@@ -331,7 +328,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-4' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_4' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;We have been following the development of Agora closely, and we firmly believe it has the potential to emerge as a valuable bridge
@@ -350,7 +347,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-5' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_5' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;SMEs around the world, but particularly in emerging and frontier markets, are at a disadvantage when it comes to accessing finance
@@ -370,7 +367,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-6' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_6' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Agora offers a distinctive platform for the provision of customized knowledge to businesses on a pro bono basis. Through its
@@ -389,7 +386,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-7' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_7' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Agora has been a helpful addition to our toolkit, complementing what ADEPME already has in place to support SME development. The platform
@@ -408,7 +405,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-8' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_8' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Business Africa sees great potential in Agora to connect African entrepreneurs with the capital and expertise they need to thrive.
@@ -428,7 +425,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-9' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_9' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Agora offers a distinct bridge between legal expertise and businesses in emerging and frontier markets. This platform opens up new avenues
@@ -455,7 +452,7 @@ export const LogoutHome = () => {
                         {
                             screenWidth >= 1200 && (
                                 <>
-                                    <div id='page-1' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_1' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Through Agora, we have discovered innovative ways to connect with investors, experts, and a diverse array of potential partners.
@@ -509,7 +506,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-2' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_2' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;We have been following the development of Agora closely, and we firmly believe it has the potential to emerge as a valuable bridge
@@ -563,7 +560,7 @@ export const LogoutHome = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='page-3' className={ `community-page ${ home['community-page'] }` }>
+                                    <div id='page_3' className={ `community-page ${ home['community-page'] }` }>
                                         <div className={ home['testimonial-content'] }>
                                             <div className={ home['testimonial-info-container'] }>
                                                 <p>&quot;Agora has been a helpful addition to our toolkit, complementing what ADEPME already has in place to support SME development. The platform
