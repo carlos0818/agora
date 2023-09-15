@@ -90,6 +90,8 @@ export const LogoutHome = () => {
         const anchor = url.substring(url.indexOf("#")+1)
         const page = anchor.split('-')[1] ? Number(anchor.split('-')[1]) : 1
 
+        console.log(page)
+
         if(page > 1 && type === 'prev') {
             window.location.href = '#page-' + (page - 1)
         }
