@@ -495,7 +495,7 @@ export const LogoutHome = () => {
             <section className={ home['supported-container-desktop'] }>
                 <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
                 <h5 className={ home['supported-subtitle'] }>
-                    Meet partners, united by shared values, who amplify Agora's impact by championing the mission to connect entrepreneurs from
+                    Meet partners, united by shared values, who amplify Agora&lsquo;s impact by championing the mission to connect entrepreneurs from
                     emerging and frontier economies with the needed capital and expertise.
                 </h5>
                 <Image
