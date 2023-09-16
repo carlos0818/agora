@@ -821,28 +821,30 @@ input:checked + .slider:before {
 /* POPUP */
 
 /* CAROUSEL */
-.slick-slider {
-  inline-size: 90% !important;
+/* .slick-slider div {
+  align-items: center !important;
+  display: flex !important;
   margin: auto;
-}
-
-/* .slick-prev {
-  margin-inline-end: 100px !important;
-}
+} */
 
 .slick-list {
-  margin: auto;
-} */
-
-/* .slick-initialized {
-  display: flex !important;
+  /* display: flex !important;
   flex-direction: column !important;
-  gap: 4px !important;
-} */
+  gap: 16px !important; */
+  inline-size: 1050px;
+  margin: auto;
+  margin-inline-end: -16px;
+}
 
-/* .slick-arrow.slick-prev {
-  margin-inline-end: 16px !important;
-} */
+.slick-arrow.slick-prev {
+  block-size: 30px;
+  inline-size: 30px;
+}
+
+.slick-arrow.slick-next {
+  block-size: 30px;
+  inline-size: 30px;
+}
 /* CAROUSEL */
 
 @media screen and (min-width: 768px) {

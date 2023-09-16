@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css' 
-import 'slick-carousel/slick/slick-theme.css'
+// import 'slick-carousel/slick/slick-theme.css'
 
 import home from './logout.module.css'
 
@@ -39,7 +39,7 @@ export const LogoutHome = () => {
     const router = useRouter()
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
@@ -320,7 +320,7 @@ export const LogoutHome = () => {
             <section className={ home['community-container'] } style={{ position: 'relative' }}>
                 <h3 className={ home['community-title'] }>Hear from the community</h3>
                 <div className={ home['community-wrapper'] }>
-                    <Slider {... settings} className={ home['custom-slider'] }>
+                    <Slider {... settings} className={ home['custom-slider'] } useCSS>
                         <div className={ home['testimonial-container'] }>
                             <p>&quot;I was struggling to find the right investors for my business in Sengal until I joined Agora. The platform&lsquo;s connections
                                 and resources opened doors I never thought possible. My companyhas grown exponentially, thanks to Agora support.&quot;
