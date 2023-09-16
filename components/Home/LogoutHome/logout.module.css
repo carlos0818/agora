@@ -311,6 +311,7 @@
 }
 
 .community-wrapper {
+    display: flex;
     inline-size: 1150px;
     margin-block-start: 32px;
 }
@@ -327,7 +328,7 @@
     display: flex !important;
     flex-direction: column !important;
     inline-size: 300px !important;
-    padding: 16px; 
+    padding: 16px;
     position: relative;
 }
 
@@ -517,11 +518,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-/* img {
-    width: 100%;
-    height: auto;
-} */
-
 .slider-button {
     position: absolute;
     top: 50%;
@@ -540,23 +536,6 @@
 .next {
     right: 10px;
 }
-
-
-.cajaC {
-    background-color: lightgreen;
-    height: 300px;
-    color: black;
-}
-
-.carrusel {
-    padding: 5rem;
-    background-color: rgb(189, 52, 52);
-    color: white;
-    height: 100%;
-    width: 1200px;
-}
-
-
 
 @keyframes ShowImage {
     0% {

@@ -822,9 +822,9 @@ input:checked + .slider:before {
 
 /* CAROUSEL */
 .slick-list {
-  inline-size: 1050px;
+  inline-size: 325px;
   margin: auto;
-  margin-inline-end: -16px !important;
+  margin-inline-end: 0 !important;
 }
 
 .slick-arrow.slick-prev,
@@ -873,5 +873,12 @@ input:checked + .slider:before {
 
   .field {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .slick-list {
+    inline-size: 1050px;
+    margin-inline-end: -16px !important;
   }
 }
