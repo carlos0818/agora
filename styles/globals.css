@@ -833,7 +833,7 @@ input:checked + .slider:before {
   gap: 16px !important; */
   inline-size: 1050px;
   margin: auto;
-  margin-inline-end: -16px;
+  margin-inline-end: -16px !important;
 }
 
 .slick-arrow.slick-prev {
