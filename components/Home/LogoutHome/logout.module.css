@@ -311,10 +311,6 @@
 }
 
 .community-wrapper {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* inline-size: 1150px; */
-    /* margin: auto; */
     inline-size: 1150px;
     margin-block-start: 32px;
 }
@@ -325,12 +321,11 @@
 }
 
 .testimonial-container {
-    /* align-items: center !important; */
+    align-items: center !important;
     background-color: #f1fbfc;
     block-size: 300px !important;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
+    display: flex !important;
+    flex-direction: column !important;
     inline-size: 300px !important;
     padding: 16px; 
     position: relative;
@@ -392,7 +387,7 @@
 }
 
 .testimonial-position {
-    bottom: 25px;
+    top: 292px;
     font-size: 13px !important;
     line-height: 15px !important;
     max-inline-size: 280px;

@@ -821,23 +821,16 @@ input:checked + .slider:before {
 /* POPUP */
 
 /* CAROUSEL */
-/* .slick-slider div {
-  align-items: center !important;
-  display: flex !important;
-  margin: auto;
-} */
-
 .slick-list {
-  /* display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important; */
   inline-size: 1050px;
   margin: auto;
   margin-inline-end: -16px !important;
 }
 
-.slick-arrow.slick-prev {
+.slick-arrow.slick-prev,
+.slick-arrow.slick-next {
   block-size: 30px;
+  cursor: pointer;
   inline-size: 30px;
 }
 
