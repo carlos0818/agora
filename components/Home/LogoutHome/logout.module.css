@@ -298,8 +298,9 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    max-inline-size: 1150px;
-    padding-block-end: 40px;
+    /* max-inline-size: 1150px; */
+    /* inline-size: 100% !important; */
+    padding-block: 40px;
     /* padding-inline: 40px; */
 }
 
@@ -310,10 +311,9 @@
 }
 
 .community-wrapper {
-    align-items: center;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
+    inline-size: 1150px;
+    margin: auto;
+    margin-block-start: 32px;
 }
 
 .community-page {
@@ -322,12 +322,28 @@
 }
 
 .testimonial-container {
+    /* align-items: center !important; */
+    background-color: #f1fbfc;
+    block-size: 300px !important;
     display: flex;
-    gap: 8px;
-    inline-size: 340px;
-    margin-block-end: 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
+    flex-direction: column;
+    justify-self: center;
+    inline-size: 300px !important;
+    padding: 16px; 
+    position: relative;
+}
+
+/* .custom-slider {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    inline-size: 1100px !important;
+    margin: auto;
+} */
+
+.testimonial-container p {
+    color: var(--agora-blue-dark);
+    font-size: 14px;
 }
 
 .testimonial-content {
@@ -354,11 +370,6 @@
     position: relative;
 }
 
-.testimonial-info-container p {
-    color: var(--agora-blue-dark);
-    font-size: 14px;
-}
-
 .testimonial-image {
     background-color: green;
     border-radius: 50%;
@@ -370,17 +381,17 @@
 }
 
 .testimonial-name {
-    bottom: 40px;
+    bottom: 40px !important;
     font-size: 13px !important;
-    position: absolute;
+    position: absolute !important;
 }
 
 .testimonial-position {
-    top: 292px;
+    bottom: 25px;
     font-size: 13px !important;
     line-height: 15px !important;
     max-inline-size: 280px;
-    position: absolute;
+    position: absolute !important;
     text-align: center;
 }
 
@@ -529,6 +540,23 @@
 .next {
     right: 10px;
 }
+
+
+.cajaC {
+    background-color: lightgreen;
+    height: 300px;
+    color: black;
+}
+
+.carrusel {
+    padding: 5rem;
+    background-color: rgb(189, 52, 52);
+    color: white;
+    height: 100%;
+    width: 1200px;
+}
+
+
 
 @keyframes ShowImage {
     0% {
@@ -704,9 +732,9 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .testimonial-container {
+    /* .testimonial-container {
         inline-size: 1035px;
-    }
+    } */
 }
 
 @media screen and (min-width: 1250px) {

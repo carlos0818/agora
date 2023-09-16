@@ -820,6 +820,31 @@ input:checked + .slider:before {
 }
 /* POPUP */
 
+/* CAROUSEL */
+.slick-slider {
+  inline-size: 90% !important;
+  margin: auto;
+}
+
+/* .slick-prev {
+  margin-inline-end: 100px !important;
+}
+
+.slick-list {
+  margin: auto;
+} */
+
+/* .slick-initialized {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+} */
+
+/* .slick-arrow.slick-prev {
+  margin-inline-end: 16px !important;
+} */
+/* CAROUSEL */
+
 @media screen and (min-width: 768px) {
   .window-glass-popup {
     inline-size: 600px;

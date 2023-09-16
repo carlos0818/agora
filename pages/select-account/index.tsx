@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import moneyIcon from '@/public/images/money-icon.svg'
+import investorImage1 from '@/public/images/investor-image1.png'
+import entrepreneurImage1 from '@/public/images/entrepreneur-image1.png'
+import expertImage1 from '@/public/images/expert-image1.png'
 
 import style from './select-accout.module.css'
 
@@ -18,10 +21,9 @@ const index: NextPage = () => {
                         <div className='window-glass-content'>
                             <div className={ style['content-wrapper'] }>
                                 <p className={ style['account-title'] }>AS INVESTOR</p>
-                                <Image src={ moneyIcon } alt='Investor Icon' className={ style['investor-icon'] } />
+                                <Image src={ investorImage1 } alt='Investor Icon' className={ style['investor-icon'] } />
                                 <p className={ style['account-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
-                                    Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
+                                    Invest in impact and drive positive change for a better future
                                 </p>
                                 <Link
                                     href='/more-info/investor'
@@ -40,10 +42,9 @@ const index: NextPage = () => {
                         <div className='window-glass-content'>
                             <div className={ style['content-wrapper'] }>
                                 <p className={ style['account-title'] }>AS ENTREPRENEUR</p>
-                                <Image src={ moneyIcon } alt='Investor Icon' className={ style['investor-icon'] } />
+                                <Image src={ entrepreneurImage1 } alt='Investor Icon' className={ style['investor-icon'] } />
                                 <p className={ style['account-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
-                                    Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
+                                    Turn your vision into reality with strategic action and bold entrepreneurship
                                 </p>
                                 <Link
                                     href='/more-info/entrepreneur'
@@ -62,10 +63,9 @@ const index: NextPage = () => {
                         <div className='window-glass-content'>
                             <div className={ style['content-wrapper'] }>
                                 <p className={ style['account-title'] }>AS EXPERT</p>
-                                <Image src={ moneyIcon } alt='Investor Icon' className={ style['investor-icon'] } />
+                                <Image src={ expertImage1 } alt='Investor Icon' className={ style['investor-icon'] } />
                                 <p className={ style['account-description'] }>
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
-                                    Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
+                                    Drive innovation and create positive change by sharing your expertise with the world
                                 </p>
                                 <Link
                                     href='/more-info/expert'
