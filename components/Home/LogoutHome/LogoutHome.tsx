@@ -198,7 +198,7 @@ export const LogoutHome = () => {
                     and impact within our collaborative ecosystem
                 </p>
                 <div className={ home['portfolio-container'] }>
-                    <Slider {... settings2} className={ home['custom-slider-2'] } useCSS>
+                    <Slider {... settings2} className={ home['custom-slider'] } useCSS>
                         <div className={ home['portfolio-wrapper'] }>
                             <Image
                                 src='/images/washy.jpg'

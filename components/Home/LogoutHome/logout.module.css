@@ -274,10 +274,11 @@
 
 .mission-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    grid-template-columns: 1fr;
+    gap: 50px;
     margin: auto;
     max-inline-size: 1150px;
+    padding-inline: 40px;
 }
 
 .mission-title {
@@ -313,6 +314,7 @@
 .community-wrapper {
     display: flex;
     inline-size: 1150px;
+    justify-content: center;
     margin-block-start: 32px;
 }
 
@@ -333,12 +335,6 @@
 }
 
 .custom-slider {
-    align-items: center;
-    display: flex !important;
-    gap: 8px !important;
-}
-
-.custom-slider-2 {
     align-items: center !important;
     display: flex !important;
     gap: 8px !important;
@@ -694,6 +690,11 @@
 
     .supported-container-mobile {
         display: none;
+    }
+
+    .mission-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
     }
 
     .supported-container-desktop {

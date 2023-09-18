@@ -825,7 +825,8 @@ input:checked + .slider:before {
   align-items: center !important;
   display: flex !important;
   flex-direction: column !important;
-  /* inline-size: 325px; */
+  inline-size: 325px;
+  margin: auto;
 }
 
 .slick-arrow.slick-prev,
