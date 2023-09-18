@@ -288,7 +288,11 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                             legacyBehavior
                                                         > */}
                                                             <li className={ styles['submenu-option'] }>
-                                                                <a href='https://sdginvestorplatform.undp.org/market-intelligence' target='_blank'>Sector Analysis</a>
+                                                                <a
+                                                                    href='https://sdginvestorplatform.undp.org/market-intelligence'
+                                                                    target='_blank'
+                                                                    rel="noopener noreferrer"
+                                                                >Sector Analysis</a>
                                                             </li>
                                                         {/* </Link> */}
                                                         <Link
