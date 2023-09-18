@@ -1,13 +1,18 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import Image from 'next/image'
 
 import { agoraApi } from '@/api'
+import { AuthContext } from '@/context/auth'
+
 import { AgoraLayout } from '@/components/layouts/AgoraLayout'
 
 import styles from './hub.module.css'
 
 const HubPage: NextPage = () => {
+    const router = useRouter()
+    const { user } = useContext(AuthContext)
 
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState<any>([])
@@ -26,7 +31,25 @@ const HubPage: NextPage = () => {
     return (
         <AgoraLayout title='Agora' pageDescription=''>
             <div className={ styles['hub-container'] }>
-                <div className='window-glass' style={{ maxInlineSize: 1280, margin: 'auto' }}>
+                {
+                    user && (
+                        <input
+                            type='button'
+                            className='button-filled'
+                            style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
+                            value='Return to my profile'
+                            onClick={ () => router.push(`/profile/${ user?.id }`) }
+                        />
+                    )
+                }
+                <iframe
+                    title="Report Section"
+                    width="1280"
+                    style={{ height: 1000, marginBlockStart: 16 }}
+                    src="https://go.uncdf.org/agora/index.html"
+                    frameBorder="0"
+                    allowFullScreen></iframe>
+                {/* <div className='window-glass' style={{ maxInlineSize: 1280, margin: 'auto' }}>
                     <div className='window-glass-content' style={{ display: 'flex', flexDirection: 'column', gap: 20, color: '#10284F' }}>
                         {
                             loading ? (
@@ -101,7 +124,7 @@ const HubPage: NextPage = () => {
                             )
                         }
                     </div>
-                </div>
+                </div> */}
             </div>
         </AgoraLayout>
     )

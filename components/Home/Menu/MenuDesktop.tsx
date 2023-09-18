@@ -280,9 +280,17 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                                 Country snapshot
                                                             </li>
                                                         </Link>
-                                                        {/* <li className={ styles['submenu-option'] }>
-                                                            Sector Analysis
-                                                        </li> */}
+                                                        {/* <Link
+                                                            href='https://sdginvestorplatform.undp.org/market-intelligence'
+                                                            target='_blank'
+                                                            passHref
+                                                            prefetch={ false }
+                                                            legacyBehavior
+                                                        > */}
+                                                            <li className={ styles['submenu-option'] }>
+                                                                <a href='https://sdginvestorplatform.undp.org/market-intelligence' target='_blank'>Sector Analysis</a>
+                                                            </li>
+                                                        {/* </Link> */}
                                                         <Link
                                                             href='/notifications'
                                                             passHref

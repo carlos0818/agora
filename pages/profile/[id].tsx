@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -88,6 +89,8 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         handleSaveSummaryPitchDeck,
         getAverageVotes,
     } = useProfile(email, id, type)
+
+    const router = useRouter()
 
     const [showVote, setShowVote] = useState(false)
     const [stars, setStars] = useState(0)
@@ -544,156 +547,165 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     {
                                         !((type !== 'E' && !videoUrl) || (type === 'E' && !isMyAccount && !videoUrl)) && (
                                             <div className={ `window-glass` }>
-                                                <div className={ `window-glass-content ${ styles['video-container'] }` }>
-                                                    {
-                                                        (type === 'E' && isMyAccount && !videoUrl)
-                                                        ? (
-                                                            <>
-                                                                <video id='videotutorial' controls className={ styles['video'] }>
-                                                                    <source
-                                                                        src={ video1 }
-                                                                        type="video/webm"
-                                                                    />
-                                                                </video>
-                                                                <div className={ styles['video-text-container'] }>
-                                                                    <p className={ styles['card-title'] }>Video</p>
-                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, inlineSize: '100%', marginBlockStart: 8 }}>
-                                                                        <a
-                                                                            id='videotutorial1'
-                                                                            data-url={ video1 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial1') }
-                                                                        >
-                                                                            Cracking the Investor pitch
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial2'
-                                                                            data-url={ video2 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial2') }
-                                                                        >
-                                                                            Introduction
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial3'
-                                                                            data-url={ video3 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial3') }
-                                                                        >
-                                                                            Problem statement
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial4'
-                                                                            data-url={ video4 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial4') }
-                                                                        >
-                                                                            Solution showcase
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial5'
-                                                                            data-url={ video5 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial5') }
-                                                                        >
-                                                                            Unique value proposition
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial6'
-                                                                            data-url={ video6 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial6') }
-                                                                        >
-                                                                            Market opportunity
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial7'
-                                                                            data-url={ video7 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial7') }
-                                                                        >
-                                                                            Business model
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial8'
-                                                                            data-url={ video8 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial8') }
-                                                                        >
-                                                                            Traction and milestones
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial9'
-                                                                            data-url={ video9 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial9') }
-                                                                        >
-                                                                            Team introduction
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial10'
-                                                                            data-url={ video10 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial10') }
-                                                                        >
-                                                                            Go-to-market strategy
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial11'
-                                                                            data-url={ video11 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial11') }
-                                                                        >
-                                                                            Financial projections
-                                                                        </a>
-                                                                        <a
-                                                                            id='videotutorial12'
-                                                                            data-url={ video12 }
-                                                                            style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
-                                                                            onClick={ () => handleChangeVideo('videotutorial12') }
-                                                                        >
-                                                                            Call to action
-                                                                        </a>
+                                                <div className='window-glass-content' style={{ display: 'flex', flexDirection: 'column' }}>
+                                                    <div className={ `${ styles['video-container'] }` }>
+                                                        {
+                                                            (type === 'E' && isMyAccount && !videoUrl)
+                                                            ? (
+                                                                <>
+                                                                    <video id='videotutorial' controls className={ styles['video'] }>
+                                                                        <source
+                                                                            src={ video1 }
+                                                                            type="video/webm"
+                                                                        />
+                                                                    </video>
+                                                                    <div className={ styles['video-text-container'] }>
+                                                                        <p className={ styles['card-title'] }>Video</p>
+                                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, inlineSize: '100%', marginBlockStart: 8 }}>
+                                                                            <a
+                                                                                id='videotutorial1'
+                                                                                data-url={ video1 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial1') }
+                                                                            >
+                                                                                Cracking the Investor pitch
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial2'
+                                                                                data-url={ video2 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial2') }
+                                                                            >
+                                                                                Introduction
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial3'
+                                                                                data-url={ video3 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial3') }
+                                                                            >
+                                                                                Problem statement
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial4'
+                                                                                data-url={ video4 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial4') }
+                                                                            >
+                                                                                Solution showcase
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial5'
+                                                                                data-url={ video5 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial5') }
+                                                                            >
+                                                                                Unique value proposition
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial6'
+                                                                                data-url={ video6 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial6') }
+                                                                            >
+                                                                                Market opportunity
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial7'
+                                                                                data-url={ video7 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial7') }
+                                                                            >
+                                                                                Business model
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial8'
+                                                                                data-url={ video8 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial8') }
+                                                                            >
+                                                                                Traction and milestones
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial9'
+                                                                                data-url={ video9 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial9') }
+                                                                            >
+                                                                                Team introduction
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial10'
+                                                                                data-url={ video10 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial10') }
+                                                                            >
+                                                                                Go-to-market strategy
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial11'
+                                                                                data-url={ video11 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial11') }
+                                                                            >
+                                                                                Financial projections
+                                                                            </a>
+                                                                            <a
+                                                                                id='videotutorial12'
+                                                                                data-url={ video12 }
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                onClick={ () => handleChangeVideo('videotutorial12') }
+                                                                            >
+                                                                                Call to action
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </>
-                                                        )
-                                                        : (isMyAccount && videoUrl)
-                                                        ? (
-                                                            <>
-                                                                <video controls className={ styles['video'] }>
-                                                                    <source src={ videoUrl } />
-                                                                </video>
-                                                                <div className={ styles['video-text-container'] }>
-                                                                    <p className={ styles['card-title'] }>Video</p>
-                                                                    <textarea
-                                                                        ref={ videoDescRef }
-                                                                        spellCheck={ false }
-                                                                        className={ `textfield ${ styles['textarea'] }` }
-                                                                        style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                                        onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
-                                                                    />
-                                                                </div>
-                                                            </>
-                                                        )
-                                                        : (!isMyAccount && videoUrl) && (
-                                                            <>
-                                                                <video controls className={ styles['video'] }>
-                                                                    <source src={ videoUrl } />
-                                                                </video>
-                                                                <div className={ styles['video-text-container'] }>
-                                                                    <p className={ styles['card-title'] }>Video</p>
-                                                                    <textarea
-                                                                        disabled
-                                                                        spellCheck={ false }
-                                                                        className={ `textfield ${ styles['textarea'] }` }
-                                                                        style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                                        defaultValue={ videoDesc }
-                                                                    />
-                                                                </div>
-                                                            </>
-                                                        )
-                                                    }
+                                                                </>
+                                                            )
+                                                            : (isMyAccount && videoUrl)
+                                                            ? (
+                                                                <>
+                                                                    <video controls className={ styles['video'] }>
+                                                                        <source src={ videoUrl } />
+                                                                    </video>
+                                                                    <div className={ styles['video-text-container'] }>
+                                                                        <p className={ styles['card-title'] }>Video</p>
+                                                                        <textarea
+                                                                            ref={ videoDescRef }
+                                                                            spellCheck={ false }
+                                                                            className={ `textfield ${ styles['textarea'] }` }
+                                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                            onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
+                                                                        />
+                                                                    </div>
+                                                                </>
+                                                            )
+                                                            : (!isMyAccount && videoUrl) && (
+                                                                <>
+                                                                    <video controls className={ styles['video'] }>
+                                                                        <source src={ videoUrl } />
+                                                                    </video>
+                                                                    <div className={ styles['video-text-container'] }>
+                                                                        <p className={ styles['card-title'] }>Video</p>
+                                                                        <textarea
+                                                                            disabled
+                                                                            spellCheck={ false }
+                                                                            className={ `textfield ${ styles['textarea'] }` }
+                                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                            defaultValue={ videoDesc }
+                                                                        />
+                                                                    </div>
+                                                                </>
+                                                            )
+                                                        }
+                                                    </div>
+                                                    <input
+                                                        type='button'
+                                                        className='button-filled'
+                                                        style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
+                                                        value='Edit my profile'
+                                                        onClick={ () => router.push(`/edit-profile`) }
+                                                    />
                                                 </div>
                                             </div>
                                         )

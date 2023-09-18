@@ -1,5 +1,8 @@
 .hub-container {
+    align-items: center;
     color: var(--agora-blue-dark);
+    display: flex;
+    flex-direction: column;
     margin: auto;
     min-block-size: calc(100vh - 310px);
     padding-block-start: 100px;

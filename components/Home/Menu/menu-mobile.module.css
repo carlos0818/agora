@@ -94,6 +94,11 @@
     gap: 8px;
 }
 
+.submenu-option a {
+    color: white;
+    text-decoration: none;
+}
+
 .submenu-option.selected {
     font-family: 'ebrima-bold';
 }
