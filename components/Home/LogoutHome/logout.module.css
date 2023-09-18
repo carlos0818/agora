@@ -335,11 +335,14 @@
 .custom-slider {
     align-items: center;
     display: flex !important;
-    /* flex-direction: column !important; */
     gap: 8px !important;
-    /* max-inline-size: 1200px !important; */
-    margin: auto;
-    /* inline-size: 95% !important; */
+}
+
+.custom-slider-2 {
+    align-items: center !important;
+    display: flex !important;
+    gap: 8px !important;
+    justify-content: center !important;
 }
 
 .testimonial-container p {

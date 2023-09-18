@@ -11,7 +11,9 @@ import home from './logout.module.css'
 
 import agoralogoShadow from '@/public/images/agoralogo_shadow.png'
 import backArrow from '@/public/images/back-arrow.png'
+import backArrowWhite from '@/public/images/back-arrow-white.png'
 import nextArrow from '@/public/images/next-arrow.png'
+import nextArrowWhite from '@/public/images/next-arrow-white.png'
 // import psfuLogo from '@/public/images/psfu.png'
 // import cciasLogo from '@/public/images/ccias.png'
 // import fsmeLogo from '@/public/images/fsme.png'
@@ -46,6 +48,25 @@ export const LogoutHome = () => {
         slidesToScroll: 3,
         prevArrow: <Image src={ backArrow } alt='Next Arrow' className={ `${ home['arrow2'] } ${ home['prev-community'] }` } />,
         nextArrow: <Image src={ nextArrow } alt='Previous Arrow' className={ `${ home['arrow2'] } ${ home['prev-community'] }` } />,
+        responsive: [
+            {
+              breakpoint: 1199,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+        ]
+    }
+
+    const settings2 = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        prevArrow: <Image src={ backArrowWhite } alt='Next Arrow' className={ `${ home['arrow2'] } ${ home['prev-community'] }` } />,
+        nextArrow: <Image src={ nextArrowWhite } alt='Previous Arrow' className={ `${ home['arrow2'] } ${ home['prev-community'] }` } />,
         responsive: [
             {
               breakpoint: 1199,
@@ -177,61 +198,63 @@ export const LogoutHome = () => {
                     and impact within our collaborative ecosystem
                 </p>
                 <div className={ home['portfolio-container'] }>
-                    <div className={ home['portfolio-wrapper'] }>
-                        <Image
-                            src='/images/washy.jpg'
-                            className={ home['portfolio-image'] }
-                            alt=''
-                            width={ 500 }
-                            height={ 331 }
-                        />
-                        <h4 className={ home['portfolio-title'] }>WashyWash</h4>
-                        <p className={ home['portfolio-description'] }>WashyWash is an eco-friendly on-demand cleaning service app focused on delivering professional cleaning services to clients at their locations. The goal is to transform the customer experience by innovating both the front and back ends of the cleaning industry. While initially specializing in garment cleaning, our vision is to expand and introduce various cleaning services, all accessible through a single platform. WashyWash is dedicated to reshaping global laundry practices, replacing the outdated PERC-Dryclean system with the cutting-edge EcoClean technology.</p>
-                    </div>
-                    <div className={ home['portfolio-wrapper'] }>
-                        <Image
-                            src='/images/voss.jpg'
-                            className={ home['portfolio-image'] }
-                            alt=''
-                            width={ 500 }
-                            height={ 331 }
-                        />
-                        <h4 className={ home['portfolio-title'] }>VOSS Consulting</h4>
-                        <p className={ home['portfolio-description'] }>VOSS Consulting is a Togolese sole proprietorship founded in October 2021. We specialize in providing comprehensive training, coaching, and personal development services, focusing on leadership development, and utilizing Maxwell Leadership resources within the Francophone community. Our core mission is to guide and empower individuals who aspire to enhance their personal growth and unlock their full potential.</p>
-                    </div>
-                    <div className={ home['portfolio-wrapper'] }>
-                        <Image
-                            src='/images/honeypride.jpg'
-                            className={ home['portfolio-image'] }
-                            alt=''
-                            width={ 500 }
-                            height={ 331 }
-                        />
-                        <h4 className={ home['portfolio-title'] }>Honey Pride Arua (HPA)</h4>
-                        <p className={ home['portfolio-description'] }>HPA was established in September 2015 with 100% Ugandan ownership. We specialize in apiculture, including beekeeping and honey processing, offering liquid honey, beeswax, and bee propolis. Our services include training farmers, providing technical support, modern hives, and a reliable honey market. HPA follows an inclusive business model, involving rural communities in the value chain. Our goal is to lead in sustainable beehive product production in the Great Lakes Region, benefiting farmers economically and environmentally.</p>
-                    </div>
-                    <div className={ home['portfolio-wrapper'] }>
-                        <Image
-                            src='/images/paygas.jpg'
-                            className={ home['portfolio-image'] }
-                            alt=''
-                            width={ 500 }
-                            height={ 331 }
-                        />
-                        <h4 className={ home['portfolio-title'] }>PayGas</h4>
-                        <p className={ home['portfolio-description'] }>PayGas is a pioneering tech-driven LPG retailer committed to serving low-income clients. Our unique cashless technology, known as Pay as you Gas™, empowers customers to refill their gas cylinders with the precise amount they can afford, starting from as little as 0.5 USD. By revolutionizing the conventional cylinder swapping process with cashless micro refills, we are actively combating deforestation caused by wood fuel usage in low-income households.</p>
-                    </div>
-                    <div className={ home['portfolio-wrapper'] }>
-                        <Image
-                            src='/images/carad.jpg'
-                            className={ home['portfolio-image'] }
-                            alt=''
-                            width={ 500 }
-                            height={ 331 }
-                        />
-                        <h4 className={ home['portfolio-title'] }>Carad Labs</h4>
-                        <p className={ home['portfolio-description'] }>Carad Labs is a leading food engineering platform, supporting agri-food businesses in optimizing performance and risk management. We adhere to QHSE guidelines, ISO standards, and legal regulations. Our services include sensory analysis, industrial consulting, training, R&D, and laboratory analytics. We empower businesses to thrive in the agri-food industry.</p>
-                    </div>
+                    <Slider {... settings2} className={ home['custom-slider-2'] } useCSS>
+                        <div className={ home['portfolio-wrapper'] }>
+                            <Image
+                                src='/images/washy.jpg'
+                                className={ home['portfolio-image'] }
+                                alt=''
+                                width={ 500 }
+                                height={ 331 }
+                            />
+                            <h4 className={ home['portfolio-title'] }>WashyWash</h4>
+                            <p className={ home['portfolio-description'] }>WashyWash is an eco-friendly on-demand cleaning service app focused on delivering professional cleaning services to clients at their locations. The goal is to transform the customer experience by innovating both the front and back ends of the cleaning industry. While initially specializing in garment cleaning, our vision is to expand and introduce various cleaning services, all accessible through a single platform. WashyWash is dedicated to reshaping global laundry practices, replacing the outdated PERC-Dryclean system with the cutting-edge EcoClean technology.</p>
+                        </div>
+                        <div className={ home['portfolio-wrapper'] }>
+                            <Image
+                                src='/images/voss.jpg'
+                                className={ home['portfolio-image'] }
+                                alt=''
+                                width={ 500 }
+                                height={ 331 }
+                            />
+                            <h4 className={ home['portfolio-title'] }>VOSS Consulting</h4>
+                            <p className={ home['portfolio-description'] }>VOSS Consulting is a Togolese sole proprietorship founded in October 2021. We specialize in providing comprehensive training, coaching, and personal development services, focusing on leadership development, and utilizing Maxwell Leadership resources within the Francophone community. Our core mission is to guide and empower individuals who aspire to enhance their personal growth and unlock their full potential.</p>
+                        </div>
+                        <div className={ home['portfolio-wrapper'] }>
+                            <Image
+                                src='/images/honeypride.jpg'
+                                className={ home['portfolio-image'] }
+                                alt=''
+                                width={ 500 }
+                                height={ 331 }
+                            />
+                            <h4 className={ home['portfolio-title'] }>Honey Pride Arua (HPA)</h4>
+                            <p className={ home['portfolio-description'] }>HPA was established in September 2015 with 100% Ugandan ownership. We specialize in apiculture, including beekeeping and honey processing, offering liquid honey, beeswax, and bee propolis. Our services include training farmers, providing technical support, modern hives, and a reliable honey market. HPA follows an inclusive business model, involving rural communities in the value chain. Our goal is to lead in sustainable beehive product production in the Great Lakes Region, benefiting farmers economically and environmentally.</p>
+                        </div>
+                        <div className={ home['portfolio-wrapper'] }>
+                            <Image
+                                src='/images/paygas.jpg'
+                                className={ home['portfolio-image'] }
+                                alt=''
+                                width={ 500 }
+                                height={ 331 }
+                            />
+                            <h4 className={ home['portfolio-title'] }>PayGas</h4>
+                            <p className={ home['portfolio-description'] }>PayGas is a pioneering tech-driven LPG retailer committed to serving low-income clients. Our unique cashless technology, known as Pay as you Gas™, empowers customers to refill their gas cylinders with the precise amount they can afford, starting from as little as 0.5 USD. By revolutionizing the conventional cylinder swapping process with cashless micro refills, we are actively combating deforestation caused by wood fuel usage in low-income households.</p>
+                        </div>
+                        <div className={ home['portfolio-wrapper'] }>
+                            <Image
+                                src='/images/carad.jpg'
+                                className={ home['portfolio-image'] }
+                                alt=''
+                                width={ 500 }
+                                height={ 331 }
+                            />
+                            <h4 className={ home['portfolio-title'] }>Carad Labs</h4>
+                            <p className={ home['portfolio-description'] }>Carad Labs is a leading food engineering platform, supporting agri-food businesses in optimizing performance and risk management. We adhere to QHSE guidelines, ISO standards, and legal regulations. Our services include sensory analysis, industrial consulting, training, R&D, and laboratory analytics. We empower businesses to thrive in the agri-food industry.</p>
+                        </div>
+                    </Slider>
                 </div>
             </section>
             <section className={ home['what-container'] }>

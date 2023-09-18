@@ -280,10 +280,9 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                                 Country snapshot
                                                             </li>
                                                         </Link>
-                                                        <li className={ styles['submenu-option'] }>
-                                                            {/* <Image src={ homeIcon } alt='home icon' width={ 24 } height={ 24 } /> */}
+                                                        {/* <li className={ styles['submenu-option'] }>
                                                             Sector Analysis
-                                                        </li>
+                                                        </li> */}
                                                         <Link
                                                             href='/notifications'
                                                             passHref

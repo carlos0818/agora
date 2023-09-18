@@ -822,9 +822,10 @@ input:checked + .slider:before {
 
 /* CAROUSEL */
 .slick-list {
-  inline-size: 325px;
-  margin: auto;
-  margin-inline-end: 0 !important;
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  /* inline-size: 325px; */
 }
 
 .slick-arrow.slick-prev,
@@ -837,6 +838,11 @@ input:checked + .slider:before {
 .slick-arrow.slick-next {
   block-size: 30px;
   inline-size: 30px;
+}
+
+.slick-slide.slick-active {
+  display: flex !important;
+  justify-content: center !important;
 }
 /* CAROUSEL */
 
@@ -879,6 +885,6 @@ input:checked + .slider:before {
 @media screen and (min-width: 1200px) {
   .slick-list {
     inline-size: 1050px;
-    margin-inline-end: -16px !important;
+    /* margin-inline-end: -16px !important; */
   }
 }
