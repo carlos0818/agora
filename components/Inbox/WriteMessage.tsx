@@ -74,12 +74,20 @@ export const WriteMessage: FC<Props> = ({ contacts, contactId = '', sendMessage,
 
         setLoading(true)
 
+        let body = bodyRef.current!.value
+
+        if (attachRef.current!.checked) {
+            body += `
+
+Please click <a href="/pitch-deck/${ user?.id }">here</a> to access my PitchDeck for your reference.`
+        }
+
         const data = {
             email: selectedContact?.email,
             emailcontact: user?.email,
             status: 'S',
             subject: subjectRef.current!.value,
-            body: bodyRef.current!.value,
+            body,
             important: importantRef.current!.checked ? '1' : '0',
             pitch: attachRef.current!.checked ? '1' : '0',
         }

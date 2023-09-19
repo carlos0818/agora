@@ -10,8 +10,6 @@ import { WriteMessage } from '@/components/Inbox/WriteMessage'
 import { Messages } from '@/components/Inbox/Messages'
 import { Modal } from '@/components/Common/Modal'
 
-// import styles from './inbox.module.css'
-
 const InboxPage: NextPage = () => {
     const { user } = useContext(AuthContext)
 

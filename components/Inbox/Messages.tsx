@@ -24,6 +24,13 @@ export const Messages: FC<Props> = ({ message, messages, setMessages, setMessage
 
     let date = convertTimeZone(message.dateAdded)
 
+    let messageWithFormat = ''
+
+    const convertText = () => {
+        messageWithFormat = message.body.replace(/\n/g, "<br />")
+        return { __html: messageWithFormat };
+    }
+
     const handleOpenModal = (index: string) => {
         setMessageId(index)
         setConfirmDelete(true)
@@ -147,13 +154,26 @@ ${ message.body }`,
                 </div>
             </label>
             <div className={ styles['message-content'] }>
-                <textarea
+                {/* <textarea
                     className='textfield'
                     style={{ blockSize: 200, inlineSize: 'calc(100% - 26px)', marginBlockStart: 8 }}
                     defaultValue={ message.body }
                     readOnly
                     spellCheck={ false }
-                />
+                /> */}
+                <p
+                    dangerouslySetInnerHTML={ convertText() }
+                    style={{
+                        backgroundColor: 'white',
+                        blockSize: 200,
+                        border: '2px solid #10284F',
+                        borderRadius: 6,
+                        color: '#10284F',
+                        overflowY: 'scroll',
+                        paddingBlock: 8,
+                        paddingInline: 12,
+                    }}
+                ></p>
             </div>
         </div>
     )

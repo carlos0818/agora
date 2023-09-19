@@ -772,7 +772,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                     style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
                                                                                     defaultValue={ summaryPitchDeck }
                                                                                 />
-                                                                                <p style={{ marginBlockStart: 16 }}>
+                                                                                <p style={{ marginBlockStart: 16, color: '#10284f' }}>
                                                                                     To view the full version of the Pitch Deck, click&nbsp;
                                                                                     <Link
                                                                                         href={ `/pitch-deck/${ id }` }
@@ -780,8 +780,8 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                         prefetch={ false }
                                                                                         legacyBehavior
                                                                                     >
-                                                                                        on this link.
-                                                                                    </Link>
+                                                                                        <a style={{ color: '#10284f' }}>on this link</a>
+                                                                                    </Link>.
                                                                                 </p>
                                                                             </>
                                                                         )
