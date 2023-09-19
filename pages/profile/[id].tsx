@@ -764,13 +764,26 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                 onBlur={ handleSaveSummaryPitchDeck }
                                                                             />
                                                                         ) : (
-                                                                            <textarea
-                                                                                className={ `textfield ${ styles['textarea'] }` }
-                                                                                disabled
-                                                                                spellCheck={ false }
-                                                                                style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
-                                                                                defaultValue={ summaryPitchDeck }
-                                                                            />
+                                                                            <>
+                                                                                <textarea
+                                                                                    className={ `textfield ${ styles['textarea'] }` }
+                                                                                    disabled
+                                                                                    spellCheck={ false }
+                                                                                    style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
+                                                                                    defaultValue={ summaryPitchDeck }
+                                                                                />
+                                                                                <p style={{ marginBlockStart: 16 }}>
+                                                                                    To view the full version of the Pitch Deck, click&nbsp;
+                                                                                    <Link
+                                                                                        href={ `/pitch-deck/${ id }` }
+                                                                                        passHref
+                                                                                        prefetch={ false }
+                                                                                        legacyBehavior
+                                                                                    >
+                                                                                        on this link.
+                                                                                    </Link>
+                                                                                </p>
+                                                                            </>
                                                                         )
                                                                     )
                                                                 }
