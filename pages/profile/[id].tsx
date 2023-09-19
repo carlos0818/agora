@@ -547,7 +547,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     {
                                         !((type !== 'E' && !videoUrl) || (type === 'E' && !isMyAccount && !videoUrl)) && (
                                             <div className={ `window-glass` }>
-                                                <div className='window-glass-content' style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <div className='window-glass-content' style={{ display: 'flex', flexDirection: 'column', padding: 8 }}>
                                                     <div className={ `${ styles['video-container'] }` }>
                                                         {
                                                             (type === 'E' && isMyAccount && !videoUrl)
@@ -674,7 +674,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             ref={ videoDescRef }
                                                                             spellCheck={ false }
                                                                             className={ `textfield ${ styles['textarea'] }` }
-                                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                            style={{ blockSize: '100%', inlineSize: 'calc(100% - 25px)' }}
                                                                             onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
                                                                         />
                                                                     </div>
@@ -691,7 +691,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             disabled
                                                                             spellCheck={ false }
                                                                             className={ `textfield ${ styles['textarea'] }` }
-                                                                            style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                            style={{ blockSize: '100%', inlineSize: 'calc(100% - 25px)' }}
                                                                             defaultValue={ videoDesc }
                                                                         />
                                                                     </div>
@@ -699,13 +699,17 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                             )
                                                         }
                                                     </div>
-                                                    <input
-                                                        type='button'
-                                                        className='button-filled'
-                                                        style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
-                                                        value='Edit my profile'
-                                                        onClick={ () => router.push(`/edit-profile`) }
-                                                    />
+                                                    {
+                                                        isMyAccount && (
+                                                            <input
+                                                                type='button'
+                                                                className='button-filled'
+                                                                style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
+                                                                value='Edit my profile'
+                                                                onClick={ () => router.push(`/edit-profile`) }
+                                                            />
+                                                        )
+                                                    }
                                                 </div>
                                             </div>
                                         )
