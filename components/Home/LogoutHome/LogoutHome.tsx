@@ -208,6 +208,7 @@ export const LogoutHome = () => {
                                 height={ 331 }
                             />
                             <h4 className={ home['portfolio-title'] }>WashyWash</h4>
+                            <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Jordan</p>
                             <p className={ home['portfolio-description'] }>WashyWash is an eco-friendly on-demand cleaning service app focused on delivering professional cleaning services to clients at their locations. The goal is to transform the customer experience by innovating both the front and back ends of the cleaning industry. While initially specializing in garment cleaning, our vision is to expand and introduce various cleaning services, all accessible through a single platform. WashyWash is dedicated to reshaping global laundry practices, replacing the outdated PERC-Dryclean system with the cutting-edge EcoClean technology.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
@@ -219,6 +220,7 @@ export const LogoutHome = () => {
                                 height={ 331 }
                             />
                             <h4 className={ home['portfolio-title'] }>VOSS Consulting</h4>
+                            <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Togo</p>
                             <p className={ home['portfolio-description'] }>VOSS Consulting is a Togolese sole proprietorship founded in October 2021. We specialize in providing comprehensive training, coaching, and personal development services, focusing on leadership development, and utilizing Maxwell Leadership resources within the Francophone community. Our core mission is to guide and empower individuals who aspire to enhance their personal growth and unlock their full potential.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
@@ -230,6 +232,7 @@ export const LogoutHome = () => {
                                 height={ 331 }
                             />
                             <h4 className={ home['portfolio-title'] }>Honey Pride Arua (HPA)</h4>
+                            <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Uganda</p>
                             <p className={ home['portfolio-description'] }>HPA was established in September 2015 with 100% Ugandan ownership. We specialize in apiculture, including beekeeping and honey processing, offering liquid honey, beeswax, and bee propolis. Our services include training farmers, providing technical support, modern hives, and a reliable honey market. HPA follows an inclusive business model, involving rural communities in the value chain. Our goal is to lead in sustainable beehive product production in the Great Lakes Region, benefiting farmers economically and environmentally.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
@@ -241,6 +244,7 @@ export const LogoutHome = () => {
                                 height={ 331 }
                             />
                             <h4 className={ home['portfolio-title'] }>PayGas</h4>
+                            <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>South Africa</p>
                             <p className={ home['portfolio-description'] }>PayGas is a pioneering tech-driven LPG retailer committed to serving low-income clients. Our unique cashless technology, known as Pay as you Gas™, empowers customers to refill their gas cylinders with the precise amount they can afford, starting from as little as 0.5 USD. By revolutionizing the conventional cylinder swapping process with cashless micro refills, we are actively combating deforestation caused by wood fuel usage in low-income households.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
@@ -252,6 +256,7 @@ export const LogoutHome = () => {
                                 height={ 331 }
                             />
                             <h4 className={ home['portfolio-title'] }>Carad Labs</h4>
+                            <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Senegal</p>
                             <p className={ home['portfolio-description'] }>Carad Labs is a leading food engineering platform, supporting agri-food businesses in optimizing performance and risk management. We adhere to QHSE guidelines, ISO standards, and legal regulations. Our services include sensory analysis, industrial consulting, training, R&D, and laboratory analytics. We empower businesses to thrive in the agri-food industry.</p>
                         </div>
                     </Slider>
@@ -375,9 +380,11 @@ export const LogoutHome = () => {
                             <p className={ home['testimonial-position'] }>Deputy Executive Secretary, United Nations Capital Development Fund (UNCDF)</p>
                         </div>
                         <div className={ home['testimonial-container'] }>
-                            <p>&quot;We have been following the development of Agora closely, and we firmly believe it has the potential to emerge as a valuable bridge
-                                that links institutions like ours to a diverse array of entrepreneurs and experts in emerging economies. Agora is a great resource that
-                                broadens our horizons while enhancing our ability to achieve sustainable development by finding SDG-positive projects and companies.&quot;
+                            <p>&quot;Agora offers a unique opportunity to catalyze entrepreneurship in the CEMAC region. I believe that this platform can play a pivotal
+                                role in connecting our vibrant ecosystem of entrepreneurs with the resources they need to thrive. With Agora's support, we can foster
+                                collaboration, share knowledge, and unlock new avenues for growth. This initiative aligns with our commitment to nurturing innovation and
+                                sustainable economic development in the CEMAC region. I am excited to see how Agora will contribute to the success stories of our local
+                                entrepreneurs.&quot;
                             </p>
                             <Image
                                 src='/images/Lissette.jpg'
@@ -386,8 +393,8 @@ export const LogoutHome = () => {
                                 height={ 50 }
                                 className={ home['testimonial-image'] }
                             />
-                            <p className={ home['testimonial-name'] }>Lisette Cipriano</p>
-                            <p className={ home['testimonial-position'] }>Senior Digital Technology Specialist, Asian Development Bank (ADB)</p>
+                            <p className={ home['testimonial-name'] }>Richard Zogo Ekassi</p>
+                            <p className={ home['testimonial-position'] }>Advisor, Economic and Monetary Community of Central Africa (CEMAC)</p>
                         </div>
                         <div className={ home['testimonial-container'] }>
                             <p>&quot;SMEs around the world, but particularly in emerging and frontier markets, are at a disadvantage when it comes to accessing finance

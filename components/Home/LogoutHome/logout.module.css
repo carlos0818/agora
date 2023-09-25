@@ -211,7 +211,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 60px;
     justify-content: center;
     max-inline-size: 1150px;
     margin: auto;
@@ -234,7 +234,7 @@
 .what-description {
     font-size: 14px;
     font-weight: 500;
-    padding-inline: 20px;
+    /* padding-inline: 20px; */
     line-height: 15px;
     text-align: justify;
 }
@@ -678,7 +678,7 @@
         margin-block-start: 0;
         margin-block-end: 0;
         max-inline-size: auto;
-        inline-size: 575px;
+        inline-size: 620px;
     }
 
     .video {

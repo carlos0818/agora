@@ -15,7 +15,7 @@ const AboutPage = () => {
                 <div className='window-glass' style={{ maxInlineSize: 1226 }}>
                     <div className='window-glass-content'>
                         <div className={ style['section-one-container'] }>
-                            <h3 className={ style['about-title'] }>ABOUT AGORA</h3>
+                            <h3 className={ style['about-title'] }>About Agora</h3>
                             <h4 className={ style['about-subtitle'] }>Connecting for impact - capital, innovation, and expertise at work.</h4>
                             <div className={ style['about-wrapper'] }>
                                 <div className={ style['left'] }>
@@ -48,7 +48,7 @@ const AboutPage = () => {
                             </div>
                         </div>
                         <div className={ style['section-two-container'] }>
-                            <h3 className={ style['partners-title'] }>PARTNERSHIP MODEL</h3>
+                            <h3 className={ style['partners-title'] }>Partnership Model</h3>
                             <h4 className={ style['partners-subtitle'] }>Empowering entrepreneurs, connecting capital: The Agora Partnership</h4>
                             <p>
                                 Agora leverages its partnership and co-creation ecosystem to continuously improve and respond to the evolving needs of the
@@ -96,7 +96,7 @@ const AboutPage = () => {
                             </div> */}
                         </div>
                         <div className={ style['section-four-container'] }>
-                            <h3 className={ style['collaborate-title'] }>COLLABORATE WITH A PURPOSE</h3>
+                            <h3 className={ style['collaborate-title'] }>Collaborate with a purpose</h3>
                             <h4 className={ style['collaborate-subtitle'] }>Collaborate with a purpose to empower entrepreneurs and drive growth</h4>
                             <p className={ style['collaborate-description'] }>
                                 Agora is guided by a set of unwavering principles that drive its mission and shape its approach. These seven principles are deeply
@@ -105,7 +105,7 @@ const AboutPage = () => {
                         </div>
                         <div className={ style['section-five-container'] }>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>ACCESIBILITY</h3>
+                                <h3 className={ style['specs-title'] }>Accesibility</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Accesibility Icon'
@@ -116,7 +116,7 @@ const AboutPage = () => {
                                 </p>
                             </div>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>INCLUSIVENESS</h3>
+                                <h3 className={ style['specs-title'] }>Inclusiveness</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Inclusiveness Icon'
@@ -127,7 +127,7 @@ const AboutPage = () => {
                                 </p>
                             </div>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>FAIRNESS</h3>
+                                <h3 className={ style['specs-title'] }>Fairness</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Fairness Icon'
@@ -138,7 +138,7 @@ const AboutPage = () => {
                                 </p>
                             </div>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>CO-CREATION</h3>
+                                <h3 className={ style['specs-title'] }>Co-creation</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Co-creation Icon'
@@ -149,7 +149,7 @@ const AboutPage = () => {
                                 </p>
                             </div>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>TRANSPARENCY</h3>
+                                <h3 className={ style['specs-title'] }>Transparency</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Transparency Icon'
@@ -160,7 +160,7 @@ const AboutPage = () => {
                                 </p>
                             </div>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>INNOVATION</h3>
+                                <h3 className={ style['specs-title'] }>Innovation</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Innovation Icon'
@@ -171,7 +171,7 @@ const AboutPage = () => {
                                 </p>
                             </div>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>OWNERSHIP</h3>
+                                <h3 className={ style['specs-title'] }>Ownership</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Ownership Icon'

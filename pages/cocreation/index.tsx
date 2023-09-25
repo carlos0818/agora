@@ -126,11 +126,10 @@ const CoCreation: NextPage = () => {
                                     <input
                                         type="text"
                                         className='textfield'
-                                        style={{ border: `${ errors.title ? '2px solid #CE0915' : null }` }}
+                                        style={{ border: `${ errors.title ? '2px solid #CE0915' : '2px solid #10284F' }` }}
                                         placeholder='Provide a clear and concise title for your idea.'
                                         { ...register('title', {
                                             required: 'Title is required',
-                                            maxLength: 60
                                         })}
                                     />
                                     { errors.title && <span className={ style['message-error'] }>{ errors.title.message }</span> }
@@ -140,27 +139,28 @@ const CoCreation: NextPage = () => {
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
                                         spellCheck={ false }
-                                        style={{ border: `${ errors.description ? '2px solid #CE0915' : null }` }}
+                                        style={{ border: `${ errors.description ? '2px solid #CE0915' : '2px solid #10284F' }` }}
                                         placeholder='Describe your idea in detail, including how it would work and what benefits it would bring to Agora users.'
                                         { ...register('description', {
                                             required: 'Description is required',
-                                            maxLength: 60
                                         })}
                                     />
                                     { errors.description && <span className={ style['message-error'] }>{ errors.description.message }</span> }
                                 </div>
                                 <div className={ style['form-group'] }>
                                     <label>Category</label>
-                                    <input
-                                        type="text"
-                                        className='textfield'
-                                        style={{ border: `${ errors.category ? '2px solid #CE0915' : null }` }}
-                                        placeholder='Select the category that best fits your idea, such as "User Experience," "Functionality," or "Design."'
+                                    <select
+                                        className='select'
+                                        style={{ borderWidth: 2, border: `${ errors.category ? '2px solid #CE0915' : '2px solid #10284F' }` }}
                                         { ...register('category', {
-                                            required: 'Category is required',
-                                            maxLength: 60
+                                            required: 'Category is required'
                                         })}
-                                    />
+                                    >
+                                        <option value=''>Select a category</option>
+                                        <option value='user-experience'>User Experience</option>
+                                        <option value='functionality'>Functionality</option>
+                                        <option value='design'>Design</option>
+                                    </select>
                                     { errors.category && <span className={ style['message-error'] }>{ errors.category.message }</span> }
                                 </div>
                                 <div className={ style['form-group'] }>
@@ -168,11 +168,10 @@ const CoCreation: NextPage = () => {
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
                                         spellCheck={ false }
-                                        style={{ border: `${ errors.impact ? '2px solid #CE0915' : null }` }}
+                                        style={{ border: `${ errors.impact ? '2px solid #CE0915' : '2px solid #10284F' }` }}
                                         placeholder='Explain the potential impact of your idea, including any metrics or data to support your proposal.'
                                         { ...register('impact', {
                                             required: 'Impact is required',
-                                            maxLength: 60
                                         })}
                                     />
                                     { errors.impact && <span className={ style['message-error'] }>{ errors.impact.message }</span> }
@@ -182,11 +181,10 @@ const CoCreation: NextPage = () => {
                                     <textarea
                                         className={ `textfield ${ style['textarea'] }` }
                                         spellCheck={ false }
-                                        style={{ border: `${ errors.implementation ? '2px solid #CE0915' : null }` }}
+                                        style={{ border: `${ errors.implementation ? '2px solid #CE0915' : '2px solid #10284F' }` }}
                                         placeholder='Share any insights or recommendations for how your idea could be implemented on Agora&apos;s platform.'
                                         { ...register('implementation', {
                                             required: 'Implementation is required',
-                                            maxLength: 60
                                         })}
                                     />
                                     { errors.implementation && <span className={ style['message-error'] }>{ errors.implementation.message }</span> }
@@ -196,11 +194,10 @@ const CoCreation: NextPage = () => {
                                     <input
                                         type='email'
                                         className='textfield'
-                                        style={{ border: `${ errors.contactInfo ? '2px solid #CE0915' : null }` }}
+                                        style={{ border: `${ errors.contactInfo ? '2px solid #CE0915' : '2px solid #10284F' }` }}
                                         placeholder='Provide your email address so that we can contact you if we have any questions or follow-up.'
                                         { ...register('contactInfo', {
                                             required: 'Contact information is required',
-                                            maxLength: 60,
                                             validate: {
                                                 matchPattern: (v) => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(v) || 'Not a valid email'
                                             }

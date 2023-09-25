@@ -534,6 +534,44 @@ export const useProfile = (email: string, id: string, type: string) => {
         await agoraApi.post('/pitch-deck/save-summary', { text: event.target.value, email: user?.email, id: user?.id })
     }
 
+    const handleUploadVideo = async({ target }: ChangeEvent<HTMLInputElement>) => {
+        if (!target.files || target.files.length === 0) {
+            return
+        }
+
+        const inputVideo = document.querySelector('#video') as HTMLInputElement
+
+        if (inputVideo.files!.length > 0) {
+            const formDataVideo = new FormData()
+            formDataVideo.append('video', inputVideo.files![0])
+            const { data: newVideo } = await agoraApi.post('/files/video', formDataVideo)
+
+            const data = {
+                email: user?.email,
+                videoUrl: newVideo
+            }
+    
+            switch (user?.type) {
+                case 'E':
+                    await agoraApi.post(`/entrepreneur/update-video`, data)
+                    setVideoUrl(newVideo)
+                    break
+                case 'I':
+                    await agoraApi.post(`/investor/update-video`, data)
+                    setVideoUrl(videoUrl)
+                    break
+                case 'X':
+                    await agoraApi.post(`/expert/update-video`, data)
+                    setVideoUrl(videoUrl)
+                    break
+                default:
+                    break
+            }
+        }
+
+        
+    }
+
     return {
         video1,
         video2,
@@ -598,5 +636,6 @@ export const useProfile = (email: string, id: string, type: string) => {
         handlePitchDeck,
         handleSaveSummaryPitchDeck,
         getAverageVotes,
+        handleUploadVideo,
     }
 }

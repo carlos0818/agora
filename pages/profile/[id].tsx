@@ -88,6 +88,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         handlePitchDeck,
         handleSaveSummaryPitchDeck,
         getAverageVotes,
+        handleUploadVideo,
     } = useProfile(email, id, type)
 
     const router = useRouter()
@@ -560,12 +561,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                         />
                                                                     </video>
                                                                     <div className={ styles['video-text-container'] }>
-                                                                        <p className={ styles['card-title'] }>Video</p>
+                                                                        <p className={ styles['card-title'] }>Pitch Video</p>
                                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, inlineSize: '100%', marginBlockStart: 8 }}>
                                                                             <a
                                                                                 id='videotutorial1'
                                                                                 data-url={ video1 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial1') }
                                                                             >
                                                                                 Cracking the Investor pitch
@@ -573,7 +574,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial2'
                                                                                 data-url={ video2 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial2') }
                                                                             >
                                                                                 Introduction
@@ -581,7 +582,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial3'
                                                                                 data-url={ video3 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial3') }
                                                                             >
                                                                                 Problem statement
@@ -589,7 +590,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial4'
                                                                                 data-url={ video4 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial4') }
                                                                             >
                                                                                 Solution showcase
@@ -597,7 +598,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial5'
                                                                                 data-url={ video5 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial5') }
                                                                             >
                                                                                 Unique value proposition
@@ -605,7 +606,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial6'
                                                                                 data-url={ video6 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial6') }
                                                                             >
                                                                                 Market opportunity
@@ -613,7 +614,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial7'
                                                                                 data-url={ video7 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial7') }
                                                                             >
                                                                                 Business model
@@ -621,7 +622,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial8'
                                                                                 data-url={ video8 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial8') }
                                                                             >
                                                                                 Traction and milestones
@@ -629,7 +630,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial9'
                                                                                 data-url={ video9 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial9') }
                                                                             >
                                                                                 Team introduction
@@ -637,7 +638,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial10'
                                                                                 data-url={ video10 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial10') }
                                                                             >
                                                                                 Go-to-market strategy
@@ -645,7 +646,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial11'
                                                                                 data-url={ video11 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial11') }
                                                                             >
                                                                                 Financial projections
@@ -653,7 +654,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                             <a
                                                                                 id='videotutorial12'
                                                                                 data-url={ video12 }
-                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'none' }}
+                                                                                style={{ color: '#10284F', cursor: 'pointer', textDecoration: 'underline' }}
                                                                                 onClick={ () => handleChangeVideo('videotutorial12') }
                                                                             >
                                                                                 Call to action
@@ -665,7 +666,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                             : (isMyAccount && videoUrl)
                                                             ? (
                                                                 <>
-                                                                    <video controls className={ styles['video'] }>
+                                                                    <video controls className={ styles['video'] } id='my-video' src={ videoUrl }>
                                                                         <source src={ videoUrl } />
                                                                     </video>
                                                                     <div className={ styles['video-text-container'] }>
@@ -682,7 +683,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                             )
                                                             : (!isMyAccount && videoUrl) && (
                                                                 <>
-                                                                    <video controls className={ styles['video'] }>
+                                                                    <video controls className={ styles['video'] } src={ videoUrl }>
                                                                         <source src={ videoUrl } />
                                                                     </video>
                                                                     <div className={ styles['video-text-container'] }>
@@ -701,13 +702,45 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     </div>
                                                     {
                                                         isMyAccount && (
-                                                            <input
-                                                                type='button'
-                                                                className='button-filled'
-                                                                style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
-                                                                value='Edit my profile'
-                                                                onClick={ () => router.push(`/edit-profile`) }
-                                                            />
+                                                            // <input
+                                                            //     type='button'
+                                                            //     className='button-filled'
+                                                            //     style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
+                                                            //     value='Edit my profile'
+                                                            //     onClick={ () => router.push(`/edit-profile`) }
+                                                            // />
+                                                            <div style={{
+                                                                alignItems: 'center',
+                                                                display: 'flex',
+                                                                gap: 16,
+                                                                inlineSize: 'calc(100% - 24px)',
+                                                                justifyContent: 'center',
+                                                                marginBlock: 20,
+                                                                position: 'relative'
+                                                            }}>
+                                                                <input
+                                                                    type='button'
+                                                                    className={ `button-filled` }
+                                                                    value='Upload video'
+                                                                    onClick={ () => document.getElementById('video')!.click() }
+                                                                />
+                                                                <input
+                                                                    id='video'
+                                                                    type="file"
+                                                                    accept='video/mp4'
+                                                                    style={{ display: 'none' }}
+                                                                    onChange={ handleUploadVideo }
+                                                                />
+                                                                {/* <div style={{ position: 'absolute', inlineSize: 80, blockSize: 80, left: 170 }}>
+                                                                    {
+                                                                        video && (
+                                                                            <video width={ 80 } height={ 80 } autoPlay muted loop>
+                                                                                <source src={ video } />
+                                                                            </video>
+                                                                        )
+                                                                    }
+                                                                </div> */}
+                                                            </div>
                                                         )
                                                     }
                                                 </div>
