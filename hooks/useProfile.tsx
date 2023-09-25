@@ -27,6 +27,7 @@ export const useProfile = (email: string, id: string, type: string) => {
 
     const [loading, setLoading] = useState(false)
     const [loadingPic, setLoadingPic] = useState(false)
+    const [loadingVideo, setLoadingVideo] = useState(false)
     const [loadingPitchDeck, setLoadingPitchDeck] = useState(false)
     const [hideRocket, setHideRocket] = useState(false)
     const [isMyAccount, setIsMyAccount] = useState(false)
@@ -542,30 +543,38 @@ export const useProfile = (email: string, id: string, type: string) => {
         const inputVideo = document.querySelector('#video') as HTMLInputElement
 
         if (inputVideo.files!.length > 0) {
-            const formDataVideo = new FormData()
-            formDataVideo.append('video', inputVideo.files![0])
-            const { data: newVideo } = await agoraApi.post('/files/video', formDataVideo)
+            setLoadingVideo(true)
 
-            const data = {
-                email: user?.email,
-                videoUrl: newVideo
-            }
+            try {
+                const formDataVideo = new FormData()
+                formDataVideo.append('video', inputVideo.files![0])
+                const { data: newVideo } = await agoraApi.post('/files/video', formDataVideo)
     
-            switch (user?.type) {
-                case 'E':
-                    await agoraApi.post(`/entrepreneur/update-video`, data)
-                    setVideoUrl(newVideo)
-                    break
-                case 'I':
-                    await agoraApi.post(`/investor/update-video`, data)
-                    setVideoUrl(videoUrl)
-                    break
-                case 'X':
-                    await agoraApi.post(`/expert/update-video`, data)
-                    setVideoUrl(videoUrl)
-                    break
-                default:
-                    break
+                const data = {
+                    email: user?.email,
+                    videoUrl: newVideo
+                }
+        
+                switch (user?.type) {
+                    case 'E':
+                        await agoraApi.post(`/entrepreneur/update-video`, data)
+                        setVideoUrl(newVideo)
+                        break
+                    case 'I':
+                        await agoraApi.post(`/investor/update-video`, data)
+                        setVideoUrl(videoUrl)
+                        break
+                    case 'X':
+                        await agoraApi.post(`/expert/update-video`, data)
+                        setVideoUrl(videoUrl)
+                        break
+                    default:
+                        break
+                }
+            } catch (error) {
+                
+            } finally {
+                setLoadingVideo(false)
             }
         }
     }
@@ -588,6 +597,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         user,
         loading,
         loadingPic,
+        loadingVideo,
         loadingPitchDeck,
         hideRocket,
         profilePic,

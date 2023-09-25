@@ -42,6 +42,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         user,
         loading,
         loadingPic,
+        loadingVideo,
         loadingPitchDeck,
         hideRocket,
         profilePic,
@@ -702,13 +703,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     </div>
                                                     {
                                                         isMyAccount && (
-                                                            // <input
-                                                            //     type='button'
-                                                            //     className='button-filled'
-                                                            //     style={{ width: 'fit-content', margin: 'auto', marginBlock: 20 }}
-                                                            //     value='Edit my profile'
-                                                            //     onClick={ () => router.push(`/edit-profile`) }
-                                                            // />
                                                             <div style={{
                                                                 alignItems: 'center',
                                                                 display: 'flex',
@@ -718,28 +712,28 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                 marginBlock: 20,
                                                                 position: 'relative'
                                                             }}>
-                                                                <input
-                                                                    type='button'
-                                                                    className={ `button-filled` }
-                                                                    value='Upload video'
-                                                                    onClick={ () => document.getElementById('video')!.click() }
-                                                                />
-                                                                <input
-                                                                    id='video'
-                                                                    type="file"
-                                                                    accept='video/mp4'
-                                                                    style={{ display: 'none' }}
-                                                                    onChange={ handleUploadVideo }
-                                                                />
-                                                                {/* <div style={{ position: 'absolute', inlineSize: 80, blockSize: 80, left: 170 }}>
-                                                                    {
-                                                                        video && (
-                                                                            <video width={ 80 } height={ 80 } autoPlay muted loop>
-                                                                                <source src={ video } />
-                                                                            </video>
-                                                                        )
-                                                                    }
-                                                                </div> */}
+                                                                {
+                                                                    loadingVideo ? (
+                                                                        <em className='spinner blue-agora' style={{ blockSize: 40, inlineSize: 40 }} />
+                                                                    ) : (
+                                                                        <>
+                                                                            <input
+                                                                                type='button'
+                                                                                className={ `button-filled` }
+                                                                                value='Upload video'
+                                                                                onClick={ () => document.getElementById('video')!.click() }
+                                                                            />
+                                                                            <input
+                                                                                id='video'
+                                                                                type="file"
+                                                                                accept='video/mp4'
+                                                                                style={{ display: 'none' }}
+                                                                                onChange={ handleUploadVideo }
+                                                                            />
+                                                                        </>
+                                                                    )
+                                                                }
+                                                                
                                                             </div>
                                                         )
                                                     }
