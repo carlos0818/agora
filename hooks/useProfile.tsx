@@ -568,8 +568,6 @@ export const useProfile = (email: string, id: string, type: string) => {
                     break
             }
         }
-
-        
     }
 
     return {
