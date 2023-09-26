@@ -742,7 +742,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                         )
                                     }
                                     {
-                                        type === 'E' && (
+                                        !((type !== 'E' && !pitchDeck) || (type === 'E' && !isMyAccount && !pitchDeck)) && (
                                             <div className={ `window-glass` }>
                                                 <div className={ `window-glass-content` } style={{ padding: 16 }}>
                                                     <div style={{ position: 'relative' }}>
@@ -755,72 +755,50 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                     style={{ position: 'absolute', marginBlockStart: 6, top: 0, right: 10 }}
                                                                 />
                                                             </summary>
-                                                            <div className={ styles['accordion-content'] } style={{ display: 'flex', flexDirection: 'column' }}>
-                                                                {
-                                                                    !pitchDeck ? (
-                                                                        <>
-                                                                            <p style={{ color: '#10284F' }}>
-                                                                                A successful entrepreneur needs to be able to effectively communicate the essence of their
-                                                                                business in a very limited period of time and capture the interest of investors, potential
-                                                                                partners, and other key stakeholders. This is where the &quot;Pitch Deck&quot; comes into play. A Pitch
-                                                                                Deck is a presentation that succinctly and attractively summarizes the most important aspects
-                                                                                of a business.
-                                                                            </p>
-                                                                            {
-                                                                                loadingPitchDeck
-                                                                                ? (
-                                                                                    <div style={{ display: 'flex', marginBlock: 20, justifyContent: 'center' }}>
-                                                                                        <p className={ styles['message-pitch-deck'] }>{ messagePitchDeck }</p>
-                                                                                    </div>
-                                                                                )
-                                                                                : (
-                                                                                    <button
-                                                                                        className='button-filled'
-                                                                                        style={{ margin: 'auto', marginBlockStart: 20, width: 'fit-content', alignSelf: 'center' }}
-                                                                                        onClick={ handlePitchDeck }
-                                                                                    >
-                                                                                        Generate Pitch Deck with AI
-                                                                                    </button>
-                                                                                )
-                                                                            }
-                                                                            
-                                                                        </>
-                                                                    ) : (
-                                                                        isMyAccount ? (
-                                                                            <textarea
-                                                                                className={ `textfield ${ styles['textarea'] }` }
-                                                                                spellCheck={ false }
-                                                                                style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                                                defaultValue={ summaryPitchDeck }
-                                                                                onBlur={ handleSaveSummaryPitchDeck }
-                                                                            />
-                                                                        ) : (
-                                                                            <>
-                                                                                <textarea
-                                                                                    className={ `textfield ${ styles['textarea'] }` }
-                                                                                    disabled
-                                                                                    spellCheck={ false }
-                                                                                    style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
-                                                                                    defaultValue={ summaryPitchDeck }
-                                                                                />
-                                                                                <p style={{ marginBlockStart: 16, color: '#10284f' }}>
-                                                                                    To view the full version of the Pitch Deck, click&nbsp;
-                                                                                    <Link
-                                                                                        href={ `/pitch-deck/${ id }` }
-                                                                                        passHref
-                                                                                        prefetch={ false }
-                                                                                        legacyBehavior
-                                                                                    >
-                                                                                        <a style={{ color: '#10284f' }}>on this link</a>
-                                                                                    </Link>.
-                                                                                </p>
-                                                                            </>
-                                                                        )
-                                                                    )
-                                                                }
-                                                            </div>
+                                                            {
+                                                                (type === 'E' && isMyAccount && !pitchDeck) ? (
+                                                                    <>
+                                                                        <textarea
+                                                                            className={ `textfield ${ styles['textarea'] }` }
+                                                                            disabled
+                                                                            spellCheck={ false }
+                                                                            style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
+                                                                            defaultValue={ summaryPitchDeck }
+                                                                        />
+                                                                        <p style={{ marginBlockStart: 16, color: '#10284f' }}>
+                                                                            To view the full version of the Pitch Deck, click&nbsp;
+                                                                            <Link
+                                                                                href={ `/pitch-deck/${ id }` }
+                                                                                passHref
+                                                                                prefetch={ false }
+                                                                                legacyBehavior
+                                                                            >
+                                                                                <a style={{ color: '#10284f' }}>on this link</a>
+                                                                            </Link>.
+                                                                        </p>
+                                                                    </>
+                                                                )
+                                                                : (isMyAccount && pitchDeck)
+                                                                ? (
+                                                                    <textarea
+                                                                        className={ `textfield ${ styles['textarea'] }` }
+                                                                        spellCheck={ false }
+                                                                        style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                        defaultValue={ summaryPitchDeck }
+                                                                        onBlur={ handleSaveSummaryPitchDeck }
+                                                                    />
+                                                                )
+                                                                : (!isMyAccount && pitchDeck) && (
+                                                                    <textarea
+                                                                        className={ `textfield ${ styles['textarea'] }` }
+                                                                        disabled
+                                                                        spellCheck={ false }
+                                                                        style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
+                                                                        defaultValue={ summaryPitchDeck }
+                                                                    />
+                                                                )
+                                                            }
                                                         </details>
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -855,7 +833,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                         <p className={ styles['texts'] }>{ title.title }</p>
                                                                                         <progress
                                                                                             className={ `${ styles['progress-bar-qualification'] } progress-score` }
-                                                                                            // value={ score.score }
                                                                                             max="100"
                                                                                         />
                                                                                     </Fragment>
