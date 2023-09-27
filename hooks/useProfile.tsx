@@ -335,7 +335,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                         cityRef.current &&
                         addressRef.current &&
                         companyNameRef.current!.value !== '' &&
-                        entrepreneurData?.profilepic &&
+                        profilePic != '' &&
                         emailContactRef.current!.value !== '' &&
                         phoneRef.current!.value !== '' &&
                         countryRef.current!.value !== '' &&
@@ -358,7 +358,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                         cityRef.current &&
                         addressRef.current &&
                         companyNameRef.current!.value !== '' &&
-                        entrepreneurData?.profilepic &&
+                        profilePic != '' &&
                         emailContactRef.current!.value !== '' &&
                         phoneRef.current!.value !== '' &&
                         countryRef.current!.value !== '' &&
@@ -381,7 +381,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                         cityRef.current &&
                         addressRef.current &&
                         companyNameRef.current!.value !== '' &&
-                        entrepreneurData?.profilepic &&
+                        profilePic != '' &&
                         emailContactRef.current!.value !== '' &&
                         phoneRef.current!.value !== '' &&
                         countryRef.current!.value !== '' &&
