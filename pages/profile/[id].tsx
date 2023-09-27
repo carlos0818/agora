@@ -708,7 +708,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                     {
                                                         (type === 'E' && isMyAccount && !videoUrl) &&
                                                             <p className={ styles['card-subtitle'] }>
-                                                                Elevate your chances for successful connections with potential investors and partners by clicking the "Upload Video"
+                                                                Elevate your chances for successful connections with potential investors and partners by clicking the &quot;Upload Video&quot;
                                                                 button below and sharing your compelling pitch video.
                                                             </p>
                                                     }
