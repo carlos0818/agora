@@ -197,6 +197,29 @@ export const useProfile = (email: string, id: string, type: string) => {
         updateHide(removeDuplicates.length)
     }, [masterHide, globalHide, id])
 
+    useEffect(() => {
+        if (
+            companyNameRef.current &&
+            emailContactRef.current &&
+            phoneRef.current &&
+            countryRef.current &&
+            cityRef.current &&
+            addressRef.current &&
+            companyNameRef.current!.value !== '' &&
+            (profilePic != '' && profilePic) &&
+            emailContactRef.current!.value !== '' &&
+            phoneRef.current!.value !== '' &&
+            countryRef.current!.value !== '' &&
+            cityRef.current!.value !== '' &&
+            addressRef.current!.value !== ''
+        ) {
+            updateRequiredInformation({
+                ...user!,
+                required: 1
+            })
+        }
+    }, [profilePic])
+
     const getLanguage = async() => {
         const userLang = await navigator.language.substring(0, 2)
 
@@ -272,6 +295,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                 profilepic: url,
                 email: user?.email
             }
+            
             switch (type) {
                 case 'E':
                     await agoraApi.post('/entrepreneur/update-entrepreneur-info', data)
@@ -327,6 +351,7 @@ export const useProfile = (email: string, id: string, type: string) => {
         try {
             switch (user?.type) {
                 case 'E':
+                    console.log(profilePic)
                     if (
                         companyNameRef.current &&
                         emailContactRef.current &&
@@ -335,7 +360,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                         cityRef.current &&
                         addressRef.current &&
                         companyNameRef.current!.value !== '' &&
-                        profilePic != '' &&
+                        (profilePic != '' && profilePic) &&
                         emailContactRef.current!.value !== '' &&
                         phoneRef.current!.value !== '' &&
                         countryRef.current!.value !== '' &&
@@ -358,7 +383,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                         cityRef.current &&
                         addressRef.current &&
                         companyNameRef.current!.value !== '' &&
-                        profilePic != '' &&
+                        (profilePic != '' && profilePic) &&
                         emailContactRef.current!.value !== '' &&
                         phoneRef.current!.value !== '' &&
                         countryRef.current!.value !== '' &&
@@ -381,7 +406,7 @@ export const useProfile = (email: string, id: string, type: string) => {
                         cityRef.current &&
                         addressRef.current &&
                         companyNameRef.current!.value !== '' &&
-                        profilePic != '' &&
+                        (profilePic != '' && profilePic) &&
                         emailContactRef.current!.value !== '' &&
                         phoneRef.current!.value !== '' &&
                         countryRef.current!.value !== '' &&
