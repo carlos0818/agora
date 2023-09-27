@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -91,8 +90,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
         getAverageVotes,
         handleUploadVideo,
     } = useProfile(email, id, type)
-
-    const router = useRouter()
 
     const [showVote, setShowVote] = useState(false)
     const [stars, setStars] = useState(0)
@@ -549,7 +546,17 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                     {
                                         !((type !== 'E' && !videoUrl) || (type === 'E' && !isMyAccount && !videoUrl)) && (
                                             <div className={ `window-glass` }>
-                                                <div className='window-glass-content' style={{ display: 'flex', flexDirection: 'column', padding: 8 }}>
+                                                <div className='window-glass-content' style={{ display: 'flex', flexDirection: 'column', padding: 16 }}>
+                                                    <p className={ styles['card-title'] }>Pitch Video</p>
+                                                    {
+                                                        (type === 'E' && isMyAccount && !videoUrl) &&
+                                                            <p className={ styles['card-subtitle'] }>
+                                                                Explore a series of short videos aimed at helping entrepreneurs create an impactful investor pitch. These videos
+                                                                cover essential aspects of pitching, from problem-solving to financial projections and team introduction. Whether
+                                                                you are new to pitching or have experience, our resources are here to assist you in delivering a persuasive pitch
+                                                                to potential investors and partners.
+                                                            </p>
+                                                    }
                                                     <div className={ `${ styles['video-container'] }` }>
                                                         {
                                                             (type === 'E' && isMyAccount && !videoUrl)
@@ -562,7 +569,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                         />
                                                                     </video>
                                                                     <div className={ styles['video-text-container'] }>
-                                                                        <p className={ styles['card-title'] }>Pitch Video</p>
                                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, inlineSize: '100%', marginBlockStart: 8 }}>
                                                                             <a
                                                                                 id='videotutorial1'
@@ -671,12 +677,11 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                         <source src={ videoUrl } />
                                                                     </video>
                                                                     <div className={ styles['video-text-container'] }>
-                                                                        <p className={ styles['card-title'] }>Video</p>
                                                                         <textarea
                                                                             ref={ videoDescRef }
                                                                             spellCheck={ false }
                                                                             className={ `textfield ${ styles['textarea'] }` }
-                                                                            style={{ blockSize: '100%', inlineSize: 'calc(100% - 25px)' }}
+                                                                            style={{ blockSize: '100%', inlineSize: 'calc(100% - 12px)' }}
                                                                             onBlur={ (event) => handleUpdateEntrepreneurInfo(event, 'videodesc') }
                                                                         />
                                                                     </div>
@@ -688,12 +693,11 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                         <source src={ videoUrl } />
                                                                     </video>
                                                                     <div className={ styles['video-text-container'] }>
-                                                                        <p className={ styles['card-title'] }>Video</p>
                                                                         <textarea
                                                                             disabled
                                                                             spellCheck={ false }
                                                                             className={ `textfield ${ styles['textarea'] }` }
-                                                                            style={{ blockSize: '100%', inlineSize: 'calc(100% - 25px)' }}
+                                                                            style={{ blockSize: '100%', inlineSize: 'calc(100% - 12px)' }}
                                                                             defaultValue={ videoDesc }
                                                                         />
                                                                     </div>
@@ -701,6 +705,13 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                             )
                                                         }
                                                     </div>
+                                                    {
+                                                        (type === 'E' && isMyAccount && !videoUrl) &&
+                                                            <p className={ styles['card-subtitle'] }>
+                                                                Elevate your chances for successful connections with potential investors and partners by clicking the "Upload Video"
+                                                                button below and sharing your compelling pitch video.
+                                                            </p>
+                                                    }
                                                     {
                                                         isMyAccount && (
                                                             <div style={{
@@ -832,69 +843,6 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                     </>
                                                                 )
                                                             }
-                                                            {/* <div className={ styles['accordion-content'] } style={{ display: 'flex', flexDirection: 'column' }}>
-                                                                {
-                                                                    !pitchDeck ? (
-                                                                        <>
-                                                                            <p style={{ color: '#10284F' }}>
-                                                                                A successful entrepreneur needs to be able to effectively communicate the essence of their
-                                                                                business in a very limited period of time and capture the interest of investors, potential
-                                                                                partners, and other key stakeholders. This is where the &quot;Pitch Deck&quot; comes into play. A Pitch
-                                                                                Deck is a presentation that succinctly and attractively summarizes the most important aspects
-                                                                                of a business.
-                                                                            </p>
-                                                                            {
-                                                                                loadingPitchDeck
-                                                                                ? (
-                                                                                    <div style={{ display: 'flex', marginBlock: 20, justifyContent: 'center' }}>
-                                                                                        <p className={ styles['message-pitch-deck'] }>{ messagePitchDeck }</p>
-                                                                                    </div>
-                                                                                )
-                                                                                : (
-                                                                                    <button
-                                                                                        className='button-filled'
-                                                                                        style={{ margin: 'auto', marginBlockStart: 20, width: 'fit-content', alignSelf: 'center' }}
-                                                                                        onClick={ handlePitchDeck }
-                                                                                    >
-                                                                                        Generate Pitch Deck with AI
-                                                                                    </button>
-                                                                                )
-                                                                            }
-                                                                        </>
-                                                                    ) : (
-                                                                        isMyAccount ? (
-                                                                            <textarea
-                                                                                className={ `textfield ${ styles['textarea'] }` }
-                                                                                spellCheck={ false }
-                                                                                style={{ blockSize: 150, inlineSize: 'calc(100% - 25px)' }}
-                                                                                defaultValue={ summaryPitchDeck }
-                                                                                onBlur={ handleSaveSummaryPitchDeck }
-                                                                            />
-                                                                        ) : (
-                                                                            <>
-                                                                                <textarea
-                                                                                    className={ `textfield ${ styles['textarea'] }` }
-                                                                                    disabled
-                                                                                    spellCheck={ false }
-                                                                                    style={{ blockSize: 500, inlineSize: 'calc(100% - 25px)' }}
-                                                                                    defaultValue={ summaryPitchDeck }
-                                                                                />
-                                                                                <p style={{ marginBlockStart: 16, color: '#10284f' }}>
-                                                                                    To view the full version of the Pitch Deck, click&nbsp;
-                                                                                    <Link
-                                                                                        href={ `/pitch-deck/${ id }` }
-                                                                                        passHref
-                                                                                        prefetch={ false }
-                                                                                        legacyBehavior
-                                                                                    >
-                                                                                        <a style={{ color: '#10284f' }}>on this link</a>
-                                                                                    </Link>.
-                                                                                </p>
-                                                                            </>
-                                                                        )
-                                                                    )
-                                                                }
-                                                            </div> */}
                                                         </details>
                                                     </div>
                                                 </div>
@@ -929,7 +877,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                     <Fragment key={ title.title }>
                                                                                         <p className={ styles['texts'] }>{ title.title }</p>
                                                                                         <progress
-                                                                                            className={ `${ styles['progress-bar-qualification'] } progress-score` }
+                                                                                            className={
+                                                                                                `${ styles['progress-bar-qualification'] } ${ (Number(title.score) >= 0 && Number(title.score) < 25) && styles['progress-bar-red'] } ${ (Number(title.score) >= 25 && Number(title.score) < 50) && styles['progress-bar-orange'] } ${ (Number(title.score) >= 50 && Number(title.score) < 75) && styles['progress-bar-gray'] } ${ Number(title.score) >= 75 && styles['progress-bar-orange'] } progress-score`
+                                                                                            }
                                                                                             // value={ score.score }
                                                                                             max="100"
                                                                                         />

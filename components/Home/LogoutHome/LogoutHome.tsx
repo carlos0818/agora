@@ -209,7 +209,7 @@ export const LogoutHome = () => {
                             />
                             <h4 className={ home['portfolio-title'] }>WashyWash</h4>
                             <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Jordan</p>
-                            <p className={ home['portfolio-description'] }>WashyWash is an eco-friendly on-demand cleaning service app focused on delivering professional cleaning services to clients at their locations. The goal is to transform the customer experience by innovating both the front and back ends of the cleaning industry. While initially specializing in garment cleaning, our vision is to expand and introduce various cleaning services, all accessible through a single platform. WashyWash is dedicated to reshaping global laundry practices, replacing the outdated PERC-Dryclean system with the cutting-edge EcoClean technology.</p>
+                            <p className={ home['portfolio-description'] }>WashyWash is an eco-friendly on-demand cleaning app, revolutionizing both the customer experience and industry standards. Initially focused on garment cleaning, our vision is to introduce diverse cleaning services on a single platform. We are dedicated to replacing outdated PERC-Dryclean with innovative EcoClean technology, reshaping global laundry practices.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
                             <Image
@@ -221,7 +221,7 @@ export const LogoutHome = () => {
                             />
                             <h4 className={ home['portfolio-title'] }>VOSS Consulting</h4>
                             <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Togo</p>
-                            <p className={ home['portfolio-description'] }>VOSS Consulting is a Togolese sole proprietorship founded in October 2021. We specialize in providing comprehensive training, coaching, and personal development services, focusing on leadership development, and utilizing Maxwell Leadership resources within the Francophone community. Our core mission is to guide and empower individuals who aspire to enhance their personal growth and unlock their full potential.</p>
+                            <p className={ home['portfolio-description'] }>VOSS Consulting specializes in providing comprehensive training, coaching, and personal development services, focusing on leadership development, and utilizing Maxwell Leadership resources within the Francophone community. Our core mission is to guide and empower individuals who aspire to enhance their personal growth and unlock their full potential.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
                             <Image
@@ -233,7 +233,7 @@ export const LogoutHome = () => {
                             />
                             <h4 className={ home['portfolio-title'] }>Honey Pride Arua (HPA)</h4>
                             <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>Uganda</p>
-                            <p className={ home['portfolio-description'] }>HPA was established in September 2015 with 100% Ugandan ownership. We specialize in apiculture, including beekeeping and honey processing, offering liquid honey, beeswax, and bee propolis. Our services include training farmers, providing technical support, modern hives, and a reliable honey market. HPA follows an inclusive business model, involving rural communities in the value chain. Our goal is to lead in sustainable beehive product production in the Great Lakes Region, benefiting farmers economically and environmentally.</p>
+                            <p className={ home['portfolio-description'] }>HPA specializes in apiculture, including beekeeping and honey processing, offering liquid honey, beeswax, and bee propolis. Our services include training farmers, providing technical support, modern hives, and a reliable honey market. Our goal is to lead in sustainable beehive product production in the Great Lakes Region, benefiting farmers economically and environmentally.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
                             <Image
@@ -245,7 +245,7 @@ export const LogoutHome = () => {
                             />
                             <h4 className={ home['portfolio-title'] }>PayGas</h4>
                             <p style={{ color: 'white', fontFamily: 'ebrima-bold', marginBlockEnd: 8 }}>South Africa</p>
-                            <p className={ home['portfolio-description'] }>PayGas is a pioneering tech-driven LPG retailer committed to serving low-income clients. Our unique cashless technology, known as Pay as you Gas™, empowers customers to refill their gas cylinders with the precise amount they can afford, starting from as little as 0.5 USD. By revolutionizing the conventional cylinder swapping process with cashless micro refills, we are actively combating deforestation caused by wood fuel usage in low-income households.</p>
+                            <p className={ home['portfolio-description'] }>PayGas is a pioneering tech-driven LPG retailer committed to serving low-income clients. Our unique cashless technology empowers customers to refill their gas cylinders with the precise amount they can afford. By revolutionizing the conventional cylinder swapping process with cashless micro refills, we actively combat deforestation caused by wood fuel usage in low-income households.</p>
                         </div>
                         <div className={ home['portfolio-wrapper'] }>
                             <Image
@@ -387,7 +387,7 @@ export const LogoutHome = () => {
                                 entrepreneurs.&quot;
                             </p>
                             <Image
-                                src='/images/Lissette.jpg'
+                                src='/images/richard.jpg'
                                 alt=''
                                 width={ 50 }
                                 height={ 50 }
@@ -497,7 +497,7 @@ export const LogoutHome = () => {
             <section className={ home['supported-container-mobile'] }>
                 <h3 className={ home['supported-title'] }>Supported by a partnership of like-minded entities</h3>
                 <Image
-                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694531765/SYSPICS/logosp.jpg'
+                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1695845850/SYSPICS/logosp.jpg'
                     alt=''
                     width={ 1200 }
                     height={ 698 }
@@ -540,7 +540,7 @@ export const LogoutHome = () => {
                     emerging and frontier economies with the needed capital and expertise.
                 </h5>
                 <Image
-                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1694531765/SYSPICS/logosp.jpg'
+                    src='https://res.cloudinary.com/dp779tmk6/image/upload/v1695845850/SYSPICS/logosp.jpg'
                     alt=''
                     width={ 1200 }
                     height={ 698 }

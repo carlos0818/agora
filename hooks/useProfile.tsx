@@ -351,7 +351,6 @@ export const useProfile = (email: string, id: string, type: string) => {
         try {
             switch (user?.type) {
                 case 'E':
-                    console.log(profilePic)
                     if (
                         companyNameRef.current &&
                         emailContactRef.current &&

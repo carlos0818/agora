@@ -20,11 +20,6 @@ export const useLoadQuestions = () => {
 
     const [data, setData] = useState<any>([])
     const [validJSON, setValidJSON] = useState(false)
-    const [language, setLanguage] = useState('en')
-
-    useEffect(() => {
-        getLanguage()
-    }, [])
 
     useEffect(() => {
         if (data.length > 0) {
@@ -105,17 +100,13 @@ export const useLoadQuestions = () => {
 
     const getLanguage = async() => {
         const userLang = await navigator.language.substring(0, 2)
-
-        if (userLang === 'fr')
-            setLanguage('fr')
-        else if (userLang === 'es')
-            setLanguage('es')
-        else
-            setLanguage('en')
+        return userLang
     }
 
     const loadQuestions = async() => {
         try {
+            const language = await getLanguage()
+            
             switch (user?.type) {
                 case 'E':
                     const { data: dataQuestionEnt } = await agoraApi.get<IQuestion[]>(`/question/entrepreneur?lang=${ language }`)
