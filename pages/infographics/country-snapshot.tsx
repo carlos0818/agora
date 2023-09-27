@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -10,7 +10,6 @@ import { snapshot } from '@/redux/slices/country'
 import countriesList from '../../db/countries'
 import { ICountry } from '@/interfaces'
 import { useAnimateIndicators } from '@/hooks'
-import { MenuContext } from '@/context/menu'
 
 import { HomeLoginWithoutMenuLayout } from '@/components/layouts/HomeLoginWithoutMenuLayout'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -20,7 +19,6 @@ import styles from './country-snapshot.module.css'
 
 const CountrySnapshot = () => {
     const { user } = useContext(AuthContext)
-    const { isOpenDesktop } = useContext(MenuContext)
     const router = useRouter()
 
     const { countries } = countriesList
@@ -82,6 +80,10 @@ const CountrySnapshot = () => {
         innovation,
         hightech,
     } = useAnimateIndicators(indicators)
+
+    useEffect(() => {
+        handleData('AFG')
+    }, [])
     
     const [country, setCountry] = useState('')
     const [flag, setFlag] = useState<string | null>(null)
@@ -119,7 +121,7 @@ const CountrySnapshot = () => {
                 <div className={ styles["country-container"] }>
                     <select
                         className={ styles["select"] }
-                        defaultValue="0"
+                        defaultValue="AFG"
                         onChange={ (ev) => handleData(ev.target.value) }
                     >
                         {

@@ -878,7 +878,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                                         <p className={ styles['texts'] }>{ title.title }</p>
                                                                                         <progress
                                                                                             className={
-                                                                                                `${ styles['progress-bar-qualification'] } ${ (Number(title.score) >= 0 && Number(title.score) < 25) && styles['progress-bar-red'] } ${ (Number(title.score) >= 25 && Number(title.score) < 50) && styles['progress-bar-orange'] } ${ (Number(title.score) >= 50 && Number(title.score) < 75) && styles['progress-bar-gray'] } ${ Number(title.score) >= 75 && styles['progress-bar-orange'] } progress-score`
+                                                                                                `${ styles['progress-bar-qualification'] } ${ (Number(title.score) >= 0 && Number(title.score) < 25) && styles['progress-bar-red'] } ${ (Number(title.score) >= 25 && Number(title.score) < 50) && styles['progress-bar-orange'] } ${ (Number(title.score) >= 50 && Number(title.score) < 75) && styles['progress-bar-gray'] } ${ Number(title.score) >= 75 && styles['progress-bar-green'] } progress-score`
                                                                                             }
                                                                                             // value={ score.score }
                                                                                             max="100"

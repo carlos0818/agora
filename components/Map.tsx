@@ -37,8 +37,10 @@ const Map: FC<Props> = ({ country = '', setFlag }) => {
             if (country !== '') {
                 const query = `[out:json][timeout:25];relation["ISO3166-1:alpha3"="${ country }"]["admin_level" = 2];out tags;`
                 const { data: respFlag } = await overpassApi.get(`/interpreter?data=${ query }`)
-                // console.log(respFlag.elements[0].tags.flag) // IMAGEN BANDERA
-                setFlag(respFlag.elements[0].tags.flag)
+                if (country === 'AFG')
+                    setFlag('https://res.cloudinary.com/dp779tmk6/image/upload/v1695850857/SYSPICS/FLAGS/Afghanistan.jpg')
+                else
+                    setFlag(respFlag.elements[0].tags.flag)
 
                 // fetch('https://www.7catsartstudio.com/archivos_envio/Agora/Map/custom.geo.json')
                 fetch('/custom.geo.json')
