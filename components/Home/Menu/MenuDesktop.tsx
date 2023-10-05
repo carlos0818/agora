@@ -280,21 +280,21 @@ export const MenuDesktop: FC<Props> = ({ wrapperRef, notificationsRef }) => {
                                                                 Country snapshot
                                                             </li>
                                                         </Link>
-                                                        {/* <Link
-                                                            href='https://sdginvestorplatform.undp.org/market-intelligence'
-                                                            target='_blank'
+                                                        <Link
+                                                            href='/sector-analysis'
                                                             passHref
                                                             prefetch={ false }
                                                             legacyBehavior
-                                                        > */}
+                                                        >
                                                             <li className={ styles['submenu-option'] }>
-                                                                <a
+                                                                Sector Analysis
+                                                                {/* <a
                                                                     href='https://sdginvestorplatform.undp.org/market-intelligence'
                                                                     target='_blank'
                                                                     rel="noopener noreferrer"
-                                                                >Sector Analysis</a>
+                                                                >Sector Analysis</a> */}
                                                             </li>
-                                                        {/* </Link> */}
+                                                        </Link>
                                                         <Link
                                                             href='/notifications'
                                                             passHref

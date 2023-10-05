@@ -97,9 +97,9 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     const [data, setData] = useState<any>([])
 
     useEffect(() => {
-        if (user)
+        if (email)
             getScore()
-    }, [user])
+    }, [email])
 
     const onChangeValue = (event: any) => {
         setStars(event.target.value);
@@ -112,7 +112,7 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
     }
 
     const getScore = async() => {
-        const { data } = await agoraApi.get(`/entrepreneur/get-score?email=${ user?.email }`)
+        const { data } = await agoraApi.get(`/entrepreneur/get-score?email=${ email }`)
         setData(data)
     }
 
@@ -864,6 +864,12 @@ const ProfilePage: NextPage<Props> = ({ id, email, fullname, type }) => {
                                                                 />
                                                             </summary>
                                                             <div className={ styles['accordion-content'] }>
+                                                                <p className={ styles['card-subtitle'] } style={{ marginBlockEnd: 20 }}>
+                                                                    The qualification process on Agora employs an advanced AI algorithm to rigorously assess and validate
+                                                                    registered enterprises, providing a preliminary indication of the strength and weaknesses of the
+                                                                    enterprise based on the data provided in the profile created in Agora, while recognizing that further
+                                                                    in-depth analysis may be required.
+                                                                </p>
                                                                 {
                                                                     data.map((score: any) => (
                                                                         <div key={ score.maintitle } className={ styles['qualification-section-container'] }>

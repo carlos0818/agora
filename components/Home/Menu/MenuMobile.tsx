@@ -268,24 +268,24 @@ export const MenuMobile = () => {
                                                         Country snapshot
                                                     </li>
                                                 </Link>
-                                                {/* <Link
-                                                    href='https://sdginvestorplatform.undp.org/market-intelligence'
-                                                    target='_blank'
+                                                <Link
+                                                    href='/sector-analysis'
                                                     passHref
                                                     prefetch={ false }
                                                     legacyBehavior
-                                                > */}
+                                                >
                                                     <li
                                                         className={ styles['submenu-option'] }
                                                         onClick={ () => toggleSideMenu('original') }
                                                     >
-                                                        <a
+                                                        Sector Analysis
+                                                        {/* <a
                                                             href='https://sdginvestorplatform.undp.org/market-intelligence'
                                                             target='_blank'
                                                             rel="noopener noreferrer"
-                                                        >Sector Analysis</a>
+                                                        >Sector Analysis</a> */}
                                                     </li>
-                                                {/* </Link> */}
+                                                </Link>
                                                 <Link
                                                     href='/inbox'
                                                     passHref

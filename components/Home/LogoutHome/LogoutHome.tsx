@@ -380,11 +380,10 @@ export const LogoutHome = () => {
                             <p className={ home['testimonial-position'] }>Deputy Executive Secretary, United Nations Capital Development Fund (UNCDF)</p>
                         </div>
                         <div className={ home['testimonial-container'] }>
-                            <p>&quot;Agora offers a unique opportunity to catalyze entrepreneurship in the CEMAC region. I believe that this platform can play a pivotal
-                                role in connecting our vibrant ecosystem of entrepreneurs with the resources they need to thrive. With Agora&lsquo;s support, we can foster
-                                collaboration, share knowledge, and unlock new avenues for growth. This initiative aligns with our commitment to nurturing innovation and
-                                sustainable economic development in the CEMAC region. I am excited to see how Agora will contribute to the success stories of our local
-                                entrepreneurs.&quot;
+                            <p>&quot;Agora offers a unique opportunity to catalyze entrepreneurship in the CEMAC region. This platform can play a pivotal role in
+                                connecting our vibrant ecosystem of entrepreneurs with the resources they need to thrive. With Agora&lsquo;s support, we can foster collaboration,
+                                share knowledge, and unlock new avenues for growth. This initiative aligns with our commitment to nurturing innovation and sustainable
+                                economic development in the CEMAC region.&quot;
                             </p>
                             <Image
                                 src='/images/richard.jpg'
