@@ -193,6 +193,7 @@ export const LogoutHome = () => {
             </section>
             <section className={ home['meet-container'] }>
                 <h3 className={ home['meet-title'] }>Meet the Portfolio</h3>
+                <h4 className={ home['meet-subtitle'] }>Take a glimpse at some of enterprises in our portfolio</h4>
                 <p className={ home['meet-description'] }>
                     Discover a selection of enterprises featured in Agora&lsquo;s portfolio, offering a glimpse into the diverse array of businesses driving innovation
                     and impact within our collaborative ecosystem
@@ -442,10 +443,10 @@ export const LogoutHome = () => {
                             <p className={ home['testimonial-position'] }>CEO, Development Agency and Supervision of Small and Medium Enterprises (ADEPME)</p>
                         </div>
                         <div className={ home['testimonial-container'] }>
-                            <p>&quot;Business Africa sees great potential in Agora to connect African entrepreneurs with the capital and expertise they need to thrive.
-                                Agora provides a unique opportunity for our members to access global networks and resources, opening doors to previously untapped growth
-                                possibilities. We believe that Agora will play a pivotal role in advancing the African business landscape and promoting economic development
-                                across the continent.&quot;
+                            <p>&quot;Business Africa sees tremendous potential in Agora to connect African entrepreneurs with the capital and expertise they need
+                                to thrive. Agora&lsquo;s innovative platform provides a unique opportunity for our members to access global networks and resources,
+                                opening doors to previously untapped growth possibilities. We believe that Agora will play a pivotal role in advancing the African
+                                business landscape and promoting economic development across the continent.&quot;
                             </p>
                             <Image
                                 src='/images/Jackeline.jpg'

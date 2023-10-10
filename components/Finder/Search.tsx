@@ -28,6 +28,7 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
     const typeRef = useRef<HTMLSelectElement>(null)
     const alphabeticalRef = useRef<HTMLInputElement>(null)
     const fundingRef = useRef<HTMLInputElement>(null)
+    const interestRef = useRef<HTMLSelectElement>(null)
 
     let searchTimeout: any
 
@@ -88,6 +89,10 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
             query += `&funding=${ fundingRef.current.value }`
         }
 
+        if (interestRef.current && interestRef.current.value !== '') {
+            query += `&interest=${ interestRef.current.value }`
+        }
+
         try {
             switch (accountType) {
                 case 'entrepreneur':
@@ -135,6 +140,33 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                             }
                         </select>
                     </div>
+                    {
+                        accountType === 'investors' && (
+                            <div className={ styles['form-row'] }>
+                                <label className={ styles['form-row-label'] }>Sector of interest</label>
+                                <select className={ `select ${ styles['select'] }` } ref={ interestRef } onChange={ handleSearch }>
+                                    <option value="">Select a sector of interest</option>
+                                    <option value="Business and legal services">Business and legal services</option>
+                                    <option value="Data and technology">Data and technology</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Energy">Energy</option>
+                                    <option value="Environment and weather">Environment and weather</option>
+                                    <option value="Finance and investment">Finance and investment</option>
+                                    <option value="Food and agriculture">Food and agriculture</option>
+                                    <option value="Geospatial/mapping">Geospatial/mapping</option>
+                                    <option value="Governance">Governance</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Housing and real estate Insurance">Housing and real estate Insurance</option>
+                                    <option value="Lifestyle and consumer">Lifestyle and consumer</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Research and consulting">Research and consulting</option>
+                                    <option value="Scientific research">Scientific research</option>
+                                    <option value="Transportation">Transportation</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        )
+                    }
                     {
                         accountType === 'entrepreneur' && (
                             <>
