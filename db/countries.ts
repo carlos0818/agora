@@ -472,14 +472,14 @@
             longitude : 38,
             zoom: 5
         },
-        {
-            id: "299",
-            name:"Euro area",
-            alpha3 : "AAA",
-            latitude : 0,
-            longitude : 0,
-            zoom: 5
-        },
+        // {
+        //     id: "299",
+        //     name:"Euro area",
+        //     alpha3 : "AAA",
+        //     latitude : 0,
+        //     longitude : 0,
+        //     zoom: 5
+        // },
         {
             id: "192",
             name:"Faroe Islands",
@@ -616,14 +616,14 @@
             longitude : -72.4167,
             zoom: 5
         },
-        {
-            id: "198",
-            name:"Holy See (Vatican City)",
-            alpha3 : "VAT",
-            latitude : 41.9,
-            longitude : 12.45,
-            zoom: 5
-        },
+        // {
+        //     id: "198",
+        //     name:"Holy See (Vatican City)",
+        //     alpha3 : "VAT",
+        //     latitude : 41.9,
+        //     longitude : 12.45,
+        //     zoom: 5
+        // },
         {
             id: "30",
             name:"Honduras",
@@ -1064,14 +1064,14 @@
             longitude : 8.5,
             zoom: 5
         },
-        {
-            id: "169",
-            name:"Norfolk Island",
-            alpha3 : "NFK",
-            latitude : -29.0333,
-            longitude : 167.95,
-            zoom: 5
-        },
+        // {
+        //     id: "169",
+        //     name:"Norfolk Island",
+        //     alpha3 : "NFK",
+        //     latitude : -29.0333,
+        //     longitude : 167.95,
+        //     zoom: 5
+        // },
         {
             id: "139",
             name:"North Korea",
@@ -1120,14 +1120,14 @@
             longitude : 134.5,
             zoom: 5
         },
-        {
-            id: "232",
-            name:"Palestine",
-            alpha3 : "PSE",
-            latitude : 32,
-            longitude : 35.25,
-            zoom: 5
-        },
+        // {
+        //     id: "232",
+        //     name:"Palestine",
+        //     alpha3 : "PSE",
+        //     latitude : 32,
+        //     longitude : 35.25,
+        //     zoom: 5
+        // },
         {
             id: "35",
             name:"Panama",

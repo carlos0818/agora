@@ -29,6 +29,7 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
     const alphabeticalRef = useRef<HTMLInputElement>(null)
     const fundingRef = useRef<HTMLInputElement>(null)
     const interestRef = useRef<HTMLSelectElement>(null)
+    const expertiseRef = useRef<HTMLSelectElement>(null)
 
     let searchTimeout: any
 
@@ -92,6 +93,12 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
         if (interestRef.current && interestRef.current.value !== '') {
             query += `&interest=${ interestRef.current.value }`
         }
+
+        if (expertiseRef.current && expertiseRef.current.value !== '') {
+            query += `&expertise=${ expertiseRef.current.value }`
+        }
+
+        console.log(query)
 
         try {
             switch (accountType) {
@@ -163,6 +170,27 @@ export const Search: FC<Props> = ({ types, setLoadingSearch, setSearch }) => {
                                     <option value="Scientific research">Scientific research</option>
                                     <option value="Transportation">Transportation</option>
                                     <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        )
+                    }
+                    {
+                        accountType === 'experts' && (
+                            <div className={ styles['form-row'] }>
+                                <label className={ styles['form-row-label'] }>Area of expertise</label>
+                                <select className={ `select ${ styles['select'] }` } ref={ expertiseRef } onChange={ handleSearch }>
+                                    <option value="">Select an area of expertise</option>
+                                    <option value="Financing">Financing</option>
+                                    <option value="Financial management">Financial management</option>
+                                    <option value="Legal">Legal</option>
+                                    <option value="Operations">Operations</option>
+                                    <option value="Human resources">Human resources</option>
+                                    <option value="Vision and leadership">Vision and leadership</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Sales and commerce">Sales and commerce</option>
+                                    <option value="CSR and impact">CSR and impact</option>
+                                    <option value="Digital and innovation">Digital and innovation</option>
+                                    <option value="Market development and research">Market development and research</option>
                                 </select>
                             </div>
                         )

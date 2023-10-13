@@ -193,7 +193,7 @@ export const LogoutHome = () => {
             </section>
             <section className={ home['meet-container'] }>
                 <h3 className={ home['meet-title'] }>Meet the Portfolio</h3>
-                <h4 className={ home['meet-subtitle'] }>Take a glimpse at some of enterprises in our portfolio</h4>
+                {/* <h4 className={ home['meet-subtitle'] }>Take a glimpse at some of enterprises in our portfolio</h4> */}
                 <p className={ home['meet-description'] }>
                     Discover a selection of enterprises featured in Agora&lsquo;s portfolio, offering a glimpse into the diverse array of businesses driving innovation
                     and impact within our collaborative ecosystem
