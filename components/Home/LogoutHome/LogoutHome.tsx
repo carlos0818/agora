@@ -282,19 +282,37 @@ export const LogoutHome = () => {
                         <div className={ `window-glass ${ home['window-glass'] }` } style={{ overflow: 'hidden' }}>
                             {
                                 language === 'fr' ? (
-                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                    <video
+                                        className={ home['video'] }
+                                        ref={ videoRef }
+                                        onClick={ handleVideo }
+                                        poster='https://res.cloudinary.com/dp779tmk6/image/upload/v1698161215/SYSVIDEOS/Main/previewweb_wwfftp.png'
+                                    >
                                         <source
                                             src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707811/SYSVIDEOS/Main/Welcome_to_website_FR.webm'
                                             type='video/webm'
+                                        />
+                                        <source
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1698161894/SYSVIDEOS/Main/welcomeFR_tj7gqx.mov'
+                                            type='video/quicktime'
                                         />
                                     </video>
                                 )
                                 : language === 'es' ?
                                 (
-                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                    <video
+                                        className={ home['video'] }
+                                        ref={ videoRef }
+                                        onClick={ handleVideo }
+                                        poster='https://res.cloudinary.com/dp779tmk6/image/upload/v1698161215/SYSVIDEOS/Main/previewweb_wwfftp.png'
+                                    >
                                         <source
                                             src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707813/SYSVIDEOS/Main/Welcome_to_website_ES.webm'
                                             type='video/webm'
+                                        />
+                                        <source
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1698161883/SYSVIDEOS/Main/welcomeES_jkqrz7.mov'
+                                            type='video/quicktime'
                                         />
                                     </video>
                                 )
@@ -303,15 +321,15 @@ export const LogoutHome = () => {
                                         className={ home['video'] }
                                         ref={ videoRef }
                                         onClick={ handleVideo }
-                                        poster='https://res.cloudinary.com/dp779tmk6/image/upload/v1698108973/SYSVIDEOS/Main/videoprev_nspwsj.jpg'
+                                        poster='https://res.cloudinary.com/dp779tmk6/image/upload/v1698161215/SYSVIDEOS/Main/previewweb_wwfftp.png'
                                     >
-                                        <source
-                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1698108173/SYSVIDEOS/Main/welcomeEN_iaknwg.mov'
-                                            type='video/quicktime'
-                                        />
                                         <source
                                             src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707813/SYSVIDEOS/Main/Welcome_to_website_EN.webm'
                                             type='video/webm'
+                                        />
+                                        <source
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1698108173/SYSVIDEOS/Main/welcomeEN_iaknwg.mov'
+                                            type='video/quicktime'
                                         />
                                     </video>
                                 )
