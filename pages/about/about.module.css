@@ -21,7 +21,7 @@
     font-size: 13px;
     font-weight: 500;
     line-height: 17px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .section-two-container p:nth-of-type(2) {
@@ -85,7 +85,7 @@
     flex-direction: column;
     gap: 8px;
     margin-block-start: 8px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .left p {
@@ -156,7 +156,7 @@
     font-weight: 500;
     line-height: 17px;
     margin-block-start: 4px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .specs-container {
@@ -183,7 +183,7 @@
     color: var(--agora-blue-dark);
     font-size: 13px;
     line-height: 17px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 @media screen and (min-width: 1024px) {

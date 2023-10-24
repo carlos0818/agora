@@ -81,7 +81,7 @@ const FaqPage: NextPage = () => {
                                 <li>What countries does Agora look to support?</li>
                                 <ol type='i' style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                                     <li>
-                                        Agora is dedicated to frontier, emerging and developing economies. Agora is commencing pilots in two countries: Uganda and Senegal.
+                                        Agora is dedicated to frontier, emerging and developing economies. Agora has commenced pilots in two countries: Uganda and Senegal.
                                     </li>
                                 </ol>
                                 <br />

@@ -16,6 +16,14 @@ export const FooterDesktop: FC<Props> = ({ login = true }) => {
             <div className={ `${ style['container-footer'] } ${ !login && style['container-footer-logout'] }` }>
                 <div className={ style['options-container'] }>
                     <Link
+                        href='/about'
+                        passHref
+                        prefetch={ false }
+                        legacyBehavior
+                    >
+                        <a>About</a>
+                    </Link>
+                    <Link
                         href='/terms'
                         passHref
                         prefetch={ false }
@@ -38,14 +46,6 @@ export const FooterDesktop: FC<Props> = ({ login = true }) => {
                         legacyBehavior
                     >
                         <a>Hub</a>
-                    </Link>
-                    <Link
-                        href='/about'
-                        passHref
-                        prefetch={ false }
-                        legacyBehavior
-                    >
-                        <a>About</a>
                     </Link>
                     <Link
                         href='/comments'

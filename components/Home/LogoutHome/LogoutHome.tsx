@@ -279,7 +279,7 @@ export const LogoutHome = () => {
                         </p>
                     </div>
                     <div className={ `${ home['video-container'] }` }>
-                        <div className={ `window-glass ${ home['window-glass'] }` }>
+                        <div className={ `window-glass ${ home['window-glass'] }` } style={{ overflow: 'hidden' }}>
                             {
                                 language === 'fr' ? (
                                     <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
@@ -299,7 +299,16 @@ export const LogoutHome = () => {
                                     </video>
                                 )
                                 : (
-                                    <video className={ home['video'] } ref={ videoRef } onClick={ handleVideo }>
+                                    <video
+                                        className={ home['video'] }
+                                        ref={ videoRef }
+                                        onClick={ handleVideo }
+                                        poster='https://res.cloudinary.com/dp779tmk6/image/upload/v1698108973/SYSVIDEOS/Main/videoprev_nspwsj.jpg'
+                                    >
+                                        <source
+                                            src='https://res.cloudinary.com/dp779tmk6/video/upload/v1698108173/SYSVIDEOS/Main/welcomeEN_iaknwg.mov'
+                                            type='video/quicktime'
+                                        />
                                         <source
                                             src='https://res.cloudinary.com/dp779tmk6/video/upload/v1694707813/SYSVIDEOS/Main/Welcome_to_website_EN.webm'
                                             type='video/webm'
@@ -334,6 +343,53 @@ export const LogoutHome = () => {
                 <h3 className={ home['community-title'] }>Hear from the community</h3>
                 <div className={ home['community-wrapper'] }>
                     <Slider {... settings} className={ home['custom-slider'] } useCSS>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Agora has been a helpful addition to our toolkit, complementing what ADEPME already has in place to support SME development. The platform
+                                facilitates connections with investors and experts globally, enriching our local support ecosystem for entrepreneurs. It is a valuable resource
+                                in our mission to empower SMEs and foster economic growth in Senegal.&quot;
+                            </p>
+                            <Image
+                                src='/images/Idrissa.jpg'
+                                alt=''
+                                width={ 50 }
+                                height={ 50 }
+                                className={ home['testimonial-image'] }
+                            />
+                            <p className={ home['testimonial-name'] }>Idrissa Diabira</p>
+                            <p className={ home['testimonial-position'] }>CEO, Development Agency and Supervision of Small and Medium Enterprises (ADEPME)</p>
+                        </div>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Business Africa sees tremendous potential in Agora to connect African entrepreneurs with the capital and expertise they need
+                                to thrive. Agora&lsquo;s innovative platform provides a unique opportunity for our members to access global networks and resources,
+                                opening doors to previously untapped growth possibilities. We believe that Agora will play a pivotal role in advancing the African
+                                business landscape and promoting economic development across the continent.&quot;
+                            </p>
+                            <Image
+                                src='/images/Jackeline.jpg'
+                                alt=''
+                                width={ 50 }
+                                height={ 50 }
+                                className={ home['testimonial-image'] }
+                            />
+                            <p className={ home['testimonial-name'] }>Jacqueline Mugo</p>
+                            <p className={ home['testimonial-position'] }>Secretary-General, Business Africa</p>
+                        </div>
+                        <div className={ home['testimonial-container'] }>
+                            <p>&quot;Agora offers a distinct bridge between legal expertise and businesses in emerging and frontier markets. This platform opens up new avenues
+                                for law firms like ours to connect with enterprises seeking legal guidance, fostering collaborative relationships that can drive growth and
+                                sustainable development. Agora&lsquo;s interactive features and global reach make it an attractive resource for legal professionals and businesses
+                                alike.&quot;
+                            </p>
+                            <Image
+                                src='/images/Benedetta.jpg'
+                                alt=''
+                                width={ 50 }
+                                height={ 50 }
+                                className={ home['testimonial-image'] }
+                            />
+                            <p className={ home['testimonial-name'] }>Benedetta Audia</p>
+                            <p className={ home['testimonial-position'] }>Partner and Chair International Development Practice, DLA Piper</p>
+                        </div>
                         <div className={ home['testimonial-container'] }>
                             <p>&quot;Through Agora, we have discovered innovative ways to connect with investors, experts, and a diverse array of potential partners.
                                 Its valuable connections and resources have been instrumental in accessing new opportunities. With Agora&lsquo;s support, we are confident
@@ -426,53 +482,6 @@ export const LogoutHome = () => {
                             />
                             <p className={ home['testimonial-name'] }>Nyagaka Ongeri</p>
                             <p className={ home['testimonial-position'] }>CEO, Ubora Advisors</p>
-                        </div>
-                        <div className={ home['testimonial-container'] }>
-                            <p>&quot;Agora has been a helpful addition to our toolkit, complementing what ADEPME already has in place to support SME development. The platform
-                                facilitates connections with investors and experts globally, enriching our local support ecosystem for entrepreneurs. It is a valuable resource
-                                in our mission to empower SMEs and foster economic growth in Senegal.&quot;
-                            </p>
-                            <Image
-                                src='/images/Idrissa.jpg'
-                                alt=''
-                                width={ 50 }
-                                height={ 50 }
-                                className={ home['testimonial-image'] }
-                            />
-                            <p className={ home['testimonial-name'] }>Idrissa Diabira</p>
-                            <p className={ home['testimonial-position'] }>CEO, Development Agency and Supervision of Small and Medium Enterprises (ADEPME)</p>
-                        </div>
-                        <div className={ home['testimonial-container'] }>
-                            <p>&quot;Business Africa sees tremendous potential in Agora to connect African entrepreneurs with the capital and expertise they need
-                                to thrive. Agora&lsquo;s innovative platform provides a unique opportunity for our members to access global networks and resources,
-                                opening doors to previously untapped growth possibilities. We believe that Agora will play a pivotal role in advancing the African
-                                business landscape and promoting economic development across the continent.&quot;
-                            </p>
-                            <Image
-                                src='/images/Jackeline.jpg'
-                                alt=''
-                                width={ 50 }
-                                height={ 50 }
-                                className={ home['testimonial-image'] }
-                            />
-                            <p className={ home['testimonial-name'] }>Jacqueline Mugo</p>
-                            <p className={ home['testimonial-position'] }>Secretary-General, Business Africa</p>
-                        </div>
-                        <div className={ home['testimonial-container'] }>
-                            <p>&quot;Agora offers a distinct bridge between legal expertise and businesses in emerging and frontier markets. This platform opens up new avenues
-                                for law firms like ours to connect with enterprises seeking legal guidance, fostering collaborative relationships that can drive growth and
-                                sustainable development. Agora&lsquo;s interactive features and global reach make it an attractive resource for legal professionals and businesses
-                                alike.&quot;
-                            </p>
-                            <Image
-                                src='/images/Benedetta.jpg'
-                                alt=''
-                                width={ 50 }
-                                height={ 50 }
-                                className={ home['testimonial-image'] }
-                            />
-                            <p className={ home['testimonial-name'] }>Benedetta Audia</p>
-                            <p className={ home['testimonial-position'] }>Partner and Chair International Development Practice, DLA Piper</p>
                         </div>
                     </Slider>
                 </div>

@@ -9,6 +9,14 @@ export const FooterMobile = () => {
     return (
         <footer className={ style['footer-mobile'] }>
             <Link
+                href='/about'
+                passHref
+                prefetch={ false }
+                legacyBehavior
+            >
+                <a>About</a>
+            </Link>
+            <Link
                 href='/terms'
                 passHref
                 prefetch={ false }
@@ -31,14 +39,6 @@ export const FooterMobile = () => {
                 legacyBehavior
             >
                 <a>Hub</a>
-            </Link>
-            <Link
-                href='/about'
-                passHref
-                prefetch={ false }
-                legacyBehavior
-            >
-                <a>About</a>
             </Link>
             <Link
                 href='/comments'

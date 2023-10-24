@@ -271,6 +271,7 @@
     max-inline-size: 560px;
     /* position: absolute; */
     /* right: 50px; */
+    overflow: hidden;
 }
 
 .mission-container {

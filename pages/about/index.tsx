@@ -105,7 +105,7 @@ const AboutPage = () => {
                         </div>
                         <div className={ style['section-five-container'] }>
                             <div className={ style['specs-container'] }>
-                                <h3 className={ style['specs-title'] }>Accesibility</h3>
+                                <h3 className={ style['specs-title'] }>Accessibility</h3>
                                 {/* <Image
                                     src={ carbonChartIcon }
                                     alt='Accesibility Icon'
