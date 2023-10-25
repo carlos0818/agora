@@ -1623,6 +1623,86 @@
             latitude : -20,
             longitude : 30,
             zoom: 5
+        },
+        {
+            id: "229",
+            name:"Congo",
+            alpha3 : "COG",
+            latitude : -1,
+            longitude : 15,
+            zoom: 5
+        },
+        {
+            id: "230",
+            name:"Saint Helena",
+            alpha3 : "SHN",
+            latitude : -24.14,
+            longitude : -10.03,
+            zoom: 6
+        },
+        {
+            id: "231",
+            name:"Timor Leste",
+            alpha3 : "TLS",
+            latitude : -8.8,
+            longitude : 125.9,
+            zoom: 6
+        },
+        {
+            id: "232",
+            name:"Cook Islands",
+            alpha3 : "COK",
+            latitude : -21.23,
+            longitude : -159.76,
+            zoom: 6
+        },
+        {
+            id: "233",
+            name:"Marshall Islands",
+            alpha3 : "MHL",
+            latitude : 9,
+            longitude : 168,
+            zoom: 6
+        },
+        {
+            id: "234",
+            name:"Nauru",
+            alpha3 : "NRU",
+            latitude : -0.53,
+            longitude : 166.91,
+            zoom: 5
+        },
+        {
+            id: "235",
+            name:"Niue",
+            alpha3 : "NIU",
+            latitude : -19.03,
+            longitude : -169.86,
+            zoom: 5
+        },
+        {
+            id: "236",
+            name:"Tokelau",
+            alpha3 : "TKL",
+            latitude : -9,
+            longitude : -172,
+            zoom: 6
+        },
+        {
+            id: "237",
+            name:"Wallis & Futuna",
+            alpha3 : "WLF",
+            latitude : -13.3,
+            longitude : -176.2,
+            zoom: 6
+        },
+        {
+            id: "238",
+            name:"Kosovo",
+            alpha3 : "XKX",
+            latitude : 42.66,
+            longitude : 21.16,
+            zoom: 6
         }
     ]
 }
