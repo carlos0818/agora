@@ -65,6 +65,7 @@ export const FooterDesktop: FC<Props> = ({ login = true }) => {
                     <Image src={ agoralogo } alt='' className={ style['logo'] } />
                 </Link>
             </div>
+            <div className="elfsight-app-b9b69cbf-2495-4494-b7f6-8a7f23b6f04a" data-elfsight-app-lazy></div>
         </footer>
     )
 }

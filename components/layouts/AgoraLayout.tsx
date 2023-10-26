@@ -30,6 +30,7 @@ export const AgoraLayout: FC<Props> = ({ children, title, pageDescription, home 
                     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
                     <title>{ title }</title>
                     <meta name="description" content={ pageDescription } />
+                    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
                 </Head>
                 <nav>
                     <Navbar
