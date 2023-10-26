@@ -56,7 +56,7 @@ export const FooterMobile = () => {
             >
               <Image src={ agoralogo } alt='' width={ 140 } height={ 48 } />
             </Link>
-            <div className="elfsight-app-b9b69cbf-2495-4494-b7f6-8a7f23b6f04a" data-elfsight-app-lazy></div>
+            {/* <div className="elfsight-app-b9b69cbf-2495-4494-b7f6-8a7f23b6f04a" data-elfsight-app-lazy></div> */}
         </footer>
     )
 }
